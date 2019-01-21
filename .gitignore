@@ -1,0 +1,9 @@
+*.py[cod]
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+# data
+/venv/
+/windows-venv/
