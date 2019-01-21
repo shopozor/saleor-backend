@@ -4,20 +4,29 @@
 
 ### Getting started
 
-1. Create virtual environment
+1. Init and update `saleor` submodule
+
+```
+git submodule init
+git submodule update
+```
+
+Saleor software will then be accessible at the latest release we granted access to.
+
+2. Create virtual environment
 
 ```
 virtualenv venv
 ```
 
-2. Install dependencies
+3. Install dependencies
 
 ```
 ./scripts/install/install.sh
 ./scripts/install/install-dev.sh
 ```
 
-3. Add the relevant environment variables to the virtual environment (in the file `venv/bin/activate`):
+4. Add the relevant environment variables to the virtual environment (in the file `venv/bin/activate`):
 
 ```
 export PYTHONPATH=path-to-local-repo/saleor:$PYTHONPATH
