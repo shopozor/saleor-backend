@@ -5,5 +5,11 @@ mutation Login($email: String!, $password: String!, $isStaff: Boolean = false) {
       field
       message
     }
+    user {
+      permissions {
+        code
+      }
+      isStaff
+    }
   }
 }

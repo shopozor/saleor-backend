@@ -62,7 +62,7 @@ Fonctionnalité: Identifier un utilisateur
 
   Plan du Scénario: L'utilisateur peut s'identifier avec son identifiant et son mot de passe
 
-    N'importe quel administrateur peut s'identifier en tant que client.
+  N'importe quel administrateur peut s'identifier en tant que client.
 
     Lorsqu'un <utilisateur> s'identifie en tant que <utilisateur prétendu> avec un e-mail et un mot de passe valides
     Alors il reçoit un token d'authentification
@@ -75,7 +75,7 @@ Fonctionnalité: Identifier un utilisateur
 
   Scénario: Un client ne peut pas s'identifier en tant qu'administrateur
     Lorsqu'un client s'identifie en tant qu'administrateur avec un e-mail et un mot de passe valides
-    Alors il obtient un message d'erreur stipulant que ses identifiants sont incorrects
+    Alors il obtient un message d'erreur stipulant que son compte n'a pas les droits d'administrateur
 
   Plan du Scénario: Les utilisateurs se font attribuer leur permissions
     Lorsqu'un <persona> s'identifie avec un e-mail et un mot de passe valides
@@ -84,9 +84,9 @@ Fonctionnalité: Identifier un utilisateur
     Et il est considéré comme un <type d'utilisateur>
 
     Exemples:
-      | persona      | permissions | type d'utilisateur    |
-      | Consommateur | -           | client                |
-      | Producteur   | -           | administrateur        |
-      | Responsable  | responsable | administrateur        |
-      | Rex          | rex         | administrateur        |
-      | Softozor     | softozor    | administrateur        |
+      | persona      | permissions                                                               | type d'utilisateur |
+      | Consommateur | -                                                                         | client             |
+      | Producteur   | -                                                                         | administrateur     |
+      | Responsable  | SHOPOZOR_MANAGER                                                          | administrateur     |
+      | Rex          | MANAGE_STAFF,MANAGE_USERS,SHOPOZOR_MANAGER,SHOPOZOR_REX                   | administrateur     |
+      | Softozor     | MANAGE_STAFF,MANAGE_USERS,SHOPOZOR_MANAGER,SHOPOZOR_REX,SHOPOZOR_SOFTOZOR | administrateur     |

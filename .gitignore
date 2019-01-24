@@ -7,3 +7,6 @@ __pycache__/
 # data
 /venv/
 /windows-venv/
+
+# generated specification
+/specification/

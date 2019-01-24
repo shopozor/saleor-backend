@@ -6,11 +6,11 @@ from saleor.account.models import User
 @fixture
 def customer(context):
     password = 'H7V6WfOgnkDf68BAR4MN'
-    customer = User.objects.create(email='customer@shopozor.ch')
-    customer.set_password(password)
-    customer.save()
+    user = User.objects.create(email='customer@shopozor.ch')
+    user.set_password(password)
+    user.save()
     context.customer = {
-        'email': customer.email,
+        'email': user.email,
         'password': password
     }
     yield context.customer
@@ -20,11 +20,11 @@ def customer(context):
 @fixture
 def staff(context):
     password = 'ceOC6T5efnWRQqdequpN'
-    staff = User.objects.create(email='staff@shopozor.ch', is_staff=True)
-    staff.set_password(password)
-    staff.save()
+    user = User.objects.create(email='staff@shopozor.ch', is_staff=True)
+    user.set_password(password)
+    user.save()
     context.staff = {
-        'email': staff.email,
+        'email': user.email,
         'password': password
     }
     yield context.staff
@@ -41,3 +41,75 @@ def unknown(context):
     }
     yield context.unknown
     del context.unknown
+
+
+@fixture
+def consumer(context):
+    password = 'zzc0udkZBOK5vYerv51J'
+    user = User.objects.create(email='consumer@shopozor.ch')
+    user.set_password(password)
+    user.save()
+    context.consumer = {
+        'email': user.email,
+        'password': password
+    }
+    yield context.consumer
+    del context.consumer
+
+
+@fixture
+def producer(context):
+    password = 'NM34bo7yvVMy29gjzPTs'
+    user = User.objects.create(email='producer@shopozor.ch', is_staff=True)
+    user.set_password(password)
+    user.save()
+    context.producer = {
+        'email': user.email,
+        'password': password
+    }
+    yield context.producer
+    del context.producer
+
+
+@fixture
+def manager(context):
+    password = 'Lw5wuSo9Tc8XVI6pi5NY'
+    user = User.objects.create(email='manager@shopozor.ch', is_staff=True)
+    # TODO: add permissions
+    user.set_password(password)
+    user.save()
+    context.manager = {
+        'email': user.email,
+        'password': password
+    }
+    yield context.manager
+    del context.manager
+
+
+@fixture
+def rex(context):
+    password = 'bQsW6Tn7rqf6tGkCjnI0'
+    user = User.objects.create(email='rex@shopozor.ch', is_staff=True)
+    # TODO: add permissions
+    user.set_password(password)
+    user.save()
+    context.rex = {
+        'email': user.email,
+        'password': password
+    }
+    yield context.rex
+    del context.rex
+
+
+@fixture
+def softozor(context):
+    password = 'hPDo8GU4vfZkPwaDvM9i'
+    user = User.objects.create_superuser(email='softozor@shopozor.ch')
+    user.set_password(password)
+    user.save()
+    context.softozor = {
+        'email': user.email,
+        'password': password
+    }
+    yield context.softozor
+    del context.softozor

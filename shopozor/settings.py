@@ -15,8 +15,6 @@ INSTALLED_APPS.append('behave_django')
 
 ROOT_URLCONF = 'shopozor.urls'
 
-
-
 GRAPHQL_JWT = {
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_EXPIRATION_DELTA': timedelta(days=30),
