@@ -10,7 +10,7 @@ if DEBUG:
 
 
 INSTALLED_APPS.remove('saleor.graphql')
-INSTALLED_APPS.append('shopozor.graphql')
+INSTALLED_APPS.append('shopozor')
 INSTALLED_APPS.append('behave_django')
 
 ROOT_URLCONF = 'shopozor.urls'

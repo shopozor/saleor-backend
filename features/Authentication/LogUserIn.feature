@@ -84,9 +84,9 @@ Fonctionnalité: Identifier un utilisateur
     Et il est considéré comme un <type d'utilisateur>
 
     Exemples:
-      | persona      | permissions                                                               | type d'utilisateur |
-      | Consommateur | -                                                                         | client             |
-      | Producteur   | -                                                                         | administrateur     |
-      | Responsable  | SHOPOZOR_MANAGER                                                          | administrateur     |
-      | Rex          | MANAGE_STAFF,MANAGE_USERS,SHOPOZOR_MANAGER,SHOPOZOR_REX                   | administrateur     |
-      | Softozor     | MANAGE_STAFF,MANAGE_USERS,SHOPOZOR_MANAGER,SHOPOZOR_REX,SHOPOZOR_SOFTOZOR | administrateur     |
+      | persona      | permissions                                                           | type d'utilisateur |
+      | Consommateur | -                                                                     | client             |
+      | Producteur   | -                                                                     | administrateur     |
+      | Responsable  | MANAGE_PRODUCERS                                                      | administrateur     |
+      | Rex          | MANAGE_STAFF,MANAGE_USERS,MANAGE_PRODUCERS,MANAGE_MANAGERS            | administrateur     |
+      | Softozor     | MANAGE_STAFF,MANAGE_USERS,MANAGE_PRODUCERS,MANAGE_MANAGERS,MANAGE_REX | administrateur     |
