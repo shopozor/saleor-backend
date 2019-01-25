@@ -75,7 +75,7 @@ def producer(context):
 def manager(context):
     password = 'Lw5wuSo9Tc8XVI6pi5NY'
     user = User.objects.create(email='manager@shopozor.ch', is_staff=True)
-    # TODO: add permissions
+    user.user_permissions.add('account.manage_producers')
     user.set_password(password)
     user.save()
     context.manager = {
@@ -90,7 +90,10 @@ def manager(context):
 def rex(context):
     password = 'bQsW6Tn7rqf6tGkCjnI0'
     user = User.objects.create(email='rex@shopozor.ch', is_staff=True)
-    # TODO: add permissions
+    user.user_permissions.add('account.manage_producers')
+    user.user_permissions.add('account.manage_managers')
+    user.user_permissions.add('account.manage_users')
+    user.user_permissions.add('account.manage_staff')
     user.set_password(password)
     user.save()
     context.rex = {
