@@ -5,7 +5,7 @@
 __pycache__/
 
 # pycharm ide
-.idea/
+.idea/*
 
 # data
 /venv/

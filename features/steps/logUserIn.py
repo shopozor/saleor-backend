@@ -1,7 +1,7 @@
 from behave import given, then, when
 from behave import use_fixture
 
-from features.fixtures.graphql import graphql_query
+from features.fixtures import graphql_query
 from tests.api.utils import get_graphql_content
 
 from django.conf import settings
