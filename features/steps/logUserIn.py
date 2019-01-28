@@ -17,7 +17,7 @@ def step_impl(context):
 @when(u'un client s\'identifie en tant qu\'administrateur avec un e-mail et un mot de passe valides')
 def step_impl(context):
     use_fixture(graphql_query, context, 'login.graphql')
-    variables = {'email': context.customer['email'], 'password': context.customer['password']}
+    variables = {'email': context.consumer['email'], 'password': context.consumer['password']}
     response = context.test.client.post_graphql(context.query, variables)
     context.response = get_graphql_content(response)
 
@@ -33,13 +33,13 @@ def is_staff(user_type):
 def valid_mail_and_password(user_type, is_staff_user, context):
     switch = {
         'client': dict(
-            email=context.customer['email'],
-            password=context.customer['password'],
+            email=context.consumer['email'],
+            password=context.consumer['password'],
             isStaff=is_staff_user
         ),
         'administrateur': dict(
-            email=context.staff['email'],
-            password=context.staff['password'],
+            email=context.producer['email'],
+            password=context.producer['password'],
             isStaff=is_staff_user
         )
     }
@@ -68,8 +68,8 @@ def step_impl(context, user_type, pretended_type, validity):
 
 def valid_mail_invalid_password(user_type, is_staff_user, context):
     switch = {
-        'client': dict(email=context.customer['email'], password=context.unknown['password'], isStaff=is_staff_user),
-        'administrateur': dict(email=context.staff['email'], password=context.unknown['password'],
+        'client': dict(email=context.consumer['email'], password=context.unknown['password'], isStaff=is_staff_user),
+        'administrateur': dict(email=context.producer['email'], password=context.unknown['password'],
                                isStaff=is_staff_user)
     }
     return switch[user_type]

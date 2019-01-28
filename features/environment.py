@@ -5,9 +5,7 @@ from features.fixtures import *
 
 
 def before_all(context):
-    use_fixture(customer, context)
     use_fixture(unknown, context)
-    use_fixture(staff, context)
     use_fixture(consumer, context)
     use_fixture(producer, context)
     use_fixture(manager, context)
