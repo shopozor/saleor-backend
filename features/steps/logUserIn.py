@@ -68,8 +68,9 @@ def step_impl(context, user_type, pretended_type, validity):
 
 def valid_mail_invalid_password(user_type, is_staff_user, context):
     switch = {
-        'client': dict(email=context.consumer['email'], password=context.unknown['password'], isStaff=is_staff_user),
-        'administrateur': dict(email=context.producer['email'], password=context.unknown['password'],
+        'client': dict(email=context.consumer['email'], password=context.consumer['password'] + 'a',
+                       isStaff=is_staff_user),
+        'administrateur': dict(email=context.producer['email'], password=context.producer['password'] + 'a',
                                isStaff=is_staff_user)
     }
     return switch[user_type]
@@ -105,18 +106,12 @@ def step_impl(context, persona):
 
 @then(u'il obtient un message d\'erreur stipulant que ses identifiants sont incorrects')
 def step_impl(context):
-    token_data = context.response['data']['login']
-    context.test.assertIsNone(token_data['token'])
-    context.test.assertEqual(token_data['errors']['message'], 'WRONG_CREDENTIALS')
-    context.test.assertIsNone(token_data['errors']['field'])
+    context.test.assertEqual(context.response['data'], context.wrong_credentials_response['data'])
 
 
 @then(u'il obtient un message d\'erreur stipulant que son compte n\'a pas les droits d\'administrateur')
 def step_impl(context):
-    token_data = context.response['data']['login']
-    context.test.assertIsNone(token_data['token'])
-    context.test.assertEqual(token_data['errors']['message'], 'USER_NOT_ADMIN')
-    context.test.assertIsNone(token_data['errors']['field'])
+    context.test.assertEqual(context.response['data'], context.user_not_admin_response['data'])
 
 
 @then(u'il reçoit un token d\'authentification')

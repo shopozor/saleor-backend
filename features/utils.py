@@ -13,11 +13,11 @@ def get_query_from_file(filename):
         return myfile.read().replace('\n', '')
 
 
-def get_user_from_json_fixture(filename):
+def get_data_from_json_fixture(filename):
     fixture_filename = os.path.join(settings.FIXTURES_FOLDER, filename)
     with open(fixture_filename) as file:
-        user_data = json.load(file)
-    return user_data
+        data = json.load(file)
+    return data
 
 
 def create_database_user(user_data):
