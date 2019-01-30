@@ -94,39 +94,3 @@ def user_not_admin_response(context):
     context.user_not_admin_response = data
     yield context.user_not_admin_response
     del context.user_not_admin_response
-
-
-# @fixture
-# def producer_response(context):
-#     data = get_data_from_json_fixture(
-#         os.path.join('Authentication', 'LogStaffIn', 'Responses', 'Producteur.json'))
-#     context.producer_response = data
-#     yield context.producer_response
-#     del context.producer_response
-#
-#
-# @fixture
-# def manager_response(context):
-#     data = get_data_from_json_fixture(
-#         os.path.join('Authentication', 'LogStaffIn', 'Responses', 'Responsable.json'))
-#     context.manager_response = data
-#     yield context.manager_response
-#     del context.manager_response
-#
-#
-# @fixture
-# def rex_response(context):
-#     data = get_data_from_json_fixture(
-#         os.path.join('Authentication', 'LogStaffIn', 'Responses', 'Rex.json'))
-#     context.rex_response = data
-#     yield context.rex_response
-#     del context.rex_response
-#
-#
-# @fixture
-# def softozor_response(context):
-#     data = get_data_from_json_fixture(
-#         os.path.join('Authentication', 'LogStaffIn', 'Responses', 'Softozor.json'))
-#     context.softozor_response = data
-#     yield context.softozor_response
-#     del context.softozor_response
