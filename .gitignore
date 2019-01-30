@@ -1,0 +1,15 @@
+*.py[cod]
+*.log
+*.pot
+*.pyc
+__pycache__/
+
+# pycharm ide
+.idea/*
+
+# data
+/venv/
+/windows-venv/
+
+# generated specification
+/specification/
