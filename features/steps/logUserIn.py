@@ -114,11 +114,13 @@ def step_impl(context):
     context.test.assertEqual(context.response['data'], context.user_not_admin_response['data'])
 
 
-@then(u'il reçoit un token d\'authentification')
-def step_impl(context):
+@then(u'sa session s\'ouvre pour {amount:d} {unit:DurationInSecondsType}')
+def step_impl(context, amount, unit):
     token_data = context.response['data']['login']
     context.test.assertIsNotNone(token_data['token'])
     context.test.assertIsNone(token_data['errors'])
+    context.test.assertTrue(settings.GRAPHQL_JWT['JWT_VERIFY_EXPIRATION'])
+    context.test.assertEqual(settings.GRAPHQL_JWT['JWT_EXPIRATION_DELTA'].total_seconds(), amount * unit)
 
 
 @then(u'il obtient les permissions {permissions}')
@@ -138,14 +140,14 @@ def step_impl(context, user_type):
     context.test.assertEqual(user_data['isStaff'], is_staff(user_type))
 
 
-# it would be better to double-check the actual token, but it would be more complicated
-@then(u'il doit être rafraîchi tous les {amount:d} {unit:DurationInSecondsType}')
-def step_impl(context, amount, unit):
-    context.test.assertTrue(settings.GRAPHQL_JWT['JWT_VERIFY_EXPIRATION'])
-    context.test.assertEqual(settings.GRAPHQL_JWT['JWT_EXPIRATION_DELTA'].total_seconds(), amount * unit)
-
-
-# it would be better to double-check the actual token, but it would be more complicated
-@then(u'son token est valide pendant {amount:d} {unit:DurationInSecondsType}')
-def step_impl(context, amount, unit):
-    context.test.assertEqual(settings.GRAPHQL_JWT['JWT_REFRESH_EXPIRATION_DELTA'].total_seconds(), amount * unit)
+# # it would be better to double-check the actual token, but it would be more complicated
+# @then(u'il doit être rafraîchi tous les {amount:d} {unit:DurationInSecondsType}')
+# def step_impl(context, amount, unit):
+#     context.test.assertTrue(settings.GRAPHQL_JWT['JWT_VERIFY_EXPIRATION'])
+#     context.test.assertEqual(settings.GRAPHQL_JWT['JWT_EXPIRATION_DELTA'].total_seconds(), amount * unit)
+#
+#
+# # it would be better to double-check the actual token, but it would be more complicated
+# @then(u'son token est valide pendant {amount:d} {unit:DurationInSecondsType}')
+# def step_impl(context, amount, unit):
+#     context.test.assertEqual(settings.GRAPHQL_JWT['JWT_REFRESH_EXPIRATION_DELTA'].total_seconds(), amount * unit)

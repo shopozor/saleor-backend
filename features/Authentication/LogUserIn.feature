@@ -1,11 +1,16 @@
 # language: fr
 
-@initial-release @login
+@initial-release @common @login
 Fonctionnalité: Identifier un utilisateur
 
-  En tant qu'utilisateur enregistré dans le Shopozor,
-  je veux pouvoir m'identifier avec un e-mail et un mot de passe
-  afin de pouvoir faire mes achats ou accéder aux outils de gestion liés à mon compte.
+  *En tant qu'utilisateur enregistré dans le Shopozor,  
+  je veux pouvoir m'identifier avec un e-mail et un mot de passe  
+  afin de pouvoir faire mes achats ou accéder aux outils de gestion liés à mon compte.*  
+  
+  Le Shopozor ouvre une session si l'utilisateur fournit un e-mail et un mot de passe valides.
+  Celui-ci peut demander au Shopozor de se souvenir de lui, auquel cas [Se souvenir de l'utilisateur](?feature=Authentication\RemindUser.feature) s'applique.
+  Par défaut, l'utilisateur reste identifié un certain temps spécifié dans les scénarios ci-dessous après quoi il est
+  automatiquement déconnecté.
 
   Les utilisateurs suivants sont des "clients":
 
@@ -18,7 +23,9 @@ Fonctionnalité: Identifier un utilisateur
   * Rex
   * Softozor
 
-  Un Consommateur ou un Producteur n'ont aucune permission particulière. Ils peuvent accéder et modifier leurs données personnelles.
+  Le Consommateur et le Producteur n'ont aucune permission particulière.
+  Ils peuvent accéder et modifier leurs données personnelles.
+  Les produits font partie des données personnelles du Producteur.
 
   En plus de la gestion de ses propres données, un Responsable peut
 
@@ -34,7 +41,7 @@ Fonctionnalité: Identifier un utilisateur
   * changer les permissions des utilisateurs du Shopozor
 
   En plus de la gestion de ses propres données, Softozor est un super-utilisateur. Il a tous les droits, pour des raisons de maintenance.
-
+  
   Contexte: L'utilisateur n'est pas identifié
     Etant donné un utilisateur non identifié sur le Shopozor
 
@@ -62,10 +69,10 @@ Fonctionnalité: Identifier un utilisateur
 
   Plan du Scénario: L'utilisateur peut s'identifier avec son identifiant et son mot de passe
 
-  N'importe quel administrateur peut s'identifier en tant que client.
+    N'importe quel administrateur peut s'identifier en tant que client.
 
     Lorsqu'un <utilisateur> s'identifie en tant que <utilisateur prétendu> avec un e-mail et un mot de passe valides
-    Alors il reçoit un token d'authentification
+    Alors sa session s'ouvre pour 1 mois
 
     Exemples:
       | utilisateur    | utilisateur prétendu |
@@ -79,7 +86,7 @@ Fonctionnalité: Identifier un utilisateur
 
   Plan du Scénario: Les utilisateurs se font attribuer leur permissions
     Lorsqu'un <persona> s'identifie avec un e-mail et un mot de passe valides
-    Alors il reçoit un token d'authentification
+    Alors sa session s'ouvre pour 1 mois
     Et il obtient les permissions <permissions>
     Et il est considéré comme un <type d'utilisateur>
 
