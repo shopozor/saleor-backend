@@ -5,12 +5,7 @@ Fonctionnalité: Identifier un utilisateur
 
   *En tant qu'utilisateur enregistré dans le Shopozor,  
   je veux pouvoir m'identifier avec un e-mail et un mot de passe  
-  afin de pouvoir faire mes achats ou accéder aux outils de gestion liés à mon compte.*  
-  
-  Le Shopozor ouvre une session si l'utilisateur fournit un e-mail et un mot de passe valides.
-  Celui-ci peut demander au Shopozor de se souvenir de lui, auquel cas [Se souvenir de l'utilisateur](?feature=Authentication\RemindUser.feature) s'applique.
-  Par défaut, l'utilisateur reste identifié un certain temps spécifié dans les scénarios ci-dessous après quoi il est
-  automatiquement déconnecté.
+  afin de pouvoir faire mes achats ou accéder aux outils de gestion liés à mon compte.*
 
   Les utilisateurs suivants sont des "clients":
 
@@ -27,20 +22,22 @@ Fonctionnalité: Identifier un utilisateur
   Ils peuvent accéder et modifier leurs données personnelles.
   Les produits font partie des données personnelles du Producteur.
 
-  En plus de la gestion de ses propres données, un Responsable peut
+  # TODO: bouger ça dans les features y relatives
+  En plus de la gestion de ses données personnelles, un Responsable peut
 
   * accéder et modifier les produits publiés par les Producteurs affiliés à ses Shops
   * accéder à l'historique de ventes de tous ses Shops
   * verser le revenu des ventes à ses Producteurs
 
-  En plus de la gestion de ses propres données, le Rex peut
+  En plus de la gestion de ses données personnelles, le Rex peut
 
   * accéder et modifier les produits publiés par n'importe quel Producteur affilié au Shopozor
   * accéder à l'historique des ventes de tous les Shops du Shopozor
   * verser le revenu des ventes à ses Shops
   * changer les permissions des utilisateurs du Shopozor
 
-  En plus de la gestion de ses propres données, Softozor est un super-utilisateur. Il a tous les droits, pour des raisons de maintenance.
+  En plus de la gestion de ses données personnelles, Softozor a tous les droits, pour des raisons de maintenance. 
+  C'est un super-utilisateur.
   
   Contexte: L'utilisateur n'est pas identifié
     Etant donné un utilisateur non identifié sur le Shopozor
@@ -73,6 +70,7 @@ Fonctionnalité: Identifier un utilisateur
 
     Lorsqu'un <utilisateur> s'identifie en tant que <utilisateur prétendu> avec un e-mail et un mot de passe valides
     Alors sa session s'ouvre pour 1 mois
+    Et reste valide pendant 1 an
 
     Exemples:
       | utilisateur    | utilisateur prétendu |
@@ -87,6 +85,7 @@ Fonctionnalité: Identifier un utilisateur
   Plan du Scénario: Les utilisateurs se font attribuer leur permissions
     Lorsqu'un <persona> s'identifie avec un e-mail et un mot de passe valides
     Alors sa session s'ouvre pour 1 mois
+    Et reste valide pendant 1 an
     Et il obtient les permissions <permissions>
     Et il est considéré comme un <type d'utilisateur>
 
