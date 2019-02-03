@@ -114,15 +114,19 @@ def step_impl(context):
     context.test.assertEqual(context.response['data'], context.user_not_admin_response['data'])
 
 
-@then(u'il obtient les permissions {permissions}')
-def step_impl(context, permissions):
+@then(u'il n\'obtient pas de permissions')
+def step_impl(context):
     permissions_data = context.response['data']['login']['user']['permissions']
-    if permissions == '-':
-        context.test.assertEqual(len(permissions_data), 0)
-    else:
-        permissions_list = permissions.split(',')
-        for expected_permission in permissions_list:
-            context.test.assertTrue(any(perm['code'] == expected_permission for perm in permissions_data))
+    context.test.assertEqual(len(permissions_data), 0)
+
+
+@then(u'il obtient les permissions suivantes')
+def step_impl(context):
+    permissions_data = context.response['data']['login']['user']['permissions']
+    for row in context.table:
+        expected_permission = row['permission']
+        context.test.assertTrue(any(perm['code'] == expected_permission for perm in permissions_data))
+    context.test.assertEqual(len(context.table), len(permissions_data))
 
 
 @then(u'il est considéré comme un {user_type:UserType}')
