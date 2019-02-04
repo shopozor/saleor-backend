@@ -3,16 +3,11 @@
 @initial-release @common @login
 Fonctionnalité: Déconnecter un utilisateur
 
-  En tant qu'utilisateur identifié sur le Shopozor,  
+  *En tant qu'utilisateur identifié sur le Shopozor,  
   je veux pouvoir m'en déconnecter  
-  de telle sorte que je doive à nouveau entrer mes identifiants pour m'y reconnecter.  
+  de telle sorte que je doive à nouveau entrer mes identifiants pour m'y reconnecter.*    
   
-  A tout moment, l'utilisateur peut se déconnecter.  
-  
-  En plus de cela, si l'utilisateur n'a pas demandé à ce que le Shopozor se souvienne de lui,
-  la déconnexion s'effectue automatiquement au moment du rafraîchissement de sa session
-  (cf. [Se souvenir de l'utilisateur](?feature=Authentication\RemindUser.feature)). 
-  Dans ce cas-là, la session n'est pas rafraîchie et l'utilisateur est déconnecté.
+  A tout moment, l'utilisateur peut se déconnecter.
   
   Scénario: L'utilisateur ferme sa session
     Etant donné un utilisateur identifié sur le Shopozor
