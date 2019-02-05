@@ -15,6 +15,11 @@ def before_all(context):
     use_fixture(user_not_admin_response, context)
 
 
+def after_scenario(context, scenario):
+    if hasattr(context, 'query'):
+        del context.query
+
+
 def django_ready(context):
     context.test.client = ApiClient(user=AnonymousUser())
     context.django = True
