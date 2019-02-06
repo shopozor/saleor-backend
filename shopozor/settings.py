@@ -16,5 +16,7 @@ ROOT_URLCONF = 'shopozor.urls'
 GRAPHQL_JWT = {
     'JWT_VERIFY_EXPIRATION': True,
     'JWT_EXPIRATION_DELTA': timedelta(days=30),
-    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=360)
+    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=360),
+    'JWT_SECRET_KEY': SECRET_KEY,
+    'JWT_ALGORITHM': 'HS256'
 }

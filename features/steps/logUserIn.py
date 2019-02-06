@@ -1,12 +1,12 @@
 from behave import given, then, when
 from behave import use_fixture
+from django.conf import settings
 
 from features.fixtures import graphql_query
 from tests.api.utils import get_graphql_content
 
-from django.conf import settings
-
 import features.types
+import jwt
 
 
 @given(u'un utilisateur non identifié sur le Shopozor')
@@ -135,18 +135,27 @@ def step_impl(context, user_type):
     context.test.assertEqual(user_data['isStaff'], is_staff(user_type))
 
 
-# it would be better to double-check the actual token, but it would be more complicated
-# TODO: here I can really decode the token and double-check the expiry date
+def expiration_delta(token):
+    decoded = jwt.decode(token, key=settings.GRAPHQL_JWT['JWT_SECRET_KEY'],
+                         algorithm=settings.GRAPHQL_JWT['JWT_ALGORITHM'])
+    return decoded['exp'] - decoded['origIat']
+
+
 @then(u'sa session s\'ouvre pour {amount:d} {unit:DurationInSecondsType}')
 def step_impl(context, amount, unit):
+    expected_expiration_delta = amount * unit
     token_data = context.response['data']['login']
-    context.test.assertIsNotNone(token_data['token'])
+    token = token_data['token']
+    context.test.assertIsNotNone(token)
+    context.test.assertEqual(expected_expiration_delta, expiration_delta(token))
     context.test.assertIsNone(token_data['errors'])
     context.test.assertTrue(settings.GRAPHQL_JWT['JWT_VERIFY_EXPIRATION'])
-    context.test.assertEqual(settings.GRAPHQL_JWT['JWT_EXPIRATION_DELTA'].total_seconds(), amount * unit)
+    context.test.assertEqual(settings.GRAPHQL_JWT['JWT_EXPIRATION_DELTA'].total_seconds(), expected_expiration_delta)
 
 
-# it would be better to double-check the actual token, but it would be more complicated
+# we will assume that django graphql jwt is working as expected
+# therefore we don't actually test that the token expires after the specified duration
+# instead, we just check that the relevant parameters are set appropriately
 @then(u'reste valide pendant {amount:d} {unit:DurationInSecondsType}')
 def step_impl(context, amount, unit):
     context.test.assertTrue(settings.GRAPHQL_JWT['JWT_VERIFY_EXPIRATION'])
