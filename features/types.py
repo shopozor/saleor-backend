@@ -31,19 +31,19 @@ def unit_to_seconds(unit):
     switch = {
         'secondes': 1,
         'seconde': 1,
-        'minutes': timedelta(minutes=1).seconds(),
-        'minute': timedelta(minutes=1).seconds(),
-        'heures': timedelta(hours=1).seconds(),
-        'heure': timedelta(hours=1).seconds(),
-        'jours': timedelta(days=1).seconds(),
-        'jour': timedelta(days=1).seconds(),
-        'semaines': timedelta(weeks=1).seconds(),
-        'semaine': timedelta(weeks=1).seconds(),
-        'mois': timedelta(days=30).seconds(),
-        'ans': timedelta(days=360).seconds(),
-        'an': timedelta(days=360).seconds()
+        'minutes': timedelta(minutes=1),
+        'minute': timedelta(minutes=1),
+        'heures': timedelta(hours=1),
+        'heure': timedelta(hours=1),
+        'jours': timedelta(days=1),
+        'jour': timedelta(days=1),
+        'semaines': timedelta(weeks=1),
+        'semaine': timedelta(weeks=1),
+        'mois': timedelta(days=30),
+        'ans': timedelta(days=360),
+        'an': timedelta(days=360)
     }
-    return switch[unit]
+    return switch[unit].total_seconds()
 
 
 @parse.with_pattern(r'secondes?|minutes?|heures?|jours?|semaines?|mois|ans?')

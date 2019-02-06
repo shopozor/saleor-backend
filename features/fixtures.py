@@ -17,7 +17,7 @@ def unknown(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'InvalidEmailAndPassword.json'))
     context.unknown = user_data
-    yield context.unknown
+    yield user_data
     del context.unknown
 
 
@@ -25,10 +25,9 @@ def unknown(context):
 def consumer(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'Consommateur.json'))
-    user = create_database_user(user_data)
+    create_database_user(user_data)
     context.consumer = user_data
-    yield context.consumer
-    user.delete()
+    yield user_data
     del context.consumer
 
 
@@ -36,10 +35,9 @@ def consumer(context):
 def producer(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'Producteur.json'))
-    user = create_database_user(user_data)
+    create_database_user(user_data)
     context.producer = user_data
-    yield context.producer
-    user.delete()
+    yield user_data
     del context.producer
 
 
@@ -47,10 +45,9 @@ def producer(context):
 def manager(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'Responsable.json'))
-    user = create_database_user(user_data)
+    create_database_user(user_data)
     context.manager = user_data
     yield context.manager
-    user.delete()
     del context.manager
 
 
@@ -58,10 +55,9 @@ def manager(context):
 def rex(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'Rex.json'))
-    user = create_database_user(user_data)
+    create_database_user(user_data)
     context.rex = user_data
-    yield context.rex
-    user.delete()
+    yield user_data
     del context.rex
 
 
@@ -73,8 +69,7 @@ def softozor(context):
     user.set_password(user_data['password'])
     user.save()
     context.softozor = user_data
-    yield context.softozor
-    user.delete()
+    yield user_data
     del context.softozor
 
 
@@ -83,7 +78,7 @@ def wrong_credentials_response(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'LogStaffIn', 'Responses', 'WrongCredentials.json'))
     context.wrong_credentials_response = data
-    yield context.wrong_credentials_response
+    yield data
     del context.wrong_credentials_response
 
 
@@ -92,5 +87,5 @@ def user_not_admin_response(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'LogStaffIn', 'Responses', 'Consommateur.json'))
     context.user_not_admin_response = data
-    yield context.user_not_admin_response
+    yield data
     del context.user_not_admin_response

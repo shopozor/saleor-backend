@@ -4,7 +4,7 @@ from behave import use_fixture
 from features.fixtures import *
 
 
-def before_all(context):
+def before_scenario(context, feature):
     use_fixture(unknown, context)
     use_fixture(consumer, context)
     use_fixture(producer, context)

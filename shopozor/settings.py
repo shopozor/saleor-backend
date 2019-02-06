@@ -8,10 +8,8 @@ if DEBUG:
     MIDDLEWARE = CORS_MIDDLEWARE + MIDDLEWARE
     INSTALLED_APPS.append('corsheaders')
 
-
 INSTALLED_APPS.remove('saleor.graphql')
 INSTALLED_APPS.append('shopozor')
-INSTALLED_APPS.append('behave_django')
 
 ROOT_URLCONF = 'shopozor.urls'
 
