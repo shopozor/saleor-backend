@@ -5,6 +5,7 @@ from features.fixtures import *
 
 
 def before_scenario(context, feature):
+    use_fixture(permissions, context)
     use_fixture(unknown, context)
     use_fixture(consumer, context)
     use_fixture(producer, context)

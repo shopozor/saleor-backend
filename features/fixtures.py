@@ -1,8 +1,11 @@
 import os.path
-from behave import fixture
 
+from behave import fixture
+from django.contrib.auth.models import Permission
+from django.contrib.contenttypes.models import ContentType
 from features.utils import *
 from saleor.account.models import User
+from shopozor.permissions import add_permissions
 
 
 @fixture
@@ -10,6 +13,11 @@ def graphql_query(context, queryfile):
     context.query = get_query_from_file(queryfile)
     yield context.query
     del context.query
+
+
+@fixture
+def permissions(context):
+    add_permissions(User, Permission, ContentType)
 
 
 @fixture

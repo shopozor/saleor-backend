@@ -126,7 +126,7 @@ def step_impl(context):
     for row in context.table:
         expected_permission = row['permission']
         context.test.assertTrue(any(perm['code'] == expected_permission for perm in permissions_data))
-    context.test.assertEqual(len(context.table), len(permissions_data))
+    context.test.assertEqual(len(context.table.rows), len(permissions_data))
 
 
 @then(u'il est considéré comme un {user_type:UserType}')
@@ -136,6 +136,7 @@ def step_impl(context, user_type):
 
 
 # it would be better to double-check the actual token, but it would be more complicated
+# TODO: here I can really decode the token and double-check the expiry date
 @then(u'sa session s\'ouvre pour {amount:d} {unit:DurationInSecondsType}')
 def step_impl(context, amount, unit):
     token_data = context.response['data']['login']
