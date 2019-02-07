@@ -29,7 +29,7 @@ virtualenv venv
 4. Add the relevant environment variables to the virtual environment (in the file `venv/bin/activate`):
 
 ```
-export PYTHONPATH=path-to-local-repo/saleor:$PYTHONPATH
+export PYTHONPATH=`pwd`/saleor:$PYTHONPATH
 export SECRET_KEY=hahahaha
 export DJANGO_SETTINGS_MODULE=shopozor.settings
 ```
