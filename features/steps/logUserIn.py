@@ -3,6 +3,7 @@ from behave import use_fixture
 from django.conf import settings
 
 from features.fixtures import graphql_query
+from shopozor.models import MODELS_PERMISSIONS
 from tests.api.utils import get_graphql_content
 
 import features.types
@@ -120,13 +121,26 @@ def step_impl(context):
     context.test.assertEqual(len(permissions_data), 0)
 
 
+def contains_permission(graphql_permissions, permission):
+    return any(perm['code'] == permission for perm in graphql_permissions)
+
+
 @then(u'il obtient les permissions suivantes')
 def step_impl(context):
     permissions_data = context.response['data']['login']['user']['permissions']
+    context.test.assertEqual(len(context.table.rows), len(permissions_data))
     for row in context.table:
         expected_permission = row['permission']
-        context.test.assertTrue(any(perm['code'] == expected_permission for perm in permissions_data))
-    context.test.assertEqual(len(context.table.rows), len(permissions_data))
+        context.test.assertTrue(contains_permission(permissions_data, expected_permission))
+
+
+@then(u'c\'est un super-utilisateur')
+def step_impl(context):
+    permissions_data = context.response['data']['login']['user']['permissions']
+    context.test.assertEqual(len(permissions_data), len(MODELS_PERMISSIONS))
+    for permission in MODELS_PERMISSIONS:
+        expected_permission = permission.split('.')[1].upper()
+        context.test.assertTrue(contains_permission(permissions_data, expected_permission))
 
 
 @then(u'il est considéré comme un {user_type:UserType}')

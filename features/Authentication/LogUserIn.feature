@@ -112,11 +112,5 @@ Fonctionnalité: Identifier un utilisateur
     Lorsqu'un Softozor s'identifie avec un e-mail et un mot de passe valides
     Alors sa session s'ouvre pour 1 mois
     Et reste valide pendant 1 an
-    Et il obtient les permissions suivantes:
-      | permission       |
-      | MANAGE_STAFF     |
-      | MANAGE_USERS     |
-      | MANAGE_PRODUCERS |
-      | MANAGE_MANAGERS  |
-      | MANAGE_REX       |
+    Et c'est un super-utilisateur
     Et il est considéré comme un administrateur
