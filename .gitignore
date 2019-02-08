@@ -13,3 +13,6 @@ __pycache__/
 
 # generated specification
 /specification/
+
+# local environment settings
+*.local
