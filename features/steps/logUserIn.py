@@ -18,7 +18,7 @@ def step_impl(context):
 @when(u'un client s\'identifie en tant qu\'administrateur avec un e-mail et un mot de passe valides')
 def step_impl(context):
     use_fixture(graphql_query, context, 'login.graphql')
-    variables = {'email': context.consumer['email'], 'password': context.consumer['password']}
+    variables = {'email': context.consumer['email'], 'password': context.consumer['password'], 'isStaff': True}
     response = context.test.client.post_graphql(context.query, variables)
     context.response = get_graphql_content(response)
 
