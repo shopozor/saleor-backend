@@ -15,7 +15,7 @@ def step_impl(context):
     context.test.assertNotNull(context.token)
 
 
-@when(u'l\'utilisateur se déconnecte')
+@when(u'il se déconnecte')
 def step_impl(context):
     use_fixture(graphql_query, context, 'logout.graphql')
     variables = {'token': context.token}

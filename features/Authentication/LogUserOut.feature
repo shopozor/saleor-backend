@@ -11,5 +11,5 @@ Fonctionnalité: Déconnecter un utilisateur
   
   Scénario: L'utilisateur ferme sa session
     Etant donné un utilisateur identifié sur le Shopozor
-    Lorsque l'utilisateur se déconnecte
+    Lorsqu'il se déconnecte
     Alors sa session se ferme
