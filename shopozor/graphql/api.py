@@ -12,12 +12,13 @@ from saleor.graphql.core.schema import CoreMutations
 # from saleor.graphql.shipping.schema import ShippingMutations, ShippingQueries
 # from saleor.graphql.shop.schema import ShopMutations, ShopQueries
 
+from shopozor.graphql.auth.schema import AuthMutations
 
 class Query(AccountQueries):
     node = graphene.Node.Field()
 
 
-class Mutations(CoreMutations, AccountMutations):
+class Mutations(AuthMutations, AccountMutations):
     pass
 
 
