@@ -1,6 +1,6 @@
 # language: fr
 
-@initial-release @login
+@initial-release @login @current
 Fonctionnalité: Identifier un utilisateur
 
   *En tant qu'utilisateur enregistré dans le Shopozor,  
@@ -36,15 +36,12 @@ Fonctionnalité: Identifier un utilisateur
 
     N'importe quel administrateur peut s'identifier en tant que client.
     Si l'identification est réussie, alors la session s'ouvre pour 1 mois.
-    Durant cette période, la session doit être rafraîchie.
+    Durant cette période, la session doit être rafraîchie.  
 
-    Si la session n'est pas rafraîchie dans les temps,
-    alors elle se ferme automatiquement et l'utilisateur doit s'identifier à nouveau.
-
-    Si la session est rafraîchie dans les temps,
-    alors elle reste valide 1 mois de plus, et ainsi de suite, tant qu'elle est rafraîchie dans les temps.
-    La session se ferme alors automatiquement après 1 année. Après 1 année de rafraîchissement de session,
-    l'utilisateur est forcé de s'identifier à nouveau.
+    - Si la session n'est pas rafraîchie dans les temps, alors elle se ferme automatiquement et l'utilisateur doit s'identifier à nouveau.  
+    
+    - Si la session est rafraîchie dans les temps, alors elle reste valide 1 mois de plus, et ainsi de suite, tant qu'elle est rafraîchie dans les temps. 
+      La session se ferme alors automatiquement après 1 année. Après 1 année de rafraîchissement de session, l'utilisateur est forcé de s'identifier à nouveau.
 
     Lorsqu'un <utilisateur> s'identifie en tant que <utilisateur prétendu> avec un e-mail et un mot de passe valides
     Alors sa session s'ouvre pour 1 mois
