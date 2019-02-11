@@ -162,7 +162,7 @@ def step_impl(context, amount, unit):
     token = token_data['token']
     context.test.assertIsNotNone(token)
     context.test.assertEqual(expected_expiration_delta, expiration_delta(token))
-    context.test.assertIsNone(token_data['errors'])
+    context.test.assertEqual(len(token_data['errors']), 0)
     context.test.assertTrue(settings.GRAPHQL_JWT['JWT_VERIFY_EXPIRATION'])
     context.test.assertEqual(settings.GRAPHQL_JWT['JWT_EXPIRATION_DELTA'].total_seconds(), expected_expiration_delta)
 
