@@ -77,9 +77,7 @@ def rex(context):
 def softozor(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'Softozor.json'))
-    user = User.objects.create_superuser(email=user_data['email'])
-    user.set_password(user_data['password'])
-    user.save()
+    create_database_superuser(user_data)
     context.softozor = user_data
     yield user_data
     del context.softozor

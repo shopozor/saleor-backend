@@ -10,6 +10,9 @@ INSTALLED_APPS.append('behave_django')
 
 ACCEPTANCE_TESTING = True
 
+if DEBUG:
+    ALLOWED_HOSTS.append('testserver')
+
 with open(os.path.join(FIXTURES_FOLDER, 'Authentication', 'Credentials', 'Jwt.json')) as file:
     jwt_data = json.load(file)
 
