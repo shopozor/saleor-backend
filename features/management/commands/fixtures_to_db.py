@@ -1,3 +1,4 @@
+from django.core.management.base import BaseCommand
 from features.utils import *
 
 
@@ -12,5 +13,9 @@ def create_superusers():
     create_database_superuser(user_data)
 
 
-create_users()
-create_superusers()
+class Command(BaseCommand):
+    help = 'Incorporates the Personas from our fixtures to the database, i.e. adds a Consommateur, a Producteur, a Responsable, a Rex, and a Softozor User into the database.'
+
+    def handle(self, *args, **options):
+        create_users()
+        create_superusers()

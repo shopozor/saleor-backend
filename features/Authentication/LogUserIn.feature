@@ -1,6 +1,6 @@
 # language: fr
 
-@initial-release @login @current
+@initial-release @login
 Fonctionnalité: Identifier un utilisateur
 
   *En tant qu'utilisateur enregistré dans le Shopozor,  

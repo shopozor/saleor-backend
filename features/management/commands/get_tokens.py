@@ -1,6 +1,7 @@
 import os
 
 from django.contrib.auth.models import AnonymousUser
+from django.core.management.base import BaseCommand
 from features.utils import get_query_from_file, get_data_from_json_fixture
 from tests.api.conftest import ApiClient
 from tests.api.utils import get_graphql_content
@@ -23,5 +24,9 @@ def get_user_tokens():
     return result
 
 
-user_tokens = get_user_tokens()
-print(user_tokens)
+class Command(BaseCommand):
+    help = 'Logs all Personas (Consommateur, Producteur, Responsable, Rex, Softozor) in and print their token.'
+
+    def handle(self, *args, **options):
+        user_tokens = get_user_tokens()
+        print(user_tokens)
