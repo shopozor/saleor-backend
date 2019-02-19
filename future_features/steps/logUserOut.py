@@ -23,7 +23,7 @@ def step_impl(context):
     context.response = get_graphql_content(response)
 
 
-@then(u'sa session se ferme')
+@then(u'son token d\'identification est invalidé')
 def step_impl(context):
     use_fixture(failed_query_response, context)
     use_fixture(successful_logout_response, context)
