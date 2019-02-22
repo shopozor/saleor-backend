@@ -13,7 +13,9 @@ Fonctionnalité: Enregistrer un nouveau client
     lien de confirmation qui lui y sera envoyé. Dans l'intervalle, le Shopozor lui crée 
     un compte inactif sans mot de passe.   
     
-    Le lien est du type *http://localhost:4000/#/activate/<uidb64>/<token>*
+    Le lien est du type 
+  
+    <pre>http://www.shopozor.ch/activate/encodedUserId/token</pre>
     
     Etant donné un client inconnu du Shopozor
     Lorsqu'il fait une demande d'enregistrement
