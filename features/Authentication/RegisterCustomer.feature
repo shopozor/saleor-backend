@@ -11,7 +11,9 @@ Fonctionnalité: Enregistrer un nouveau client
 
     Le client potentiel commence par donner un e-mail qu'il devra valider en visitant un 
     lien de confirmation qui lui y sera envoyé. Dans l'intervalle, le Shopozor lui crée 
-    un compte inactif sans mot de passe. 
+    un compte inactif sans mot de passe.   
+    
+    Le lien est du type *http://localhost:4000/#/activate/<uidb64>/<token>*
     
     Etant donné un client inconnu du Shopozor
     Lorsqu'il fait une demande d'enregistrement
