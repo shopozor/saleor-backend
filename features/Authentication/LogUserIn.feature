@@ -121,3 +121,9 @@ Fonctionnalité: Identifier un utilisateur
     Et reste valide pendant 1 an
     Et c'est un super-utilisateur
     Et il est considéré comme un administrateur
+
+  Scénario: Un client inactif sans mot de passe ne peut pas s'identifier
+    Etant donné un utilisateur inactif 
+    Et n'ayant pas défini son mot de passe
+    Lorsqu'il s'identifie
+    Alors il obtient un message d'erreur stipulant que son compte n'est pas actif
