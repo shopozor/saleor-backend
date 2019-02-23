@@ -27,6 +27,22 @@ def parse_user_credentials_validity(validity):
 register_type(ValidityType=parse_user_credentials_validity)
 
 
+@parse.with_pattern(r'actif|inactif')
+def parse_user_activity(activity):
+    return activity == 'actif'
+
+
+register_type(ActivityType=parse_user_activity)
+
+
+@parse.with_pattern(r'avec|sans')
+def parse_with_or_without(with_or_without):
+    return with_or_without == 'avec'
+
+
+register_type(WithOrWithoutType=parse_with_or_without)
+
+
 def unit_to_seconds(unit):
     switch = {
         'secondes': 1,

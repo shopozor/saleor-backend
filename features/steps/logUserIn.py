@@ -3,6 +3,7 @@ from behave import use_fixture
 from django.conf import settings
 
 from features.fixtures import graphql_query
+from features.utils import create_database_user
 from shopozor.models import MODELS_PERMISSIONS
 from tests.api.utils import get_graphql_content
 
@@ -13,6 +14,18 @@ import jwt
 @given(u'un utilisateur non identifié sur le Shopozor')
 def step_impl(context):
     context.test.assertFalse(hasattr(context.test.client, 'token'))
+
+
+@given(u'un utilisateur {is_active:ActivityType} et {has_password:WithOrWithoutType} mot de passe')
+def step_impl(context, is_active, has_password):
+    user_data = {
+        "email": "hacker_abuse@budzons.ch",
+        "password": "password" if has_password else "",
+        "is_active": is_active,
+        "is_staff": False
+    }
+    create_database_user(user_data)
+    context.user = user_data
 
 
 @when(u'un client s\'identifie en tant qu\'administrateur avec un e-mail et un mot de passe valides')
@@ -101,6 +114,17 @@ def valid_persona_credentials(persona, context):
 def step_impl(context, persona):
     use_fixture(graphql_query, context, 'login.graphql')
     variables = valid_persona_credentials(persona, context)
+    response = context.test.client.post_graphql(context.query, variables)
+    context.response = get_graphql_content(response)
+
+
+@when(u'il s\'identifie')
+def step_impl(context):
+    use_fixture(graphql_query, context, 'login.graphql')
+    variables = {
+        'email': context.user['email'],
+        'password': context.user['password']
+    }
     response = context.test.client.post_graphql(context.query, variables)
     context.response = get_graphql_content(response)
 
