@@ -11,7 +11,7 @@ Fonctionnalité: Enregistrer un nouveau client
 
     Le client potentiel commence par donner un e-mail qu'il devra valider en visitant un 
     lien de confirmation qui lui y sera envoyé. Dans l'intervalle, le Shopozor lui crée 
-    un compte inactif sans mot de passe.   
+    un compte inactif sans mot de passe.  
     
     Le lien est du type 
   
@@ -22,14 +22,19 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son compte est créé
     Mais il est inactif
     
+  @current
   Scénario: Un utilisateur s'enregistre avec un e-mail déjà connu
 
     Si un utilisateur tente de s'enregistrer avec un e-mail déjà connu du Shopozor, 
     il faut notifier le client correspondant à cet e-mail et inscrire l'incident 
     dans un journal car il se peut que ce client soit en train de se faire pirater 
-    son compte.     
+    son compte.  
+    
+    Aucun message d'erreur n'est retourné afin de donner le moins d'information possible 
+    à un potentiel hacker. 
     
     Lorsqu'un utilisateur fait une demande d'enregistrement avec un e-mail déjà connu
+    Alors il n'obtient aucun message d'erreur
     Alors un message d'avertissement est envoyé à cet e-mail
     Et le Shopozor enregistre l'incident dans son journal
     
@@ -52,7 +57,7 @@ Fonctionnalité: Enregistrer un nouveau client
     
     Etant donné un client qui a reçu un lien de confirmation de création de compte
     Lorsqu'il définit son mot de passe trop tard
-    Alors il obtient un message stipulant que le lien a expiré
+    Alors il obtient un message d'erreur stipulant que le lien a expiré
     Et son compte n'est pas activé
 
   Scénario: Le client suit le lien de création de compte une deuxième fois
@@ -63,5 +68,5 @@ Fonctionnalité: Enregistrer un nouveau client
     
     Etant donné un client qui reçu un lien de confirmation de création de compte
     Lorsqu'il définit son mot de passe pour la deuxième fois
-    Alors il obtient un message stipulant que le lien a expiré
+    Alors il obtient un message d'erreur stipulant que le lien a expiré
     Et son mot de passe reste inchangé
