@@ -62,7 +62,6 @@ def step_impl(context):
 
 @then(u'le Shopozor enregistre l\'incident dans son journal')
 def step_impl(context):
-    # TODO: that table is something that should appear in Softozor's dashboard
-    # we want: email, timestamp, message (something like "Possible account abuse"), potential hacker ip?
+    # we want: email, timestamp, message (something like "Possible account abuse")
     entry = HackerAbuse.objects.latest('timestamp')
     context.test.assertEqual(entry.email, context.consumer['email'])
