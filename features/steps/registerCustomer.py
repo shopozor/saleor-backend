@@ -3,7 +3,7 @@ from behave import use_fixture
 from django.core import mail
 from features.fixtures import graphql_query
 from saleor.account.models import User
-from shopozor.models import HackerAbuse
+from shopozor.models import HackerAbuseEvents
 from tests.api.utils import get_graphql_content
 
 import re
@@ -63,5 +63,6 @@ def step_impl(context):
 
 @then(u'le Shopozor enregistre l\'incident dans son journal')
 def step_impl(context):
-    entry = HackerAbuse.objects.latest('timestamp')
-    context.test.assertEqual(entry.customer.email, context.consumer['email'])
+    entry = HackerAbuseEvents.objects.latest('timestamp')
+    context.test.assertEqual(entry.user.email, context.consumer['email'])
+
