@@ -22,7 +22,6 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son compte est créé
     Mais il est inactif
     
-  @current
   Scénario: Un utilisateur s'enregistre avec un e-mail déjà connu
 
     Si un utilisateur tente de s'enregistrer avec un e-mail déjà connu du Shopozor, 

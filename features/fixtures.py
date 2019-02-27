@@ -117,3 +117,21 @@ def successful_logout_response(context):
     context.successful_logout_response = data
     yield context.successful_logout_response
     del context.successful_logout_response
+
+
+@fixture
+def successful_signin(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'SuccessfulCustomerCreation.json'))
+    context.successful_logout_response = data
+    yield context.successful_logout_response
+    del context.successful_logout_response
+
+
+@fixture
+def expired_account_confirmation_link(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'ExpiredAccountConfirmationLink.json'))
+    context.successful_logout_response = data
+    yield context.successful_logout_response
+    del context.successful_logout_response
