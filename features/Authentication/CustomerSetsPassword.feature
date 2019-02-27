@@ -1,6 +1,8 @@
 #language: fr
 
-@initial-release @login
+# this is used as part of account activation and password reset features
+
+@initial-release @auth @password
 Fonctionnalité: Un client définit son mot de passe
 
   *En tant que client du Shopozor,  
