@@ -1,6 +1,6 @@
 #language: fr
 
-@initial-release @login
+@initial-release @auth @signin @wip
 Fonctionnalité: Enregistrer un nouveau client
 
   *En tant que nouveau client du Shopozor,  
@@ -22,6 +22,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son compte est créé
     Mais il est inactif
     
+  @HackerAbuse @user-accounts
   Scénario: Un utilisateur s'enregistre avec un e-mail déjà connu
 
     Si un utilisateur tente de s'enregistrer avec un e-mail déjà connu du Shopozor, 
@@ -48,7 +49,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son mot de passe est sauvegardé
     Mais il n'est pas identifié
     Et son lien de confirmation est invalidé
-   
+    
   Scénario: Le client confirme son adresse e-mail trop tard
 
     En plus de n'être utilisable qu'une seule fois, le lien expire après un certain temps 

@@ -1,6 +1,6 @@
 # language: fr
 
-@initial-release @login
+@initial-release @auth @login
 Fonctionnalité: Identifier un utilisateur
 
   *En tant qu'utilisateur enregistré dans le Shopozor,  
@@ -9,7 +9,7 @@ Fonctionnalité: Identifier un utilisateur
   
   Contexte: L'utilisateur n'est pas identifié
     Etant donné un utilisateur non identifié sur le Shopozor
-
+    
   Plan du Scénario: L'utilisateur n'est pas encore enregistré
     Lorsqu'un <utilisateur> s'identifie en tant que <utilisateur prétendu> avec un e-mail et un mot de passe invalides
     Alors il obtient un message d'erreur stipulant que ses identifiants sont incorrects
@@ -21,6 +21,7 @@ Fonctionnalité: Identifier un utilisateur
       | client         | administrateur       |
       | administrateur | administrateur       |
 
+  @user-accounts
   Plan du Scénario: L'utilisateur est enregistré mais entre un mot de passe erroné
     Lorsqu'un <utilisateur> s'identifie en tant que <utilisateur prétendu> avec un e-mail valide et un mot de passe invalide
     Alors il obtient un message d'erreur stipulant que ses identifiants sont incorrects
@@ -32,6 +33,7 @@ Fonctionnalité: Identifier un utilisateur
       | client         | administrateur       |
       | administrateur | administrateur       |
 
+  @user-accounts
   Plan du Scénario: L'utilisateur peut s'identifier avec son identifiant et son mot de passe
 
     N'importe quel administrateur peut s'identifier en tant que client.
@@ -53,10 +55,12 @@ Fonctionnalité: Identifier un utilisateur
       | administrateur | administrateur       |
       | administrateur | client               |
 
+  @user-accounts
   Scénario: Un client ne peut pas s'identifier en tant qu'administrateur
     Lorsqu'un client s'identifie en tant qu'administrateur avec un e-mail et un mot de passe valides
     Alors il obtient un message d'erreur stipulant que son compte n'a pas les droits d'administrateur
 
+  @user-accounts
   Plan du Scénario: Définition des permissions du Consommateur et du Producteur
 
     Le Consommateur et le Producteur n'ont aucune permission particulière.
@@ -75,6 +79,7 @@ Fonctionnalité: Identifier un utilisateur
       | Consommateur | client             |
       | Producteur   | administrateur     |
 
+  @user-accounts
   Scénario: Définition des permissions du Responsable
 
     Le Responsable est un administrateur. En plus de la gestion de ses données personnelles, le Responsable peut  
@@ -91,6 +96,7 @@ Fonctionnalité: Identifier un utilisateur
       | MANAGE_PRODUCERS |
     Et il est considéré comme un administrateur
 
+  @user-accounts
   Scénario: Définition des permissions du Rex
 
     Le Rex est un administrateur. En plus de la gestion de ses données personnelles, le Rex peut  
@@ -111,6 +117,7 @@ Fonctionnalité: Identifier un utilisateur
       | MANAGE_MANAGERS  |
     Et il est considéré comme un administrateur
 
+  @user-accounts
   Scénario: Définition des permissions de Softozor
 
     En plus de la gestion de ses données personnelles, Softozor a tous les droits, pour des raisons de maintenance.
