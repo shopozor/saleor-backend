@@ -135,3 +135,12 @@ def expired_account_confirmation_link(context):
     context.expired_account_confirmation_link = data
     yield context.expired_account_confirmation_link
     del context.expired_account_confirmation_link
+
+
+@fixture
+def successful_account_confirmation(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'SuccessfulAccountConfirmation.json'))
+    context.successful_account_confirmation = data
+    yield context.successful_account_confirmation
+    del context.successful_account_confirmation

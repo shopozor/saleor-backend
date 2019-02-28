@@ -17,6 +17,7 @@ def before_feature(context, feature):
     if 'signin' in feature.tags:
         use_fixture(successful_signin, context)
         use_fixture(expired_account_confirmation_link, context)
+        use_fixture(successful_account_confirmation, context)
 
 
 def before_scenario(context, scenario):

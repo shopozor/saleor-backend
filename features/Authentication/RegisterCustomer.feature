@@ -38,13 +38,16 @@ Fonctionnalité: Enregistrer un nouveau client
     Alors un message d'avertissement est envoyé à cet e-mail
     Et le Shopozor enregistre l'incident dans son journal
     
-  Scénario: Le client communique son mot de passe dans les temps
+  Scénario: Le nouveau client communique son mot de passe dans les temps
     
     Une fois que le client a suivi le lien de confirmation, il peut renseigner son mot de passe. 
     A la validation de celui-ci par le Shopozor, son compte s'active et son mot de passe s'y associe. 
     
-    Etant donné un client qui a reçu un lien de confirmation de création de compte
-    Lorsqu'il définit son mot de passe dans les temps
+    # Pour débuter, nous pouvons utiliser le [default_token_generator](https://github.com/django/django/blob/master/django/contrib/auth/tokens.py). 
+    # Il réagit au paramètre `PASSWORD_RESET_TIMEOUT_DAYS`. 
+    
+    Etant donné un nouveau client qui a reçu un lien de confirmation de création de compte
+    Lorsqu'il définit son mot de passe au plus tard 1 jour après sa réception
     Alors son compte est activé
     Et son mot de passe est sauvegardé
     Mais il n'est pas identifié
@@ -55,8 +58,8 @@ Fonctionnalité: Enregistrer un nouveau client
     En plus de n'être utilisable qu'une seule fois, le lien expire après un certain temps 
     pour des raisons de sécurité. 
     
-    Etant donné un client qui a reçu un lien de confirmation de création de compte
-    Lorsqu'il définit son mot de passe trop tard
+    Etant donné un nouveau client qui a reçu un lien de confirmation de création de compte
+    Lorsqu'il définit son mot de passe 2 jours après sa réception
     Alors il obtient un message d'erreur stipulant que le lien a expiré
     Et son compte n'est pas activé
 
@@ -66,7 +69,8 @@ Fonctionnalité: Enregistrer un nouveau client
     Si le client désire modifier son mot de passe, il doit utiliser la fonctionnalité 
     "mot de passe oublié". 
     
-    Etant donné un client qui reçu un lien de confirmation de création de compte
+    Etant donné un nouveau client qui a reçu un lien de confirmation de création de compte
+    Et qui a déjà défini son mot de passe
     Lorsqu'il définit son mot de passe pour la deuxième fois
     Alors il obtient un message d'erreur stipulant que le lien a expiré
     Et son mot de passe reste inchangé
