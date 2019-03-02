@@ -11,7 +11,9 @@ from tests.api.utils import get_graphql_content
 
 import re
 
-# TODO: this must be stored somewhere else in a lib
+# TODO: this must be stored somewhere else in a lib:
+# the pattern needs to be used here to extract the uid and the token
+# it will be needed in the mutation's code to extract the same data
 account_activation_pattern = r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$'
 
 
