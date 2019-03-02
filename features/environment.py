@@ -14,8 +14,8 @@ def before_feature(context, feature):
         use_fixture(wrong_credentials_response, context)
         use_fixture(user_not_admin_response, context)
 
-    if 'signin' in feature.tags:
-        use_fixture(successful_signin, context)
+    if 'signup' in feature.tags:
+        use_fixture(successful_signup, context)
         use_fixture(expired_account_confirmation_link, context)
         use_fixture(successful_account_confirmation, context)
 

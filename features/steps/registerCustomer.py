@@ -15,8 +15,8 @@ import re
 account_activation_pattern = r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$'
 
 
-def sign_user_in(context, email):
-    use_fixture(graphql_query, context, 'signin.graphql')
+def sign_user_up(context, email):
+    use_fixture(graphql_query, context, 'signup.graphql')
     variables = {
         'email': email
     }
@@ -34,7 +34,7 @@ def get_credentials_from_confirmation_email(mail_body):
 
 @given(u'un nouveau client qui a reçu un lien de confirmation de création de compte')
 def step_impl(context):
-    context.response = sign_user_in(context, context.unknown['email'])
+    context.response = sign_user_up(context, context.unknown['email'])
     mail_body = mail.outbox[0].body
     context.credentials = get_credentials_from_confirmation_email(mail_body)
     context.email_reception_time = datetime.now()
@@ -62,12 +62,12 @@ def step_impl(context):
 
 @when(u'un client inconnu fait une demande d\'enregistrement')
 def step_impl(context):
-    context.response = sign_user_in(context, context.unknown['email'])
+    context.response = sign_user_up(context, context.unknown['email'])
 
 
 @when(u'un utilisateur fait une demande d\'enregistrement avec un e-mail déjà connu')
 def step_impl(context):
-    sign_user_in(context, context.consumer['email'])
+    sign_user_up(context, context.consumer['email'])
 
 
 @when(u'il définit son mot de passe au plus tard {amount:d} {unit:DurationInSecondsType} après sa réception')
@@ -112,7 +112,7 @@ def step_impl(context):
 
 @then(u'son compte est créé')
 def step_impl(context):
-    context.test.assertEqual(len(context.response['data']['signin']['errors']), 0)
+    context.test.assertEqual(len(context.response['data']['customerCreate']['errors']), 0)
     context.test.assertEqual(User.objects.filter(email=context.unknown['email']).count(), 1)
 
 
@@ -124,7 +124,7 @@ def step_impl(context):
 
 @then(u'il n\'obtient aucun message d\'erreur')
 def step_impl(context):
-    context.test.assertEqual(context.response['data'], context.successful_signin['data'])
+    context.test.assertEqual(context.response['data'], context.successful_signup['data'])
 
 
 @then(u'un message d\'avertissement est envoyé à cet e-mail')

@@ -120,12 +120,12 @@ def successful_logout_response(context):
 
 
 @fixture
-def successful_signin(context):
+def successful_signup(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'SuccessfulCustomerCreation.json'))
-    context.successful_signin = data
-    yield context.successful_signin
-    del context.successful_signin
+    context.successful_signup = data
+    yield context.successful_signup
+    del context.successful_signup
 
 
 @fixture

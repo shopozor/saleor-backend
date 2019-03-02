@@ -1,6 +1,6 @@
 #language: fr
 
-@initial-release @auth @signin @wip
+@initial-release @auth @signup @wip
 Fonctionnalité: Enregistrer un nouveau client
 
   *En tant que nouveau client du Shopozor,  
