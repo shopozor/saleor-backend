@@ -64,7 +64,9 @@ Fonctionnalité: Enregistrer un nouveau client
   Scénario: Le nouveau client consulte le lien de confirmation de création de compte trop tard 
     
     En plus de n'être utilisable qu'une seule fois, le lien expire après un certain temps 
-    pour des raisons de sécurité. 
+    pour des raisons de sécurité. Dans ce cas, l'utilisateur reste inactif et sans mot de passe. 
+    Il a toujours la possibilité d'activer son compte en refaisant une demande d'enregistrement 
+    pour obtenir un nouveau lien.  
     
     Etant donné un nouveau client qui a reçu un lien de confirmation de création de compte
     Lorsqu'il consulte son lien 2 jours après sa réception
@@ -81,15 +83,26 @@ Fonctionnalité: Enregistrer un nouveau client
     Lorsqu'il consulte son lien pour la deuxième fois
     Alors il obtient un message d'erreur stipulant que le lien a expiré
     
-  Scénario: Le nouveau client active son compte
+  Scénario: Le nouveau client active son compte avec un mot de passe conforme
     
     Une fois que le client a suivi le lien de confirmation, il peut renseigner son mot de passe si le lien 
     n'a pas expiré. A la validation du mot de passe, le compte du client s'active avec son mot de passe.
     
     Etant donné un nouveau client qui a consulté son lien de confirmation de création de compte dans les temps
-    Lorsqu'il active son compte avec un mot de passe
+    Lorsqu'il active son compte avec un mot de passe conforme
     Alors son compte est activé
     Et son mot de passe est sauvegardé
     Et son token d'initialisation de mot de passe est invalidé
     Mais il n'est pas identifié
     
+    
+  @HackerAbuse  
+  Scénario: Le nouveau client active son compte avec un mot de passe non conforme
+    
+    Si l'utilisateur entre un mot de passe non conforme, cela signifie qu'il a contourné les vérifications 
+    de l'application client. Dans ce cas, son compte est supprimé automatiquement.
+    
+    Etant donné un nouveau client qui a consulté son lien de confirmation de création de compte dans les temps
+    Lorsqu'il active son compte avec un mot de passe non conforme
+    Alors son compte est supprimé
+    Et son token d'initialisation de mot de passe est invalidé
