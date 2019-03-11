@@ -7,6 +7,8 @@ Fonctionnalité: Enregistrer un nouveau client
   je veux pouvoir y créer un compte avec un e-mail et un mot de passe,  
   afin d'avoir accès à toutes ses fonctionnalités.*  
 
+  ![Processus d'enregistrement](UserRegistration.png)
+  
   Scénario: Le client est nouveau
 
     Le client potentiel commence par donner un e-mail qu'il devra valider en visitant un 
@@ -37,40 +39,57 @@ Fonctionnalité: Enregistrer un nouveau client
     Alors il n'obtient aucun message d'erreur
     Alors un message d'avertissement est envoyé à cet e-mail
     Et le Shopozor enregistre l'incident dans son journal
+
+  # TODO: rework the following scenarios' code  
+  # TODO: we need a new mutation: verifyConfirmationLink(userId, token)
+  # the mutation gives a new token back, based on the new user data (modified with the last login)
+  
+  Scénario: Le nouveau client consulte le lien de confirmation de création de compte dans les temps
     
-  Scénario: Le nouveau client communique son mot de passe dans les temps
-    
-    Une fois que le client a suivi le lien de confirmation, il peut renseigner son mot de passe. 
-    A la validation de celui-ci par le Shopozor, son compte s'active et son mot de passe s'y associe. 
+    Au moment où l'utilisateur consulte son lien de confirmation, la validité du lien es vérifiée. 
+    Dès qu'il est consulté, il est invalidé. L'utilisateur a alors besoin d'un nouveau token pour 
+    la suite des opérations, à savoir le renseignement de son mot de passe.
     
     # Pour débuter, nous pouvons utiliser le [default_token_generator](https://github.com/django/django/blob/master/django/contrib/auth/tokens.py). 
     # Il réagit au paramètre `PASSWORD_RESET_TIMEOUT_DAYS`. 
     
+    # Changer le champ last_login de l'utilisateur pour s'assurer que le token ne puisse plus correspondre 
+    # à ses données originales.
+    
     Etant donné un nouveau client qui a reçu un lien de confirmation de création de compte
-    Lorsqu'il définit son mot de passe au plus tard 1 jour après sa réception
-    Alors son compte est activé
-    Et son mot de passe est sauvegardé
-    Mais il n'est pas identifié
+    Lorsqu'il consulte son lien au plus tard 1 jour après sa réception
+    Alors il reçoit un token d'initialisation de mot de passe
     Et son lien de confirmation est invalidé
     
-  Scénario: Le client confirme son adresse e-mail trop tard
-
+  Scénario: Le nouveau client consulte le lien de confirmation de création de compte trop tard 
+    
     En plus de n'être utilisable qu'une seule fois, le lien expire après un certain temps 
     pour des raisons de sécurité. 
     
     Etant donné un nouveau client qui a reçu un lien de confirmation de création de compte
-    Lorsqu'il définit son mot de passe 2 jours après sa réception
+    Lorsqu'il consulte son lien 2 jours après sa réception
     Alors il obtient un message d'erreur stipulant que le lien a expiré
-    Et son compte n'est pas activé
-
-  Scénario: Le client suit le lien de création de compte une deuxième fois
     
-    Le lien de confirmation de création de compte ne peut être utilisé qu'une seule fois. 
-    Si le client désire modifier son mot de passe, il doit utiliser la fonctionnalité 
-    "mot de passe oublié". 
+  Scénario: Le nouveau client consulte le lien de confirmation de création de compte une deuxième fois
+    
+    Le lien de confirmation de création de compte ne peut être utilisé qu'une seule fois, 
+    dans un certain laps de temps. Si le client désire modifier son mot de passe, il doit 
+    utiliser la fonctionnalité "mot de passe oublié".
     
     Etant donné un nouveau client qui a reçu un lien de confirmation de création de compte
-    Et qui a déjà défini son mot de passe
-    Lorsqu'il définit son mot de passe pour la deuxième fois
+    Et qui a déjà consulté son lien
+    Lorsqu'il consulte son lien pour la deuxième fois
     Alors il obtient un message d'erreur stipulant que le lien a expiré
-    Et son mot de passe reste inchangé
+    
+  Scénario: Le nouveau client active son compte
+    
+    Une fois que le client a suivi le lien de confirmation, il peut renseigner son mot de passe si le lien 
+    n'a pas expiré. A la validation du mot de passe, le compte du client s'active avec son mot de passe.
+    
+    Etant donné un nouveau client qui a consulté son lien de confirmation de création de compte dans les temps
+    Lorsqu'il active son compte avec un mot de passe
+    Alors son compte est activé
+    Et son mot de passe est sauvegardé
+    Et son token d'initialisation de mot de passe est invalidé
+    Mais il n'est pas identifié
+    
