@@ -24,8 +24,18 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son compte est créé
     Mais il est inactif
     
+  Scénario: Le client a déjà un compte inactif
+    
+    Le client qui a déjà enregistré son e-mail mais n'a pas réussi à consulter 
+    son lien de confirmation dans les temps conserve un compte inactif dans le 
+    Shopozor. Il peut alors refaire une demande d'enregistrement et obtenir un 
+    nouveau lien de confirmation de création de compte. 
+    
+    Lorsqu'un utilisateur fait une demande d'enregistrement avec l'e-mail d'un compte inactif
+    Alors il reçoit un e-mail avec un lien de confirmation de création de compte    
+    
   @HackerAbuse @user-accounts
-  Scénario: Un utilisateur s'enregistre avec un e-mail déjà connu
+  Scénario: Un utilisateur s'enregistre avec l'e-mail d'un compte actif
 
     Si un utilisateur tente de s'enregistrer avec un e-mail déjà connu du Shopozor, 
     il faut notifier le client correspondant à cet e-mail et inscrire l'incident 
@@ -35,7 +45,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Aucun message d'erreur n'est retourné afin de donner le moins d'information possible 
     à un potentiel hacker. 
     
-    Lorsqu'un utilisateur fait une demande d'enregistrement avec un e-mail déjà connu
+    Lorsqu'un utilisateur fait une demande d'enregistrement avec l'e-mail d'un compte actif
     Alors il n'obtient aucun message d'erreur
     Alors un message d'avertissement est envoyé à cet e-mail
     Et le Shopozor enregistre l'incident dans son journal
