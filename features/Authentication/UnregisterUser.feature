@@ -11,30 +11,29 @@ Fonctionnalité: Désinscrire un utilisateur
   à ses utilisateurs de supprimer leur compte, ce qui équivaut à la suppression 
   des données personnelles. 
   
-  # customerDelete(id)
+  # 1. customerDelete(id)
   # staffDelete(id)
   # with id = graphene.Node.to_global_id('User', customer_user.pk), this is a base64 encoding of the User type with the user's primary key
   
-  Scénario: L'utilisateur n'est pas inscrit
-
-    Afin de ne pas dévoiler quels identifiants sont reconnus par le Shopozor, 
-    il faut indiquer un succès de la désinscription dans le cas où l'identifiant 
-    à désinscrire n'est pas reconnu par le Shopozor. Si on indique que l'opération 
-    a échoué, un hacker potentiel peut déduire que les identifiants n'existent pas 
-    et utiliser cette information à son avantage.
-
-    Etant donné un utilisateur non inscrit sur le Shopozor
-    Lorsqu'il se désinscrit
-    Alors il obtient un message stipulant qu'un e-mail lui a été transmis
-    Et le Shopozor enregistre l'incident dans son journal
+  # 2. we need a mutation unregister that takes the user's password as argument along with 
+  # the authentication token in the request's header; 
+  # because the authentication token can't be changed, it is secure enough to assume that 
+  # the email specified in the token corresponds to the account to be deleted
+  # --> that would prevent a user from unregistering another user
+  
+  Plan du Scénario: L'utilisateur est inscrit
     
-  Scénario: L'utilisateur est inscrit
-    
-    Etant donné un utilisateur identifié sur le Shopozor
-    Lorsqu'il se désinscrit 
+    Etant donné un <utilisateur> identifié
+    Lorsqu'il se désinscrit avec un mot de passe valide 
     Alors il obtient un message stipulant qu'un e-mail lui a été transmis
     Et il reçoit un e-mail de confirmation de suppression de compte
 
+    Exemples:
+      | utilisateur  |
+      | Consommateur |
+      | Producteur   | 
+      | Responsable  |
+    
   Scénario: L'utilisateur confirme la désinscription dans les temps
     
     # TODO: on ne peut pas vérifier que le mail a été envoyé il y a moins d'une heure
