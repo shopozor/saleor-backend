@@ -88,3 +88,8 @@ Fonctionnalité: Désinscrire un utilisateur
     Si l'utilisateur est un Producteur, alors ses Produits sont supprimées.
   
     # pas encore implémenté, mais c'est possible à mettre en place
+    
+  # Le Producteur doit honorer ses commandes avant de se désinscrire
+  
+  # Le Producteur doit avoir tout son stock à zéro avant de se désinscrire
+  
