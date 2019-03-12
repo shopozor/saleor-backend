@@ -5,7 +5,7 @@ from features.fixtures import *
 
 
 def before_feature(context, feature):
-    login_or_signin = ['login', 'signin']
+    login_or_signin = ['login', 'signup']
     # check if feature.tags contains any elements of login_or_signin
     if any(tag in feature.tags for tag in login_or_signin):
         use_fixture(unknown, context)
@@ -31,6 +31,7 @@ def before_scenario(context, scenario):
         use_fixture(manager, context)
         use_fixture(rex, context)
         use_fixture(softozor, context)
+        use_fixture(inactive_customer, context)
 
 
 def after_scenario(context, scenario):

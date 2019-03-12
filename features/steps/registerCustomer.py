@@ -34,7 +34,7 @@ def get_credentials_from_confirmation_email(mail_body):
     }
 
 
-@given(u'un nouveau client qui a reçu un lien de confirmation de création de compte')
+@given(u'un nouveau client qui a reçu un lien d\'activation de compte')
 def step_impl(context):
     context.response = sign_user_up(context, context.unknown['email'])
     mail_body = mail.outbox[0].body
@@ -53,7 +53,7 @@ def activate_account(context, uidb64, token, password):
     context.response = get_graphql_content(response)
 
 
-@given(u'qui a déjà défini son mot de passe')
+@given(u'qui a déjà activé son compte')
 def step_impl(context):
     uidb64 = context.credentials['uidb64']
     token = context.credentials['token']
@@ -67,12 +67,17 @@ def step_impl(context):
     context.response = sign_user_up(context, context.unknown['email'])
 
 
-@when(u'un utilisateur fait une demande d\'enregistrement avec un e-mail déjà connu')
+@when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte inactif')
+def step_impl(context):
+    context.response = sign_user_up(context, context.inactive_customer['email'])
+
+
+@when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte actif')
 def step_impl(context):
     sign_user_up(context, context.consumer['email'])
 
 
-@when(u'il définit son mot de passe au plus tard {amount:d} {unit:DurationInSecondsType} après sa réception')
+@when(u'il active son compte avec un mot de passe conforme au plus tard {amount:d} {unit:DurationInSecondsType} après sa réception')
 def step_impl(context, amount, unit):
     expiration_delta_in_seconds = amount * unit
     elapsed_time_since_email_reception_in_seconds = (datetime.now() - context.email_reception_time).total_seconds()
@@ -83,7 +88,18 @@ def step_impl(context, amount, unit):
     activate_account(context, uidb64, token, password)
 
 
-@when(u'il définit son mot de passe {amount:d} {unit:DurationInSecondsType} après sa réception')
+@when(u'il active son compte avec un mot de passe non conforme au plus tard {amount:d} {unit:DurationInSecondsType} après sa réception')
+def step_impl(context, amount, unit):
+    expiration_delta_in_seconds = amount * unit
+    elapsed_time_since_email_reception_in_seconds = (datetime.now() - context.email_reception_time).total_seconds()
+    context.test.assertTrue(elapsed_time_since_email_reception_in_seconds < expiration_delta_in_seconds)
+    uidb64 = context.credentials['uidb64']
+    token = context.credentials['token']
+    password = 'abdc'
+    activate_account(context, uidb64, token, password)
+
+
+@when(u'il active son compte avec un mot de passe conforme {amount:d} {unit:DurationInSecondsType} après sa réception')
 def step_impl(context, amount, unit):
     expiration_delta_in_seconds = amount * unit
     datetime_after_expiration = context.email_reception_time + timedelta(seconds=expiration_delta_in_seconds)
@@ -94,7 +110,7 @@ def step_impl(context, amount, unit):
         activate_account(context, uidb64, token, password)
 
 
-@when(u'il définit son mot de passe pour la deuxième fois')
+@when(u'il l\'active pour la deuxième fois')
 def step_impl(context):
     user = User.objects.filter(email=context.unknown['email'])
     context.current_encrypted_password = user.password
@@ -104,7 +120,7 @@ def step_impl(context):
     activate_account(context, uidb64, token, password)
 
 
-@then(u'il reçoit un e-mail avec un lien de confirmation de création de compte')
+@then(u'il reçoit un e-mail avec un lien d\'activation de compte')
 def step_impl(context):
     context.test.assertEqual(len(mail.outbox), 1)
     mail_body = mail.outbox[0].body
@@ -118,10 +134,19 @@ def step_impl(context):
     context.test.assertEqual(User.objects.filter(email=context.unknown['email']).count(), 1)
 
 
+def assert_account_is_inactive(email, context):
+    user = User.objects.filter(email=email)
+    context.test.assertFalse(user.is_active)
+
+
+@then(u'son compte reste inactif')
+def step_impl(context):
+    assert_account_is_inactive(context.unknown['email'], context)
+
+
 @then(u'il est inactif')
 def step_impl(context):
-    user = User.objects.filter(email=context.unknown['email'])
-    context.test.assertFalse(user.is_active)
+    assert_account_is_inactive(context.unknown['email'], context)
 
 
 @then(u'il n\'obtient aucun message d\'erreur')
@@ -136,7 +161,7 @@ def step_impl(context):
     context.test.assertTrue(context.consumer['email'] in email.recipients())
 
 
-@then(u'le Shopozor enregistre l\'incident dans son journal')
+@then(u'l\'incident est enregistré dans un journal')
 def step_impl(context):
     entry = HackerAbuseEvents.objects.latest('timestamp')
     context.test.assertEqual(entry.user.email, context.consumer['email'])
@@ -161,7 +186,7 @@ def step_impl(context):
     context.test.assertFalse(user.token)
 
 
-@then(u'son lien de confirmation est invalidé')
+@then(u'son lien d\'activation est invalidé')
 def step_impl(context):
     uidb64 = context.credentials['uidb64']
     token = context.credentials['token']
@@ -175,10 +200,9 @@ def step_impl(context):
     context.test.assertEqual(context.response['data'], context.expired_account_confirmation_link['data'])
 
 
-@then(u'son compte n\'est pas activé')
+@then(u'son compte est supprimé')
 def step_impl(context):
-    user = User.objects.filter(email=context.unknown['email'])
-    context.test.assertFalse(user.is_active)
+    context.test.assertEqual(User.objects.filter(email=context.unknown['email']).count(), 0)
 
 
 @then(u'son mot de passe reste inchangé')
