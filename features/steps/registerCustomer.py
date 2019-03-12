@@ -184,6 +184,7 @@ def step_impl(context):
 def step_impl(context):
     user = User.objects.filter(email=context.unknown['email'])
     context.test.assertFalse(user.token)
+    context.test.assertFalse('token' in context.response['data']['customerActivate'])
 
 
 @then(u'son lien d\'activation est invalidé')
