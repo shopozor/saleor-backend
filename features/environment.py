@@ -18,6 +18,7 @@ def before_feature(context, feature):
         use_fixture(successful_signup, context)
         use_fixture(expired_account_confirmation_link, context)
         use_fixture(successful_account_confirmation, context)
+        use_fixture(password_not_compliant_response, context)
 
 
 def before_scenario(context, scenario):

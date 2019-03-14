@@ -154,3 +154,12 @@ def successful_account_confirmation(context):
     context.successful_account_confirmation = data
     yield context.successful_account_confirmation
     del context.successful_account_confirmation
+
+
+@fixture
+def password_not_compliant_response(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'NonCompliantPassword.json'))
+    context.password_not_compliant_response = data
+    yield context.password_not_compliant_response
+    del context.password_not_compliant_response
