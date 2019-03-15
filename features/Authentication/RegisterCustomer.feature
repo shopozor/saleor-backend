@@ -9,6 +9,20 @@ Fonctionnalité: Enregistrer un nouveau client
 
   ![Processus d'enregistrement](UserRegistration-fr.png)
   
+  # Nous avons deux possibilités : 
+  # - soit nous enregistrons l'e-mail de l'utilisateur qui définit ensuite son mot de passe au moment
+  #   de l'activation du compte
+  # - soit nous enregistrons l'e-mail et le mot de passe de l'utilisateur qui valide ensuite son compte 
+  #   en suivant le lien d'activation du compte
+  # Nous nous sommes décidés pour le dernier choix car il respecte le principe de séparation des préoccupations. 
+  # En effet, pour implémenter le premier choix, il faut coupler la définition du mot de passe à l'activation 
+  # du compte. La création du compte avec un identifiant et un mot de passe est plus compréhensible comme opération 
+  # de notre API que l'activation d'un compte en définissant un mot de passe. De plus, dans le premier cas, il n'est pas 
+  # possible d'extraire proprement la fonctionnalité de réinitialisation du mot de passe d'un utilisateur, autant 
+  # pour l'application client que pour le serveur ainsi qu'en termes de tests. Le premier cas implique l'usage 
+  # de la méthode setPassword de l'API qu'il est plus judicieux de tester en temps que fonctionnalité en tant que telle 
+  # sans qu'elle ne soit couplée à quoi que ce soit d'autre. 
+  
   Scénario: Un nouveau client s'enregistre avec un mot de passe conforme
 
     Le client potentiel commence par donner un e-mail et un mot de passe. Il devra ensuite 
