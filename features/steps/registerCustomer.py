@@ -210,8 +210,6 @@ def step_impl(context):
 
 @then(u'il n\'est pas identifié')
 def step_impl(context):
-    user = User.objects.filter(email=context.current_user['email'])
-    context.test.assertFalse(user.token)
     context.test.assertFalse('token' in context.response['data']['customerActivate'])
 
 

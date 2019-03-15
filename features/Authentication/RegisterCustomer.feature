@@ -7,7 +7,6 @@ Fonctionnalité: Enregistrer un nouveau client
   je veux pouvoir y créer un compte avec un e-mail et un mot de passe,  
   afin d'avoir accès à toutes ses fonctionnalités.*  
 
-  # TODO: update the diagram
   ![Processus d'enregistrement](UserRegistration-fr.png)
   
   Scénario: Un nouveau client s'enregistre avec un mot de passe conforme
