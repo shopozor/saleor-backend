@@ -65,12 +65,14 @@ def step_impl(context):
 @when(u'un client inconnu fait une demande d\'enregistrement avec un mot de passe conforme')
 def step_impl(context):
     context.current_user = context.unknown
+    # TODO: assert password compliance
     context.response = sign_user_up(context, context.current_user['email'], context.current_user['password'])
 
 
 @when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte inactif et un mot de passe conforme')
 def step_impl(context):
     context.current_user = context.inactive_customer
+    # TODO: assert password compliance
     context.response = sign_user_up(context, context.current_user['email'], context.current_user['password'])
 
 
@@ -85,6 +87,7 @@ def step_impl(context):
     context.current_encrypted_password = get_current_encrypted_password(context.current_user['email'])
     # an empty password is not compliant
     context.current_user['password'] = ''
+    # TODO: assert password non-compliance
     context.response = sign_user_up(context, context.current_user['email'], "")
 
 
@@ -92,6 +95,7 @@ def step_impl(context):
 def step_impl(context):
     # in this case, the choice of the password is irrelevant; it must only comply to the password policy
     context.current_user = context.consumer
+    # TODO: assert password compliance
     sign_user_up(context, context.current_user['email'], context.current_user['password'])
 
 
