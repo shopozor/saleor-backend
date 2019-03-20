@@ -32,6 +32,8 @@ Fonctionnalité: Enregistrer un nouveau client
     Le lien est du type 
   
     <pre>http://www.shopozor.ch/activate/encodedUserId/token</pre>
+
+    # Il faudrait se débarrasser de sendActivationEmail: true dans la mutation customerCreate
     
     Lorsqu'un client inconnu fait une demande d'enregistrement avec un mot de passe conforme
     Alors il reçoit un e-mail avec un lien d'activation de compte
