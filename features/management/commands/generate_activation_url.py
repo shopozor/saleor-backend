@@ -1,19 +1,22 @@
-import jwt
-from django.conf import settings
+from django.contrib.auth.tokens import default_token_generator
 from django.core.management.base import BaseCommand
+from django.utils.encoding import force_bytes
+from django.utils.http import urlsafe_base64_encode
+from os import path
+from saleor.account.models import User
 
-
+# this bases on saleor.graphql.account.mutations
 class Command(BaseCommand):
-    help = 'Decode JWT.'
+    help = 'Generate activation url for specified user.'
 
     def add_arguments(self, parser):
-        parser.add_argument('token', type=str, help='Token to decode')
-        parser.add_argument('-s', '--secret', type=str, help='Decoding secret')
-        parser.add_argument('-a', '--algorithm', type=str, help='Decoding algorithm')
+        parser.add_argument('email', type=str, help='User\'s e-mail')
 
     def handle(self, *args, **options):
-        token = options['token']
-        secret = options['secret'] if options['secret'] else settings.GRAPHQL_JWT['JWT_SECRET_KEY']
-        algorithm = options['algorithm'] if options['algorithm'] else settings.GRAPHQL_JWT['JWT_ALGORITHM']
-        decoded = jwt.decode(token, key=secret, algorithm=algorithm)
-        print('decoded = ', decoded)
+        email = options['email']
+        usr = User.objects.filter(email=email).first()
+        uidb64 = urlsafe_base64_encode(force_bytes(usr.pk)).decode()
+        print('uidb64 = ', uidb64)
+        token = default_token_generator.make_token(usr)
+        print('token  = ', token)
+        print('url = ', 'http://www.shopozor.ch/activate/%s/%s' % (uidb64, token))
