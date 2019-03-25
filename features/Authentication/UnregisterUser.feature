@@ -1,15 +1,14 @@
 #language: fr
 
-@initial-release @auth @signup
+@initial-release @auth @signup @wip
 Fonctionnalité: Désinscrire un utilisateur
 
   *En tant qu'utilisateur enregistré,  
   je veux pouvoir supprimer mon compte  
-  afin que mes données ne soit plus utilisées dans ce contexte.*  
+  afin que mes données personnelles ne soient plus utilisées dans ce contexte.*  
 
-  Pour des raisons de conformité avec la GDPR, le Shopozor offre la possibilité 
-  à ses utilisateurs de supprimer leur compte, ce qui équivaut à la suppression 
-  des données personnelles. 
+  Pour des raisons de conformité avec la GDPR, il est possible pour un utilisateur 
+  de supprimer son compte, ce qui équivaut à la suppression de ses données personnelles. 
   
   # 1. customerDelete(id)
   # staffDelete(id)
@@ -21,11 +20,11 @@ Fonctionnalité: Désinscrire un utilisateur
   # the email specified in the token corresponds to the account to be deleted
   # --> that would prevent a user from unregistering another user
   
+  @user-accounts
   Plan du Scénario: L'utilisateur est inscrit
     
     Etant donné un <utilisateur> identifié
     Lorsqu'il se désinscrit avec un mot de passe valide 
-    Alors il obtient un message stipulant qu'un e-mail lui a été transmis
     Et il reçoit un e-mail de confirmation de suppression de compte
 
     Exemples:
@@ -34,57 +33,75 @@ Fonctionnalité: Désinscrire un utilisateur
       | Producteur   | 
       | Responsable  |
     
+  @user-accounts
   Scénario: L'utilisateur confirme la désinscription dans les temps
-    
-    # TODO: on ne peut pas vérifier que le mail a été envoyé il y a moins d'une heure
-    # ceci devrait plutôt être vérifié dans des tests unitaires / d'intégration
-    # Il faudrait donc plutôt vérifier que le mail vient d'être reçu ... il faut ajouter 
-    # des tests unitaires qui vérifient que ça marche si le mail a été ENVOYE il y a moins d'une heure
-    Etant donné un e-mail de confirmation de désinscription reçu il y a moins d'une heure 
-    Et qui n'a pas encore été lu
-    Lorsque l'utilisateur consulte le lien de confirmation qu'il contient
-    Alors il obtient un message stipulant que la désinscription a été effectuée avec succès
-    Et son compte est supprimé
-    Et sa session se ferme
+
+    Les données personnelles de l'utilisateur sont supprimées, i.e. son entrée utilisateur 
+    dans la base de données est supprimée définitivement. 
+
+    # Idéalement, il faudrait que la session de l'utilisateur se ferme, i.e. 
+    # que son token d'authentification soit invalidé. Ce n'est pas trivial à 
+    # faire avec les JWTs. Il faut blacklister le token (cf. thématique identique 
+    # pour la déconnexion d'un utilisateur: https://trello.com/c/67sBKXuk)
+
+    # l'entrée de l'utilisateur dans le modèle User doit disparaître définitivement 
+    # déjà ok dans saleor selon le code et selon les tests unitaires
+
+    Etant donné un client qui a reçu un lien de confirmation de désinscription
+    Lorsqu'il supprime son compte au plus tard 1 jour après sa réception
+    Alors ses données personnelles sont supprimées
     Et le lien est invalidé
 
-  # TODO: --> unit / integration test  
+  @user-accounts
   Scénario: L'utilisateur confirme la désinscription trop tard
-    Etant donné un e-mail de confirmation de désinscription envoyé il y a plus d'une heure
-    Lorsqu'un utilisateur visite le lien de confirmation
+
+    Etant donné un client qui a reçu un lien de confirmation de désinscription
+    Lorsqu'il supprime son compte 2 jours après sa réception
     Alors il obtient un message d'erreur stipulant que le lien a expiré 
     Et son compte n'est pas supprimé
 
+  @user-accounts
   Scénario: L'utilisateur confirme la désinscription une deuxième fois
-    Etant donné un e-mail de confirmation de désinscription déjà lu
-    Lorsqu'un utilisateur le visite
+
+    Etant donné un client qui a reçu un lien de confirmation de désinscription
+    Et qui a déjà supprimé son compte avec lien 
+    Lorsqu'il supprime son compte à nouveau
     Alors il obtient un message d'erreur stipulant que le lien a expiré
-    Et son compte n'est pas supprimé
-    
-  Scénario: Les données personnelles de l'utilisateur sont supprimées
-    
-    Les données personnelles de l'utilisateur sont supprimées, i.e. son entrée utilisateur 
-    dans la base de données est supprimée définitivement. 
-    
-    # l'entrée de l'utilisateur dans le modèle User doit disparaître définitivement 
-    # déjà ok dans saleor selon le code et selon les tests unitaires
-    
+
+  # need shop data
+  @user-accounts 
   Scénario: Les Shops affiliés à l'utilisateur ne sont pas supprimés
     
     Si l'utilisateur est un Responsable, alors les Shops qu'il gérait jusque-là 
     ne sont pas supprimés.
     
-    # pas encore implémenté, mais c'est possible à mettre en place
-    
+    # pas encore implémenté
+
+    Etant donné un Responsable qui a reçu un lien de confirmation de désinscription
+    Lorsqu'il supprime son compte au plus tard 1 jour après sa réception
+    Alors ses données personnelles sont supprimées
+    Et le lien est invalidé
+    Mais les Shops qu'il a gérés ne sont pas supprimés
+
+  # need order data  
+  @user-accounts
   Scénario: Les commandes associées à l'utilisateur ne sont pas supprimées
   
     Les commandes passées par un Consommateur ne sont pas supprimées.
   
     # déjà ok dans saleor
+
+    Etant donné un Consommateur qui a reçu un lien de confirmation de désinscription
+    Lorsqu'il supprime son compte au plus tard 1 jour après sa réception
+    Alors ses données personnelles sont supprimées
+    Et le lien est invalidé
+    Mais ses commandes ne sont pas supprimées
   
+  # need products
+  @user-account
   Scénario: Les Produits associés à l'utilisateur sont supprimés
   
-    Si l'utilisateur est un Producteur, alors ses Produits sont supprimées.
+    Les Produits d'un Producteur sont supprimés.
   
     # pas encore implémenté, mais c'est possible à mettre en place
     
