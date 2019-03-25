@@ -44,6 +44,16 @@ def consumer(context):
 
 
 @fixture
+def inactive_customer(context):
+    user_data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'Credentials', 'InactiveCustomer.json'))
+    create_database_user(user_data)
+    context.inactive_customer = user_data
+    yield user_data
+    del context.inactive_customer
+
+
+@fixture
 def producer(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'Producteur.json'))
@@ -117,3 +127,39 @@ def successful_logout_response(context):
     context.successful_logout_response = data
     yield context.successful_logout_response
     del context.successful_logout_response
+
+
+@fixture
+def successful_signup(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'SuccessfulCustomerCreation.json'))
+    context.successful_signup = data
+    yield context.successful_signup
+    del context.successful_signup
+
+
+@fixture
+def expired_account_confirmation_link(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'ExpiredAccountConfirmationLink.json'))
+    context.expired_account_confirmation_link = data
+    yield context.expired_account_confirmation_link
+    del context.expired_account_confirmation_link
+
+
+@fixture
+def successful_account_confirmation(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'SuccessfulAccountConfirmation.json'))
+    context.successful_account_confirmation = data
+    yield context.successful_account_confirmation
+    del context.successful_account_confirmation
+
+
+@fixture
+def password_not_compliant_response(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'NonCompliantPassword.json'))
+    context.password_not_compliant_response = data
+    yield context.password_not_compliant_response
+    del context.password_not_compliant_response

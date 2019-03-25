@@ -20,4 +20,3 @@ class Command(BaseCommand):
         token = default_token_generator.make_token(usr)
         print('token  = ', token)
         print('url = ', 'http://www.shopozor.ch/activate/%s/%s' % (uidb64, token))
-
