@@ -1,5 +1,6 @@
 # language: fr
-  
+
+@initial-release @auth @wip
 Fonctionnalité: L'utilisateur réinitialise son mot de passe 
 
   *En tant qu'Utilisateur,  
