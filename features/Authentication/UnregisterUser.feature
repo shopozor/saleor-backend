@@ -10,6 +10,13 @@ Fonctionnalité: Désinscrire un utilisateur
   Pour des raisons de conformité avec la GDPR, il est possible pour un utilisateur 
   de supprimer son compte, ce qui équivaut à la suppression de ses données personnelles. 
   
+  # Attention: si on veut empêcher e.g. un Producteur de se désinscrire lui-même, il faudra faire des checks 
+  # supplémentaires dans l'interface Consommateur, puisque tout Producteur est un Consommateur et que tout 
+  # Consommateur peut se désinscrire.
+  # Même chose pour la désinscription en général d'un Consommateur. Il faut vérifier s'il n'a pas un autre rôle 
+  # auquel cas la désinscription du Consommateur va nécessiter la vérification du stock de produits par exemple si 
+  # le Consommateur s'avère être un Producteur.
+
   # 1. customerDelete(id)
   # staffDelete(id)
   # with id = graphene.Node.to_global_id('User', customer_user.pk), this is a base64 encoding of the User type with the user's primary key
@@ -25,14 +32,41 @@ Fonctionnalité: Désinscrire un utilisateur
     
     Etant donné un <utilisateur> identifié
     Lorsqu'il se désinscrit avec un mot de passe valide 
-    Et il reçoit un e-mail de confirmation de suppression de compte
+    Alors il reçoit un e-mail de confirmation de suppression de compte
 
     Exemples:
       | utilisateur  |
       | Consommateur |
-      | Producteur   | 
+      # Que fait-on si le Responsable doit payer les Producteurs?
       | Responsable  |
     
+  @user-accounts
+  Scénario: Le Producteur n'a ni commandes en cours ni stock
+    
+    Etant donné un Producteur identifié
+    Et qui n'a pas de commandes en cours 
+    Et dont le stock de produits est vide
+    Lorsqu'il se désinscrit avec un mot de passe valide 
+    Alors il reçoit un e-mail de confirmation de suppression de compte
+
+  @user-accounts
+  Scénario: Le Producteur a des commandes en cours
+    
+    Etant donné un Producteur identifié
+    Et qui a des commandes en cours 
+    Lorsqu'il se désinscrit avec un mot de passe valide 
+    Alors il obtient un message d'erreur stipulant qu'il a des commandes en cours
+    Et ne reçoit pas d'e-mail de confirmation de suppression de compte
+
+  @user-accounts
+  Scénario: Le Producteur a des produits en stock
+    
+    Etant donné un Producteur identifié
+    Et qui a des produits en stock
+    Lorsqu'il se désinscrit avec un mot de passe valide 
+    Alors il obtient un message d'erreur stipulant qu'il a des produits en stock
+    Et ne reçoit pas d'e-mail de confirmation de suppression de compte
+
   @user-accounts
   Scénario: L'utilisateur confirme la désinscription dans les temps
 
@@ -78,7 +112,7 @@ Fonctionnalité: Désinscrire un utilisateur
     # pas encore implémenté
 
     Etant donné un Responsable qui a reçu un lien de confirmation de désinscription
-    Lorsqu'il supprime son compte au plus tard 1 jour après sa réception
+    Lorsqu'il supprime son compte dans les temps
     Alors ses données personnelles sont supprimées
     Et le lien est invalidé
     Mais les Shops qu'il a gérés ne sont pas supprimés
@@ -92,7 +126,7 @@ Fonctionnalité: Désinscrire un utilisateur
     # déjà ok dans saleor
 
     Etant donné un Consommateur qui a reçu un lien de confirmation de désinscription
-    Lorsqu'il supprime son compte au plus tard 1 jour après sa réception
+    Lorsqu'il supprime son compte dans les temps
     Alors ses données personnelles sont supprimées
     Et le lien est invalidé
     Mais ses commandes ne sont pas supprimées
@@ -103,9 +137,10 @@ Fonctionnalité: Désinscrire un utilisateur
   
     Les Produits d'un Producteur sont supprimés.
   
-    # pas encore implémenté, mais c'est possible à mettre en place
-    
-  # Le Producteur doit honorer ses commandes avant de se désinscrire
-  
-  # Le Producteur doit avoir tout son stock à zéro avant de se désinscrire
-  
+    # pas encore implémenté
+
+    Etant donné un Producteur qui a reçu un lien de confirmation de désinscription
+    Lorsqu'il supprime son compte dans les temps
+    Alors ses données personnelles sont supprimées
+    Et ses produits sont supprimés
+    Et le lien est invalidé

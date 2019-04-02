@@ -44,7 +44,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
 
     Au moment où l'utilisateur définit son mot de passe, la validité du lien est vérifiée. 
     Si le lien est valide et le mot de passe est conforme à la politique relative aux mots de passe, 
-    alors le mot de passe est sauvegardé et le lien d'activation invalidé.
+    le mot de passe est sauvegardé et le lien d'activation invalidé.
 
     # Ceci fait usage de la mutation setPassword qui a besoin d'un id, un token et un mot de passe. 
     # L'invalidation du token est automatique suite au changement de mot de passe.
