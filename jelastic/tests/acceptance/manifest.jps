@@ -48,7 +48,7 @@ application:
             DOMAIN_NAMES: ${env.envName}.hidora.com
         - nodeGroup: sqldb
           nodeType: postgresql
-          tag: 10.5
+          tag: 11.2
           displayName: PostgreSQL
           fixedCloudlets: 1
           cloudlets: 4
