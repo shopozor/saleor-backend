@@ -4,7 +4,6 @@ application:
   id: shopozor-backend-test
   name: Shopozor Backend Test API
   version: 0.0
-  baseUrl: https://raw.githubusercontent.com/softozor/shopozor-backend/master/jelastic
 
   globals:
     HOME: /var/www/webroot
@@ -21,6 +20,9 @@ application:
     REDIS_PASSWORD: ${fn.password(10)}
     PYTHON_VIRTUAL_ENV: env
     PATH_TO_VIRTUAL_ENV: ${globals.HOME}/${globals.PYTHON_VIRTUAL_ENV}
+    GIT_BRANCH: dev
+  
+  baseUrl: https://raw.githubusercontent.com/softozor/shopozor-backend/${globals.GIT_BRANCH}/jelastic  
 
   env:
     topology:
@@ -43,6 +45,7 @@ application:
           env:
             # This is required for the migration step
             SECRET_KEY: ${globals.SECRET_KEY}
+            PYTHONPATH: ${globals.PATH_TO_CONTEXT}/saleor
             DJANGO_SETTINGS_MODULE: ${globals.DJANGO_SETTINGS_MODULE}
             PATH_TO_VIRTUAL_ENV: ${globals.PATH_TO_VIRTUAL_ENV}
             DOMAIN_NAMES: ${env.envName}.hidora.com
@@ -107,7 +110,7 @@ application:
             type: git
             context: ${globals.CONTEXT}
             url: https://github.com/softozor/shopozor-backend
-            branch: dev
+            branch: ${globals.GIT_BRANCH}
             login: GIT_USER
             password: GIT_PASSWORD
         - method: environment.vcs.Update
@@ -120,6 +123,7 @@ application:
           - virtualenv ${globals.PYTHON_VIRTUAL_ENV}
           - source ${globals.PATH_TO_VIRTUAL_ENV}/bin/activate
           - cd ${globals.PATH_TO_CONTEXT}
+          - chmod u+x ./scripts/install/*.sh
           - ./scripts/install/install.sh
           - ./scripts/install/install-dev.sh
     migrateDB:
