@@ -1,6 +1,7 @@
 from shopozor.settings import *
 
 import json
+from os import environ
 import os.path
 
 FIXTURES_FOLDER = os.path.join('features', 'fixtures')
@@ -14,13 +15,18 @@ ACCEPTANCE_TESTING = True
 if DEBUG:
     ALLOWED_HOSTS.append('testserver')
 
-with open(os.path.join(FIXTURES_FOLDER, 'Authentication', 'Credentials', 'Jwt.json')) as file:
-    jwt_data = json.load(file)
+JWT_EXPIRATION_DELTA = environ.get('JWT_EXPIRATION_DELTA')
+JWT_REFRESH_EXPIRATION_DELTA = environ.get('JWT_REFRESH_EXPIRATION_DELTA')
+JWT_SECRET_KEY = environ.get('JWT_SECRET_KEY')
+JWT_ALGORITHM = environ.get('JWT_ALGORITHM')
+
+if JWT_EXPIRATION_DELTA is None or JWT_REFRESH_EXPIRATION_DELTA is None or JWT_SECRET_KEY is None or JWT_ALGORITHM is None:
+    raise Exception('Graphql JWT parameters not defined.')
 
 GRAPHQL_JWT = {
     'JWT_VERIFY_EXPIRATION': True,
-    'JWT_EXPIRATION_DELTA': timedelta(days=30),
-    'JWT_REFRESH_EXPIRATION_DELTA': timedelta(days=360),
-    'JWT_SECRET_KEY': jwt_data['secret'],
-    'JWT_ALGORITHM': jwt_data['algorithm']
+    'JWT_EXPIRATION_DELTA': JWT_EXPIRATION_DELTA,
+    'JWT_REFRESH_EXPIRATION_DELTA': JWT_REFRESH_EXPIRATION_DELTA,
+    'JWT_SECRET_KEY': JWT_SECRET_KEY,
+    'JWT_ALGORITHM': JWT_ALGORITHM
 }

@@ -12,10 +12,10 @@ application:
     PATH_TO_CONTEXT: ${globals.HOME}/${globals.CONTEXT}
     SECRET_KEY: ${fn.uuid}
     PG_USER_PASSWORD: ${fn.password(10)}
-    # TODO: generate random value for the username
-    PG_DB_USERNAME: saleor
-    # TODO: generate random value for the db name
-    PG_DB_NAME: saleor
+    # TODO: generate random value for the username instead of saleor
+    PG_DB_USERNAME: ${fn.uuid}
+    # TODO: generate random value for the db name instead of saleor
+    PG_DB_NAME: ${fn.uuid}
     PG_PASSWORD: ${fn.password(10)}
     REDIS_PASSWORD: ${fn.password(10)}
     PYTHON_VIRTUAL_ENV: env
@@ -48,7 +48,6 @@ application:
             PYTHONPATH: ${globals.PATH_TO_CONTEXT}/saleor
             DJANGO_SETTINGS_MODULE: ${globals.DJANGO_SETTINGS_MODULE}
             PATH_TO_VIRTUAL_ENV: ${globals.PATH_TO_VIRTUAL_ENV}
-            DOMAIN_NAMES: ${env.envName}.hidora.com
         - nodeGroup: sqldb
           nodeType: postgresql
           tag: 11.2
@@ -135,6 +134,8 @@ application:
       - upload:
           - sourcePath: ${baseUrl}/config/wsgi.py
             destPath: ${globals.PATH_TO_CONTEXT}/wsgi.py
+          - sourcePath: ${baseUrl}/config/wsgi.conf
+            destPath: /etc/httpd/conf.d/wsgi.conf
         nodeGroup: cp
       - forEach(nodes.cp):
           script: ${baseUrl}/scripts/ReplaceWsgiPlaceholders.js
@@ -148,6 +149,8 @@ application:
         result: success
         email: |
           # PostgreSQL
+          **PostgreSQL URL**: postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
+          # PgAdmin
           **webadmin**: ${globals.PG_PASSWORD}
           # Redis    
           **admin**: ${globals.REDIS_PASSWORD}
