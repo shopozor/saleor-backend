@@ -1,19 +1,52 @@
 pipeline {
   agent {
     docker {
-      image 'everpeace/curl-jq'
+      image 'python:latest'
     }
   } 
+  environment {
+    REPORT = 'cucumber-report.json'
+  }
   stages {
-    stage('Acceptance tests') {
+    stage('Virtual Environment Installation') {
       environment {
-        HIDORA_CREDENTIALS = credentials('hidora-credentials')
-        ENVIRONMENT_NAME = "shopozor-backend-test"
+        VENV = 'venv'
+        JWT_EXPIRATION_DELTA_IN_DAYS = 30
+        JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS = 360
+        JWT_SECRET_KEY = 'test_key'
+        JWT_ALGORITHM = 'HS256'
+        SECRET_KEY = 'trouduc'
+        PYTHONPATH = "$WORKSPACE/saleor"
+        DJANGO_SETTINGS_MODULE = 'features.settings'
+        // TODO: double-check that this variable is accessible from the node (it should be defined!)
+        //DATABASE_URL = postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
       }
       steps {
-        sh 'chmod u+x ./deploy-to-jelastic.sh'
-        sh "./deploy-to-jelastic.sh $HIDORA_CREDENTIALS_USR $HIDORA_CREDENTIALS_PSW $ENVIRONMENT_NAME"
+        sh 'echo "DATABASE_URL = $DATABASE_URL"'
+        sh "virtualenv $VENV"
+        sh "source $VENV/bin/activate"
+        sh "chmod u+x ./scripts/install/*.sh"
+        sh "./scripts/install/install.sh"
+        sh "./scripts/install/install-dev.sh"
       }
+    }
+
+    stage('Performing acceptance tests') {
+      sh "python manage.py behave --format json -o $REPORT --tags='~wip'"
+    }
+
+    // Do we clean up the virtual environment after the test?
+  }
+
+  post {
+    success {
+      echo "Test succeeded"
+      script {
+        cucumber fileIncludePattern: $REPORT, sortingMethod: 'ALPHABETICAL'
+    }
+    failure {
+      echo "Test failed"
+      cucumber fileIncludePattern: $REPORT, sortingMethod: 'ALPHABETICAL'
     }
   }
 }
