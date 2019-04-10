@@ -8,19 +8,19 @@ pipeline {
     REPORT = 'cucumber-report.json'
   }
   stages {
+    environment {
+      VENV = 'venv'
+      JWT_EXPIRATION_DELTA_IN_DAYS = 30
+      JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS = 360
+      JWT_SECRET_KEY = 'test_key'
+      JWT_ALGORITHM = 'HS256'
+      SECRET_KEY = 'trouduc'
+      PYTHONPATH = "$WORKSPACE/saleor"
+      DJANGO_SETTINGS_MODULE = 'features.settings'
+      // TODO: double-check that this variable is accessible from the node (it should be defined!)
+      //DATABASE_URL = postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
+    }
     stage('Virtual Environment Installation') {
-      environment {
-        VENV = 'venv'
-        JWT_EXPIRATION_DELTA_IN_DAYS = 30
-        JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS = 360
-        JWT_SECRET_KEY = 'test_key'
-        JWT_ALGORITHM = 'HS256'
-        SECRET_KEY = 'trouduc'
-        PYTHONPATH = "$WORKSPACE/saleor"
-        DJANGO_SETTINGS_MODULE = 'features.settings'
-        // TODO: double-check that this variable is accessible from the node (it should be defined!)
-        //DATABASE_URL = postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
-      }
       steps {
         sh 'echo "DATABASE_URL = $DATABASE_URL"'
         sh "virtualenv $VENV"
@@ -32,7 +32,9 @@ pipeline {
     }
 
     stage('Performing acceptance tests') {
-      sh "python manage.py behave --format json -o $REPORT --tags='~wip'"
+      steps {
+        sh "python manage.py behave --format json -o $REPORT --tags='~wip'"
+      }
     }
 
     // Do we clean up the virtual environment after the test?
