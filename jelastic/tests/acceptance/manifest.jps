@@ -13,9 +13,9 @@ application:
     SECRET_KEY: ${fn.uuid}
     PG_USER_PASSWORD: ${fn.password(10)}
     # TODO: generate random value for the username instead of saleor
-    PG_DB_USERNAME: ${fn.uuid}
+    PG_DB_USERNAME: saleor
     # TODO: generate random value for the db name instead of saleor
-    PG_DB_NAME: ${fn.uuid}
+    PG_DB_NAME: saleor
     PG_PASSWORD: ${fn.password(10)}
     REDIS_PASSWORD: ${fn.password(10)}
     PYTHON_VIRTUAL_ENV: env
@@ -65,10 +65,12 @@ application:
     - prepareDatabase
     - deployRepo
     - createVirtualEnv
+    - setupJwt
     - migrateDB
     - restorePermissions
     - setupWsgi
     - sendEmailWithPasswords
+    # TODO: close that environment from outside world!
   actions:
     prepareDatabase:
       - setDatabaseUrlEnvVar
@@ -125,6 +127,10 @@ application:
           - chmod u+x ./scripts/install/*.sh
           - ./scripts/install/install.sh
           - ./scripts/install/install-dev.sh
+    # this is only for test environments
+    setupJwt:
+      - script[cp]: ${baseUrl}/scripts/SetJwtEnvVars.js
+        url: https://raw.githubusercontent.com/softozor/shopozor-fixtures/master/Authentication/Credentials/Jwt.json
     migrateDB:
       cmd [cp]:
         - cd ${globals.PATH_TO_CONTEXT}

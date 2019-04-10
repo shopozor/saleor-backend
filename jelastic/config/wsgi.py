@@ -19,13 +19,4 @@ os.environ['CACHE_URL'] = 'CACHE_URL_PLACEHOLDER'
 os.environ.setdefault('DJANGO_SETTINGS_MODULE',
                       'DJANGO_SETTINGS_MODULE_PLACEHOLDER')
 
-# TODO: this is only used in tests; in production, we want other parameters
-with open(os.path.join(os.environ['HOME'], 'ROOT', 'features', 'fixtures', 'Authentication', 'Credentials', 'Jwt.json')) as file:
-    jwt_data = json.load(file)
-    os.environ['JWT_EXPIRATION_DELTA'] = str(jwt_data['exp_delta_in_days'])
-    os.environ['JWT_REFRESH_EXPIRATION_DELTA'] = str(
-        jwt_data['refresh_exp_delta_in_days'])
-    os.environ['JWT_SECRET_KEY'] = jwt_data['secret']
-    os.environ['JWT_ALGORITHM'] = jwt_data['algorithm']
-
 application = get_wsgi_application()
