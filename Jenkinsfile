@@ -43,6 +43,7 @@ pipeline {
       echo "Test succeeded"
       script {
         cucumber fileIncludePattern: $REPORT, sortingMethod: 'ALPHABETICAL'
+      }
     }
     failure {
       echo "Test failed"
