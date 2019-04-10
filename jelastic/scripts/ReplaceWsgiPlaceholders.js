@@ -53,12 +53,6 @@ function replaceInBody(path, pattern, replacement) {
   )
 }
 
-function checkJelasticResponse(response, errorMsg) {
-  if (!response || response.result !== 0) {
-    throw errorMsg + ': ' + response
-  }
-}
-
 function getContainerEnvVars(nodeId) {
   const resp = jelastic.environment.control.GetContainerEnvVars(
     '${env.envName}',
