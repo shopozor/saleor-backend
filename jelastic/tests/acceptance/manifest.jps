@@ -71,9 +71,6 @@ application:
     - sendEmailWithPasswords
     # TODO: close that environment from outside world!
   actions:
-    prepareDatabase:
-      - setDatabaseUrlEnvVar
-      - createDatabase
     setPasswordOnRedisNode:
       - replaceInFile:
           path: /etc/redis.conf
@@ -83,6 +80,9 @@ application:
           nodeType: redis
       - restartService:
           - nodeType: redis
+    prepareDatabase:
+      - setDatabaseUrlEnvVar
+      - createDatabase
     setDatabaseUrlEnvVar:
       - api:
           - method: jelastic.environment.control.AddContainerEnvVars
