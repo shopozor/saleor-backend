@@ -20,9 +20,8 @@ application:
     REDIS_PASSWORD: ${fn.password(10)}
     PYTHON_VIRTUAL_ENV: env
     PATH_TO_VIRTUAL_ENV: ${globals.HOME}/${globals.PYTHON_VIRTUAL_ENV}
-    GIT_BRANCH: dev
   
-  baseUrl: https://raw.githubusercontent.com/softozor/shopozor-backend/${globals.GIT_BRANCH}/jelastic  
+  baseUrl: https://raw.githubusercontent.com/softozor/shopozor-backend/GIT_BRANCH/jelastic
 
   env:
     topology:
@@ -111,7 +110,7 @@ application:
             type: git
             context: ${globals.CONTEXT}
             url: https://github.com/softozor/shopozor-backend
-            branch: ${globals.GIT_BRANCH}
+            branch: GIT_BRANCH
             login: GIT_USER
             password: GIT_PASSWORD
         - method: environment.vcs.Update
@@ -129,7 +128,7 @@ application:
           - ./scripts/install/install-dev.sh
     # this is only for test environments
     setupJwt:
-      - script[cp]: ${baseUrl}/scripts/SetJwtEnvVars.js
+      - script: ${baseUrl}/scripts/SetJwtEnvVars.js
         url: https://raw.githubusercontent.com/softozor/shopozor-fixtures/master/Authentication/Credentials/Jwt.json
     migrateDB:
       cmd [cp]:
@@ -137,6 +136,11 @@ application:
         - source ${globals.PATH_TO_VIRTUAL_ENV}/bin/activate
         - python ./manage.py migrate
     setupWsgi:
+      - api:
+          - method: environment.file.Delete
+            params: 
+              path: /etc/httpd/conf.d/wsgi.conf
+              nodeGroup: cp
       - upload:
           - sourcePath: ${baseUrl}/config/wsgi.py
             destPath: ${globals.PATH_TO_CONTEXT}/wsgi.py

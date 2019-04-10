@@ -102,6 +102,26 @@ function replaceWsgiPlaceholders(nodeId, pathToFile, domainNames) {
   )
   replaceInBody(
     pathToFile,
+    'JWT_EXPIRATION_DELTA_IN_DAYS_PLACEHOLDER',
+    getEnvVarValue(nodeId, 'JWT_EXPIRATION_DELTA_IN_DAYS')
+  )
+  replaceInBody(
+    pathToFile,
+    'JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS_PLACEHOLDER',
+    getEnvVarValue(nodeId, 'JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS')
+  )
+  replaceInBody(
+    pathToFile,
+    'JWT_SECRET_KEY_PLACEHOLDER',
+    getEnvVarValue(nodeId, 'JWT_SECRET_KEY')
+  )
+  replaceInBody(
+    pathToFile,
+    'JWT_ALGORITHM_PLACEHOLDER',
+    getEnvVarValue(nodeId, 'JWT_ALGORITHM')
+  )
+  replaceInBody(
+    pathToFile,
     'DJANGO_SETTINGS_MODULE_PLACEHOLDER',
     getEnvVarValue(nodeId, 'DJANGO_SETTINGS_MODULE')
   )
