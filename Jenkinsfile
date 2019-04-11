@@ -20,7 +20,7 @@ pipeline {
   stages {
     stage('Virtual Environment Installation') {
       steps {
-        sh 'echo "DATABASE_URL = $DATABASE_URL"'
+        sh 'echo "DATABASE_URL = ${env.DATABASE_URL}"'
         sh "virtualenv $VENV"
         sh "source $VENV/bin/activate"
         sh "chmod u+x ./scripts/install/*.sh"
