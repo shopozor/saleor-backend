@@ -20,6 +20,7 @@ pipeline {
   stages {
     stage('Virtual Environment Installation') {
       steps {
+        sh 'printenv'
         sh 'echo "DATABASE_URL = ${env.JOB_NAME}"'
         sh "virtualenv $VENV"
         sh "source $VENV/bin/activate"
