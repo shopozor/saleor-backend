@@ -12,6 +12,7 @@ pipeline {
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE", "PATH+LOCAL_BIN=$WORKSPACE/.local/bin"]) {
+          sh "echo $PATH"
           sh "pip install virtualenv --user"
           sh "virtualenv $VENV"
           sh "source $VENV/bin/activate"
