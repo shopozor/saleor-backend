@@ -14,7 +14,7 @@ pipeline {
         withEnv(["HOME=$WORKSPACE", "PATH+LOCAL_BIN=$WORKSPACE/.local/bin"]) {
           sh "echo $PATH"
           sh "pip install virtualenv --user"
-          sh "virtualenv $VENV"
+          sh "$WORKSPACE/.local/bin/virtualenv $VENV"
           sh "source $VENV/bin/activate"
           sh "pip install -r saleor/requirements.txt"
           sh "pip install -r requirements.txt"
