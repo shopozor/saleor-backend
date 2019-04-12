@@ -19,6 +19,9 @@ pipeline {
   }
   stages {
     stage('Virtual Environment Installation') {
+      environment {
+        DATABASE_URL = credentials('postgres-credentials')
+      }
       steps {
         // TODO: get that url from the postgres-credentials
         sh 'echo "DATABASE_URL = $DATABASE_URL"'
