@@ -11,36 +11,41 @@ pipeline {
   stages {
     stage('Virtual Environment Installation') {
       steps {
-        withEnv(["HOME=$WORKSPACE", "PATH+LOCAL_BIN=$WORKSPACE/.local/bin"]) {
+        withEnv(["HOME=$WORKSPACE"]) {
           sh "pip install virtualenv --user"
           sh "$WORKSPACE/.local/bin/virtualenv $VENV"
-          sh ". $VENV/bin/activate && pip install -r saleor/requirements.txt"
-          sh ". $VENV/bin/activate && pip install -r requirements.txt"
-          sh ". $VENV/bin/activate && pip install -r saleor/requirements_dev.txt"
+          sh "chmod u+x ./scripts/install/*.sh"
+          sh ". $VENV/bin/activate && ./scripts/install/install.sh"
+          sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
         }
       }
     }
     stage('Performing acceptance tests') {
       environment {
         DATABASE_URL = credentials('postgres-credentials')
+        DJANGO_SETTINGS_MODULE = 'features.settings'
+        PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
+        JWT_EXPIRATION_DELTA_IN_DAYS = 30
+        JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS = 360
+        JWT_SECRET_KEY = 'test_key'
+        JWT_ALGORITHM = 'HS256'
+        SECRET_KEY = 'trouduc'
       }
       steps {
-        withEnv(["HOME=$WORKSPACE", "PATH+LOCAL_BIN=$WORKSPACE/.local/bin", "DJANGO_SETTINGS_MODULE=features.settings", "PYTHONPATH=$WORKSPACE/.local/lib/python3.7/site-packages/:$WORKSPACE/saleor", "JWT_EXPIRATION_DELTA_IN_DAYS=30", "JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS=360", "JWT_SECRET_KEY=test_key", "JWT_ALGORITHM=HS256", "SECRET_KEY=trouduc"]) {
-          sh ". $VENV/bin/activate && python manage.py behave --format json -o $REPORT --tags='~wip'"
-        }
+        sh ". $VENV/bin/activate && python manage.py behave --format json -o $REPORT --tags=\"~wip\""
       }
     }
   }
-  // post {
-  //   success {
-  //     echo "Test succeeded"
-  //     script {
-  //       cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
-  //     }
-  //   }
-  //   failure {
-  //     echo "Test failed"
-  //     cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
-  //   }
-  // }
+  post {
+    success {
+      echo "Test succeeded"
+      script {
+        cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
+      }
+    }
+    failure {
+      echo "Test failed"
+      cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
+    }
+  }
 }
