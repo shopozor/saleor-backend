@@ -12,7 +12,7 @@ pipeline {
     JWT_SECRET_KEY = 'test_key'
     JWT_ALGORITHM = 'HS256'
     SECRET_KEY = 'trouduc'
-    PATH = "$PATH:$WORSPACE/.local/bin"
+    // PATH = "$PATH:$WORSPACE/.local/bin"
     PYTHONPATH = "$PYTHONPATH:$WORKSPACE/.local/lib/python3.7/site-packages/:$WORKSPACE/saleor"
     DJANGO_SETTINGS_MODULE = 'features.settings'
   }
@@ -22,7 +22,7 @@ pipeline {
         DATABASE_URL = credentials('postgres-credentials')
       }
       steps {
-        withEnv(["HOME=$WORKSPACE"]) {
+        withEnv(["HOME=$WORKSPACE", "PATH+LOCAL_BIN=$WORKSPACE/.local/bin"]) {
           sh 'echo "PATH = $PATH"'
           sh 'echo "PYTHONPATH = $PYTHONPATH"'
           sh "pip install -r saleor/requirements.txt --user"
@@ -33,7 +33,9 @@ pipeline {
     }
     stage('Performing acceptance tests') {
       steps {
-        sh "python manage.py behave --format json -o $REPORT --tags='~wip'"
+        withEnv(["HOME=$WORKSPACE", "PATH+LOCAL_BIN=$WORKSPACE/.local/bin"]) {
+          sh "python manage.py behave --format json -o $REPORT --tags='~wip'"
+        }
       }
     }
   }
