@@ -12,7 +12,8 @@ pipeline {
     JWT_SECRET_KEY = 'test_key'
     JWT_ALGORITHM = 'HS256'
     SECRET_KEY = 'trouduc'
-    // PYTHONPATH = "$WORKSPACE/saleor"
+    PATH = "$PATH:$WORSPACE/.local/bin"
+    PYTHONPATH = "$PYTHONPATH:$WORKSPACE/.local/lib/python3.7/site-packages/:$WORKSPACE/saleor"
     DJANGO_SETTINGS_MODULE = 'features.settings'
   }
   stages {
@@ -22,10 +23,8 @@ pipeline {
       }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          // TODO: add HOME/.local/bin to PATH
           sh 'echo "PATH = $PATH"'
           sh 'echo "PYTHONPATH = $PYTHONPATH"'
-          // TODO: find a way to make the following installation persistent
           sh "pip install -r saleor/requirements.txt --user"
           sh "pip install -r requirements.txt --user"
           sh "pip install -r saleor/requirements_dev.txt --user"
