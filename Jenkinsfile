@@ -14,8 +14,6 @@ pipeline {
     SECRET_KEY = 'trouduc'
     PYTHONPATH = "$WORKSPACE/saleor"
     DJANGO_SETTINGS_MODULE = 'features.settings'
-    // TODO: double-check that this variable is accessible from the node (it should be defined!)
-    //DATABASE_URL = postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
   }
   stages {
     stage('Virtual Environment Installation') {
@@ -23,26 +21,17 @@ pipeline {
         DATABASE_URL = credentials('postgres-credentials')
       }
       steps {
-        // TODO: get that url from the postgres-credentials
-        sh 'echo "DATABASE_URL = $DATABASE_URL"'
-        // TODO: install virtualenv
-        sh "virtualenv $VENV"
-        sh "source $VENV/bin/activate"
         sh "chmod u+x ./scripts/install/*.sh"
         sh "./scripts/install/install.sh"
         sh "./scripts/install/install-dev.sh"
       }
     }
-
     stage('Performing acceptance tests') {
       steps {
         sh "python manage.py behave --format json -o $REPORT --tags='~wip'"
       }
     }
-
-    // Do we clean up the virtual environment after the test?
   }
-
   post {
     success {
       echo "Test succeeded"
