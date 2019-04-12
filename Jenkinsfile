@@ -6,15 +6,12 @@ pipeline {
   } 
   environment {
     REPORT = 'cucumber-report.json'
-    VENV = 'venv'
     JWT_EXPIRATION_DELTA_IN_DAYS = 30
     JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS = 360
     JWT_SECRET_KEY = 'test_key'
     JWT_ALGORITHM = 'HS256'
     SECRET_KEY = 'trouduc'
-    // PATH = "$PATH:$WORSPACE/.local/bin"
     PYTHONPATH = "$PYTHONPATH:$WORKSPACE/.local/lib/python3.7/site-packages/:$WORKSPACE/saleor"
-    DJANGO_SETTINGS_MODULE = 'features.settings'
   }
   stages {
     stage('Virtual Environment Installation') {
@@ -33,7 +30,7 @@ pipeline {
     }
     stage('Performing acceptance tests') {
       steps {
-        withEnv(["HOME=$WORKSPACE", "PATH+LOCAL_BIN=$WORKSPACE/.local/bin"]) {
+        withEnv(["HOME=$WORKSPACE", "PATH+LOCAL_BIN=$WORKSPACE/.local/bin", "DJANGO_SETTINGS_MODULE=features.settings"]) {
           sh "python manage.py behave --format json -o $REPORT --tags='~wip'"
         }
       }
