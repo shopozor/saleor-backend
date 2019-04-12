@@ -15,9 +15,9 @@ pipeline {
           sh "pip install virtualenv --user"
           sh "$WORKSPACE/.local/bin/virtualenv $VENV"
           sh ". $VENV/bin/activate"
-          sh "pip install -r saleor/requirements.txt --user"
-          sh "pip install -r requirements.txt --user"
-          sh "pip install -r saleor/requirements_dev.txt --user"
+          sh "pip install -r saleor/requirements.txt"
+          sh "pip install -r requirements.txt"
+          sh "pip install -r saleor/requirements_dev.txt"
         }
       }
     }
