@@ -21,9 +21,9 @@ pipeline {
         DATABASE_URL = credentials('postgres-credentials')
       }
       steps {
-        sh "chmod u+x ./scripts/install/*.sh"
-        sh "./scripts/install/install.sh"
-        sh "./scripts/install/install-dev.sh"
+        sh "pip install -r saleor/requirements.txt --user"
+        sh "pip install -r requirements.txt --user"
+        sh "pip install -r saleor/requirements_dev.txt --user"
       }
     }
     stage('Performing acceptance tests') {
