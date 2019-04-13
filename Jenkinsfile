@@ -5,7 +5,7 @@ pipeline {
     }
   } 
   environment {
-    REPORTS_FOLDER = 'junit-reports'
+    REPORT = 'cucumber-report'
     VENV = 'venv'
   }
   stages {
@@ -30,16 +30,18 @@ pipeline {
         JWT_SECRET_KEY = 'test_key'
         JWT_ALGORITHM = 'HS256'
         SECRET_KEY = 'trouduc'
+        BEHAVE_REPORT = 'behave-report.json'
       }
       steps {
-        sh ". $VENV/bin/activate && python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags=\"~wip\""
+        sh ". $VENV/bin/activate && python manage.py behave --format json -o $BEHAVE_REPORT --tags=\"~wip\""
+        sh ". $VENV/bin/activate && python -m behave2cucumber -i $BEHAVE_REPORT -o $REPORT"
       }
     }
   }
   post {
     always {
       script {
-        junit "**/$REPORTS_FOLDER/*.xml"
+         cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
       }
     }
   }
