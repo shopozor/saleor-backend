@@ -40,12 +40,12 @@ pipeline {
     success {
       echo "Test succeeded"
       script {
-        cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
+        cucumber fileIncludePattern: "$REPORT", jsonReportDirectory: 'reports', sortingMethod: 'ALPHABETICAL'
       }
     }
     failure {
       echo "Test failed"
-      cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
+      cucumber fileIncludePattern: "$REPORT", jsonReportDirectory: 'reports', sortingMethod: 'ALPHABETICAL'
     }
   }
 }
