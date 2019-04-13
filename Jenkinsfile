@@ -5,7 +5,7 @@ pipeline {
     }
   } 
   environment {
-    REPORT = 'cucumber-report.json'
+    REPORTS_FOLDER = 'junit-reports'
     VENV = 'venv'
   }
   stages {
@@ -32,25 +32,17 @@ pipeline {
         SECRET_KEY = 'trouduc'
       }
       steps {
-        sh ". $VENV/bin/activate && python manage.py behave --format json -o $REPORT --tags=\"~wip\""
+        sh ". $VENV/bin/activate && python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags=\"~wip\""
       }
     }
   }
   post {
-    success {
-      echo "Test succeeded"
+    always {
       script {
-        sh "echo $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
-        sh "ls $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/"
-        cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
-      }
-    }
-    failure {
-      echo "Test failed"
-      script {
-        sh "echo $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
-        sh "ls $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/"
-        cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
+        // sh "echo $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
+        // sh "ls $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/"
+        // cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
+        junit "**/$REPORTS_FOLDER/*.xml"
       }
     }
   }
