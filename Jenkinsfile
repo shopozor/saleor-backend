@@ -41,7 +41,7 @@ pipeline {
       echo "Test succeeded"
       script {
         sh "echo $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
-        sh "mkdir $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
+        sh "ls $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/"
         cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
       }
     }
@@ -49,7 +49,7 @@ pipeline {
       echo "Test failed"
       script {
         sh "echo $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
-        sh "mkdir $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
+        sh "ls $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/"
         cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
       }
     }
