@@ -39,9 +39,6 @@ pipeline {
   post {
     always {
       script {
-        // sh "echo $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
-        // sh "ls $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/"
-        // cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
         junit "**/$REPORTS_FOLDER/*.xml"
       }
     }
