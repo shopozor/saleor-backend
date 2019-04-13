@@ -33,7 +33,7 @@ pipeline {
         BEHAVE_REPORT = 'behave-report.json'
       }
       steps {
-        sh ". $VENV/bin/activate && python manage.py behave --format json -o $BEHAVE_REPORT --tags=\"~wip\""
+        sh ". $VENV/bin/activate && python manage.py behave --format json.pretty -o $BEHAVE_REPORT --tags=\"~wip\""
         sh ". $VENV/bin/activate && python -m behave2cucumber -i $BEHAVE_REPORT -o $REPORT"
       }
     }
