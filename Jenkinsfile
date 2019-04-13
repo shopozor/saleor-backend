@@ -33,6 +33,7 @@ pipeline {
       }
       steps {
         sh ". $VENV/bin/activate && python manage.py behave --format json -o $REPORT --tags=\"~wip\""
+        sh "mkdir $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
       }
     }
   }
