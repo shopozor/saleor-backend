@@ -33,8 +33,6 @@ pipeline {
       }
       steps {
         sh ". $VENV/bin/activate && python manage.py behave --format json -o $REPORT --tags=\"~wip\""
-        sh "echo $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
-        sh "mkdir $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
       }
     }
   }
@@ -42,12 +40,18 @@ pipeline {
     success {
       echo "Test succeeded"
       script {
+        sh "echo $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
+        sh "mkdir $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
         cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
       }
     }
     failure {
       echo "Test failed"
-      cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
+      script {
+        sh "echo $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
+        sh "mkdir $JENKINS_HOME/jobs/$JOB_NAME/builds/$BUILD_NUMBER/cucumber-html-reports/.cache"
+        cucumber fileIncludePattern: "$REPORT", sortingMethod: 'ALPHABETICAL'
+      }
     }
   }
 }
