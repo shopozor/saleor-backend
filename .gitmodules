@@ -4,3 +4,6 @@
 [submodule "features/fixtures"]
 	path = features/fixtures
 	url = https://github.com/softozor/shopozor-fixtures
+[submodule "features/graphql"]
+	path = features/graphql
+	url = https://github.com/softozor/shopozor-graphql
