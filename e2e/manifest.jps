@@ -28,7 +28,7 @@ application:
       nodes:
         - nodeGroup: bl
           nodeType: nginx-dockerized
-          tag: 1.12.2
+          tag: 1.14.2
           displayName: Node balancing
           count: 1
           fixedCloudlets: 1
@@ -38,7 +38,7 @@ application:
             SECRET_KEY: ${globals.SECRET_KEY}
         - nodeGroup: cp
           nodeType: apache2-python
-          tag: 2.4.37-python-3.7.0
+          tag: 2.4.39-python-3.7.3
           displayName: Application servers
           count: 1
           fixedCloudlets: 4
