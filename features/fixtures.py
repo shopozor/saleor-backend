@@ -46,7 +46,7 @@ def consumer(context):
 @fixture
 def inactive_customer(context):
     user_data = get_data_from_json_fixture(
-        os.path.join('Authentication', 'Credentials', 'InactiveCustomer.json'))
+        os.path.join('Authentication', 'Credentials', 'InactiveConsumer.json'))
     create_database_user(user_data)
     context.inactive_customer = user_data
     yield user_data
