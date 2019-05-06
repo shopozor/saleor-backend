@@ -132,7 +132,7 @@ def successful_logout_response(context):
 @fixture
 def successful_signup(context):
     data = get_data_from_json_fixture(
-        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'SuccessfulCustomerCreation.json'))
+        os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'SuccessfulConsumerCreation.json'))
     context.successful_signup = data
     yield context.successful_signup
     del context.successful_signup
@@ -141,7 +141,7 @@ def successful_signup(context):
 @fixture
 def expired_account_confirmation_link(context):
     data = get_data_from_json_fixture(
-        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'ExpiredAccountConfirmationLink.json'))
+        os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'ExpiredAccountConfirmationLink.json'))
     context.expired_account_confirmation_link = data
     yield context.expired_account_confirmation_link
     del context.expired_account_confirmation_link
@@ -150,7 +150,7 @@ def expired_account_confirmation_link(context):
 @fixture
 def successful_account_confirmation(context):
     data = get_data_from_json_fixture(
-        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'SuccessfulAccountConfirmation.json'))
+        os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'SuccessfulAccountConfirmation.json'))
     context.successful_account_confirmation = data
     yield context.successful_account_confirmation
     del context.successful_account_confirmation
@@ -159,7 +159,7 @@ def successful_account_confirmation(context):
 @fixture
 def password_not_compliant_response(context):
     data = get_data_from_json_fixture(
-        os.path.join('Authentication', 'RegisterCustomer', 'Responses', 'NonCompliantPassword.json'))
+        os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'NonCompliantPassword.json'))
     context.password_not_compliant_response = data
     yield context.password_not_compliant_response
     del context.password_not_compliant_response
