@@ -21,7 +21,9 @@ pipeline {
       }
     }
     stage('Build saleor frontend') {
-      sh "cd saleor && npm i && npm run build-assets && npm run build-emails"
+      steps {
+        sh "cd saleor && npm i && npm run build-assets && npm run build-emails"
+      }
     }
     stage('Performing saleor unit tests') {
       environment {
