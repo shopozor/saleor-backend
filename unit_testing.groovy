@@ -14,8 +14,9 @@ pipeline {
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "pip install virtualenv --user"
-          sh "$WORKSPACE/.local/bin/virtualenv $VENV"
+          // sh "pip install virtualenv --user"
+          // sh "$WORKSPACE/.local/bin/virtualenv $VENV"
+          sh "virtualenv $VENV"
           sh "chmod u+x ./scripts/install/*.sh"
           sh ". $VENV/bin/activate && ./scripts/install/install.sh"
           sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
