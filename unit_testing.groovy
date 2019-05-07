@@ -1,7 +1,9 @@
+// TODO: the best option here is to go for a pipeline with Dockerfile: 
+// https://jenkins.io/doc/book/pipeline/docker/#dockerfile
 pipeline {
   agent {
     docker {
-      image 'python:latest'
+      image 'nikolaik/python-nodejs:latest'
     }
   } 
   environment {
