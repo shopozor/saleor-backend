@@ -14,8 +14,6 @@ pipeline {
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          // sh "pip install virtualenv --user"
-          // sh "$WORKSPACE/.local/bin/virtualenv $VENV"
           sh "virtualenv $VENV"
           sh "chmod u+x ./scripts/install/*.sh"
           sh ". $VENV/bin/activate && ./scripts/install/install.sh"
@@ -38,7 +36,6 @@ pipeline {
         SECRET_KEY = 'theSecretKey'
       }
       steps {
-        // TODO: do we need to perform database migration?
         sh ". $VENV/bin/activate && cd saleor && pytest -ra --junitxml=$REPORTS_FOLDER/unit-tests.xml"
       }
     }
