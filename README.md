@@ -1,8 +1,8 @@
 # shopozor-backend
 
-## Build status
+## Build statuses
 
-[![Build Status](http://shopozor-ci.hidora.com/buildStatus/icon?job=shopozor-backend-acceptance)](http://shopozor-ci.hidora.com/job/shopozor-backend-acceptance/)
+[![Build Status](http://shopozor-ci.hidora.com/buildStatus/icon?job=shopozor-backend-acceptance&subject=acceptance)](http://shopozor-ci.hidora.com/job/shopozor-backend-acceptance/)
 
 ## Continuous integration 
 
