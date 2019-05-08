@@ -1,5 +1,9 @@
 # shopozor-backend
 
+## Build status
+
+[![Build Status](http://shopozor-ci.hidora.com/buildStatus/icon?job=shopozor-backend-acceptance)](http://shopozor-ci.hidora.com/job/shopozor-backend-acceptance/)
+
 ## Continuous integration 
 
 We were not able to display the usual cucumber reports in Jenkins for this repository because the `behave` reports are not compatible with the `cucumber` reports (see e.g. [this reference](https://www.bountysource.com/issues/6638934-behave-json-reports-are-incompatible-with-cucumber-ones)). Therefore our `Jenkinsfile` makes use of the `junit` framework to output acceptance test results.
