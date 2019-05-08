@@ -2,7 +2,8 @@
 
 ## Build statuses
 
-[![Build Status](http://shopozor-ci.hidora.com/buildStatus/icon?job=shopozor-backend-acceptance&subject=acceptance%20tests)](http://shopozor-ci.hidora.com/job/shopozor-backend-acceptance/)
+[![Acceptance Build Status](http://shopozor-ci.hidora.com/buildStatus/icon?job=shopozor-backend-acceptance&subject=acceptance%20tests)](http://shopozor-ci.hidora.com/job/shopozor-backend-acceptance/)
+[![Unit Build Status](http://shopozor-ci.hidora.com/buildStatus/icon?job=shopozor-backend-unit&subject=unit%20tests)](http://shopozor-ci.hidora.com/job/shopozor-backend-acceptance/)
 
 ## Continuous integration 
 
