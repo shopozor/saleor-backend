@@ -8,6 +8,11 @@ from shopozor.permissions import add_permissions
 
 def add_shopozor_permissions(apps, schema_editor):
     if hasattr(settings, 'ACCEPTANCE_TESTING'):
+        # in the case of acceptance testing, the permissions are
+        # set as fixtures; after every scenario, those permissions
+        # are cleared up
+        # would we set them here up, they would just be gone after the
+        # first test
         return
 
     user_model = apps.get_model('account', 'User')
