@@ -69,6 +69,7 @@ application:
     - deployRepo
     - createVirtualEnv
     - setupJwt
+    - setupWsgi
     # TODO: close that environment from outside world!
   actions:
     setPasswordOnRedisNode:
@@ -116,3 +117,20 @@ application:
     setupJwt:
       - script: ${baseUrl}/scripts/SetJwtEnvVars.js
         url: https://raw.githubusercontent.com/softozor/shopozor-fixtures/master/Authentication/Credentials/Jwt.json
+    setupWsgi:
+      - api:
+          - method: environment.file.Delete
+            params: 
+              path: /etc/httpd/conf.d/wsgi.conf
+              nodeGroup: cp
+      - upload:
+          - sourcePath: ${baseUrl}/e2e/config/wsgi.py
+            destPath: ${globals.PATH_TO_CONTEXT}/wsgi.py
+          - sourcePath: ${baseUrl}/e2e/config/wsgi.conf
+            destPath: /etc/httpd/conf.d/wsgi.conf
+        nodeGroup: cp
+      - forEach(nodes.cp):
+          script: ${baseUrl}/scripts/ReplaceWsgiPlaceholders.js
+          pathToFile: ${globals.PATH_TO_CONTEXT}/wsgi.py
+          domainNames: ${env.envName}.hidora.com
+          nodeId: ${@i.id}
