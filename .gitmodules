@@ -1,9 +1,12 @@
 [submodule "saleor"]
 	path = saleor
 	url = https://github.com/mirumee/saleor
+	branch = 2.6.0
 [submodule "features/fixtures"]
 	path = features/fixtures
 	url = https://github.com/softozor/shopozor-fixtures
+        branch = master
 [submodule "features/graphql"]
 	path = features/graphql
 	url = https://github.com/softozor/shopozor-graphql
+	branch = master
