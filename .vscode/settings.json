@@ -8,5 +8,8 @@
     "**/*.pyc": true,
     "**/__pycache__": true
   },
-  "python.pythonPath": "venv\\Scripts\\python.exe"
+  "python.pythonPath": "venv\\Scripts\\python.exe",
+  "files.associations": {
+    "*.jps": "yaml"
+  }
 }
