@@ -5,12 +5,29 @@ Fonctionnalité: Identifier un utilisateur
 
   *En tant qu'utilisateur enregistré dans le Shopozor,  
   je veux pouvoir m'identifier avec un e-mail et un mot de passe  
-  afin de pouvoir faire mes achats ou accéder aux outils de gestion liés à mon compte.*
+  afin de pouvoir faire mes achats ou accéder aux outils de gestion liés à mon compte.*  
   
+  Les utilisateurs suivants sont des clients:
+
+    - Consommateur 
+    - Producteur 
+    - Responsable 
+    - Rex 
+    - Softozor 
+
+  Les utilisateurs suivants sont des administrateurs:
+
+    - Producteur 
+    - Responsable 
+    - Rex 
+    - Softozor
+
   Contexte: L'utilisateur n'est pas identifié
+
     Etant donné un utilisateur non identifié sur le Shopozor
     
   Plan du Scénario: L'utilisateur n'est pas encore enregistré
+
     Lorsqu'un <utilisateur> s'identifie en tant que <utilisateur prétendu> avec un e-mail et un mot de passe invalides
     Alors il obtient un message d'erreur stipulant que ses identifiants sont incorrects
 
@@ -23,6 +40,7 @@ Fonctionnalité: Identifier un utilisateur
 
   @user-accounts
   Plan du Scénario: L'utilisateur est enregistré mais entre un mot de passe erroné
+    
     Lorsqu'un <utilisateur> s'identifie en tant que <utilisateur prétendu> avec un e-mail valide et un mot de passe invalide
     Alors il obtient un message d'erreur stipulant que ses identifiants sont incorrects
 
@@ -36,8 +54,8 @@ Fonctionnalité: Identifier un utilisateur
   @user-accounts
   Plan du Scénario: L'utilisateur peut s'identifier avec son identifiant et son mot de passe
 
-    N'importe quel administrateur peut s'identifier en tant que client.
-    Si l'identification est réussie, alors la session s'ouvre pour 1 mois.
+    N'importe quel administrateur peut s'identifier en tant que client. 
+    Si l'identification est réussie, alors la session s'ouvre pour un certain temps. 
     Durant cette période, la session doit être rafraîchie.  
 
     - Si la session n'est pas rafraîchie dans les temps, alors elle se ferme automatiquement et l'utilisateur doit s'identifier à nouveau.  
@@ -57,6 +75,7 @@ Fonctionnalité: Identifier un utilisateur
 
   @user-accounts
   Scénario: Un client ne peut pas s'identifier en tant qu'administrateur
+
     Lorsqu'un client s'identifie en tant qu'administrateur avec un e-mail et un mot de passe valides
     Alors il obtient un message d'erreur stipulant que son compte n'a pas les droits d'administrateur
 
@@ -127,11 +146,16 @@ Fonctionnalité: Identifier un utilisateur
     Alors sa session s'ouvre pour 1 mois
     Et reste valide pendant 1 an
     Et c'est un super-utilisateur
-    Et il est considéré comme un administrateur
-    
+    Et il est considéré comme un administrateur  
 
   @HackerAbuse
   Plan du Scénario: Un utilisateur qui n'a pas encore défini de mot de passe ne peut pas s'identifier
+
+    Un utilisateur ne peut pas définir un mot de passe vide durant son enregistrement ou lors d'une 
+    réinitialisation de mot de passe. Toutefois, comme on n'est jamais trop prudent en matière de 
+    sécurité, nous préférons ajouter ce rempart supplémentaire pour éviter des débordements que nous 
+    n'aurions pas détectés. 
+
     Etant donné un utilisateur <état> et sans mot de passe
     Lorsqu'il s'identifie
     Alors il obtient un message d'erreur stipulant que ses identifiants sont incorrects
@@ -141,9 +165,12 @@ Fonctionnalité: Identifier un utilisateur
       | actif   |
       | inactif |
 
-    
   @HackerAbuse 
   Scénario: Un utilisateur inactif qui a défini un mot de passe ne peut pas s'identifier
+
+    Un utilisateur inactif ne doit pas pouvoir s'identifier. Il doit auparavant faire en sorte 
+    que son compte soit à nouveau actif. 
+
     Etant donné un utilisateur inactif et avec mot de passe
     Lorsqu'il s'identifie
     Alors il obtient un message d'erreur stipulant que ses identifiants sont incorrects

@@ -28,7 +28,7 @@ Fonctionnalité: Les mots de passe satisfont à la politique relative aux mots d
     
     le renseigne comme "pwned".
 
-    Etant donné le <mot de passe non conforme>
+    Etant donné <mot de passe non conforme>
     Alors il est non conforme
 
     Exemples:
