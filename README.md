@@ -44,21 +44,22 @@ git submodule update
 ```
 In particular, [saleor software](https://github.com/mirumee/saleor) will then be accessible at the latest release we granted access to.
 
-3. Activate the pre-commit hooks
+3. Create virtual environment
+```
+virtualenv venv
+```
+4. Install dependencies
+```
+./scripts/install/install.sh
+./scripts/install/install-dev.sh
+```
+
+5. Activate the pre-commit hooks
 
 ```
 pre-commit install
 ```
 
-4. Create virtual environment
-```
-virtualenv venv
-```
-5. Install dependencies
-```
-./scripts/install/install.sh
-./scripts/install/install-dev.sh
-```
 6. Add the relevant environment variables to the virtual environment (in the file `venv/bin/activate`):
 ```
 export WORKSPACE=<full-path-to-repo>
