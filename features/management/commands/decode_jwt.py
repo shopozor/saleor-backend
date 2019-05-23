@@ -9,7 +9,8 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('token', type=str, help='Token to decode')
         parser.add_argument('-s', '--secret', type=str, help='Decoding secret')
-        parser.add_argument('-a', '--algorithm', type=str, help='Decoding algorithm')
+        parser.add_argument('-a', '--algorithm', type=str,
+                            help='Decoding algorithm')
 
     def handle(self, *args, **options):
         token = options['token']

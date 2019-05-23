@@ -6,6 +6,8 @@ from os import path
 from saleor.account.models import User
 
 # this bases on saleor.graphql.account.mutations
+
+
 class Command(BaseCommand):
     help = 'Generate activation url for specified user.'
 
@@ -19,4 +21,5 @@ class Command(BaseCommand):
         print('uidb64 = ', uidb64)
         token = default_token_generator.make_token(usr)
         print('token  = ', token)
-        print('url = ', 'http://www.shopozor.ch/activate/%s/%s' % (uidb64, token))
+        print('url = ', 'http://www.shopozor.ch/activate/%s/%s' %
+              (uidb64, token))

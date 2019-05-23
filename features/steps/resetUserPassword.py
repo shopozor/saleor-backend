@@ -7,8 +7,10 @@ from saleor.account.models import User
 @when(u'il active son compte avec un mot de passe non conforme au plus tard {amount:d} {unit:DurationInSecondsType} après sa réception')
 def step_impl(context, amount, unit):
     expiration_delta_in_seconds = amount * unit
-    elapsed_time_since_email_reception_in_seconds = (datetime.now() - context.email_reception_time).total_seconds()
-    context.test.assertTrue(elapsed_time_since_email_reception_in_seconds < expiration_delta_in_seconds)
+    elapsed_time_since_email_reception_in_seconds = (
+        datetime.now() - context.email_reception_time).total_seconds()
+    context.test.assertTrue(
+        elapsed_time_since_email_reception_in_seconds < expiration_delta_in_seconds)
     uidb64 = context.credentials['uidb64']
     token = context.credentials['token']
     password = 'abdc'

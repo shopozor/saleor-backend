@@ -23,12 +23,14 @@ def get_data_from_json_fixture(filename):
 def create_database_user(user_data):
     is_staff = False if 'is_staff' not in user_data else user_data['is_staff']
     is_active = False if 'is_active' not in user_data else user_data['is_active']
-    user = User.objects.create(email=user_data['email'], is_staff=is_staff, is_active=is_active)
+    user = User.objects.create(
+        email=user_data['email'], is_staff=is_staff, is_active=is_active)
     if 'password' in user_data:
         user.set_password(user_data['password'])
     if 'permissions' in user_data:
         for permission in user_data['permissions']:
-            user.user_permissions.add(Permission.objects.get(codename=permission['code'].lower()))
+            user.user_permissions.add(Permission.objects.get(
+                codename=permission['code'].lower()))
     user.save()
     return user
 

@@ -14,6 +14,7 @@ from saleor.graphql.core.schema import CoreMutations
 
 from shopozor.graphql.auth.schema import AuthMutations
 
+
 class Query(AccountQueries):
     node = graphene.Node.Field()
 
