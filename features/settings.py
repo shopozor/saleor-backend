@@ -12,10 +12,6 @@ INSTALLED_APPS.append('features')
 
 ACCEPTANCE_TESTING = True
 
-# TODO: really necessary???
-if DEBUG:
-    ALLOWED_HOSTS.append('testserver')
-
 JWT_EXPIRATION_DELTA_IN_DAYS = environ.get('JWT_EXPIRATION_DELTA_IN_DAYS')
 JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS = environ.get(
     'JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS')
