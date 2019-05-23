@@ -9,6 +9,25 @@
 
 We were not able to display the usual cucumber reports in Jenkins for this repository because the `behave` reports are not compatible with the `cucumber` reports (see e.g. [this reference](https://www.bountysource.com/issues/6638934-behave-json-reports-are-incompatible-with-cucumber-ones)). Therefore our `Jenkinsfile` makes use of the `junit` framework to output acceptance test results.
 
+## Pull requests
+
+### Workflow
+
+* All Softozor members are whitelisted
+* When a white-listed author opens a PR, she is triggering the corresponding unit and acceptance tests automatically
+* When a white-listed member updates a PR, she is triggering the corresponding unit and acceptance tests again
+* When a non-whitelisted member opens a PR, the builder will publish the question `Can one of the admins verify this patch?` to the PR's comment; in that case, one of Softozor's admins can
+ 
+  * comment `ok to test` to accept the PR for testing
+  * comment `test this please` for one time test run
+  * comment `add to whitelist` to add the PR's author to the whitelist
+
+### Useful build commands
+
+You can use the following commands in your comments:
+
+* `retest this please`: this runs the unit and acceptance tests again
+
 ## Development's instructions
 
 ### Setup the Shopozor software
@@ -25,16 +44,22 @@ git submodule update
 ```
 In particular, [saleor software](https://github.com/mirumee/saleor) will then be accessible at the latest release we granted access to.
 
-3. Create virtual environment
+3. Activate the pre-commit hooks
+
+```
+pre-commit install
+```
+
+4. Create virtual environment
 ```
 virtualenv venv
 ```
-4. Install dependencies
+5. Install dependencies
 ```
 ./scripts/install/install.sh
 ./scripts/install/install-dev.sh
 ```
-5. Add the relevant environment variables to the virtual environment (in the file `venv/bin/activate`):
+6. Add the relevant environment variables to the virtual environment (in the file `venv/bin/activate`):
 ```
 export WORKSPACE=<full-path-to-repo>
 export PYTHONPATH=$PYTHONPATH:$WORKSPACE/saleor
@@ -44,7 +69,7 @@ export JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS=360
 export JWT_SECRET_KEY='test_key'
 export JWT_ALGORITHM='HS256'
 ```
-6. Everytime you need to run a shopozor command, you will need to have activated your virtual environment:
+7. Everytime you need to run a shopozor command, you will need to have activated your virtual environment:
 ```
 cd shopozor-backend
 source venv/bin/activate
