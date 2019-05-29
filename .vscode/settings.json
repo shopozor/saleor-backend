@@ -1,15 +1,15 @@
 {
-  "files.exclude": {
-    "**/.git": true,
-    "**/.svn": true,
-    "**/.hg": true,
-    "**/CVS": true,
-    "**/.DS_Store": true,
-    "**/*.pyc": true,
-    "**/__pycache__": true
-  },
-  "python.pythonPath": "venv/bin/python",
   "files.associations": {
     "*.jps": "yaml"
-  }
+  },
+  "files.exclude": {
+    "**/*.pyc": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.svn": true,
+    "**/CVS": true,
+    "**/__pycache__": true
+  },
+  "python.pythonPath": "venv/bin/python"
 }

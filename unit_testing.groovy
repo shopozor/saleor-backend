@@ -1,11 +1,11 @@
-// TODO: the best option here is to go for a pipeline with Dockerfile: 
+// TODO: the best option here is to go for a pipeline with Dockerfile:
 // https://jenkins.io/doc/book/pipeline/docker/#dockerfile
 pipeline {
   agent {
     docker {
       image 'nikolaik/python-nodejs:latest'
     }
-  } 
+  }
   environment {
     REPORTS_FOLDER = 'junit-reports'
     VENV = 'venv'

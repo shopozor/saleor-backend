@@ -17,7 +17,7 @@ application:
     REDIS_PASSWORD: ${fn.password(10)}
     PYTHON_VIRTUAL_ENV: env
     PATH_TO_VIRTUAL_ENV: ${globals.HOME}/${globals.PYTHON_VIRTUAL_ENV}
-  
+
   baseUrl: https://raw.githubusercontent.com/softozor/shopozor-backend/GIT_BRANCH/
 
   env:
@@ -52,7 +52,7 @@ application:
           displayName: PostgreSQL
           fixedCloudlets: 1
           cloudlets: 4
-          env: 
+          env:
             PG_DB_NAME: ${globals.PG_DB_NAME}
             PG_DB_USERNAME: ${globals.PG_DB_USERNAME}
             PG_USER_PASSWORD: ${globals.PG_USER_PASSWORD}
@@ -121,7 +121,7 @@ application:
     setupWsgi:
       - api:
           - method: environment.file.Delete
-            params: 
+            params:
               path: /etc/httpd/conf.d/wsgi.conf
               nodeGroup: cp
       - upload:

@@ -3,7 +3,7 @@ pipeline {
     docker {
       image 'python:latest'
     }
-  } 
+  }
   environment {
     REPORTS_FOLDER = 'junit-reports'
     VENV = 'venv'

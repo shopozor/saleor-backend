@@ -140,7 +140,7 @@ application:
     setupWsgi:
       - api:
           - method: environment.file.Delete
-            params: 
+            params:
               path: /etc/httpd/conf.d/wsgi.conf
               nodeGroup: cp
       - upload:
@@ -164,5 +164,5 @@ application:
           **PostgreSQL URL**: postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
           # PgAdmin
           **webadmin**: ${globals.PG_PASSWORD}
-          # Redis    
+          # Redis
           **admin**: ${globals.REDIS_PASSWORD}
