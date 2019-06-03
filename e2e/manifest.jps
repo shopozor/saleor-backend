@@ -18,7 +18,7 @@ application:
     PYTHON_VIRTUAL_ENV: env
     PATH_TO_VIRTUAL_ENV: ${globals.HOME}/${globals.PYTHON_VIRTUAL_ENV}
 
-  baseUrl: https://raw.githubusercontent.com/softozor/shopozor-backend/GIT_BRANCH/
+  baseUrl: https://raw.githubusercontent.com/shopozor/backend/GIT_BRANCH/
 
   env:
     topology:
