@@ -57,8 +57,10 @@ virtualenv venv
 5. Activate the pre-commit hooks
 
 ```
-pre-commit install
+./scripts/activate-hooks.sh
 ```
+
+That activates pre-commit hooks for the backend code as well as for the graphql queries repo and fixtures repo.
 
 6. Add the relevant environment variables to the virtual environment (in the file `venv/bin/activate`):
 ```
