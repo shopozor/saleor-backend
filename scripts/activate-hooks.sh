@@ -10,7 +10,7 @@ ROOT=$1
 
 cd $ROOT
 pre-commit install
-cd $ROOT/graphql
+cd $ROOT/features/graphql
 pre-commit install
-cd $ROOT/fixtures
+cd $ROOT/features/fixtures
 pre-commit install
