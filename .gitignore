@@ -4,6 +4,9 @@
 *.pyc
 __pycache__/
 
+# development-specific env
+dev.env
+
 # pycharm ide
 .idea/*
 
