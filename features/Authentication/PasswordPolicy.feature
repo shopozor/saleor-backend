@@ -11,7 +11,6 @@ Fonctionnalité: Les mots de passe satisfont à la politique relative aux mots d
   # la conformité d'un mot de passe qu'à un test d'acceptance. Il est toutefois gardé
   # en tant que tel à des fins de documentation pour les utilisateurs de la plateforme.
 
-  @current
   Plan du Scénario: Le mot de passe n'est pas conforme
 
     Un mot de passe est conforme à la politique relative aux mots de passe si, et
