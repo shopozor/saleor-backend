@@ -34,26 +34,24 @@ class SpecialCharacterValidator:
             "Your password must contain at least a special character."
         )
 
-# class HasBeenPwndValidator:
-#     def validate(self, password, user=None):
-        # headers = {'user-agent': 'pypi.org/project/haveibeenpwnd/ v0.1', 'api-version': 2}
-        # range_url = 'https://api.pwnedpasswords.com/range/{}'
-        # hashed_password = sha1(password.encode('utf-8')).hexdigest()
-        # prefix = hashed_password[:5]
-        # suffix = hashed_password[5:]
-        # # only send a prefix of 5 chars to haveibeenpwnd.com
 
-        # response = requests.get(range_url.format(prefix), headers).text
-        # for line in iter(response.splitlines()):
-        #     hex, _, _ = line.partition(':')
-        #     print(hex)
-        #     if hex == suffix.upper():
-        #         raise ValidationError(
-        #             _("This password has been powned and is not safe anymore."),
-        #             code='password_pwnd',
-        #         )
+class HasBeenPwndValidator:
+    def validate(self, password, user=None):
+        headers = {
+            'user-agent': 'pypi.org/project/haveibeenpwnd/ v0.1', 'api-version': 2}
+        range_url = 'https://api.pwnedpasswords.com/range/{}'
+        hashed_password = sha1(password.encode('utf-8')).hexdigest()
+        prefix = hashed_password[:5]
+        suffix = hashed_password[5:]
+        # only send a prefix of 5 chars to haveibeenpwnd.com
+        response = requests.get(range_url.format(prefix), headers).text
+        if(suffix.upper() in response):
+            raise ValidationError(
+                _("This password has been powned and is not safe anymore."),
+                code='password_pwnd',
+            )
 
-    # def get_help_text(self):
-    #     return _(
-    #         "This password has been powned and is not safe anymore."
-    #     )
+    def get_help_text(self):
+        return _(
+            "This password has been powned and is not safe anymore."
+        )

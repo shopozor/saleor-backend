@@ -31,4 +31,7 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'shopozor.password_validation.NumberAndLetterValidator',
     },
+    {
+        'NAME': 'shopozor.password_validation.HasBeenPwndValidator',
+    },
 ]
