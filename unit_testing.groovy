@@ -15,7 +15,7 @@ pipeline {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
           sh "virtualenv $VENV"
-          sh "pip install dos2unix"
+          sh ". $VENV/bin/activate && pip install dos2unix"
           sh "chmod u+x ./scripts/install/*.sh"
           sh "python venv/lib/python3.7/site-packages/dos2unix.py scripts/install/install.sh scripts/install/install.sh"
           sh "python venv/lib/python3.7/site-packages/dos2unix.py scripts/install/install-dev.sh scripts/install/install-dev.sh"
