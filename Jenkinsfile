@@ -14,7 +14,8 @@ pipeline {
         withEnv(["HOME=$WORKSPACE"]) {
           sh "pip install virtualenv --user"
           sh "$WORKSPACE/.local/bin/virtualenv $VENV"
-          sh "dos2unix scripts/install/*.sh"
+          sh "python venv/lib/python3.6/site-packages/dos2unix.py scripts/install/install.sh scripts/install/install.sh"
+          sh "python venv/lib/python3.6/site-packages/dos2unix.py scripts/install/install-dev.sh scripts/install/install-dev.sh"
           sh "chmod u+x ./scripts/install/*.sh"
           sh ". $VENV/bin/activate && ./scripts/install/install.sh"
           sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
