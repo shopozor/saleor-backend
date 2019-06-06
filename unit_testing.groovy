@@ -15,6 +15,7 @@ pipeline {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
           sh "virtualenv $VENV"
+          sh "dos2unix scripts/install/*.sh"
           sh "chmod u+x ./scripts/install/*.sh"
           sh ". $VENV/bin/activate && ./scripts/install/install.sh"
           sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
