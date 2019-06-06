@@ -3,11 +3,14 @@ from django.contrib.auth.models import AnonymousUser
 from behave import use_fixture
 from features.fixtures import *
 
+from auth_utils import UserLogger
+
 
 def before_feature(context, feature):
     login_or_signin = ['login', 'signup']
     # check if feature.tags contains any elements of login_or_signin
     if any(tag in feature.tags for tag in login_or_signin):
+        context.UserLogger = UserLogger(context)
         use_fixture(unknown, context)
 
     if 'login' in feature.tags:
