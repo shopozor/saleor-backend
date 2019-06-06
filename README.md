@@ -135,13 +135,13 @@ First, you need to [install VS Code](https://linuxize.com/post/how-to-install-vi
 cd shopozor-backend
 ./.vscode/install-extensions.sh
 ```
-To start the shopozor-backend so that it recognizes the all the necessary python module, do this:
+To start the shopozor-backend so that it recognizes all the necessary python module, do this:
 ```
 cd shopozor-backend
 . ./venv/bin/activate
 code . &
 ```
-In addition to that, the first time you open the project, you might need to specify the python interpreter as explained [here](https://code.visualstudio.com/docs/python/python-tutorial#_select-a-python-interpreter).
+In addition to that, the first time you open the project, you might need to specify the python interpreter as explained [here](https://code.visualstudio.com/docs/python/python-tutorial#_select-a-python-interpreter). If you work under Windows with WSL, follow [this advice](https://devblogs.microsoft.com/python/remote-python-development-in-visual-studio-code/).
 
 ### Testing saleor
 
