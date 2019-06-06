@@ -20,3 +20,15 @@ GRAPHQL_JWT = {
     'JWT_SECRET_KEY': SECRET_KEY,
     'JWT_ALGORITHM': 'HS256'
 }
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'shopozor.password_validation.SpecialCharacterValidator',
+    },
+    {
+        'NAME': 'shopozor.password_validation.NumberAndLetterValidator',
+    },
+]
