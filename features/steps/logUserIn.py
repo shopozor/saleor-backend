@@ -27,12 +27,12 @@ def step_impl(context, is_active, has_password):
 
 @when(u'un client s\'identifie en tant qu\'administrateur avec un e-mail et un mot de passe valides')
 def step_impl(context):
-    email = context.consumer['email']
-    password = context.consumer['password']
-    isStaff = True
-    user_logger = context.UserLogger
-    context.response = user_logger.login(
-        email=email, password=password, isStaff=isStaff)
+    context.consumer['is_staff'] = True
+    user_logger = context.user_logger
+    # TODO: I would like to give the login function the context.consumer directly
+    # The problem is, however, that the consumer has a "is_staff" member
+    # and not a "isStaff"
+    context.response = user_logger.login(**context.consumer, isStaff=True)
 
 
 def is_staff(user_type):
@@ -46,7 +46,7 @@ def is_staff(user_type):
 @when(
     u'un {user_type:UserType} s\'identifie en tant que {pretended_type:UserType} avec un e-mail et un mot de passe {validity:ValidityType}')
 def step_impl(context, user_type, pretended_type, validity):
-    user_logger = context.UserLogger
+    user_logger = context.user_logger
     credentials = user_logger.valid_mail_and_password(user_type, is_staff(
         pretended_type)) if validity else user_logger.invalid_mail_and_password(is_staff(pretended_type))
     context.response = user_logger.login(**credentials)
@@ -55,7 +55,7 @@ def step_impl(context, user_type, pretended_type, validity):
 @when(
     u'un {user_type:UserType} s\'identifie en tant que {pretended_type:UserType} avec un e-mail valide et un mot de passe invalide')
 def step_impl(context, user_type, pretended_type):
-    user_logger = context.UserLogger
+    user_logger = context.user_logger
     credentials = user_logger.valid_mail_invalid_password(
         user_type, is_staff(pretended_type))
     context.response = user_logger.login(**credentials)
@@ -63,7 +63,7 @@ def step_impl(context, user_type, pretended_type):
 
 @when(u'un {persona:PersonaType} s\'identifie avec un e-mail et un mot de passe valides')
 def step_impl(context, persona):
-    user_logger = context.UserLogger
+    user_logger = context.user_logger
     credentials = user_logger.valid_persona_credentials(persona)
     context.response = user_logger.login(**credentials)
 
@@ -74,7 +74,7 @@ def step_impl(context):
         'email': context.user['email'],
         'password': context.user['password']
     }
-    user_logger = context.UserLogger
+    user_logger = context.user_logger
     context.response = user_logger.login(**credentials)
 
 

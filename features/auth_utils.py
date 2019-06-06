@@ -3,15 +3,19 @@ from features.fixtures import graphql_query
 from tests.api.utils import get_graphql_content
 
 
+def check_compulsory_credential_arguments(kwargs):
+    compulsory_args = ('email', 'password')
+    if not all(key in kwargs for key in compulsory_args):
+        raise TypeError(
+            'You need to provide at least an email and a password to login')
+
+
 class UserLogger:
     def __init__(self, context):
         self.context = context
 
     def login(self, **kwargs):
-        compulsory_args = ('email', 'password')
-        if not all(key in kwargs for key in compulsory_args):
-            raise TypeError(
-                'You need to provide at least an email and a password to login')
+        check_compulsory_credential_arguments(kwargs)
 
         use_fixture(graphql_query, self.context, 'login.graphql')
         response = self.context.test.client.post_graphql(
@@ -64,12 +68,10 @@ class UserRegistrar:
     def __init__(self, context):
         self.context = context
 
-    def sign_user_up(self, email, password):
+    def signup(self, **kwargs):
+        check_compulsory_credential_arguments(kwargs)
+
         use_fixture(graphql_query, self.context, 'signup.graphql')
-        variables = {
-            'email': email,
-            'password': password
-        }
         response = self.context.test.client.post_graphql(
-            self.context.query, variables)
+            self.context.query, kwargs)
         return get_graphql_content(response)

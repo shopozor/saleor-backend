@@ -1,23 +1,23 @@
-from tests.api.conftest import ApiClient
-from django.contrib.auth.models import AnonymousUser
+from auth_utils import UserLogger, UserRegistrar
 from behave import use_fixture
+from django.contrib.auth.models import AnonymousUser
 from features.fixtures import *
-
-from auth_utils import UserLogger
+from tests.api.conftest import ApiClient
 
 
 def before_feature(context, feature):
     login_or_signin = ['login', 'signup']
     # check if feature.tags contains any elements of login_or_signin
     if any(tag in feature.tags for tag in login_or_signin):
-        context.UserLogger = UserLogger(context)
         use_fixture(unknown, context)
 
     if 'login' in feature.tags:
+        context.user_logger = UserLogger(context)
         use_fixture(wrong_credentials_response, context)
         use_fixture(user_not_admin_response, context)
 
     if 'signup' in feature.tags:
+        context.user_registrar = UserRegistrar(context)
         use_fixture(successful_signup, context)
         use_fixture(expired_account_confirmation_link, context)
         use_fixture(successful_account_confirmation, context)

@@ -17,16 +17,6 @@ import re
 account_activation_pattern = r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$'
 
 
-def sign_user_up(context, email, password):
-    use_fixture(graphql_query, context, 'signup.graphql')
-    variables = {
-        'email': email,
-        'password': password
-    }
-    response = context.test.client.post_graphql(context.query, variables)
-    return get_graphql_content(response)
-
-
 def get_credentials_from_confirmation_email(mail_body):
     match = re.search(account_activation_pattern, mail_body)
     return {
@@ -38,8 +28,8 @@ def get_credentials_from_confirmation_email(mail_body):
 @given(u'un nouveau client qui a reçu un lien d\'activation de compte')
 def step_impl(context):
     context.current_user = context.unknown
-    context.response = sign_user_up(
-        context, context.current_user['email'], context.current_user['password'])
+    user_registrar = context.user_registrar
+    context.response = user_registrar.signup(**context.current_user)
     mail_body = mail.outbox[0].body
     context.credentials = get_credentials_from_confirmation_email(mail_body)
     context.email_reception_time = datetime.now()
@@ -68,16 +58,16 @@ def step_impl(context):
 def step_impl(context):
     context.current_user = context.unknown
     # TODO: assert password compliance
-    context.response = sign_user_up(
-        context, context.current_user['email'], context.current_user['password'])
+    user_registrar = context.user_registrar
+    context.response = user_registrar.signup(**context.current_user)
 
 
 @when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte inactif et un mot de passe conforme')
 def step_impl(context):
     context.current_user = context.inactive_customer
     # TODO: assert password compliance
-    context.response = sign_user_up(
-        context, context.current_user['email'], context.current_user['password'])
+    user_registrar = context.user_registrar
+    context.response = user_registrar.signup(**context.current_user)
 
 
 def get_current_encrypted_password(email):
@@ -93,7 +83,8 @@ def step_impl(context):
     # an empty password is not compliant
     context.current_user['password'] = ''
     # TODO: assert password non-compliance
-    context.response = sign_user_up(context, context.current_user['email'], "")
+    user_registrar = context.user_registrar
+    context.response = user_registrar.signup(**context.current_user)
 
 
 @when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte actif et un mot de passe conforme')
@@ -101,8 +92,8 @@ def step_impl(context):
     # in this case, the choice of the password is irrelevant; it must only comply to the password policy
     context.current_user = context.consumer
     # TODO: assert password compliance
-    sign_user_up(
-        context, context.current_user['email'], context.current_user['password'])
+    user_registrar = context.user_registrar
+    context.response = user_registrar.signup(**context.current_user)
 
 
 @when(u'il active son compte au plus tard {amount:d} {unit:DurationInSecondsType} après sa réception')
