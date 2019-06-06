@@ -1,4 +1,5 @@
 {
+  "editor.formatOnSave": true,
   "files.associations": {
     "*.jps": "yaml"
   },
@@ -11,5 +12,6 @@
     "**/CVS": true,
     "**/__pycache__": true
   },
+  "python.formatting.provider": "autopep8",
   "python.linting.enabled": true
 }
