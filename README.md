@@ -143,6 +143,8 @@ code . &
 ```
 In addition to that, the first time you open the project, you might need to specify the python interpreter as explained [here](https://code.visualstudio.com/docs/python/python-tutorial#_select-a-python-interpreter). If you work under Windows with WSL, follow [this advice](https://devblogs.microsoft.com/python/remote-python-development-in-visual-studio-code/).
 
+Some of the Visual studio code settings are really user-specific. For example, the path to the python interpreter or the terminal to be used is not something we want to share across all the team. An example of user-specific settings is provided [here](.vscode/user-settings.json) that uses a python interpreter through a WSL terminal. Under Windows 10, such settings are usually stored under `C:\Users\<username>\AppData\Roaming\Code\User\settings.json`.
+
 ### Testing saleor
 
 The purpose of the `shopozor-backend` project is to provide the Shopozor's frontends with a backend. In particular, this means that we don't care at all about saleor's frontend developments. However, it can be that you need to run saleor's tests for some reasons. In that case, you will need to

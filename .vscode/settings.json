@@ -11,5 +11,5 @@
     "**/CVS": true,
     "**/__pycache__": true
   },
-  "python.pythonPath": "venv/bin/python"
+  "python.linting.enabled": true
 }

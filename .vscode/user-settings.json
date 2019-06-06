@@ -1,0 +1,7 @@
+{
+  "editor.minimap.enabled": false,
+  "python.envFile": "${workspaceFolder}/dev.env",
+  "python.formatting.autopep8Path": "${workspaceFolder}/venv/bin/autopep8",
+  "python.pythonPath": "${workspaceFolder}/venv/bin/python3.6",
+  "terminal.integrated.shell.windows": "C:\\Windows\\System32\\wsl.exe"
+}
