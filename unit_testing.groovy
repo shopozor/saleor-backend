@@ -15,8 +15,6 @@ pipeline {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
           sh "virtualenv $VENV"
-          sh "sed -i -e 's/\r$//' ./scripts/install/install.sh"
-          sh "sed -i -e 's/\r$//' ./scripts/install/install-dev.sh"
           sh "chmod u+x ./scripts/install/*.sh"
           sh ". $VENV/bin/activate && ./scripts/install/install.sh"
           sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
