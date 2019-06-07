@@ -7,35 +7,47 @@ import requests
 
 
 class NumberAndLetterValidator:
+    def __init__(self):
+        self.error_string = "The password must contain at least a number and a letter."
+        self.error_code = "number_letter_missing"
+
     def validate(self, password, user=None):
         if not (any(char.isdigit() for char in password) and any(char.isalpha() for char in password)):
             raise ValidationError(
-                _("This password must contain at least a number and a letter."),
-                code='number_letter_missing',
+                _(self.error_string),
+                code=self.error_code,
             )
 
     def get_help_text(self):
         return _(
-            "Your password must contain at least a number and a letter."
+            self.error_string
         )
 
 
 class SpecialCharacterValidator:
+    def __init__(self):
+        self.error_string = "The password must contain at least a special character."
+        self.error_code = "special_character_missing"
+
     def validate(self, password, user=None):
         password = "".join(password.split())
         if not re.findall('[^A-Za-z0-9]', password):
             raise ValidationError(
-                _("This password must contain at least a special character."),
-                code='special_character_missing',
+                _(self.error_string),
+                code=self.error_code,
             )
 
     def get_help_text(self):
         return _(
-            "Your password must contain at least a special character."
+            self.error_string
         )
 
 
 class HasBeenPwndValidator:
+    def __init__(self):
+        self.error_string = "The password has been powned and is not safe anymore."
+        self.error_code = "password_pwnd"
+
     def validate(self, password, user=None):
         headers = {
             'user-agent': 'pypi.org/project/haveibeenpwnd/ v0.1', 'api-version': 2}
@@ -54,11 +66,11 @@ class HasBeenPwndValidator:
 
         if(suffix.upper() in response):
             raise ValidationError(
-                _("This password has been powned and is not safe anymore."),
-                code='password_pwnd',
+                _(self.error_string),
+                code=self.error_code,
             )
 
     def get_help_text(self):
         return _(
-            "This password has been powned and is not safe anymore."
+            self.error_string
         )
