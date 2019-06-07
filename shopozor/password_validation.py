@@ -44,7 +44,14 @@ class HasBeenPwndValidator:
         prefix = hashed_password[:5]
         suffix = hashed_password[5:]
         # only send a prefix of 5 chars to haveibeenpwnd.com
-        response = requests.get(range_url.format(prefix), headers).text
+        try:
+            response = requests.get(range_url.format(prefix), headers).text
+        except requests.exceptions.RequestException:
+            raise ValidationError(
+                _("We could not get a correct answer from haveibeenpwnd.com."),
+                code='pwnd_not_reachable',
+            )
+
         if(suffix.upper() in response):
             raise ValidationError(
                 _("This password has been powned and is not safe anymore."),
