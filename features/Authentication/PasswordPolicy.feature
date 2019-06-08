@@ -1,6 +1,6 @@
 # language: fr
 
-@initial-release @auth @wip
+@initial-release @auth
 Fonctionnalité: Les mots de passe satisfont à la politique relative aux mots de passe
 
   *En tant qu'Utilisateur,  
@@ -38,3 +38,4 @@ Fonctionnalité: Les mots de passe satisfont à la politique relative aux mots d
       | motdepassecompliqué       |
       | ufiDo_anCyx               |
       | blabli 89qw lala hI       |
+      | p@ssword1                 |
