@@ -8,7 +8,7 @@ import requests
 
 class NumberAndLetterValidator:
     def __init__(self):
-        self.error_string = "The password must contain at least a number and a letter."
+        self.error_string = "The password must contain at least one number and one letter."
         self.error_code = "number_letter_missing"
 
     def validate(self, password, user=None):
@@ -26,7 +26,7 @@ class NumberAndLetterValidator:
 
 class SpecialCharacterValidator:
     def __init__(self):
-        self.error_string = "The password must contain at least a special character."
+        self.error_string = "The password must contain at least one special character."
         self.error_code = "special_character_missing"
 
     def validate(self, password, user=None):
@@ -45,7 +45,7 @@ class SpecialCharacterValidator:
 
 class HasBeenPwndValidator:
     def __init__(self):
-        self.error_string = "The password has been powned and is not safe anymore."
+        self.error_string = "The password has been pawned and is not safe anymore."
         self.error_code = "password_pwnd"
 
     def validate(self, password, user=None):
@@ -60,7 +60,7 @@ class HasBeenPwndValidator:
             response = requests.get(range_url.format(prefix), headers).text
         except requests.exceptions.RequestException:
             raise ValidationError(
-                _("We could not get a correct answer from haveibeenpwnd.com."),
+                _("We could not get a successful answer from haveibeenpwnd.com."),
                 code='pwnd_not_reachable',
             )
 
