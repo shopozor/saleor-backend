@@ -4,52 +4,56 @@ from datetime import datetime
 from datetime import timedelta
 from django.core import mail
 from features.fixtures import graphql_query
+from features.utils.auth.mail_confirmation import ActivationMailHandler
+from features.utils.auth.account_handling import get_current_encrypted_password, account_exists, is_active_account
+from features.utils.graphql.loader import get_query_from_file
+from features.utils.auth.credentials_checks import check_compulsory_credential_arguments
 from freezegun import freeze_time
-from saleor.account.models import User
 from shopozor.models import HackerAbuseEvents
 from tests.api.utils import get_graphql_content
 
 import re
 
-# TODO: this must be stored somewhere else in a lib:
-# the pattern needs to be used here to extract the uid and the token
-# it will be needed in the mutation's code to extract the same data
-account_activation_pattern = r'^activate/(?P<uidb64>[0-9A-Za-z_\-]+)/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$'
+activation_url_prefix = 'activate'
+
+# TODO: see if it is possible to have steps/Authentication
 
 
-def get_credentials_from_confirmation_email(mail_body):
-    match = re.search(account_activation_pattern, mail_body)
-    return {
-        'uidb64': match.group('uidb64'),
-        'token': match.group('token')
+def signup(client, **kwargs):
+    check_compulsory_credential_arguments(kwargs)
+
+    query = get_query_from_file('signup.graphql')
+    response = client.post_graphql(query, kwargs)
+    return get_graphql_content(response)
+
+
+def activate_account(client, uidb64, token):
+    query = get_query_from_file('activateCustomer.graphql')
+    variables = {
+        'encodedUserId': uidb64,
+        'oneTimeToken': token
     }
+    response = client.post_graphql(query, variables)
+    return get_graphql_content(response)
 
 
 @given(u'un nouveau client qui a reçu un lien d\'activation de compte')
 def step_impl(context):
     context.current_user = context.unknown
-    user_registrar = context.user_registrar
-    context.response = user_registrar.signup(**context.current_user)
+    test_client = context.test.client
+    context.response = signup(test_client, **context.current_user)
+    mail_handler = ActivationMailHandler(activation_url_prefix)
     mail_body = mail.outbox[0].body
-    context.credentials = get_credentials_from_confirmation_email(mail_body)
+    context.credentials = mail_handler.get_credentials(mail_body)
     context.email_reception_time = datetime.now()
-
-
-def activate_account(context, uidb64, token):
-    use_fixture(graphql_query, context, 'activateCustomer.graphql')
-    variables = {
-        'encodedUserId': uidb64,
-        'oneTimeToken': token
-    }
-    response = context.test.client.post_graphql(context.query, variables)
-    context.response = get_graphql_content(response)
 
 
 @given(u'qui a déjà activé son compte')
 def step_impl(context):
     uidb64 = context.credentials['uidb64']
     token = context.credentials['token']
-    activate_account(context, uidb64, token)
+    test_client = context.test.client
+    context.response = activate_account(test_client, uidb64, token)
     context.test.assertEqual(
         context.response['data'], context.successful_account_confirmation['data'])
 
@@ -58,21 +62,16 @@ def step_impl(context):
 def step_impl(context):
     context.current_user = context.unknown
     # TODO: assert password compliance
-    user_registrar = context.user_registrar
-    context.response = user_registrar.signup(**context.current_user)
+    test_client = context.test.client
+    context.response = signup(test_client, **context.current_user)
 
 
 @when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte inactif et un mot de passe conforme')
 def step_impl(context):
     context.current_user = context.inactive_customer
     # TODO: assert password compliance
-    user_registrar = context.user_registrar
-    context.response = user_registrar.signup(**context.current_user)
-
-
-def get_current_encrypted_password(email):
-    user = User.objects.filter(email=email)
-    return user.password
+    test_client = context.test.client
+    context.response = signup(test_client, **context.current_user)
 
 
 @when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte inactif et un mot de passe non conforme')
@@ -83,8 +82,8 @@ def step_impl(context):
     # an empty password is not compliant
     context.current_user['password'] = ''
     # TODO: assert password non-compliance
-    user_registrar = context.user_registrar
-    context.response = user_registrar.signup(**context.current_user)
+    test_client = context.test.client
+    context.response = signup(test_client, **context.current_user)
 
 
 @when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte actif et un mot de passe conforme')
@@ -92,8 +91,8 @@ def step_impl(context):
     # in this case, the choice of the password is irrelevant; it must only comply to the password policy
     context.current_user = context.consumer
     # TODO: assert password compliance
-    user_registrar = context.user_registrar
-    context.response = user_registrar.signup(**context.current_user)
+    test_client = context.test.client
+    context.response = signup(test_client, **context.current_user)
 
 
 @when(u'il active son compte au plus tard {amount:d} {unit:DurationInSecondsType} après sa réception')
@@ -103,9 +102,10 @@ def step_impl(context, amount, unit):
         datetime.now() - context.email_reception_time).total_seconds()
     context.test.assertTrue(
         elapsed_time_since_email_reception_in_seconds < expiration_delta_in_seconds)
+    test_client = context.test.client
     uidb64 = context.credentials['uidb64']
     token = context.credentials['token']
-    activate_account(context, uidb64, token)
+    context.response = activate_account(test_client, uidb64, token)
 
 
 @when(u'il active son compte {amount:d} {unit:DurationInSecondsType} après sa réception')
@@ -114,9 +114,10 @@ def step_impl(context, amount, unit):
     datetime_after_expiration = context.email_reception_time + \
         timedelta(seconds=expiration_delta_in_seconds)
     with freeze_time(datetime_after_expiration):
+        test_client = context.test.client
         uidb64 = context.credentials['uidb64']
         token = context.credentials['token']
-        activate_account(context, uidb64, token)
+        context.response = activate_account(test_client, uidb64, token)
 
 
 @when(u'il l\'active pour la deuxième fois avant l\'expiration du lien')
@@ -124,27 +125,25 @@ def step_impl(context):
     # we don't need to check that the link hasn't expired
     # because we are guaranteed to have waited a very little
     # amount of time here
+    test_client = context.test.client
     uidb64 = context.credentials['uidb64']
     token = context.credentials['token']
-    activate_account(context, uidb64, token)
+    context.response = activate_account(test_client, uidb64, token)
 
 
 @then(u'il reçoit un e-mail avec un lien d\'activation de compte')
 def step_impl(context):
     context.test.assertEqual(len(mail.outbox), 1)
     mail_body = mail.outbox[0].body
-    match = re.search(account_activation_pattern, mail_body)
-    context.test.assertIsNotNone(match)
+    mail_handler = ActivationMailHandler(activation_url_prefix)
+    credentials = mail_handler.get_credentials(mail_body)
+    context.test.assertIsNotNone(credentials)
 
 
 @then(u'il obtient un message d\'erreur stipulant que son mot de passe n\'est pas conforme à la politique des mots de passe')
 def step_impl(context):
     context.test.assertEqual(
         context.response['data'], context.password_not_compliant_response['data'])
-
-
-def account_exists(email):
-    return User.objects.filter(email=email).count() == 1
 
 
 @then(u'son compte est créé')
@@ -157,11 +156,6 @@ def step_impl(context):
 @then(u'son compte n\'est pas créé')
 def step_impl(context):
     context.test.assertFalse(account_exists(context.current_user['email']))
-
-
-def is_active_account(email):
-    user = User.objects.filter(email=email)
-    return user.is_active
 
 
 @then(u'son compte reste inactif')
@@ -226,9 +220,10 @@ def step_impl(context):
 
 @then(u'son lien d\'activation est invalidé')
 def step_impl(context):
+    test_client = context.test.client
     uidb64 = context.credentials['uidb64']
     token = context.credentials['token']
-    activate_account(context, uidb64, token)
+    context.response = activate_account(test_client, uidb64, token)
     context.test.assertEqual(
         context.response['data'], context.expired_account_confirmation_link['data'])
 

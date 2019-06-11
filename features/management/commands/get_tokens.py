@@ -2,7 +2,8 @@ import os
 
 from django.contrib.auth.models import AnonymousUser
 from django.core.management.base import BaseCommand
-from features.utils import get_query_from_file, get_data_from_json_fixture
+from features.utils.fixtures.loader import get_data_from_json_fixture
+from features.utils.graphql.loader import get_query_from_file
 from tests.api.conftest import ApiClient
 from tests.api.utils import get_graphql_content
 
