@@ -3,22 +3,11 @@ import os.path
 from behave import fixture
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from features.utils.auth.account_handling import create_database_superuser, create_database_user
+from features.utils.auth.account_handling import create_database_superuser, create_database_user, set_password
 from features.utils.fixtures.loader import get_data_from_json_fixture
 from features.utils.graphql.loader import get_query_from_file
 from saleor.account.models import User
 from shopozor.permissions import add_permissions
-
-
-@fixture
-def graphql_query(context, queryfile):
-    context.query = get_query_from_file(queryfile)
-    yield context.query
-    # the query is deleted in the after_scenario hook
-    # because a scenario might involve many queries
-    # if we delete the query from the context now,
-    # then the scenario cleanup will throw an error
-    # as it will need to delete context.query several times
 
 
 @fixture
@@ -30,6 +19,7 @@ def permissions(context):
 def unknown(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'NewConsumer.json'))
+    set_password(user_data)
     context.unknown = user_data
     yield user_data
     del context.unknown
@@ -39,6 +29,7 @@ def unknown(context):
 def consumer(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'Consommateur.json'))
+    set_password(user_data)
     create_database_user(user_data)
     context.consumer = user_data
     yield user_data
@@ -49,6 +40,7 @@ def consumer(context):
 def inactive_customer(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'InactiveConsumer.json'))
+    set_password(user_data)
     create_database_user(user_data)
     context.inactive_customer = user_data
     yield user_data
@@ -59,6 +51,7 @@ def inactive_customer(context):
 def producer(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'Producteur.json'))
+    set_password(user_data)
     create_database_user(user_data)
     context.producer = user_data
     yield user_data
@@ -69,6 +62,7 @@ def producer(context):
 def manager(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'Responsable.json'))
+    set_password(user_data)
     create_database_user(user_data)
     context.manager = user_data
     yield context.manager
@@ -79,6 +73,7 @@ def manager(context):
 def rex(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'Rex.json'))
+    set_password(user_data)
     create_database_user(user_data)
     context.rex = user_data
     yield user_data
@@ -89,6 +84,7 @@ def rex(context):
 def softozor(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'Softozor.json'))
+    set_password(user_data)
     create_database_superuser(user_data)
     context.softozor = user_data
     yield user_data

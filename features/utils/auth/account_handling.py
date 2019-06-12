@@ -23,6 +23,14 @@ def create_database_superuser(user_data):
     user.save()
 
 
+def generate_random_password():
+    return 'Budzonnerie1'
+
+
+def set_password(user_data):
+    user_data['password'] = generate_random_password()
+
+
 def get_current_encrypted_password(email):
     user = User.objects.filter(email=email)
     return user.password
