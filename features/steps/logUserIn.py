@@ -29,8 +29,8 @@ def step_impl(context, is_active, has_password):
     user_data = {
         'email': 'hacker_abuse@budzons.ch',
         'password': 'password' if has_password else '',
-        'is_active': is_active,
-        'is_staff': False
+        'isActive': is_active,
+        'isStaff': False
     }
     create_database_user(user_data)
     context.user = user_data
@@ -38,12 +38,9 @@ def step_impl(context, is_active, has_password):
 
 @when(u'un client s\'identifie en tant qu\'administrateur avec un e-mail et un mot de passe valides')
 def step_impl(context):
-    context.consumer['is_staff'] = True
-    # TODO: I would like to give the login function the context.consumer directly
-    # The problem is, however, that the consumer has a "is_staff" member
-    # and not a "isStaff"
+    context.consumer['isStaff'] = True
     test_client = context.test.client
-    context.response = login(test_client, **context.consumer, isStaff=True)
+    context.response = login(test_client, **context.consumer)
 
 
 def is_staff(user_type):

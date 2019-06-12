@@ -3,8 +3,8 @@ from saleor.account.models import User
 
 
 def create_database_user(user_data):
-    is_staff = False if 'is_staff' not in user_data else user_data['is_staff']
-    is_active = False if 'is_active' not in user_data else user_data['is_active']
+    is_staff = False if 'isStaff' not in user_data else user_data['isStaff']
+    is_active = False if 'isActive' not in user_data else user_data['isActive']
     user = User.objects.create(
         email=user_data['email'], is_staff=is_staff, is_active=is_active)
     if 'password' in user_data:

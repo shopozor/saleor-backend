@@ -16,8 +16,6 @@ import re
 
 activation_url_prefix = 'activate'
 
-# TODO: see if it is possible to have steps/Authentication
-
 
 def signup(client, **kwargs):
     check_compulsory_credential_arguments(kwargs)
