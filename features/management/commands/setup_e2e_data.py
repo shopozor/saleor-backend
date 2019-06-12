@@ -1,7 +1,8 @@
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from django.core.management.base import BaseCommand
-from features.utils import *
+from features.utils.fixtures.loader import get_data_from_json_fixture
+from features.utils.auth.account_handling import create_database_superuser, create_database_user
 from saleor.account.models import User
 from shopozor.permissions import add_permissions
 

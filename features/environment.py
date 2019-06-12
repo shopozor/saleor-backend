@@ -1,7 +1,7 @@
-from tests.api.conftest import ApiClient
-from django.contrib.auth.models import AnonymousUser
 from behave import use_fixture
+from django.contrib.auth.models import AnonymousUser
 from features.fixtures import *
+from tests.api.conftest import ApiClient
 
 
 def before_feature(context, feature):
