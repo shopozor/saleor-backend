@@ -2,13 +2,12 @@ from behave import given, then, when
 from behave import use_fixture
 from datetime import datetime
 from datetime import timedelta
-from django.contrib.auth.password_validation import validate_password
 from django.core import mail
 from features.fixtures import graphql_query
-from features.utils.auth.mail_confirmation import ActivationMailHandler
 from features.utils.auth.account_handling import get_current_encrypted_password, account_exists, is_active_account
+from features.utils.auth.credentials_checks import check_compulsory_credential_arguments, assertPasswordIsCompliant, assertPasswordIsNotCompliant
+from features.utils.auth.mail_confirmation import ActivationMailHandler
 from features.utils.graphql.loader import get_query_from_file
-from features.utils.auth.credentials_checks import check_compulsory_credential_arguments
 from freezegun import freeze_time
 from shopozor.models import HackerAbuseEvents
 from tests.api.utils import get_graphql_content
@@ -60,7 +59,7 @@ def step_impl(context):
 @when(u'un client inconnu fait une demande d\'enregistrement avec un mot de passe conforme')
 def step_impl(context):
     context.current_user = context.unknown
-    validate_password(context.current_user['password'])
+    assertPasswordIsCompliant(context.current_user['password'])
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
 
@@ -68,7 +67,7 @@ def step_impl(context):
 @when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte inactif et un mot de passe conforme')
 def step_impl(context):
     context.current_user = context.inactive_customer
-    # TODO: assert password compliance
+    assertPasswordIsCompliant(context.current_user['password'])
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
 
@@ -78,9 +77,9 @@ def step_impl(context):
     context.current_user = context.inactive_customer
     context.current_encrypted_password = get_current_encrypted_password(
         context.current_user['email'])
-    # an empty password is not compliant
     context.current_user['password'] = ''
-    # TODO: assert password non-compliance
+    assertPasswordIsNotCompliant(
+        context.test, context.current_user['password'])
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
 
@@ -89,7 +88,7 @@ def step_impl(context):
 def step_impl(context):
     # in this case, the choice of the password is irrelevant; it must only comply to the password policy
     context.current_user = context.consumer
-    # TODO: assert password compliance
+    assertPasswordIsCompliant(context.current_user['password'])
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
 
