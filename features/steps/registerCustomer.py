@@ -2,6 +2,7 @@ from behave import given, then, when
 from behave import use_fixture
 from datetime import datetime
 from datetime import timedelta
+from django.contrib.auth.password_validation import validate_password
 from django.core import mail
 from features.fixtures import graphql_query
 from features.utils.auth.mail_confirmation import ActivationMailHandler
@@ -59,7 +60,7 @@ def step_impl(context):
 @when(u'un client inconnu fait une demande d\'enregistrement avec un mot de passe conforme')
 def step_impl(context):
     context.current_user = context.unknown
-    # TODO: assert password compliance
+    validate_password(context.current_user['password'])
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
 
