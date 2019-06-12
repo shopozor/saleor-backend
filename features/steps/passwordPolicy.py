@@ -1,6 +1,5 @@
 from behave import given, then
-from django.contrib.auth.password_validation import validate_password
-from django.core.exceptions import ValidationError
+from django.contrib.auth.password_validation import validate_password, ValidationError
 
 
 @given(u'le mot de passe {password}')

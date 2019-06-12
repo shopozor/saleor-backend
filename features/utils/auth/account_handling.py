@@ -1,5 +1,10 @@
 from django.contrib.auth.models import Permission
+from django.contrib.auth.password_validation import validate_password, ValidationError
+from features.utils.auth.exceptions import UnableToDefineCompliantPassword
 from saleor.account.models import User
+
+import random
+import string
 
 
 def create_database_user(user_data):
@@ -24,11 +29,28 @@ def create_database_superuser(user_data):
 
 
 def generate_random_password():
-    return 'Budzonnerie1'
+    allowed_chars = ''.join(
+        (string.digits, string.ascii_letters, string.punctuation))
+    return ''.join(random.choice(allowed_chars) for _ in range(32))
+
+
+def get_compliant_password():
+    maxNbOfAttempts = 10
+    nbOfAttempts = 0
+    while nbOfAttempts < maxNbOfAttempts:
+        password = generate_random_password()
+        try:
+            validate_password(password)
+            return password
+        except ValidationError as e:
+            nbOfAttempts += 1
+            continue
+    raise UnableToDefineCompliantPassword(
+        'Max allowed number of attempts to generate a random password reached.')
 
 
 def set_password(user_data):
-    user_data['password'] = generate_random_password()
+    user_data['password'] = get_compliant_password()
 
 
 def get_current_encrypted_password(email):
