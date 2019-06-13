@@ -3,7 +3,6 @@ from behave import use_fixture
 from datetime import datetime
 from datetime import timedelta
 from django.core import mail
-from features.fixtures import graphql_query
 from features.utils.auth.account_handling import get_current_encrypted_password, account_exists, is_active_account
 from features.utils.auth.credentials_checks import check_compulsory_credential_arguments, assertPasswordIsCompliant, assertPasswordIsNotCompliant
 from features.utils.auth.mail_confirmation import ActivationMailHandler

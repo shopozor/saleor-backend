@@ -1,4 +1,5 @@
 from django.contrib.auth.models import Permission
+from features.utils.auth.password_generation import RandomCompliantPasswordGenerator
 from saleor.account.models import User
 
 
