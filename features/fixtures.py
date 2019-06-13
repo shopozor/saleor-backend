@@ -3,7 +3,8 @@ import os.path
 from behave import fixture
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from features.utils.auth.account_handling import create_database_superuser, create_database_user, set_password
+from features.utils.auth.account_handling import create_database_superuser, create_database_user
+from features.utils.auth.password_generation import set_password
 from features.utils.fixtures.loader import get_data_from_json_fixture
 from features.utils.graphql.loader import get_query_from_file
 from saleor.account.models import User

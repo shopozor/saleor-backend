@@ -24,11 +24,6 @@ def create_database_superuser(user_data):
     user.save()
 
 
-def set_password(user_data):
-    password_generator = RandomCompliantPasswordGenerator()
-    user_data['password'] = password_generator.get_compliant_password()
-
-
 def get_current_encrypted_password(email):
     user = User.objects.filter(email=email)
     return user.password

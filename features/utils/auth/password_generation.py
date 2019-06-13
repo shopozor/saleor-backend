@@ -5,6 +5,11 @@ import random
 import string
 
 
+def set_password(user_data):
+    password_generator = RandomCompliantPasswordGenerator()
+    user_data['password'] = password_generator.get_compliant_password()
+
+
 class RandomCompliantPasswordGenerator:
     MAX_NB_OF_ATTEMPTS = 10
     PASSWORD_LENGTH = 32
