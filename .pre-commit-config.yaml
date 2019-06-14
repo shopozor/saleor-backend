@@ -10,3 +10,7 @@
   - id: check-json
   - id: pretty-format-json
     args: [--autofix, --indent=2]
+- repo: https://github.com/shopozor/pre-commit-hooks
+  rev: master
+  hooks:
+    - id: check-feature-tags
