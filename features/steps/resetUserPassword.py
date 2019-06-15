@@ -70,7 +70,7 @@ def step_impl(context):
     context.response = set_new_compliant_password(context, uidb64, token)
     # TODO: double-check that the response really corresponds to the desired graphql query
     context.test.assertEqual(
-        context.response['data'], context.successful_password_reset_confirmation['data'])
+        context.response['data'], context.successful_set_password['data'])
     context.current_user['encrypted_password'] = get_current_encrypted_password(
         context.current_user['email'])
 
@@ -156,8 +156,7 @@ def step_impl(context):
 
 @then(u'son nouveau mot de passe est sauvegardé')
 def step_impl(context):
-    # TODO: define a SuccessfulPasswordReset fixture and check that the graphql query returned that response!
-
+    context.test.assertEqual(context.successful_set_password, context.response)
     # Additionally, we check that the new password can be used:
     query = get_query_from_file('login.graphql')
     variables = {
