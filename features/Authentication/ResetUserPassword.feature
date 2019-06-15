@@ -7,6 +7,8 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
   je veux pouvoir réinitialiser mon mot de passe  
   lorsque je l'ai oublié.*  
 
+  Le mot de passe peut être changé que l'utilisateur soit identifié ou non.  
+
   ![Processus de réinitialisation du mot de passe](ResetUserPassword-fr.png)
 
   @user-accounts
