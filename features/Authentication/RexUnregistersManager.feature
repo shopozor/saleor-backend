@@ -18,7 +18,7 @@ Fonctionnalité: Le Rex désinscrit un Responsable
   # Scénario: Un Responsable ne peut pas se désinscrire
 
   # need shop data
-  @user-accounts
+  @fixture.user-accounts
   Scénario: Les Shops affiliés à l'utilisateur ne sont pas supprimés
 
     Si l'utilisateur est un Responsable, alors les Shops qu'il gérait jusque-là

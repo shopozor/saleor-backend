@@ -1,6 +1,7 @@
 import os.path
 
 from behave import fixture
+from behave.fixture import use_composite_fixture_with, fixture_call_params
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from features.utils.auth.account_handling import create_database_superuser, create_database_user
@@ -93,6 +94,21 @@ def softozor(context):
 
 
 @fixture
+def user_accounts(context):
+    # the following fixtures add data to the database
+    # therefore they need to be added before each scenario
+    # because the database is cleaned up after each scenario
+    return use_composite_fixture_with(context,
+                                      [fixture_call_params(permissions),
+                                       fixture_call_params(consumer),
+                                          fixture_call_params(producer),
+                                          fixture_call_params(manager),
+                                          fixture_call_params(rex),
+                                          fixture_call_params(softozor),
+                                          fixture_call_params(inactive_customer)])
+
+
+@fixture
 def wrong_credentials_response(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'LogStaffIn', 'Responses', 'WrongCredentials.json'))
@@ -162,3 +178,24 @@ def password_not_compliant_response(context):
     context.password_not_compliant_response = data
     yield context.password_not_compliant_response
     del context.password_not_compliant_response
+
+
+@fixture
+def login(context):
+    return use_composite_fixture_with(context,
+                                      [fixture_call_params(unknown),
+                                       fixture_call_params(
+                                           wrong_credentials_response),
+                                          fixture_call_params(user_not_admin_response)])
+
+
+@fixture
+def signup(context):
+    return use_composite_fixture_with(context,
+                                      [fixture_call_params(unknown),
+                                       fixture_call_params(successful_signup),
+                                          fixture_call_params(
+                                              expired_account_confirmation_link),
+                                          fixture_call_params(
+                                              successful_account_confirmation),
+                                          fixture_call_params(password_not_compliant_response)])

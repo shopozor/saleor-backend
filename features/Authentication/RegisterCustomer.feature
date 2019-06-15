@@ -1,6 +1,7 @@
 #language: fr
 
 @initial-release @auth @signup @wip
+@fixture.signup
 Fonctionnalité: Enregistrer un nouveau client
 
   *En tant que nouveau client du Shopozor,  
@@ -48,7 +49,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son compte n'est pas créé
     Et il ne reçoit pas d'e-mail d'activation de compte
 
-  @user-accounts  
+  @fixture.user-accounts  
   Scénario: Le client a déjà un compte inactif et propose un mot de passe conforme
 
     Le client qui a déjà enregistré son e-mail et son mot de passe mais n'a pas réussi à
@@ -61,7 +62,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son mot de passe est sauvegardé
     Et son compte reste inactif
 
-  @user-accounts
+  @fixture.user-accounts
   Scénario: Le client a déjà un compte inactif et propose un mot de passe non conforme
 
     Si l'utilisateur propose un mot de passe non conforme, alors son compte ne s'active pas.
@@ -74,7 +75,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son compte reste inactif  
     Et il ne reçoit pas d'e-mail d'activation de compte
 
-  @HackerAbuse @user-accounts
+  @HackerAbuse @fixture.user-accounts
   Scénario: Un utilisateur s'enregistre avec l'e-mail d'un compte actif
 
     Si un utilisateur tente de s'enregistrer avec un e-mail lié à un compte déjà actif,

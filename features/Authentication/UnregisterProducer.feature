@@ -11,10 +11,10 @@ Fonctionnalité: Désinscrire un Producteur
   Une fois seulement que son "compte Producteur" a été supprimé par le Responsable
   ou le Rex, il peut supprimer son compte Consommateur.
 
-  # @user-accounts
+  # @fixture.user-accounts
   # Scénario: Un Producteur ne peut pas se désinscrire
 
-  @user-accounts
+  @fixture.user-accounts
   Plan du Scénario: Le Producteur n'a ni commandes en cours ni stock
 
     # TODO: qu'est-ce qu'il faut encore supprimer?
@@ -31,7 +31,7 @@ Fonctionnalité: Désinscrire un Producteur
      | Responsable |
      | Rex         |
 
-  @user-accounts
+  @fixture.user-accounts
   Plan du Scénario: Le Producteur a des commandes en cours
 
     Le Responsable ou le Rex prennent la responsabilité des commandes
@@ -52,7 +52,7 @@ Fonctionnalité: Désinscrire un Producteur
      | Responsable |
      | Rex         |
 
-  @user-accounts
+  @fixture.user-accounts
   Plan du Scénario: Le Producteur a des produits en stock
 
     Le Responsable ou le Rex prennent la responsabilité du stock de produits du Producteur.
