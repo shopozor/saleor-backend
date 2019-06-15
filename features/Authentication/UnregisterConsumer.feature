@@ -1,6 +1,6 @@
 #language: fr
 
-@initial-release @auth @signup @wip
+@initial-release @auth @wip
 Fonctionnalité: Désinscrire un Consommateur
 
   *En tant que Consommateur enregistré,  

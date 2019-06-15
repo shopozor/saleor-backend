@@ -1,6 +1,6 @@
 #language: fr
 
-@initial-release @auth @signup @wip
+@initial-release @auth @wip
 @fixture.signup
 Fonctionnalité: Enregistrer un nouveau client
 

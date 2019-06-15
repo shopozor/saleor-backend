@@ -1,6 +1,6 @@
 # language: fr
 
-@initial-release @auth @login
+@initial-release @auth
 @fixture.login
 Fonctionnalité: Identifier un utilisateur
 
