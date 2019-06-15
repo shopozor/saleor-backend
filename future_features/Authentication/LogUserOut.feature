@@ -1,7 +1,6 @@
 # language: fr
 
 @login
-@fixture.login
 Fonctionnalité: Déconnecter un utilisateur
 
   *En tant qu'utilisateur identifié sur le Shopozor,  
