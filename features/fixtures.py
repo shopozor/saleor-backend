@@ -181,6 +181,24 @@ def password_not_compliant_response(context):
 
 
 @fixture
+def successful_password_reset_confirmation(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'ResetUserPassword', 'Responses', 'SuccessfulPasswordResetConfirmation.json'))
+    context.successful_password_reset_confirmation = data
+    yield context.successful_password_reset_confirmation
+    del context.successful_password_reset_confirmation
+
+
+@fixture
+def expired_password_reset_link(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'ResetUserPassword', 'Responses', 'ExpiredPasswordResetLink.json'))
+    context.expired_password_reset_link = data
+    yield context.expired_password_reset_link
+    del context.expired_password_reset_link
+
+
+@fixture
 def login(context):
     return use_composite_fixture_with(context,
                                       [fixture_call_params(unknown),
@@ -199,3 +217,11 @@ def signup(context):
                                           fixture_call_params(
                                               successful_account_confirmation),
                                           fixture_call_params(password_not_compliant_response)])
+
+
+@fixture
+def password_reset(context):
+    return use_composite_fixture_with(context, [fixture_call_params(unknown),
+                                                fixture_call_params(
+                                                    successful_password_reset_confirmation),
+                                                fixture_call_params(expired_password_reset_link)])

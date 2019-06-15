@@ -1,17 +1,15 @@
 from behave import given, then, when
 from behave import use_fixture
-from datetime import datetime
-from datetime import timedelta
+from datetime import datetime, timedelta
 from django.core import mail
 from features.utils.auth.account_handling import get_current_encrypted_password, account_exists, is_active_account
 from features.utils.auth.credentials_checks import check_compulsory_credential_arguments, assertPasswordIsCompliant, assertPasswordIsNotCompliant
-from features.utils.auth.mail_confirmation import ActivationMailHandler
+from features.utils.auth.mail_confirmation import ActivationMailHandler, gather_email_activation_data, check_that_email_was_sent_to_user
 from features.utils.graphql.loader import get_query_from_file
 from freezegun import freeze_time
+from saleor.account.models import User
 from shopozor.models import HackerAbuseEvents
 from tests.api.utils import get_graphql_content
-
-import re
 
 activation_url_prefix = 'activate'
 
@@ -39,9 +37,10 @@ def step_impl(context):
     context.current_user = context.unknown
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
-    mail_handler = ActivationMailHandler(activation_url_prefix)
-    mail_body = mail.outbox[0].body
-    context.credentials = mail_handler.get_credentials(mail_body)
+    check_that_email_was_sent_to_user(
+        context.test, context.current_user['email'])
+    context.credentials = gather_email_activation_data(activation_url_prefix)
+    context.test.assertIsNotNone(context.credentials)
     context.email_reception_time = datetime.now()
 
 
@@ -130,17 +129,16 @@ def step_impl(context):
 
 @then(u'il reçoit un e-mail avec un lien d\'activation de compte')
 def step_impl(context):
-    context.test.assertEqual(len(mail.outbox), 1)
-    mail_body = mail.outbox[0].body
-    mail_handler = ActivationMailHandler(activation_url_prefix)
-    credentials = mail_handler.get_credentials(mail_body)
+    check_that_email_was_sent_to_user(
+        context.test, context.current_user['email'])
+    credentials = gather_email_activation_data(activation_url_prefix)
     context.test.assertIsNotNone(credentials)
 
 
 @then(u'il obtient un message d\'erreur stipulant que son mot de passe n\'est pas conforme à la politique des mots de passe')
 def step_impl(context):
     context.test.assertEqual(
-        context.response['data'], context.password_not_compliant_response['data'])
+        context.password_not_compliant_response['data'], context.response['data'])
 
 
 @then(u'son compte est créé')
@@ -167,27 +165,25 @@ def step_impl(context):
 
 @then(u'il ne reçoit pas d\'e-mail d\'activation de compte')
 def step_impl(context):
-    context.test.assertEqual(len(mail.outbox), 0)
+    context.test.assertEqual(0, len(mail.outbox))
 
 
 @then(u'il n\'obtient aucun message d\'erreur')
 def step_impl(context):
     context.test.assertEqual(
-        context.response['data'], context.successful_signup['data'])
+        context.successful_signup['data'], context.response['data'])
 
 
 @then(u'un message d\'avertissement est envoyé à cet e-mail')
 def step_impl(context):
-    context.test.assertEqual(len(mail.outbox), 1)
-    email = mail.outbox[0]
-    context.test.assertTrue(
-        context.current_user['email'] in email.recipients())
+    check_that_email_was_sent_to_user(
+        context.test, context.current_user['email'])
 
 
 @then(u'l\'incident est enregistré dans un journal')
 def step_impl(context):
     entry = HackerAbuseEvents.objects.latest('timestamp')
-    context.test.assertEqual(entry.user.email, context.current_user['email'])
+    context.test.assertEqual(context.current_user['email'], entry.user.email)
 
 
 @then(u'son compte est activé')
@@ -205,8 +201,8 @@ def step_impl(context):
 
 @then(u'son mot de passe n\'est pas sauvegardé')
 def step_impl(context):
-    context.test.assertEqual(context.current_encrypted_password,
-                             get_current_encrypted_password(context.current_user['email']))
+    context.test.assertEqual(get_current_encrypted_password(
+        context.current_user['email']), context.current_encrypted_password)
 
 
 @then(u'il n\'est pas identifié')
@@ -220,12 +216,12 @@ def step_impl(context):
     test_client = context.test.client
     uidb64 = context.credentials['uidb64']
     token = context.credentials['token']
-    context.response = activate_account(test_client, uidb64, token)
+    response = activate_account(test_client, uidb64, token)
     context.test.assertEqual(
-        context.response['data'], context.expired_account_confirmation_link['data'])
+        context.expired_account_confirmation_link['data'], response['data'])
 
 
 @then(u'il obtient un message d\'erreur stipulant que le lien a expiré')
 def step_impl(context):
     context.test.assertEqual(
-        context.response['data'], context.expired_account_confirmation_link['data'])
+        context.expired_account_confirmation_link['data'], context.response['data'])

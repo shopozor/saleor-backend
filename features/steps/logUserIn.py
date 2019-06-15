@@ -134,13 +134,13 @@ def step_impl(context):
 @then(u'il obtient un message d\'erreur stipulant que ses identifiants sont incorrects')
 def step_impl(context):
     context.test.assertEqual(
-        context.response['data'], context.wrong_credentials_response['data'])
+        context.wrong_credentials_response['data'], context.response['data'])
 
 
 @then(u'il obtient un message d\'erreur stipulant que son compte n\'a pas les droits d\'administrateur')
 def step_impl(context):
     context.test.assertEqual(
-        context.response['data'], context.user_not_admin_response['data'])
+        context.user_not_admin_response['data'], context.response['data'])
 
 
 @then(u'il n\'obtient pas de permissions')
@@ -176,7 +176,7 @@ def step_impl(context):
 @then(u'il est considéré comme un {user_type:UserType}')
 def step_impl(context, user_type):
     user_data = context.response['data']['login']['user']
-    context.test.assertEqual(user_data['isStaff'], is_staff(user_type))
+    context.test.assertEqual(is_staff(user_type), user_data['isStaff'])
 
 
 def expiration_delta(token):
@@ -193,10 +193,10 @@ def step_impl(context, amount, unit):
     context.test.assertIsNotNone(token)
     context.test.assertEqual(expected_expiration_delta,
                              expiration_delta(token))
-    context.test.assertEqual(len(token_data['errors']), 0)
+    context.test.assertEqual(0, len(token_data['errors']))
     context.test.assertTrue(settings.GRAPHQL_JWT['JWT_VERIFY_EXPIRATION'])
-    context.test.assertEqual(
-        settings.GRAPHQL_JWT['JWT_EXPIRATION_DELTA'].total_seconds(), expected_expiration_delta)
+    context.test.assertEqual(expected_expiration_delta,
+                             settings.GRAPHQL_JWT['JWT_EXPIRATION_DELTA'].total_seconds())
 
 
 # we will assume that django graphql jwt is working as expected
@@ -206,4 +206,4 @@ def step_impl(context, amount, unit):
 def step_impl(context, amount, unit):
     context.test.assertTrue(settings.GRAPHQL_JWT['JWT_VERIFY_EXPIRATION'])
     context.test.assertEqual(
-        settings.GRAPHQL_JWT['JWT_REFRESH_EXPIRATION_DELTA'].total_seconds(), amount * unit)
+        amount * unit, settings.GRAPHQL_JWT['JWT_REFRESH_EXPIRATION_DELTA'].total_seconds())

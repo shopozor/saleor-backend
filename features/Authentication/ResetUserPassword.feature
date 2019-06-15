@@ -1,6 +1,7 @@
 # language: fr
 
 @initial-release @auth @wip
+@fixture.password-reset
 Fonctionnalité: L'utilisateur réinitialise son mot de passe
 
   *En tant qu'Utilisateur,  
@@ -104,7 +105,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
 
     Etant donné un <utilisateur> qui a reçu un lien de réinitialisation de mot de passe
     Et qui a déjà réinitialisé son mot de passe avec ce lien
-    Lorsqu'il le réinitialise pour la deuxième fois
+    Lorsqu'il le réinitialise pour la deuxième fois avant l'expiration du lien
     Alors il obtient un message d'erreur stipulant que le lien a expiré
     Et son mot de passe reste inchangé
 

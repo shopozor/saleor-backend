@@ -1,13 +1,14 @@
 from behave import use_fixture
 from behave.fixture import use_fixture_by_tag
 from django.contrib.auth.models import AnonymousUser
-from features.fixtures import user_accounts, login, signup
+from features.fixtures import user_accounts, login, signup, password_reset
 from tests.api.conftest import ApiClient
 
 fixtures_registry = {
     'fixture.user-accounts': user_accounts,
     'fixture.login': login,
-    'fixture.signup': signup
+    'fixture.signup': signup,
+    'fixture.password-reset': password_reset
 }
 
 

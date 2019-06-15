@@ -1,4 +1,18 @@
+from django.core import mail
+
 import re
+
+
+def check_that_email_was_sent_to_user(test, user_email):
+    test.assertEqual(len(mail.outbox), 1)
+    sent_email = mail.outbox[0]
+    test.assertTrue(user_email in sent_email.recipients())
+
+
+def gather_email_activation_data(activation_url_prefix):
+    mail_handler = ActivationMailHandler(activation_url_prefix)
+    sent_email = mail.outbox[0]
+    return mail_handler.get_credentials(sent_email.body)
 
 
 class ActivationMailHandler:
