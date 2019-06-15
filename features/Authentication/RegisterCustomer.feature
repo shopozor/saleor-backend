@@ -89,7 +89,7 @@ Fonctionnalité: Enregistrer un nouveau client
 
     Lorsqu'un utilisateur fait une demande d'enregistrement avec l'e-mail d'un compte actif et un mot de passe conforme
     Alors il n'obtient aucun message d'erreur
-    Alors un message d'avertissement est envoyé à cet e-mail
+    Et un message d'avertissement est envoyé à cet e-mail
     Et l'incident est enregistré dans un journal
 
   Scénario: Le nouveau client active son compte dans les temps
