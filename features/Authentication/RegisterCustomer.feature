@@ -20,7 +20,7 @@ Fonctionnalité: Enregistrer un nouveau client
   # de notre API que l'activation d'un compte en définissant un mot de passe. De plus, dans le premier cas, il n'est pas
   # possible d'extraire proprement la fonctionnalité de réinitialisation du mot de passe d'un utilisateur, autant
   # pour l'application client que pour le serveur ainsi qu'en termes de tests. Le premier cas implique l'usage
-  # de la méthode setPassword de l'API qu'il est plus judicieux de tester en temps que fonctionnalité en tant que telle
+  # de la méthode setPassword de l'API qu'il est plus judicieux de tester en tant que fonctionnalité en tant que telle
   # sans qu'elle ne soit couplée à quoi que ce soit d'autre.
 
   Scénario: Un nouveau client s'enregistre avec un mot de passe conforme
