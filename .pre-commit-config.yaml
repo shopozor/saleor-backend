@@ -3,7 +3,7 @@
   hooks:
   - id: autopep8
 - repo: https://github.com/shopozor/pre-commit-hooks
-  rev: master
+  rev: ab46cd3bffd7c1c17f433eb23682fba6f8cb4a51
   hooks:
     - id: check-feature-tags
 - repo: https://github.com/pre-commit/pre-commit-hooks
