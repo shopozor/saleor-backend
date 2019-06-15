@@ -23,8 +23,7 @@ def unknown(context):
         os.path.join('Authentication', 'Credentials', 'NewConsumer.json'))
     set_password(user_data)
     context.unknown = user_data
-    yield user_data
-    del context.unknown
+    return user_data
 
 
 @fixture
@@ -34,8 +33,7 @@ def consumer(context):
     set_password(user_data)
     create_database_user(user_data)
     context.consumer = user_data
-    yield user_data
-    del context.consumer
+    return user_data
 
 
 @fixture
@@ -45,8 +43,7 @@ def inactive_customer(context):
     set_password(user_data)
     create_database_user(user_data)
     context.inactive_customer = user_data
-    yield user_data
-    del context.inactive_customer
+    return user_data
 
 
 @fixture
@@ -56,8 +53,7 @@ def producer(context):
     set_password(user_data)
     create_database_user(user_data)
     context.producer = user_data
-    yield user_data
-    del context.producer
+    return user_data
 
 
 @fixture
@@ -67,8 +63,7 @@ def manager(context):
     set_password(user_data)
     create_database_user(user_data)
     context.manager = user_data
-    yield context.manager
-    del context.manager
+    return user_data
 
 
 @fixture
@@ -78,8 +73,7 @@ def rex(context):
     set_password(user_data)
     create_database_user(user_data)
     context.rex = user_data
-    yield user_data
-    del context.rex
+    return user_data
 
 
 @fixture
@@ -89,8 +83,7 @@ def softozor(context):
     set_password(user_data)
     create_database_superuser(user_data)
     context.softozor = user_data
-    yield user_data
-    del context.softozor
+    return user_data
 
 
 @fixture
@@ -113,8 +106,7 @@ def wrong_credentials_response(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'LogStaffIn', 'Responses', 'WrongCredentials.json'))
     context.wrong_credentials_response = data
-    yield data
-    del context.wrong_credentials_response
+    return data
 
 
 @fixture
@@ -122,8 +114,7 @@ def user_not_admin_response(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'LogStaffIn', 'Responses', 'Consommateur.json'))
     context.user_not_admin_response = data
-    yield data
-    del context.user_not_admin_response
+    return data
 
 
 @fixture
@@ -131,8 +122,7 @@ def failed_query_response(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Logout', 'Responses', 'QueryResponseAfterLogout.json'))
     context.failed_query_response = data
-    yield context.failed_query_response
-    del context.failed_query_response
+    return data
 
 
 @fixture
@@ -140,8 +130,7 @@ def successful_logout_response(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Logout', 'Responses', 'Success.json'))
     context.successful_logout_response = data
-    yield context.successful_logout_response
-    del context.successful_logout_response
+    return data
 
 
 @fixture
@@ -149,8 +138,7 @@ def successful_signup(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'SuccessfulConsumerCreation.json'))
     context.successful_signup = data
-    yield context.successful_signup
-    del context.successful_signup
+    return data
 
 
 @fixture
@@ -158,8 +146,7 @@ def expired_account_confirmation_link(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'ExpiredAccountConfirmationLink.json'))
     context.expired_account_confirmation_link = data
-    yield context.expired_account_confirmation_link
-    del context.expired_account_confirmation_link
+    return data
 
 
 @fixture
@@ -167,8 +154,7 @@ def successful_account_confirmation(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'SuccessfulAccountConfirmation.json'))
     context.successful_account_confirmation = data
-    yield context.successful_account_confirmation
-    del context.successful_account_confirmation
+    return data
 
 
 @fixture
@@ -176,8 +162,7 @@ def password_not_compliant_response(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'NonCompliantPassword.json'))
     context.password_not_compliant_response = data
-    yield context.password_not_compliant_response
-    del context.password_not_compliant_response
+    return data
 
 
 @fixture
@@ -185,8 +170,7 @@ def successful_set_password(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'ResetUserPassword', 'Responses', 'SuccessfulSetPassword.json'))
     context.successful_set_password = data
-    yield context.successful_set_password
-    del context.successful_set_password
+    return data
 
 
 @fixture
@@ -194,8 +178,7 @@ def expired_password_reset_link(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'ResetUserPassword', 'Responses', 'ExpiredPasswordResetLink.json'))
     context.expired_password_reset_link = data
-    yield context.expired_password_reset_link
-    del context.expired_password_reset_link
+    return data
 
 
 @fixture
