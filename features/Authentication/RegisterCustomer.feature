@@ -97,6 +97,11 @@ Fonctionnalité: Enregistrer un nouveau client
     Au moment où l'utilisateur suit son lien d'activation, il s'invalide et son compte
     est activé.
 
+    # double-check "Plan du Scénario: L'utilisateur définit un mot de passe conforme dans les temps"
+    # in the "ResetUserPassword.feature"
+    # that scenario provides some details about the kind of encoding we need for the user id
+    # saleor's code needs to be investigated in order to find out what kind of user id we really want
+
     Etant donné un nouveau client qui a reçu un lien d'activation de compte
     Lorsqu'il active son compte au plus tard 1 jour après sa réception
     Alors son compte est activé

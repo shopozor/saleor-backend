@@ -17,9 +17,6 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
 
     Le mot de passe actuel du client est conservé jusqu'au moment où il en donne un autre.
 
-    # On utilise la mutation passwordReset(email).
-    # Le lien de réinitialisation suit le même pattern que celui de l'activation d'un compte.
-
     Lorsqu'un <utilisateur> enregistré fait une demande de réinitialisation de mot de passe
     Alors il reçoit un e-mail de réinitialisation de mot de passe
     Et son mot de passe reste inchangé
@@ -42,6 +39,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
     Lorsqu'un utilisateur inconnu fait une demande de réinitialisation de mot de passe
     Alors il ne reçoit pas d'e-mail de réinitialisation de compte
     Et l'incident est enregistré dans un journal
+    Mais il n'obtient aucun message d'erreur
 
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur définit un mot de passe conforme dans les temps

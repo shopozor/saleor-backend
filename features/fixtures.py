@@ -166,6 +166,14 @@ def password_not_compliant_response(context):
 
 
 @fixture
+def successful_password_reset(context):
+    data = get_data_from_json_fixture(os.path.join(
+        'Authentication', 'ResetUserPassword', 'SuccessfulPasswordReset.json'))
+    context.successful_password_reset = data
+    return data
+
+
+@fixture
 def successful_set_password(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'ResetUserPassword', 'Responses', 'SuccessfulSetPassword.json'))
@@ -207,4 +215,6 @@ def password_reset(context):
     return use_composite_fixture_with(context, [fixture_call_params(unknown),
                                                 fixture_call_params(
                                                     successful_set_password),
-                                                fixture_call_params(expired_password_reset_link)])
+                                                fixture_call_params(
+                                                    expired_password_reset_link),
+                                                fixture_call_params(successful_password_reset)])

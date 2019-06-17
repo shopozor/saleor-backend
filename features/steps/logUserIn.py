@@ -1,7 +1,7 @@
 from behave import given, then, when
 from django.conf import settings
 
-from features.utils.auth.credentials_checks import check_compulsory_credential_arguments
+from features.utils.auth.credentials_checks import check_compulsory_login_credential_arguments
 from features.utils.auth.account_handling import create_database_user
 from features.utils.graphql.loader import get_query_from_file
 from shopozor.models import MODELS_PERMISSIONS
@@ -12,8 +12,7 @@ import jwt
 
 
 def login(client, **kwargs):
-    check_compulsory_credential_arguments(kwargs)
-
+    check_compulsory_login_credential_arguments(kwargs)
     query = get_query_from_file('login.graphql')
     response = client.post_graphql(query, kwargs)
     return get_graphql_content(response)
@@ -134,13 +133,13 @@ def step_impl(context):
 @then(u'il obtient un message d\'erreur stipulant que ses identifiants sont incorrects')
 def step_impl(context):
     context.test.assertEqual(
-        context.wrong_credentials_response['data'], context.response['data'])
+        context.wrong_credentials_response, context.response)
 
 
 @then(u'il obtient un message d\'erreur stipulant que son compte n\'a pas les droits d\'administrateur')
 def step_impl(context):
     context.test.assertEqual(
-        context.user_not_admin_response['data'], context.response['data'])
+        context.user_not_admin_response, context.response)
 
 
 @then(u'il n\'obtient pas de permissions')

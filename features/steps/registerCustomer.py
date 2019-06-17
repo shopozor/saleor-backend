@@ -3,8 +3,8 @@ from behave import use_fixture
 from datetime import datetime, timedelta
 from django.core import mail
 from features.utils.auth.account_handling import get_current_encrypted_password, account_exists, is_active_account
-from features.utils.auth.credentials_checks import check_compulsory_credential_arguments, assertPasswordIsCompliant, assertPasswordIsNotCompliant
-from features.utils.auth.mail_confirmation import ActivationMailHandler, gather_email_activation_data, check_that_email_was_sent_to_user
+from features.utils.auth.credentials_checks import check_compulsory_login_credential_arguments, assertPasswordIsCompliant, assertPasswordIsNotCompliant
+from features.utils.auth.mail_confirmation import ActivationMailHandler, gather_email_activation_data, check_that_email_was_sent_to_user, check_that_email_is_received_soon_enough, check_compulsory_account_activation_credential_arguments
 from features.utils.graphql.loader import get_query_from_file
 from freezegun import freeze_time
 from saleor.account.models import User
@@ -15,20 +15,16 @@ activation_url_prefix = 'activate'
 
 
 def signup(client, **kwargs):
-    check_compulsory_credential_arguments(kwargs)
-
+    check_compulsory_login_credential_arguments(kwargs)
     query = get_query_from_file('signup.graphql')
     response = client.post_graphql(query, kwargs)
     return get_graphql_content(response)
 
 
-def activate_account(client, uidb64, token):
+def activate_account(client, **kwargs):
+    check_compulsory_account_activation_credential_arguments(kwargs)
     query = get_query_from_file('activateCustomer.graphql')
-    variables = {
-        'encodedUserId': uidb64,
-        'oneTimeToken': token
-    }
-    response = client.post_graphql(query, variables)
+    response = client.post_graphql(query, kwargs)
     return get_graphql_content(response)
 
 
@@ -46,10 +42,8 @@ def step_impl(context):
 
 @given(u'qui a déjà activé son compte')
 def step_impl(context):
-    uidb64 = context.credentials['uidb64']
-    token = context.credentials['token']
     test_client = context.test.client
-    context.response = activate_account(test_client, uidb64, token)
+    context.response = activate_account(test_client, **context.credentials)
     context.test.assertEqual(
         context.response['data'], context.successful_account_confirmation['data'])
 
@@ -94,14 +88,10 @@ def step_impl(context):
 @when(u'il active son compte au plus tard {amount:d} {unit:DurationInSecondsType} après sa réception')
 def step_impl(context, amount, unit):
     expiration_delta_in_seconds = amount * unit
-    elapsed_time_since_email_reception_in_seconds = (
-        datetime.now() - context.email_reception_time).total_seconds()
-    context.test.assertTrue(
-        elapsed_time_since_email_reception_in_seconds < expiration_delta_in_seconds)
+    check_that_email_is_received_soon_enough(
+        context, expiration_delta_in_seconds)
     test_client = context.test.client
-    uidb64 = context.credentials['uidb64']
-    token = context.credentials['token']
-    context.response = activate_account(test_client, uidb64, token)
+    context.response = activate_account(test_client, **context.credentials)
 
 
 @when(u'il active son compte {amount:d} {unit:DurationInSecondsType} après sa réception')
@@ -111,9 +101,7 @@ def step_impl(context, amount, unit):
         timedelta(seconds=expiration_delta_in_seconds)
     with freeze_time(datetime_after_expiration):
         test_client = context.test.client
-        uidb64 = context.credentials['uidb64']
-        token = context.credentials['token']
-        context.response = activate_account(test_client, uidb64, token)
+        context.response = activate_account(test_client, **context.credentials)
 
 
 @when(u'il l\'active pour la deuxième fois avant l\'expiration du lien')
@@ -122,13 +110,12 @@ def step_impl(context):
     # because we are guaranteed to have waited a very little
     # amount of time here
     test_client = context.test.client
-    uidb64 = context.credentials['uidb64']
-    token = context.credentials['token']
-    context.response = activate_account(test_client, uidb64, token)
+    context.response = activate_account(test_client, **context.credentials)
 
 
 @then(u'il reçoit un e-mail avec un lien d\'activation de compte')
 def step_impl(context):
+    context.test.assertEqual(context.successful_signup, context.response)
     check_that_email_was_sent_to_user(
         context.test, context.current_user['email'])
     credentials = gather_email_activation_data(activation_url_prefix)
@@ -168,12 +155,6 @@ def step_impl(context):
     context.test.assertEqual(0, len(mail.outbox))
 
 
-@then(u'il n\'obtient aucun message d\'erreur')
-def step_impl(context):
-    context.test.assertEqual(
-        context.successful_signup['data'], context.response['data'])
-
-
 @then(u'un message d\'avertissement est envoyé à cet e-mail')
 def step_impl(context):
     check_that_email_was_sent_to_user(
@@ -189,7 +170,7 @@ def step_impl(context):
 @then(u'son compte est activé')
 def step_impl(context):
     context.test.assertEqual(
-        context.response['data'], context.successful_account_confirmation['data'])
+        context.response, context.successful_account_confirmation)
     context.test.assertTrue(is_active_account(context.current_user['email']))
 
 
@@ -214,14 +195,12 @@ def step_impl(context):
 @then(u'son lien d\'activation est invalidé')
 def step_impl(context):
     test_client = context.test.client
-    uidb64 = context.credentials['uidb64']
-    token = context.credentials['token']
-    response = activate_account(test_client, uidb64, token)
+    response = activate_account(test_client, **context.credentials)
     context.test.assertEqual(
-        context.expired_account_confirmation_link['data'], response['data'])
+        context.expired_account_confirmation_link, response)
 
 
 @then(u'il obtient un message d\'erreur stipulant que le lien a expiré')
 def step_impl(context):
     context.test.assertEqual(
-        context.expired_account_confirmation_link['data'], context.response['data'])
+        context.expired_account_confirmation_link, context.response)
