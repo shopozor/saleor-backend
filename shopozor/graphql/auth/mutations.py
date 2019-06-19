@@ -10,7 +10,14 @@ from saleor.graphql.core.types import Error
 class Login(CreateToken):
 
     class Arguments:
-        is_staff = graphene.Boolean()
+        is_staff = graphene.Boolean(
+            description="""Set this field to true if you want to authenticate as a staff member.
+                This field is used to access administration-relevant functionality. Users with insufficient
+                credentials cannot access admin functionality. For example, a Consumer who's not
+                a staff member and tries to access admin functionality by setting that field to true
+                will get ungranted access. That prevents e.g. a Consumer from accessing the administration panels.
+                Such panels log users in by setting that field to true. If the users are not staff members,
+                their access is not granted.""")
 
     @classmethod
     def mutate(cls, root, info, **kwargs):

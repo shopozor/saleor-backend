@@ -2,6 +2,7 @@
 *.log
 *.pot
 *.pyc
+.coverage
 __pycache__/
 
 # development-specific env
