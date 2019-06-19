@@ -36,3 +36,5 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'shopozor.password_validation.HasBeenPwndValidator',
     },
 ]
+
+TEST_RUNNER = "tests.runner.PytestTestRunner"

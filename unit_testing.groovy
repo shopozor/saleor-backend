@@ -36,10 +36,19 @@ pipeline {
         DATABASE_URL = credentials('postgres-credentials')
         DJANGO_SETTINGS_MODULE = 'tests.settings'
         PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
-        SECRET_KEY = 'theSecretKey'
       }
       steps {
-        sh ". $VENV/bin/activate && cd saleor && pytest -ra --junitxml=$REPORTS_FOLDER/unit-tests.xml"
+        sh ". $VENV/bin/activate && cd saleor && pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
+      }
+    }
+    stage('Performing shopozor unit tests') {
+      environment {
+        DATABASE_URL = credentials('postgres-credentials')
+        DJANGO_SETTINGS_MODULE = 'tests.settings'
+        PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
+      }
+      steps {
+        sh ". $VENV/bin/activate && pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
       }
     }
   }
