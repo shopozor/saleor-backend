@@ -37,4 +37,4 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-TEST_RUNNER = "tests.runner.PytestTestRunner"
+TEST_RUNNER = "unit_tests.runner.PytestTestRunner"
