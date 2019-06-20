@@ -1,6 +1,6 @@
 # pylint: disable=W0401, W0614
 # flake8: noqa
-from saleor.settings import *  # noqa
+from shopozor.settings import *  # noqa
 
 CELERY_TASK_ALWAYS_EAGER = True
 
