@@ -3,6 +3,7 @@
 *.pot
 *.pyc
 .coverage
+.testmondata
 __pycache__/
 
 # development-specific env

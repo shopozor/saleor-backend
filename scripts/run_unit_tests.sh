@@ -1,3 +1,3 @@
 #! /bin/bash
 
-pytest -ra --reuse-db --no-migrations
+ptw -- --testmon -n 0 -ra --reuse-db --no-migrations
