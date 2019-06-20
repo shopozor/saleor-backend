@@ -34,8 +34,6 @@ Fonctionnalité: Enregistrer un nouveau client
 
     <pre>http://www.shopozor.ch/activate/encodedUserId/token</pre>
 
-    # Il faudrait se débarrasser de sendActivationEmail: true dans la mutation customerCreate
-
     Lorsqu'un client inconnu fait une demande d'enregistrement avec un mot de passe conforme
     Alors il reçoit un e-mail avec un lien d'activation de compte
     Et son compte est créé
@@ -96,11 +94,6 @@ Fonctionnalité: Enregistrer un nouveau client
 
     Au moment où l'utilisateur suit son lien d'activation, il s'invalide et son compte
     est activé.
-
-    # double-check "Plan du Scénario: L'utilisateur définit un mot de passe conforme dans les temps"
-    # in the "ResetUserPassword.feature"
-    # that scenario provides some details about the kind of encoding we need for the user id
-    # saleor's code needs to be investigated in order to find out what kind of user id we really want
 
     Etant donné un nouveau client qui a reçu un lien d'activation de compte
     Lorsqu'il active son compte au plus tard 1 jour après sa réception
