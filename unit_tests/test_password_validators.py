@@ -1,9 +1,27 @@
 from django.core.exceptions import ValidationError
+from django.contrib.auth.password_validation import MinimumLengthValidator
 from shopozor.password_validation import NumberAndLetterValidator, SpecialCharacterValidator, HasBeenPwndValidator
 
 import pytest
 
 # password database:"@sdf","@asdf1","@*123","fdsjlkwern23","p@ssword","p@ssword1","@123","asdf1234"
+
+
+@pytest.mark.parametrize(
+    "password_has_been_pwnd_up_and_valid",
+    [
+        "@sdfHj@#"
+    ],
+)
+def test_has_been_pwn_up_and_running(password_has_been_pwnd_up_and_valid):
+    try:
+        HasBeenPwndValidator().is_valid_password(password_has_been_pwnd_up_and_valid)
+        assert True
+    except ValidationError as exception:
+        if exception.code == HasBeenPwndValidator().error_not_reachable:
+            assert False
+        else:  # the password is pwnd => the website is up and running
+            assert True
 
 
 @pytest.mark.parametrize(
