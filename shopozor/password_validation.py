@@ -63,21 +63,20 @@ class HasBeenPwndValidator:
         prefix = hashed_password[:5]
         suffix = hashed_password[5:]
         # only send a prefix of 5 chars to haveibeenpwnd.com
+        response = requests.get(range_url.format(prefix), headers).text
+        return not suffix.upper() in response
+
+    def validate(self, password, user=None):
         try:
-            response = requests.get(range_url.format(prefix), headers).text
+            if not self.is_valid_password(password):
+                raise ValidationError(
+                    _(self.error_string),
+                    code=self.error_code,
+                )
         except requests.exceptions.RequestException:
             raise ValidationError(
                 _("We could not get a successful answer from haveibeenpwnd.com."),
                 code=self.error_not_reachable,
-            )
-        return not suffix.upper() in response
-
-    def validate(self, password, user=None):
-
-        if not self.is_valid_password(password):
-            raise ValidationError(
-                _(self.error_string),
-                code=self.error_code,
             )
 
     def get_help_text(self):
