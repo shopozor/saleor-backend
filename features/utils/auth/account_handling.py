@@ -25,7 +25,7 @@ def create_database_superuser(user_data):
 
 
 def get_current_encrypted_password(email):
-    user = User.objects.filter(email=email)
+    user = User.objects.filter(email=email).get()
     return user.password
 
 
@@ -34,5 +34,5 @@ def account_exists(email):
 
 
 def is_active_account(email):
-    user = User.objects.filter(email=email)
+    user = User.objects.filter(email=email).get()
     return user.is_active

@@ -2,9 +2,12 @@
 import graphene
 
 from saleor.account.models import User
+from saleor.account import models
 
-from saleor.graphql.core.mutations import CreateToken
+from saleor.graphql.core.mutations import CreateToken, ModelMutation
 from saleor.graphql.core.types import Error
+
+from shopozor.emails import send_activate_account_email
 
 
 class Login(CreateToken):
@@ -47,3 +50,26 @@ class Login(CreateToken):
             return Login(errors=[Error(message='USER_NOT_ADMIN')])
         else:
             return result
+
+
+class ConsumerCreateInput(graphene.InputObjectType):
+    email = graphene.String(
+        description="The unique email address of the user.")
+    password = graphene.String(description="The user password.")
+
+
+class ConsumerCreate(ModelMutation):
+    class Arguments:
+        input = ConsumerCreateInput(
+            description="Fields required to create a customer.", required=True
+        )
+
+    class Meta:
+        description = "Register a new consumer."
+        model = models.User
+
+    @classmethod
+    def save(cls, info, instance, cleaned_input):
+        instance.is_active = False
+        super().save(info, instance, cleaned_input)
+        send_activate_account_email(instance.pk)
