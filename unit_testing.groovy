@@ -44,7 +44,7 @@ pipeline {
     stage('Performing shopozor unit tests') {
       environment {
         DATABASE_URL = credentials('postgres-credentials')
-        DJANGO_SETTINGS_MODULE = 'tests.settings'
+        DJANGO_SETTINGS_MODULE = 'unit_tests.settings'
         PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
       }
       steps {
