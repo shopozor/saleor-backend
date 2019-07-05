@@ -38,7 +38,7 @@ def gather_email_activation_data(activation_url_prefix):
 
 
 class ActivationMailHandler:
-    __url_suffix_pattern = r'\/(?P<uidb64>[0-9A-Za-z_\-]+)\/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})\/'
+    __url_suffix_pattern = r'\/(?P<uidb64>[0-9A-Za-z_\-]+)\/(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})'
 
     def __init__(self, url_prefix):
         self.url_pattern = re.escape(url_prefix) + self.__url_suffix_pattern
