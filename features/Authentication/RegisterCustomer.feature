@@ -1,6 +1,6 @@
 #language: fr
 
-@initial-release @auth @wip
+@initial-release @auth
 @fixture.signup
 Fonctionnalité: Enregistrer un nouveau client
 
@@ -40,6 +40,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son mot de passe est sauvegardé
     Mais son compte est inactif
 
+  @wip
   Scénario: Un nouveau client s'enregistre avec un mot de passe non conforme
 
     Lorsqu'un client inconnu fait une demande d'enregistrement avec un mot de passe non conforme
@@ -47,6 +48,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son compte n'est pas créé
     Et il ne reçoit pas d'e-mail d'activation de compte
 
+  @wip
   @fixture.user-accounts  
   Scénario: Le client a déjà un compte inactif et propose un mot de passe conforme
 
@@ -60,6 +62,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son mot de passe est sauvegardé
     Et son compte reste inactif
 
+  @wip
   @fixture.user-accounts
   Scénario: Le client a déjà un compte inactif et propose un mot de passe non conforme
 
@@ -73,6 +76,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son compte reste inactif  
     Et il ne reçoit pas d'e-mail d'activation de compte
 
+  @wip
   @HackerAbuse @fixture.user-accounts
   Scénario: Un utilisateur s'enregistre avec l'e-mail d'un compte actif
 
@@ -90,6 +94,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et un message d'avertissement est envoyé à cet e-mail
     Et l'incident est enregistré dans un journal
 
+  @wip
   Scénario: Le nouveau client active son compte dans les temps
 
     Au moment où l'utilisateur suit son lien d'activation, il s'invalide et son compte
@@ -101,6 +106,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son lien d'activation est invalidé
     Mais il n'est pas identifié
 
+  @wip
   Scénario: Le nouveau client active son compte une deuxième fois
 
     Le lien d'activation de compte ne peut être utilisé qu'une seule fois,
@@ -111,6 +117,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Lorsqu'il l'active pour la deuxième fois avant l'expiration du lien
     Alors il obtient un message d'erreur stipulant que le lien a expiré
 
+  @wip
   Scénario: Le nouveau client active son compte trop tard
 
     En plus de n'être utilisable qu'une seule fois, le lien expire après un certain temps.
