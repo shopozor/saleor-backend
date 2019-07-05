@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 from django.core import mail
 from features.utils.auth.account_handling import get_current_encrypted_password, account_exists, is_active_account
 from features.utils.auth.credentials_checks import check_compulsory_login_credential_arguments, assertPasswordIsCompliant, assertPasswordIsNotCompliant
-from features.utils.auth.mail_confirmation import ActivationMailHandler, gather_email_activation_data, check_that_email_was_sent_to_user, check_that_email_is_received_soon_enough, check_compulsory_account_activation_credential_arguments
+from features.utils.auth.mail_confirmation import gather_email_activation_data, check_that_email_was_sent_to_user, check_that_email_is_received_soon_enough, check_compulsory_account_activation_credential_arguments
 from features.utils.graphql.loader import get_query_from_file
 from freezegun import freeze_time
 from saleor.account.models import User
