@@ -176,7 +176,7 @@ def step_impl(context):
 
 @then(u'son mot de passe est sauvegardé')
 def step_impl(context):
-    user = User.objects.filter(email=context.unknown['email'])
+    user = User.objects.filter(email=context.current_user['email'])
     context.test.assertTrue(user.password)
 
 
