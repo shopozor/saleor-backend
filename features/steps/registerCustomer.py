@@ -131,7 +131,7 @@ def step_impl(context):
 @then(u'son compte est créé')
 def step_impl(context):
     context.test.assertEqual(
-        len(context.response['data']['customerCreate']['errors']), 0)
+        len(context.response['data']['consumerCreate']['errors']), 0)
     context.test.assertTrue(account_exists(context.current_user['email']))
 
 
@@ -176,7 +176,7 @@ def step_impl(context):
 
 @then(u'son mot de passe est sauvegardé')
 def step_impl(context):
-    user = User.objects.filter(email=context.current_user['email'])
+    user = User.objects.filter(email=context.current_user['email']).get()
     context.test.assertTrue(user.password)
 
 

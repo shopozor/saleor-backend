@@ -144,7 +144,7 @@ def step_impl(context):
 
 @then(u'son mot de passe reste inchangé')
 def step_impl(context):
-    user = User.objects.filter(email=context.current_user['email'])
+    user = User.objects.filter(email=context.current_user['email']).get()
     context.test.assertEqual(
         context.current_user['encrypted_password'], user.password)
 
