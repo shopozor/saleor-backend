@@ -1,5 +1,4 @@
-from behave import given, then, when
-from behave import use_fixture
+from behave import given, then, when, use_fixture
 from datetime import datetime, timedelta
 from django.core import mail
 from features.utils.auth.account_handling import get_current_encrypted_password, account_exists, is_active_account
@@ -124,8 +123,12 @@ def step_impl(context):
 
 @then(u'il obtient un message d\'erreur stipulant que son mot de passe n\'est pas conforme à la politique des mots de passe')
 def step_impl(context):
-    context.test.assertEqual(
-        context.password_not_compliant_response['data'], context.response['data'])
+    expected_error = {
+        'field': None,
+        'message': 'PASSWORD_NOT_COMPLIANT'
+    }
+    context.test.assertTrue(
+        expected_error in context.response['data']['errors'])
 
 
 @then(u'son compte est créé')
