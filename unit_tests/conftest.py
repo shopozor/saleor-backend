@@ -8,10 +8,6 @@ from django.contrib.sites.models import Site
 from saleor.account.models import User
 from saleor.site.models import SiteSettings
 
-# @pytest.fixture
-# def checkout(db):
-#     return Checkout.objects.create()
-
 
 @pytest.fixture(autouse=True)
 def site_settings(db, settings):
