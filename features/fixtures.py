@@ -198,7 +198,7 @@ def signup(context):
                                           fixture_call_params(
                                               expired_account_confirmation_link),
                                           fixture_call_params(
-                                              successful_account_confirmation))])
+                                              successful_account_confirmation)])
 
 
 @fixture
