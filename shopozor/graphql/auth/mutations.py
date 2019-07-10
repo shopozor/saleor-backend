@@ -70,7 +70,6 @@ class ConsumerCreate(ModelMutation):
 
     class Meta:
         description = "Register a new consumer."
-        exclude = ["password"]
         model = models.User
 
     @classmethod

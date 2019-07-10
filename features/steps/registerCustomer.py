@@ -77,7 +77,7 @@ def step_impl(context):
     context.current_user = context.inactive_customer
     context.current_encrypted_password = get_current_encrypted_password(
         context.current_user['email'])
-    context.current_user['password'] = ''
+    context.current_user['password'] = 'password'
     assertPasswordIsNotCompliant(
         context.test, context.current_user['password'])
     test_client = context.test.client
