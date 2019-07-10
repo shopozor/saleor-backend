@@ -160,7 +160,7 @@ def successful_account_confirmation(context):
 @fixture
 def successful_password_reset(context):
     data = get_data_from_json_fixture(os.path.join(
-        'Authentication', 'ResetUserPassword', 'SuccessfulPasswordReset.json'))
+        'Authentication', 'ResetUserPassword', 'Responses', 'SuccessfulPasswordReset.json'))
     context.successful_password_reset = data
     return data
 

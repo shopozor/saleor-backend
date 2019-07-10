@@ -26,7 +26,7 @@ def activate_account(client, **kwargs):
     return get_graphql_content(response)
 
 
-@given(u'un nouveau client qui a reçu un lien d\'activation de compte')
+@given(u'un nouveau Consommateur qui a reçu un lien d\'activation de compte')
 def step_impl(context):
     context.current_user = context.unknown
     test_client = context.test.client
@@ -46,7 +46,7 @@ def step_impl(context):
         context.response['data'], context.successful_account_confirmation['data'])
 
 
-@when(u'un client inconnu fait une demande d\'enregistrement avec un mot de passe conforme')
+@when(u'un Consommateur inconnu fait une demande d\'enregistrement avec un mot de passe conforme')
 def step_impl(context):
     context.current_user = context.unknown
     assertPasswordIsCompliant(context.current_user['password'])
@@ -54,7 +54,7 @@ def step_impl(context):
     context.response = signup(test_client, **context.current_user)
 
 
-@when(u'un client inconnu fait une demande d\'enregistrement avec un mot de passe non conforme')
+@when(u'un Consommateur inconnu fait une demande d\'enregistrement avec un mot de passe non conforme')
 def step_impl(context):
     context.current_user = context.unknown
     context.current_user['password'] = 'password'
