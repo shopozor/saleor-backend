@@ -1,5 +1,7 @@
 
 import graphene
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 from saleor.account.models import User
 from saleor.account import models
@@ -66,10 +68,27 @@ class ConsumerCreate(ModelMutation):
 
     class Meta:
         description = "Register a new consumer."
+        exclude = ["password"]
         model = models.User
 
     @classmethod
     def save(cls, info, instance, cleaned_input):
-        instance.is_active = False
-        super().save(info, instance, cleaned_input)
-        send_activate_account_email(instance.pk)
+        try:
+            validate_password(instance.password)
+            instance.is_active = False
+            super().save(info, instance, cleaned_input)
+            send_activate_account_email(instance.pk)
+        except ValidationError as error:
+            errors = error.error_list
+            errors.insert(0, ValidationError("PASSWORD_NOT_COMPLIANT"))
+            raise ValidationError(errors)
+
+    @classmethod
+    def get_instance(cls, info, **data):
+        current_user = User.objects.filter(email=data.get("input")["email"])
+        if current_user:
+            object_id = graphene.Node.to_global_id(
+                "User", current_user.get().pk)
+            data["id"] = object_id
+
+        return super().get_instance(info, **data)

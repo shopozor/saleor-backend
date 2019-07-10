@@ -158,14 +158,6 @@ def successful_account_confirmation(context):
 
 
 @fixture
-def password_not_compliant_response(context):
-    data = get_data_from_json_fixture(
-        os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'NonCompliantPassword.json'))
-    context.password_not_compliant_response = data
-    return data
-
-
-@fixture
 def successful_password_reset(context):
     data = get_data_from_json_fixture(os.path.join(
         'Authentication', 'ResetUserPassword', 'SuccessfulPasswordReset.json'))
@@ -206,8 +198,7 @@ def signup(context):
                                           fixture_call_params(
                                               expired_account_confirmation_link),
                                           fixture_call_params(
-                                              successful_account_confirmation),
-                                          fixture_call_params(password_not_compliant_response)])
+                                              successful_account_confirmation)])
 
 
 @fixture
