@@ -35,8 +35,3 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 TEST_RUNNER = "unit_tests.runner.PytestTestRunner"
-
-# We need to configure the EMAIL_URL and everything following
-# For now on and for local purpose, we set the following variable
-DOMAIN_NAME = "shopozor.ch"
-EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'

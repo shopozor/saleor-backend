@@ -10,6 +10,9 @@ SECRET_KEY = "NOTREALLY"
 
 LANGUAGE_CODE = "en"
 
+DOMAIN_NAME = "shopozor.ch"
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
 # ES_URL = None
 # SEARCH_BACKEND = "saleor.search.backends.postgresql"
 # INSTALLED_APPS = [a for a in INSTALLED_APPS if a != "django_elasticsearch_dsl"]

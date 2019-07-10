@@ -28,3 +28,6 @@ GRAPHQL_JWT = {
     'JWT_SECRET_KEY': JWT_SECRET_KEY,
     'JWT_ALGORITHM': JWT_ALGORITHM
 }
+
+DOMAIN_NAME = "shopozor.ch"
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
