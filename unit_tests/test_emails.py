@@ -21,7 +21,6 @@ def test_get_email_base_context(site_settings):
 
 def test_send_activate_account_email(customer_user):
     send_activate_account_email(customer_user.pk)
-    print(mail.outbox[0].body)
     assert len(mail.outbox) == 1
 
 

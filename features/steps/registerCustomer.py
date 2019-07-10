@@ -55,6 +55,16 @@ def step_impl(context):
     context.response = signup(test_client, **context.current_user)
 
 
+@when(u'un client inconnu fait une demande d\'enregistrement avec un mot de passe non conforme')
+def step_impl(context):
+    context.current_user = context.unknown
+    context.current_user['password'] = 'password'
+    assertPasswordIsNotCompliant(
+        context.test, context.current_user['password'])
+    test_client = context.test.client
+    context.response = signup(test_client, **context.current_user)
+
+
 @when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte inactif et un mot de passe conforme')
 def step_impl(context):
     context.current_user = context.inactive_customer
@@ -128,7 +138,7 @@ def step_impl(context):
         'message': 'PASSWORD_NOT_COMPLIANT'
     }
     context.test.assertTrue(
-        expected_error in context.response['data']['errors'])
+        expected_error in context.response['data']['consumerCreate']['errors'])
 
 
 @then(u'son compte est créé')

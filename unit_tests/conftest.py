@@ -27,5 +27,5 @@ def site_settings(db, settings):
 
 @pytest.fixture
 def customer_user(db):
-    user = User.objects.create_user("test@example.com", "password")
+    user = User.objects.create_user("test@example.com")
     return user
