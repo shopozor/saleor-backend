@@ -40,7 +40,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son mot de passe est sauvegardé
     Mais son compte est inactif
 
-  @wip
+
   Scénario: Un nouveau client s'enregistre avec un mot de passe non conforme
 
     Lorsqu'un client inconnu fait une demande d'enregistrement avec un mot de passe non conforme
@@ -48,7 +48,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son compte n'est pas créé
     Et il ne reçoit pas d'e-mail d'activation de compte
 
-  @wip
+
   @fixture.user-accounts  
   Scénario: Le client a déjà un compte inactif et propose un mot de passe conforme
 
@@ -62,7 +62,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son mot de passe est sauvegardé
     Et son compte reste inactif
 
-  @wip
+
   @fixture.user-accounts
   Scénario: Le client a déjà un compte inactif et propose un mot de passe non conforme
 
@@ -76,7 +76,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Et son compte reste inactif  
     Et il ne reçoit pas d'e-mail d'activation de compte
 
-  @wip
+
   @HackerAbuse @fixture.user-accounts
   Scénario: Un utilisateur s'enregistre avec l'e-mail d'un compte actif
 
@@ -93,6 +93,7 @@ Fonctionnalité: Enregistrer un nouveau client
     Alors il n'obtient aucun message d'erreur
     Et un message d'avertissement est envoyé à cet e-mail
     Et l'incident est enregistré dans un journal
+    Et son mot de passe n'est pas sauvegardé
 
   @wip
   Scénario: Le nouveau client active son compte dans les temps

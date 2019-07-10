@@ -9,6 +9,7 @@ GRAPHQL_QUERIES_FOLDER = os.path.join('features', 'graphql')
 
 INSTALLED_APPS.append('behave_django')
 INSTALLED_APPS.append('features')
+INSTALLED_APPS.append('test_utils')
 
 ACCEPTANCE_TESTING = True
 

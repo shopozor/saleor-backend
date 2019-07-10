@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from django.conf import settings
 from django.contrib.auth.tokens import default_token_generator
 from django.contrib.sites.models import Site
@@ -24,6 +26,25 @@ def send_activate_account_email(pk):
         'domain': current_site.get("domain"),
         'uid': uid,
         'token': token,
+    })
+    email = EmailMessage(
+        mail_subject, message, from_email=settings.DEFAULT_FROM_EMAIL, to=[
+            email]
+    )
+    email.send()
+
+
+def send_hacker_abuse_email_notification(email):
+    current_site = get_email_base_context()
+    mail_subject = 'Someone tried to create a user account with your email.'
+    time_event = datetime.now()
+    message = render_to_string('hacker_abuse_email.html', {
+        'domain': current_site.get("domain"),
+        'day': time_event.day,
+        'month': time_event.month,
+        'year': time_event.year,
+        'hour': time_event.hour,
+        'minute': time_event.minute
     })
     email = EmailMessage(
         mail_subject, message, from_email=settings.DEFAULT_FROM_EMAIL, to=[
