@@ -19,14 +19,6 @@ Fonctionnalité: Les mots de passe satisfont à la politique relative aux mots d
     - il contient au moins 8 caractères
     - il mélange des chiffres et des lettres
     - il contient au moins un caractère spécial
-    - il n'a pas été compromis
-
-    Un mot de passe est **compromis** s'il est connu comme ayant fuité sur Internet,
-    i.e. si l'outil
-
-    https://haveibeenpwned.com/Passwords
-
-    le renseigne comme "pwned".
 
     Etant donné le mot de passe <mot de passe non conforme>
     Alors il est non conforme
@@ -38,4 +30,3 @@ Fonctionnalité: Les mots de passe satisfont à la politique relative aux mots d
       | motdepassecompliqué       |
       | ufiDo_anCyx               |
       | blabli 89qw lala hI       |
-      | p@ssword1                 |
