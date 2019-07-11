@@ -12,6 +12,5 @@
     "**/__pycache__": true
   },
   "python.formatting.provider": "autopep8",
-  "python.linting.enabled": true,
-  "python.pythonPath": "venv\\Scripts\\python.exe"
+  "python.linting.enabled": true
 }
