@@ -1,10 +1,19 @@
 
 import graphene
+from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.tokens import default_token_generator
+from django.core.exceptions import ValidationError
+from django.utils.encoding import force_text
+from django.utils.http import urlsafe_base64_decode
 
 from saleor.account.models import User
 
-from saleor.graphql.core.mutations import CreateToken
+from saleor.graphql.core.mutations import CreateToken, ModelMutation
 from saleor.graphql.core.types import Error
+
+from shopozor.emails import send_activate_account_email, send_hacker_abuse_email_notification
+from shopozor.exceptions import HackerAbuseException
+from shopozor.models import HackerAbuseEvents
 
 
 class Login(CreateToken):
@@ -47,3 +56,62 @@ class Login(CreateToken):
             return Login(errors=[Error(message='USER_NOT_ADMIN')])
         else:
             return result
+
+
+class ConsumerCreateInput(graphene.InputObjectType):
+    email = graphene.String(
+        description="The unique email address of the user.")
+    password = graphene.String(description="The user password.")
+
+
+class ConsumerCreate(ModelMutation):
+    class Arguments:
+        input = ConsumerCreateInput(
+            description="Fields required to create a customer.", required=True
+        )
+
+    class Meta:
+        description = "Register a new consumer."
+        model = User
+
+    @classmethod
+    def save(cls, info, instance, cleaned_input):
+        try:
+            validate_password(instance.password)
+            instance.is_active = False
+            super().save(info, instance, cleaned_input)
+            send_activate_account_email(instance.pk)
+        except ValidationError as error:
+            errors = error.error_list
+            errors.insert(0, ValidationError("PASSWORD_NOT_COMPLIANT"))
+            raise ValidationError(errors)
+
+    @classmethod
+    def get_instance(cls, info, **data):
+        current_user = User.objects.filter(email=data.get("input")["email"])
+        if current_user:
+            current_user = current_user.get()
+            cls.hacker_abuse_filter(current_user)
+            object_id = graphene.Node.to_global_id(
+                "User", current_user.pk)
+            data["id"] = object_id
+
+        return super().get_instance(info, **data)
+
+    @classmethod
+    def perform_mutation(cls, _root, info, **data):
+        try:
+            return super().perform_mutation(_root, info, **data)
+        except HackerAbuseException as error:
+            cls.report_hacker_abuse(error.user)
+            return cls.success_response(error.model)
+
+    @classmethod
+    def hacker_abuse_filter(cls, current_user):
+        if current_user.is_active:
+            raise HackerAbuseException(current_user, cls._meta.model())
+
+    @staticmethod
+    def report_hacker_abuse(user):
+        send_hacker_abuse_email_notification(user.email)
+        HackerAbuseEvents(user=user).save()

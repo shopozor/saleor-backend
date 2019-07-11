@@ -1,5 +1,6 @@
 from saleor.settings import *
 from datetime import timedelta
+import dj_email_url
 
 if DEBUG:
     CORS_ORIGIN_ALLOW_ALL = True
@@ -30,11 +31,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
     {
         'NAME': 'shopozor.password_validation.NumberAndLetterValidator',
-    },
-    # This must be last in list because an exception is raised if the site is inacessible
-    {
-        'NAME': 'shopozor.password_validation.HasBeenPwndValidator',
-    },
+    }
 ]
 
 TEST_RUNNER = "unit_tests.runner.PytestTestRunner"

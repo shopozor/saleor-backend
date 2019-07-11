@@ -11,8 +11,11 @@ class NumberAndLetterValidator:
         self.error_string = "The password must contain at least one number and one letter."
         self.error_code = "number_letter_missing"
 
+    def is_valid_password(self, password):
+        return any(char.isdigit() for char in password) and any(char.isalpha() for char in password)
+
     def validate(self, password, user=None):
-        if not (any(char.isdigit() for char in password) and any(char.isalpha() for char in password)):
+        if not self.is_valid_password(password):
             raise ValidationError(
                 _(self.error_string),
                 code=self.error_code,
@@ -29,9 +32,12 @@ class SpecialCharacterValidator:
         self.error_string = "The password must contain at least one special character."
         self.error_code = "special_character_missing"
 
-    def validate(self, password, user=None):
+    def is_valid_password(self, password):
         password = "".join(password.split())
-        if not re.findall('[^A-Za-z0-9]', password):
+        return re.findall('[^A-Za-z0-9]', password)
+
+    def validate(self, password, user=None):
+        if not self.is_valid_password(password):
             raise ValidationError(
                 _(self.error_string),
                 code=self.error_code,
@@ -47,8 +53,9 @@ class HasBeenPwndValidator:
     def __init__(self):
         self.error_string = "The password has been pawned and is not safe anymore."
         self.error_code = "password_pwnd"
+        self.error_not_reachable = "pwnd_not_reachable"
 
-    def validate(self, password, user=None):
+    def is_valid_password(self, password):
         headers = {
             'user-agent': 'pypi.org/project/haveibeenpwnd/ v0.1', 'api-version': 2}
         range_url = 'https://api.pwnedpasswords.com/range/{}'
@@ -56,18 +63,20 @@ class HasBeenPwndValidator:
         prefix = hashed_password[:5]
         suffix = hashed_password[5:]
         # only send a prefix of 5 chars to haveibeenpwnd.com
+        response = requests.get(range_url.format(prefix), headers).text
+        return not suffix.upper() in response
+
+    def validate(self, password, user=None):
         try:
-            response = requests.get(range_url.format(prefix), headers).text
+            if not self.is_valid_password(password):
+                raise ValidationError(
+                    _(self.error_string),
+                    code=self.error_code,
+                )
         except requests.exceptions.RequestException:
             raise ValidationError(
                 _("We could not get a successful answer from haveibeenpwnd.com."),
-                code='pwnd_not_reachable',
-            )
-
-        if(suffix.upper() in response):
-            raise ValidationError(
-                _(self.error_string),
-                code=self.error_code,
+                code=self.error_not_reachable,
             )
 
     def get_help_text(self):

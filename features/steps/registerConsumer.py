@@ -1,17 +1,15 @@
-from behave import given, then, when
-from behave import use_fixture
+from behave import given, then, when, use_fixture
 from datetime import datetime, timedelta
 from django.core import mail
 from features.utils.auth.account_handling import get_current_encrypted_password, account_exists, is_active_account
 from features.utils.auth.credentials_checks import check_compulsory_login_credential_arguments, assertPasswordIsCompliant, assertPasswordIsNotCompliant
-from features.utils.auth.mail_confirmation import ActivationMailHandler, gather_email_activation_data, check_that_email_was_sent_to_user, check_that_email_is_received_soon_enough, check_compulsory_account_activation_credential_arguments
+from features.utils.auth.mail_confirmation import gather_email_activation_data, check_that_email_was_sent_to_user, check_that_email_is_received_soon_enough, check_compulsory_account_activation_credential_arguments
 from features.utils.graphql.loader import get_query_from_file
 from freezegun import freeze_time
 from saleor.account.models import User
 from shopozor.models import HackerAbuseEvents
+from test_utils.url_utils import url_activate
 from tests.api.utils import get_graphql_content
-
-activation_url_prefix = 'activate'
 
 
 def signup(client, **kwargs):
@@ -28,14 +26,14 @@ def activate_account(client, **kwargs):
     return get_graphql_content(response)
 
 
-@given(u'un nouveau client qui a reçu un lien d\'activation de compte')
+@given(u'un nouveau Consommateur qui a reçu un lien d\'activation de compte')
 def step_impl(context):
     context.current_user = context.unknown
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
     check_that_email_was_sent_to_user(
         context.test, context.current_user['email'])
-    context.credentials = gather_email_activation_data(activation_url_prefix)
+    context.credentials = gather_email_activation_data(url_activate())
     context.test.assertIsNotNone(context.credentials)
     context.email_reception_time = datetime.now()
 
@@ -48,10 +46,20 @@ def step_impl(context):
         context.response['data'], context.successful_account_confirmation['data'])
 
 
-@when(u'un client inconnu fait une demande d\'enregistrement avec un mot de passe conforme')
+@when(u'un Consommateur inconnu fait une demande d\'enregistrement avec un mot de passe conforme')
 def step_impl(context):
     context.current_user = context.unknown
     assertPasswordIsCompliant(context.current_user['password'])
+    test_client = context.test.client
+    context.response = signup(test_client, **context.current_user)
+
+
+@when(u'un Consommateur inconnu fait une demande d\'enregistrement avec un mot de passe non conforme')
+def step_impl(context):
+    context.current_user = context.unknown
+    context.current_user['password'] = 'password'
+    assertPasswordIsNotCompliant(
+        context.test, context.current_user['password'])
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
 
@@ -69,7 +77,7 @@ def step_impl(context):
     context.current_user = context.inactive_customer
     context.current_encrypted_password = get_current_encrypted_password(
         context.current_user['email'])
-    context.current_user['password'] = ''
+    context.current_user['password'] = 'password'
     assertPasswordIsNotCompliant(
         context.test, context.current_user['password'])
     test_client = context.test.client
@@ -80,6 +88,8 @@ def step_impl(context):
 def step_impl(context):
     # in this case, the choice of the password is irrelevant; it must only comply to the password policy
     context.current_user = context.consumer
+    context.current_encrypted_password = get_current_encrypted_password(
+        context.current_user['email'])
     assertPasswordIsCompliant(context.current_user['password'])
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
@@ -118,20 +128,24 @@ def step_impl(context):
     context.test.assertEqual(context.successful_signup, context.response)
     check_that_email_was_sent_to_user(
         context.test, context.current_user['email'])
-    credentials = gather_email_activation_data(activation_url_prefix)
+    credentials = gather_email_activation_data(url_activate())
     context.test.assertIsNotNone(credentials)
 
 
 @then(u'il obtient un message d\'erreur stipulant que son mot de passe n\'est pas conforme à la politique des mots de passe')
 def step_impl(context):
-    context.test.assertEqual(
-        context.password_not_compliant_response['data'], context.response['data'])
+    expected_error = {
+        'field': None,
+        'message': 'PASSWORD_NOT_COMPLIANT'
+    }
+    context.test.assertTrue(
+        expected_error in context.response['data']['consumerCreate']['errors'])
 
 
 @then(u'son compte est créé')
 def step_impl(context):
     context.test.assertEqual(
-        len(context.response['data']['customerCreate']['errors']), 0)
+        len(context.response['data']['consumerCreate']['errors']), 0)
     context.test.assertTrue(account_exists(context.current_user['email']))
 
 
@@ -176,7 +190,7 @@ def step_impl(context):
 
 @then(u'son mot de passe est sauvegardé')
 def step_impl(context):
-    user = User.objects.filter(email=context.unknown['email'])
+    user = User.objects.filter(email=context.current_user['email']).get()
     context.test.assertTrue(user.password)
 
 

@@ -8,11 +8,10 @@ from features.utils.auth.password_generation import RandomCompliantPasswordGener
 from features.utils.graphql.loader import get_query_from_file
 from freezegun import freeze_time
 from saleor.account.models import User
+from test_utils.url_utils import url_reset
 from tests.api.utils import get_graphql_content
 
 import features.types
-
-activation_url_prefix = 'reset'
 
 
 def reset_password(client, user_email):
@@ -52,7 +51,7 @@ def step_impl(context, persona):
         test_client, context.current_user['email'])
     check_that_email_was_sent_to_user(
         context.test, context.current_user['email'])
-    context.credentials = gather_email_activation_data(activation_url_prefix)
+    context.credentials = gather_email_activation_data(url_reset())
     context.test.assertIsNotNone(context.credentials)
     context.email_reception_time = datetime.now()
 
@@ -136,7 +135,7 @@ def step_impl(context, amount, unit):
 def step_impl(context):
     check_that_email_was_sent_to_user(
         context.test, context.current_user['email'])
-    credentials = gather_email_activation_data(activation_url_prefix)
+    credentials = gather_email_activation_data(url_reset())
     context.test.assertIsNotNone(credentials)
     context.test.assertEqual(
         context.successful_password_reset, context.response)
@@ -144,7 +143,7 @@ def step_impl(context):
 
 @then(u'son mot de passe reste inchangé')
 def step_impl(context):
-    user = User.objects.filter(email=context.current_user['email'])
+    user = User.objects.filter(email=context.current_user['email']).get()
     context.test.assertEqual(
         context.current_user['encrypted_password'], user.password)
 

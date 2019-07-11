@@ -9,6 +9,7 @@ GRAPHQL_QUERIES_FOLDER = os.path.join('features', 'graphql')
 
 INSTALLED_APPS.append('behave_django')
 INSTALLED_APPS.append('features')
+INSTALLED_APPS.append('test_utils')
 
 ACCEPTANCE_TESTING = True
 
@@ -28,3 +29,6 @@ GRAPHQL_JWT = {
     'JWT_SECRET_KEY': JWT_SECRET_KEY,
     'JWT_ALGORITHM': JWT_ALGORITHM
 }
+
+DOMAIN_NAME = "shopozor.ch"
+EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
