@@ -1,5 +1,5 @@
 class HackerAbuseException(Exception):
-    def __init__(self, user, instance):
+    def __init__(self, user, model):
         self.user = user
-        self.instance = instance
+        self.model = model
         super().__init__()
