@@ -1,10 +1,12 @@
 
 import graphene
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.tokens import default_token_generator
 from django.core.exceptions import ValidationError
+from django.utils.encoding import force_text
+from django.utils.http import urlsafe_base64_decode
 
 from saleor.account.models import User
-from saleor.account import models
 
 from saleor.graphql.core.mutations import CreateToken, ModelMutation
 from saleor.graphql.core.types import Error
@@ -70,7 +72,7 @@ class ConsumerCreate(ModelMutation):
 
     class Meta:
         description = "Register a new consumer."
-        model = models.User
+        model = User
 
     @classmethod
     def save(cls, info, instance, cleaned_input):
@@ -88,9 +90,10 @@ class ConsumerCreate(ModelMutation):
     def get_instance(cls, info, **data):
         current_user = User.objects.filter(email=data.get("input")["email"])
         if current_user:
+            current_user = current_user.get()
             cls.hacker_abuse_filter(current_user)
             object_id = graphene.Node.to_global_id(
-                "User", current_user.get().pk)
+                "User", current_user.pk)
             data["id"] = object_id
 
         return super().get_instance(info, **data)
@@ -101,12 +104,12 @@ class ConsumerCreate(ModelMutation):
             return super().perform_mutation(_root, info, **data)
         except HackerAbuseException as error:
             cls.report_hacker_abuse(error.user)
-            return cls.success_response(error.instance)
+            return cls.success_response(error.model)
 
     @classmethod
     def hacker_abuse_filter(cls, current_user):
-        if current_user.get().is_active:
-            raise HackerAbuseException(current_user.get(), cls._meta.model())
+        if current_user.is_active:
+            raise HackerAbuseException(current_user, cls._meta.model())
 
     @staticmethod
     def report_hacker_abuse(user):
