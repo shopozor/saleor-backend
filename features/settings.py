@@ -32,3 +32,5 @@ GRAPHQL_JWT = {
 
 DOMAIN_NAME = "shopozor.ch"
 EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
+
+PASSWORD_RESET_TIMEOUT_DAYS = 1

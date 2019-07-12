@@ -1,7 +1,6 @@
 
 import graphene
 from django.contrib.auth.password_validation import validate_password
-from django.contrib.auth.tokens import default_token_generator
 from django.core.exceptions import ValidationError
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
@@ -14,6 +13,7 @@ from saleor.graphql.core.types import Error
 from shopozor.emails import send_activate_account_email, send_hacker_abuse_email_notification
 from shopozor.exceptions import HackerAbuseException
 from shopozor.models import HackerAbuseEvents
+from shopozor.tokens import activation_token_generator
 
 
 class Login(CreateToken):
@@ -115,3 +115,44 @@ class ConsumerCreate(ModelMutation):
     def report_hacker_abuse(user):
         send_hacker_abuse_email_notification(user.email)
         HackerAbuseEvents(user=user).save()
+
+
+class ConsumerActivateInput(graphene.InputObjectType):
+    token = graphene.String(
+        description="A one-time token required to set the password.", required=True
+    )
+
+
+class ConsumerActivate(ModelMutation):
+    INVALID_TOKEN = "ACCOUNT_CONFIRMATION_LINK_EXPIRED"
+
+    class Arguments:
+        id = graphene.ID(
+            description="ID of a user to activate account whom.", required=True
+        )
+        input = ConsumerActivateInput(
+            description="Fields required to activate account.", required=True
+        )
+
+    class Meta:
+        description = "Activates user account."
+        model = User
+
+    @classmethod
+    def clean_input(cls, info, instance, data):
+        cleaned_input = super().clean_input(info, instance, data)
+        token = cleaned_input.pop("token")
+        if not activation_token_generator.check_token(instance, token):
+            raise ValidationError(ConsumerActivate.INVALID_TOKEN)
+        return cleaned_input
+
+    @classmethod
+    def save(cls, info, instance, cleaned_input):
+        instance.is_active = True
+        instance.save()
+
+    @classmethod
+    def get_instance(cls, info, **data):
+        data["id"] = graphene.Node.to_global_id(
+            "User", force_text(urlsafe_base64_decode(data.get("id"))))
+        return super().get_instance(info, **data)
