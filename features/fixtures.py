@@ -18,12 +18,6 @@ def permissions(context):
 
 
 @fixture
-def current_user(context):
-    yield context.current_user
-    del context.current_user
-
-
-@fixture
 def unknown(context):
     user_data = get_data_from_json_fixture(
         os.path.join('Authentication', 'Credentials', 'NewConsumer.json'))
