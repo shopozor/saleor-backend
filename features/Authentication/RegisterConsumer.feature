@@ -16,6 +16,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
   * de faire une demande pour fournir le Shopozor en tant que Producteur
   * de faire une demande pour gérer un ou plusieurs Shops en tant que Responsable
   * d'ouvrir un porte-monnaie virtuel
+  * d'avoir un historique de mes achats
   * de stocker mes coordonnées géographiques pour e.g. filtrer automatiquement les Produits / Shops
     les plus proches de chez moi
   * de stocker mes coordonnées pour pré-remplir les formulaires de paiement en ligne
