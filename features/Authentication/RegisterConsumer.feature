@@ -105,7 +105,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et l'incident est enregistré dans un journal
     Et son mot de passe n'est pas sauvegardé
 
-  @wip
+
   Scénario: Le nouveau Consommateur active son compte dans les temps
 
     Au moment où l'utilisateur suit son lien d'activation, il s'invalide et son compte
@@ -117,7 +117,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et son lien d'activation est invalidé
     Mais il n'est pas identifié
 
-  @wip
+
   Scénario: Le nouveau Consommateur active son compte une deuxième fois
 
     Le lien d'activation de compte ne peut être utilisé qu'une seule fois,
@@ -128,7 +128,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Lorsqu'il l'active pour la deuxième fois avant l'expiration du lien
     Alors il obtient un message d'erreur stipulant que le lien a expiré
 
-  @wip
+
   Scénario: Le nouveau Consommateur active son compte trop tard
 
     En plus de n'être utilisable qu'une seule fois, le lien expire après un certain temps.
