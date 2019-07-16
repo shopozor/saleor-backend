@@ -1,11 +1,11 @@
 import pytest
 import re
 
-from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
 from django.utils.http import urlsafe_base64_decode
 from saleor.account.models import User
 from shopozor.emails import send_activate_account_email, send_hacker_abuse_email_notification, get_email_base_context
+from shopozor.tokens import activation_token_generator
 from test_utils.regex_utils import regex_url_uid_token
 from test_utils.url_utils import url_activate
 
@@ -37,7 +37,7 @@ def test_activate_account_email_correct_url(customer_user):
     activate_regex = re.escape(url_activate()) + regex_url_uid_token()
     match = re.search(activate_regex, mail_sent)
 
-    assert default_token_generator.check_token(
+    assert activation_token_generator.check_token(
         customer_user, match.group('token'))
 
     uid_decoded = urlsafe_base64_decode(match.group('uidb64')).decode()

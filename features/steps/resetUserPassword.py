@@ -1,4 +1,5 @@
 from behave import given, then, when
+from copy import deepcopy
 from datetime import datetime, timedelta
 from django.core import mail
 from features.utils.auth.account_handling import get_current_encrypted_password
@@ -79,7 +80,7 @@ def step_impl(context, persona):
 
 @when(u'un utilisateur inconnu fait une demande de réinitialisation de mot de passe')
 def step_impl(context):
-    context.current_user = context.unknown
+    context.current_user = deepcopy(context.unknown)
     test_client = context.test.test_client
     context.response = reset_password(
         test_client, context.current_user['email'])

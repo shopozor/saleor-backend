@@ -8,6 +8,21 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
   je veux pouvoir y créer un compte avec un e-mail et un mot de passe,  
   afin d'avoir accès à toutes ses fonctionnalités.*  
 
+  Un Consommateur n'a pas besoin de compte sur le Shopozor pour faire ses
+  achats, auquel cas la spécification y fait référence en tant que "Incognito"
+  (cf. fonctionnalités relatives au Consommateur pour plus de détails).
+  En tant que Consommateur, un compte me permet :
+
+  * de faire une demande pour fournir le Shopozor en tant que Producteur
+  * de faire une demande pour gérer un ou plusieurs Shops en tant que Responsable
+  * d'ouvrir un porte-monnaie virtuel
+  * d'avoir un historique de mes achats
+  * de stocker mes coordonnées géographiques pour e.g. filtrer automatiquement les Produits / Shops
+    les plus proches de chez moi
+  * de stocker mes coordonnées pour pré-remplir les formulaires de paiement en ligne
+  * de souscrire aux notifications push du Shopozor (e.g. si une commande doit être modifiée après paiement)
+  * de souscrire à des abonnements proposant certains avantages commerciaux
+
   ![Processus d'enregistrement](UserRegistration-fr.png)
 
   # Nous avons deux possibilités :
@@ -40,14 +55,12 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et son mot de passe est sauvegardé
     Mais son compte est inactif
 
-
   Scénario: Un nouveau Consommateur s'enregistre avec un mot de passe non conforme
 
     Lorsqu'un Consommateur inconnu fait une demande d'enregistrement avec un mot de passe non conforme
     Alors il obtient un message d'erreur stipulant que son mot de passe n'est pas conforme à la politique des mots de passe
     Et son compte n'est pas créé
     Et il ne reçoit pas d'e-mail d'activation de compte
-
 
   @fixture.user-accounts  
   Scénario: Le Consommateur a déjà un compte inactif et propose un mot de passe conforme
@@ -62,7 +75,6 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et son mot de passe est sauvegardé
     Et son compte reste inactif
 
-
   @fixture.user-accounts
   Scénario: Le Consommateur a déjà un compte inactif et propose un mot de passe non conforme
 
@@ -75,7 +87,6 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et son mot de passe n'est pas sauvegardé
     Et son compte reste inactif  
     Et il ne reçoit pas d'e-mail d'activation de compte
-
 
   @HackerAbuse @fixture.user-accounts
   Scénario: Un utilisateur s'enregistre avec l'e-mail d'un compte actif
@@ -95,7 +106,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et l'incident est enregistré dans un journal
     Et son mot de passe n'est pas sauvegardé
 
-  @wip
+
   Scénario: Le nouveau Consommateur active son compte dans les temps
 
     Au moment où l'utilisateur suit son lien d'activation, il s'invalide et son compte
@@ -107,7 +118,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et son lien d'activation est invalidé
     Mais il n'est pas identifié
 
-  @wip
+
   Scénario: Le nouveau Consommateur active son compte une deuxième fois
 
     Le lien d'activation de compte ne peut être utilisé qu'une seule fois,
@@ -118,7 +129,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Lorsqu'il l'active pour la deuxième fois avant l'expiration du lien
     Alors il obtient un message d'erreur stipulant que le lien a expiré
 
-  @wip
+
   Scénario: Le nouveau Consommateur active son compte trop tard
 
     En plus de n'être utilisable qu'une seule fois, le lien expire après un certain temps.

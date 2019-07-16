@@ -1,4 +1,5 @@
 from behave import given, then, when, use_fixture
+from copy import deepcopy
 from datetime import datetime, timedelta
 from django.core import mail
 from features.utils.auth.account_handling import get_current_encrypted_password, account_exists, is_active_account
@@ -21,14 +22,14 @@ def signup(client, **kwargs):
 
 def activate_account(client, **kwargs):
     check_compulsory_account_activation_credential_arguments(kwargs)
-    query = get_query_from_file('activateCustomer.graphql')
+    query = get_query_from_file('activateConsumer.graphql')
     response = client.post_graphql(query, kwargs)
     return get_graphql_content(response)
 
 
 @given(u'un nouveau Consommateur qui a reçu un lien d\'activation de compte')
 def step_impl(context):
-    context.current_user = context.unknown
+    context.current_user = deepcopy(context.unknown)
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
     check_that_email_was_sent_to_user(
@@ -48,7 +49,7 @@ def step_impl(context):
 
 @when(u'un Consommateur inconnu fait une demande d\'enregistrement avec un mot de passe conforme')
 def step_impl(context):
-    context.current_user = context.unknown
+    context.current_user = deepcopy(context.unknown)
     assertPasswordIsCompliant(context.current_user['password'])
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
@@ -56,7 +57,7 @@ def step_impl(context):
 
 @when(u'un Consommateur inconnu fait une demande d\'enregistrement avec un mot de passe non conforme')
 def step_impl(context):
-    context.current_user = context.unknown
+    context.current_user = deepcopy(context.unknown)
     context.current_user['password'] = 'password'
     assertPasswordIsNotCompliant(
         context.test, context.current_user['password'])
@@ -66,7 +67,7 @@ def step_impl(context):
 
 @when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte inactif et un mot de passe conforme')
 def step_impl(context):
-    context.current_user = context.inactive_customer
+    context.current_user = deepcopy(context.inactive_customer)
     assertPasswordIsCompliant(context.current_user['password'])
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
@@ -74,7 +75,7 @@ def step_impl(context):
 
 @when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte inactif et un mot de passe non conforme')
 def step_impl(context):
-    context.current_user = context.inactive_customer
+    context.current_user = deepcopy(context.inactive_customer)
     context.current_encrypted_password = get_current_encrypted_password(
         context.current_user['email'])
     context.current_user['password'] = 'password'
@@ -87,7 +88,7 @@ def step_impl(context):
 @when(u'un utilisateur fait une demande d\'enregistrement avec l\'e-mail d\'un compte actif et un mot de passe conforme')
 def step_impl(context):
     # in this case, the choice of the password is irrelevant; it must only comply to the password policy
-    context.current_user = context.consumer
+    context.current_user = deepcopy(context.consumer)
     context.current_encrypted_password = get_current_encrypted_password(
         context.current_user['email'])
     assertPasswordIsCompliant(context.current_user['password'])
@@ -203,7 +204,7 @@ def step_impl(context):
 @then(u'il n\'est pas identifié')
 def step_impl(context):
     context.test.assertFalse(
-        'token' in context.response['data']['customerActivate'])
+        'token' in context.response['data']['consumerActivate'])
 
 
 @then(u'son lien d\'activation est invalidé')
