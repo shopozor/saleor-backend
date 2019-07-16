@@ -30,7 +30,7 @@ def activate_account(client, **kwargs):
 @given(u'un nouveau Consommateur qui a reçu un lien d\'activation de compte')
 def step_impl(context):
     context.current_user = deepcopy(context.unknown)
-    test_client = deepcopy(context.test.client)
+    test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
     check_that_email_was_sent_to_user(
         context.test, context.current_user['email'])
@@ -41,7 +41,7 @@ def step_impl(context):
 
 @given(u'qui a déjà activé son compte')
 def step_impl(context):
-    test_client = deepcopy(context.test.client)
+    test_client = context.test.client
     context.response = activate_account(test_client, **context.credentials)
     context.test.assertEqual(
         context.response['data'], context.successful_account_confirmation['data'])
@@ -51,7 +51,7 @@ def step_impl(context):
 def step_impl(context):
     context.current_user = deepcopy(context.unknown)
     assertPasswordIsCompliant(context.current_user['password'])
-    test_client = deepcopy(context.test.client)
+    test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
 
 
@@ -61,7 +61,7 @@ def step_impl(context):
     context.current_user['password'] = 'password'
     assertPasswordIsNotCompliant(
         context.test, context.current_user['password'])
-    test_client = deepcopy(context.test.client)
+    test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
 
 
@@ -69,7 +69,7 @@ def step_impl(context):
 def step_impl(context):
     context.current_user = deepcopy(context.inactive_customer)
     assertPasswordIsCompliant(context.current_user['password'])
-    test_client = deepcopy(context.test.client)
+    test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
 
 
@@ -81,7 +81,7 @@ def step_impl(context):
     context.current_user['password'] = 'password'
     assertPasswordIsNotCompliant(
         context.test, context.current_user['password'])
-    test_client = deepcopy(context.test.client)
+    test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
 
 
@@ -92,7 +92,7 @@ def step_impl(context):
     context.current_encrypted_password = get_current_encrypted_password(
         context.current_user['email'])
     assertPasswordIsCompliant(context.current_user['password'])
-    test_client = deepcopy(context.test.client)
+    test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
 
 
@@ -101,7 +101,7 @@ def step_impl(context, amount, unit):
     expiration_delta_in_seconds = amount * unit
     check_that_email_is_received_soon_enough(
         context, expiration_delta_in_seconds)
-    test_client = deepcopy(context.test.client)
+    test_client = context.test.client
     context.response = activate_account(test_client, **context.credentials)
 
 
@@ -111,7 +111,7 @@ def step_impl(context, amount, unit):
     datetime_after_expiration = context.email_reception_time + \
         timedelta(seconds=expiration_delta_in_seconds)
     with freeze_time(datetime_after_expiration):
-        test_client = deepcopy(context.test.client)
+        test_client = context.test.client
         context.response = activate_account(test_client, **context.credentials)
 
 
@@ -120,7 +120,7 @@ def step_impl(context):
     # we don't need to check that the link hasn't expired
     # because we are guaranteed to have waited a very little
     # amount of time here
-    test_client = deepcopy(context.test.client)
+    test_client = context.test.client
     context.response = activate_account(test_client, **context.credentials)
 
 
@@ -209,7 +209,7 @@ def step_impl(context):
 
 @then(u'son lien d\'activation est invalidé')
 def step_impl(context):
-    test_client = deepcopy(context.test.client)
+    test_client = context.test.client
     response = activate_account(test_client, **context.credentials)
     context.test.assertEqual(
         context.expired_account_confirmation_link, response)
