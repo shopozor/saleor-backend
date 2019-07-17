@@ -7,6 +7,8 @@ Fonctionnalité: Un Incognito visite un Shop
   je veux pouvoir entrer dans un Shop  
   afin d'y remplir un panier.**  
 
+  Entrer dans un Shop ne nécessite pas de compte. Un compte rend juste l'utilisation du Shopozor plus confortable.
+
   # Il y a essentiellement deux possibilités pour récupérer le catalogue des Produits du serveur:
   # 1. Eager mode: aller chercher toutes les données disponibles. La réponse à la requête est dans ce cas assez grosse, mais
   #    il n'y a qu'une seule requête. Au chargement de l'interface du Consommateur, cette requête serait donc
@@ -30,9 +32,6 @@ Fonctionnalité: Un Incognito visite un Shop
   # Nous avons décidé de partir sur le lazy mode. Des benchmarks seront effectués pour valider l'approche.
 
   Contexte: L'utilisateur est inconnu
-
-    Entrer dans un Shop ne nécessite pas de compte. Un compte rend juste
-    l'utilisation du Shopozor plus confortable.
 
     Etant donné un Consommateur non identifié
 
@@ -61,23 +60,3 @@ Fonctionnalité: Un Incognito visite un Shop
     Alors il en obtient tous les Formats disponibles avec leur stock
     Et une description détaillée
     Et le Producteur associé
-
-  Scénario: Incognito ajoute un Produit dans son Panier
-    # TODO: à la création d'un Panier, un draftOrder doit être initialisé
-    # TODO: puisque les draftOrderLines doivent être associées à un draftOrder
-
-  Scénario: Incognito supprime un Produit de son Panier
-
-  Scénario: Incognito modifie la quantité d'un Produit dans son Panier
-
-  Scénario: Incognito remplit son panier
-
-    Les Produits d'un même panier ne peuvent appartenir qu'à un et un seul Shop.
-
-    # ceci correspond à créer un draftOrder et un draftOrderLine
-    # draftOrderCreate
-    # draftOrderComplete
-    # draftOrderDelete
-    # draftOrderUpdate
-    # draftOrderLinesCreate --> associated with draftOrder; it receives an array of (quantity, variant)
-    # draftOrderLinesCreate creates a list of orderLines; an orderLine is essentially a quantity and a variant
