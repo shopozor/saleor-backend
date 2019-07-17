@@ -44,6 +44,12 @@ Fonctionnalité: Un Consommateur passe une commande dans un Shop
   # TODO: à quel moment une commande se lie-t-elle à un utilisateur? <-- au moment du checkout, car c'est là que le client
   # envoie une requête au serveur pour communiquer le contenu de la commande (à vérifier dans saleor comment c'est fait!)
 
+  Contexte: Incognito a rempli son Panier dans un Shop
+
+    Etant donné un Consommateur non identifié
+    Et qui est entré dans un Shop
+    Et qui y a rempli un Panier
+
   Scénario: Incognito passe à la caisse
 
     Entrer dans un Shop ne nécessite pas de compte. Un compte rend juste

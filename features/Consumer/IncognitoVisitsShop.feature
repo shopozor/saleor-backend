@@ -5,7 +5,7 @@ Fonctionnalité: Un Incognito visite un Shop
 
   **En tant qu'Incognito,  
   je veux pouvoir entrer dans un Shop  
-  afin d'y remplir un panier.**  
+  pour voir quels Produits il propose et faire connaissance avec ses Producteurs.**  
 
   Entrer dans un Shop ne nécessite pas de compte. Un compte rend juste l'utilisation du Shopozor plus confortable.
 
@@ -31,7 +31,7 @@ Fonctionnalité: Un Incognito visite un Shop
   # représenter sur nos interfaces et nous n'aurons pas de worker threads à disposition.
   # Nous avons décidé de partir sur le lazy mode. Des benchmarks seront effectués pour valider l'approche.
 
-  Contexte: L'utilisateur est inconnu
+  Contexte: Le Consommateur est Incognito
 
     Etant donné un Consommateur non identifié
 
