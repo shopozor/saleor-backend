@@ -1,6 +1,6 @@
 # language: fr
 
-@initial-release @consumer @wip
+@initial-release @consumer @wip @in-preparation
 Fonctionnalité: Incognito remplit son Panier
 
   **En tant qu'Incognito,  

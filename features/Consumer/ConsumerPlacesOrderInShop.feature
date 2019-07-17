@@ -1,6 +1,6 @@
 # language: fr
 
-@initial-release @consumer @wip
+@initial-release @consumer @wip @in-preparation
 Fonctionnalité: Un Consommateur passe une commande dans un Shop
 
   **En tant que Consommateur,  
