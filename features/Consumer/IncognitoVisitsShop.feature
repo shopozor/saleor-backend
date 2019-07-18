@@ -40,7 +40,10 @@ Fonctionnalité: Un Incognito visite un Shop
     La liste des Shops permet à Incognito de les situer sur une carte et de s'en faire
     une idée générale sur la base de leur description.
 
+    # for computing lat / long use https://pypi.org/project/geopy/ with https://github.com/openstreetmap/Nominatim
+
     Lorsqu'Incognito demande quels Shops il peut visiter
+    # TODO: what kind of data do our frontends need? lat/long? address?
     Alors il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale
 
   Scénario: Incognito visite un Shop
