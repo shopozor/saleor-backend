@@ -41,6 +41,9 @@ Fonctionnalité: Un Consommateur passe une commande dans un Shop
   commande.
 
 
+  # TODO: il faudrait mettre un timer pour le paiement des commandes; e.g. si la commande n'a pas été (in)validée dans les
+  # 10 minutes, alors elle est annulée
+
   # TODO: à quel moment une commande se lie-t-elle à un utilisateur? <-- au moment du checkout, car c'est là que le client
   # envoie une requête au serveur pour communiquer le contenu de la commande (à vérifier dans saleor comment c'est fait!)
 
