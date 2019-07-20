@@ -1,6 +1,7 @@
 # language: fr
 
 @initial-release @consumer @wip
+@fixture.shops
 Fonctionnalité: Un Incognito visite un Shop
 
   **En tant qu'Incognito,  
@@ -31,9 +32,9 @@ Fonctionnalité: Un Incognito visite un Shop
   # représenter sur nos interfaces et nous n'aurons pas de worker threads à disposition.
   # Nous avons décidé de partir sur le lazy mode. Des benchmarks seront effectués pour valider l'approche.
 
-  Contexte: Le Consommateur est Incognito
+  Contexte: L'utilisateur est Incognito
 
-    Etant donné un Consommateur non identifié
+    Etant donné un utilisateur non identifié sur le Shopozor
 
   Scénario: Incognito obtient la liste des Shops
 
@@ -41,7 +42,6 @@ Fonctionnalité: Un Incognito visite un Shop
     une idée générale sur la base de leur description.
 
     Lorsqu'Incognito demande quels Shops il peut visiter
-    # our current Map.vue component makes use of lat/long coordinates
     Alors il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale
 
   Scénario: Incognito visite un Shop
