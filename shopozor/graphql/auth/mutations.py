@@ -1,16 +1,16 @@
 
 import graphene
 from django.contrib.auth.password_validation import validate_password
-from django.core.exceptions import ValidationError
+from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
 
 from saleor.account.models import User
 
-from saleor.graphql.core.mutations import CreateToken, ModelMutation
+from saleor.graphql.core.mutations import CreateToken, ModelMutation, BaseMutation
 from saleor.graphql.core.types import Error
 
-from shopozor.emails import send_activate_account_email, send_hacker_abuse_email_notification
+from shopozor.emails import send_activate_account_email, send_hacker_abuse_email_notification, send_password_reset
 from shopozor.exceptions import HackerAbuseException
 from shopozor.models import HackerAbuseEvents
 from shopozor.tokens import activation_token_generator
@@ -156,3 +156,21 @@ class ConsumerActivate(ModelMutation):
         data["id"] = graphene.Node.to_global_id(
             "User", force_text(urlsafe_base64_decode(data.get("id"))))
         return super().get_instance(info, **data)
+
+
+class PasswordReset(BaseMutation):
+    class Arguments:
+        email = graphene.String(description="Email", required=True)
+
+    class Meta:
+        description = "Sends password reset email"
+
+    @classmethod
+    def perform_mutation(cls, _root, info, email):
+        try:
+            user = User.objects.get(email=email)
+            send_password_reset(user)
+        except ObjectDoesNotExist:
+            pass
+
+        return PasswordReset()
