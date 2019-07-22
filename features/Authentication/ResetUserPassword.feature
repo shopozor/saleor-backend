@@ -1,6 +1,6 @@
 # language: fr
 
-@initial-release @auth @wip
+@initial-release @auth
 @fixture.password-reset
 Fonctionnalité: L'utilisateur réinitialise son mot de passe
 
@@ -38,9 +38,9 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
 
     Lorsqu'un utilisateur inconnu fait une demande de réinitialisation de mot de passe
     Alors il ne reçoit pas d'e-mail de réinitialisation de compte
-    Et l'incident est enregistré dans un journal
     Mais il n'obtient aucun message d'erreur
 
+@wip
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur définit un mot de passe conforme dans les temps
 
@@ -64,6 +64,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
       | Rex          |
       | Softozor     |
 
+@wip
   @fixture.user-accounts @HackerAbuse
   Plan du Scénario: L'utilisateur définit un mot de passe non conforme dans les temps
 
@@ -88,6 +89,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
       | Rex          |
       | Softozor     |
 
+@wip
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur définit son mot de passe une deuxième fois avec le même lien
 
@@ -107,6 +109,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
       | Rex          |
       | Softozor     |
 
+@wip
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur définit son mot de passe trop tard
 

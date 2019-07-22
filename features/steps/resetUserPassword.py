@@ -47,7 +47,7 @@ def registered_user(context, persona):
 @given(u'un {persona:PersonaType} qui a reçu un lien de réinitialisation de mot de passe')
 def step_impl(context, persona):
     context.current_user = registered_user(context, persona)
-    test_client = context.test.test_client
+    test_client = context.test.client
     context.response = reset_password(
         test_client, context.current_user['email'])
     check_that_email_was_sent_to_user(
@@ -62,7 +62,7 @@ def step_impl(context):
     password_generator = RandomCompliantPasswordGenerator()
     context.credentials['password'] = password_generator.get_compliant_password()
     assertPasswordIsCompliant(context.credentials['password'])
-    test_client = context.test.test_client
+    test_client = context.test.client
     response = set_new_password(test_client, **context.credentials)
     context.test.assertEqual(
         response, context.successful_set_password)
@@ -73,7 +73,7 @@ def step_impl(context):
 @when(u'un {persona:PersonaType} enregistré fait une demande de réinitialisation de mot de passe')
 def step_impl(context, persona):
     context.current_user = registered_user(context, persona)
-    test_client = context.test.test_client
+    test_client = context.test.client
     context.response = reset_password(
         test_client, context.current_user['email'])
 
@@ -81,7 +81,7 @@ def step_impl(context, persona):
 @when(u'un utilisateur inconnu fait une demande de réinitialisation de mot de passe')
 def step_impl(context):
     context.current_user = deepcopy(context.unknown)
-    test_client = context.test.test_client
+    test_client = context.test.client
     context.response = reset_password(
         test_client, context.current_user['email'])
 
@@ -94,7 +94,7 @@ def step_impl(context, amount, unit):
     password_generator = RandomCompliantPasswordGenerator()
     context.credentials['password'] = password_generator.get_compliant_password()
     assertPasswordIsCompliant(context.credentials['password'])
-    test_client = context.test.test_client
+    test_client = context.test.client
     context.response = set_new_password(test_client, **context.credentials)
 
 
@@ -105,7 +105,7 @@ def step_impl(context, amount, unit):
         context, expiration_delta_in_seconds)
     context.credentials['password'] = 'non-compliant-password'
     assertPasswordIsNotCompliant(context.test, context.credentials['password'])
-    test_client = context.test.test_client
+    test_client = context.test.client
     context.response = set_new_password(test_client, **context.credentials)
 
 
@@ -114,7 +114,7 @@ def step_impl(context):
     password_generator = RandomCompliantPasswordGenerator()
     context.credentials['password'] = password_generator.get_compliant_password()
     assertPasswordIsCompliant(context.credentials['password'])
-    test_client = context.test.test_client
+    test_client = context.test.client
     context.response = set_new_password(test_client, **context.credentials)
 
 
@@ -128,7 +128,7 @@ def step_impl(context, amount, unit):
         context.credentials['password'] = password_generator.get_compliant_password(
         )
         assertPasswordIsCompliant(context.credentials['password'])
-        test_client = context.test.test_client
+        test_client = context.test.client
         context.response = set_new_password(test_client, **context.credentials)
 
 
@@ -176,7 +176,7 @@ def step_impl(context):
     password_generator = RandomCompliantPasswordGenerator()
     context.credentials['password'] = password_generator.get_compliant_password()
     assertPasswordIsCompliant(context.credentials['password'])
-    test_client = context.test.test_client
+    test_client = context.test.client
     response = set_new_password(test_client, **context.credentials)
     context.test.assertEqual(
         context.expired_password_reset_link, response)
