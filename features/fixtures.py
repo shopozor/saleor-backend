@@ -215,5 +215,7 @@ def password_reset(context):
 @fixture
 def shops(context):
     shops = ShopFactory.create_batch(10)
+    for shop in shops:
+        shop.save()
     context.shops = shops
     return shops
