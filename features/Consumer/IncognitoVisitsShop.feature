@@ -49,7 +49,8 @@ Fonctionnalité: Un Incognito visite un Shop
     Incognito peut entrer dans un Shop pour y consulter son catalogue de Produits.
 
     Lorsqu'Incognito visite un Shop
-    Alors il obtient la liste de tous les Produits qui y sont vendus
+    # TODO: check that all the Products are assigned to the selected Shop!
+    Alors il obtient la liste de tous les Produits qui y sont publiés
 
   Scénario: Chaque Produit est détaillé
 
