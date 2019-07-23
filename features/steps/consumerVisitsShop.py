@@ -45,7 +45,7 @@ def step_impl(context):
                                                       latitude=shop_data['geocoordinates']['latitude'], longitude=shop_data['geocoordinates']['longitude']).exists())
 
 
-@then(u'il obtient la liste de tous les Produits qui y sont vendus')
+@then(u'il obtient la liste de tous les Produits qui y sont publiés')
 def step_impl(context):
     # 0. prepare product fixtures to allow for this step!
     # 1. get selected shop from context
