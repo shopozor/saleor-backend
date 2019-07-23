@@ -179,4 +179,4 @@ def step_impl(context):
     test_client = context.test.client
     response = set_new_password(test_client, **context.credentials)
     context.test.assertEqual(
-        context.expired_password_reset_link, response)
+        context.expired_link, response['data']['setPassword'])

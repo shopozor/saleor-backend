@@ -1,6 +1,8 @@
 
 import graphene
+from copy import copy
 from django.contrib.auth.password_validation import validate_password
+from django.contrib.auth.tokens import default_token_generator
 from django.core.exceptions import ValidationError, ObjectDoesNotExist
 from django.utils.encoding import force_text
 from django.utils.http import urlsafe_base64_decode
@@ -13,7 +15,12 @@ from saleor.graphql.core.types import Error
 from shopozor.emails import send_activate_account_email, send_hacker_abuse_email_notification, send_password_reset
 from shopozor.exceptions import HackerAbuseException
 from shopozor.models import HackerAbuseEvents
-from shopozor.tokens import activation_token_generator
+from shopozor.tokens import activation_token_generator, INVALID_TOKEN
+
+
+def to_node_global_id(**data):
+    return graphene.Node.to_global_id(
+        "User", force_text(urlsafe_base64_decode(data.get("id"))))
 
 
 class Login(CreateToken):
@@ -124,8 +131,6 @@ class ConsumerActivateInput(graphene.InputObjectType):
 
 
 class ConsumerActivate(ModelMutation):
-    INVALID_TOKEN = "ACCOUNT_CONFIRMATION_LINK_EXPIRED"
-
     class Arguments:
         id = graphene.ID(
             description="ID of a user to activate account whom.", required=True
@@ -143,7 +148,7 @@ class ConsumerActivate(ModelMutation):
         cleaned_input = super().clean_input(info, instance, data)
         token = cleaned_input.pop("token")
         if not activation_token_generator.check_token(instance, token):
-            raise ValidationError(ConsumerActivate.INVALID_TOKEN)
+            raise ValidationError(INVALID_TOKEN)
         return cleaned_input
 
     @classmethod
@@ -153,8 +158,7 @@ class ConsumerActivate(ModelMutation):
 
     @classmethod
     def get_instance(cls, info, **data):
-        data["id"] = graphene.Node.to_global_id(
-            "User", force_text(urlsafe_base64_decode(data.get("id"))))
+        data["id"] = to_node_global_id(**data)
         return super().get_instance(info, **data)
 
 
@@ -174,3 +178,50 @@ class PasswordReset(BaseMutation):
             pass
 
         return PasswordReset()
+
+
+class SetPasswordInput(graphene.InputObjectType):
+    token = graphene.String(
+        description="A one-time token required to set the password.", required=True
+    )
+    password = graphene.String(description="Password", required=True)
+
+
+class SetPassword(ModelMutation):
+    class Arguments:
+        id = graphene.ID(
+            description="ID of a user to set password whom.", required=True
+        )
+        input = SetPasswordInput(
+            description="Fields required to set password.", required=True
+        )
+
+    class Meta:
+        description = "Sets user password."
+        model = User
+
+    @classmethod
+    def clean_input(cls, info, instance, data):
+        cleaned_input = super().clean_input(info, instance, data)
+        token = cleaned_input.pop("token")
+        if not default_token_generator.check_token(instance, token):
+            raise ValidationError(INVALID_TOKEN)
+        return cleaned_input
+
+    @classmethod
+    def save(cls, info, instance, cleaned_input):
+        # the set_password actually encodes the password. The instance already contains
+        # the correct password after: instance = cls.construct_instance(instance, cleaned_input)
+        try:
+            validate_password(cleaned_input["password"])
+            instance.set_password(cleaned_input["password"])
+            instance.save()
+        except ValidationError as error:
+            errors = error.error_list
+            errors.insert(0, ValidationError("PASSWORD_NOT_COMPLIANT"))
+            raise ValidationError(errors)
+
+    @classmethod
+    def get_instance(cls, info, **data):
+        data["id"] = to_node_global_id(**data)
+        return super().get_instance(info, **data)

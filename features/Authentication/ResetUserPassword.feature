@@ -40,7 +40,6 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
     Alors il ne reçoit pas d'e-mail de réinitialisation de compte
     Mais il n'obtient aucun message d'erreur
 
-@wip
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur définit un mot de passe conforme dans les temps
 
@@ -79,7 +78,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
     Etant donné un <utilisateur> qui a reçu un lien de réinitialisation de mot de passe
     Lorsqu'il définit un mot de passe non conforme au plus tard 1 jour après sa réception
     Alors son mot de passe reste inchangé
-    Et son lien d'activation est invalidé
+    Et son lien de réinitialisation est invalidé
 
     Exemples:
       | utilisateur  |
@@ -89,7 +88,6 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
       | Rex          |
       | Softozor     |
 
-@wip
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur définit son mot de passe une deuxième fois avec le même lien
 
@@ -109,7 +107,6 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
       | Rex          |
       | Softozor     |
 
-@wip
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur définit son mot de passe trop tard
 
