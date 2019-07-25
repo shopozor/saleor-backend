@@ -47,8 +47,8 @@ def step_impl(context):
 
 @then(u'il obtient la liste de tous les Produits qui y sont publiés')
 def step_impl(context):
-    # 0. prepare product fixtures to allow for this step!
-    # 1. get selected shop from context
+    selected_shop = context.selected_shop
     # 2. get products from selected shop
+
     # 3. compare products' properties with those received in the response (id, name, variants, category, productType)
     raise NotImplementedError('step not yet implemented')

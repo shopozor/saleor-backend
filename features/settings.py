@@ -12,7 +12,7 @@ PATH_TO_SALEOR_JSON_DB = os.path.join(
 SALEOR_PLACEHOLDERS_DIR = os.path.join(
     SALEOR_PROJECT_ROOT, "saleor", "static", "placeholders")
 PATH_TO_SHOPOZOR_JSON_DB = os.path.join(
-    PROJECT_ROOT, 'features', 'static', 'populatedb_shops.json')
+    PROJECT_ROOT, 'features', 'fixtures', 'Shops.json')
 
 FIXTURES_FOLDER = os.path.join('features', 'fixtures')
 GRAPHQL_QUERIES_FOLDER = os.path.join('features', 'graphql')
