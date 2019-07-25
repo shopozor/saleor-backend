@@ -4,6 +4,16 @@ import json
 from os import environ
 import os.path
 
+SALEOR_PROJECT_ROOT = PROJECT_ROOT
+PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), ".."))
+
+PATH_TO_SALEOR_JSON_DB = os.path.join(
+    SALEOR_PROJECT_ROOT, "saleor", "static", "populatedb_data.json")
+SALEOR_PLACEHOLDERS_DIR = os.path.join(
+    SALEOR_PROJECT_ROOT, "saleor", "static", "placeholders")
+PATH_TO_SHOPOZOR_JSON_DB = os.path.join(
+    PROJECT_ROOT, 'features', 'static', 'populatedb_shops.json')
+
 FIXTURES_FOLDER = os.path.join('features', 'fixtures')
 GRAPHQL_QUERIES_FOLDER = os.path.join('features', 'graphql')
 

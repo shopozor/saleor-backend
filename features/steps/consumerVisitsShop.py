@@ -35,7 +35,7 @@ def step_impl(context):
 
 @then(u'il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale')
 def step_impl(context):
-    expected_shops = context.shops
+    expected_shops = Shop.objects.all()
     shop_edges_data = context.response['data']['shops']['edges']
     context.test.assertEqual(expected_shops.count(), len(shop_edges_data))
 

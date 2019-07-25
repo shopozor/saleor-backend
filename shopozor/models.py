@@ -1,5 +1,6 @@
 from django.db import models
 from saleor.account.models import User
+from saleor.product.models import ProductVariant
 from saleor.core.permissions import MODELS_PERMISSIONS
 
 MODELS_PERMISSIONS.append('account.manage_producers')
@@ -15,4 +16,5 @@ class HackerAbuseEvents(models.Model):
 
 class Shop(models.Model):
     # TODO: lat / long field --> DecimalField(max_digits=9, decimal_places=6)
-    pass
+    product_variants = models.ManyToManyField(
+        ProductVariant, blank=True, related_name="catalogues")
