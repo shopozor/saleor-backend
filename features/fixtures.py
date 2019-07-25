@@ -142,14 +142,6 @@ def successful_signup(context):
 
 
 @fixture
-def expired_account_confirmation_link(context):
-    data = get_data_from_json_fixture(
-        os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'ExpiredAccountConfirmationLink.json'))
-    context.expired_account_confirmation_link = data
-    return data
-
-
-@fixture
 def successful_account_confirmation(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'SuccessfulAccountConfirmation.json'))
@@ -174,10 +166,10 @@ def successful_set_password(context):
 
 
 @fixture
-def expired_password_reset_link(context):
+def expired_link(context):
     data = get_data_from_json_fixture(
-        os.path.join('Authentication', 'ResetUserPassword', 'Responses', 'ExpiredPasswordResetLink.json'))
-    context.expired_password_reset_link = data
+        os.path.join('Authentication', 'ExpiredLink.json'))
+    context.expired_link = data
     return data
 
 
@@ -196,7 +188,7 @@ def signup(context):
                                       [fixture_call_params(unknown),
                                        fixture_call_params(successful_signup),
                                           fixture_call_params(
-                                              expired_account_confirmation_link),
+                                          expired_link),
                                           fixture_call_params(
                                               successful_account_confirmation)])
 
@@ -207,5 +199,5 @@ def password_reset(context):
                                                 fixture_call_params(
                                                     successful_set_password),
                                                 fixture_call_params(
-                                                    expired_password_reset_link),
+                                                    expired_link),
                                                 fixture_call_params(successful_password_reset)])

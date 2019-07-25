@@ -212,10 +212,4 @@ def step_impl(context):
     test_client = context.test.client
     response = activate_account(test_client, **context.credentials)
     context.test.assertEqual(
-        context.expired_account_confirmation_link, response)
-
-
-@then(u'il obtient un message d\'erreur stipulant que le lien a expiré')
-def step_impl(context):
-    context.test.assertEqual(
-        context.expired_account_confirmation_link, context.response)
+        context.expired_link, response['data']['consumerActivate'])

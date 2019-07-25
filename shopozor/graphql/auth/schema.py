@@ -29,7 +29,7 @@ from saleor.graphql.account.resolvers import resolve_address_validator, resolve_
 from saleor.graphql.account.types import AddressValidationData, User
 from saleor.graphql.account.schema import CustomerFilterInput, StaffUserInput
 from saleor.graphql.core.mutations import VerifyToken
-from shopozor.graphql.auth.mutations import Login, ConsumerCreate, ConsumerActivate, PasswordReset
+from shopozor.graphql.auth.mutations import Login, ConsumerCreate, ConsumerActivate, PasswordReset, SetPassword
 
 import graphene
 
@@ -103,6 +103,5 @@ class AuthMutations(graphene.ObjectType):
         description="Activates a user account.")
     password_reset = PasswordReset.Field(
         description="Resets a user password.")
-
-    # password_reset = PasswordReset.Field()
-    # set_password = SetPassword.Field()
+    set_password = SetPassword.Field(
+        description="Sets a user password.")
