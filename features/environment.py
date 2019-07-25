@@ -1,10 +1,10 @@
+import logging
+
 from behave import use_fixture
 from behave.fixture import use_fixture_by_tag
 from django.contrib.auth.models import AnonymousUser
 from features.fixtures import user_accounts, login, signup, password_reset, shops
 from tests.api.conftest import ApiClient
-
-import factory.random
 
 fixtures_registry = {
     'fixture.user-accounts': user_accounts,
@@ -16,6 +16,7 @@ fixtures_registry = {
 
 
 def before_tag(context, tag):
+    logging.disable(logging.INFO)
     if tag.startswith("fixture."):
         return use_fixture_by_tag(tag, context, fixtures_registry)
 

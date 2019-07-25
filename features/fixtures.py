@@ -214,7 +214,7 @@ def password_reset(context):
 
 @fixture
 def shops(context):
-    product_factory = ProductFactory()
+    product_factory = ProductFactory(create_images=False)
     product_factory.create()
     shop_factory = ShopFactory()
     shop_factory.create()
