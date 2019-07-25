@@ -9,7 +9,20 @@ from saleor.product.models import ProductVariant
 from shopozor.models import Shop
 
 # TODO: complete with more data like latitude / longitude, name, description
-# TODO: refactor this code; we have duplication
+
+
+def sort_db_items_by_model(db_items):
+    types = defaultdict(list)
+    for item in db_items:
+        model = item.pop("model")
+        types[model].append(item)
+    return types
+
+
+def get_types_from_json(path_to_json):
+    with open(path_to_json) as f:
+        db_items = json.load(f, object_hook=object_hook)
+    return sort_db_items_by_model(db_items)
 
 
 class ProductFactory:
@@ -19,13 +32,7 @@ class ProductFactory:
         self.PATH_TO_JSON_DB = settings.PATH_TO_SALEOR_JSON_DB
 
     def create(self):
-        with open(self.PATH_TO_JSON_DB) as f:
-            db_items = json.load(f, object_hook=object_hook)
-        types = defaultdict(list)
-        # Sort db objects by its model
-        for item in db_items:
-            model = item.pop("model")
-            types[model].append(item)
+        types = get_types_from_json(self.PATH_TO_JSON_DB)
 
         create_product_types(product_type_data=types["product.producttype"])
         create_categories(
@@ -49,14 +56,7 @@ class ShopFactory:
         self.PATH_TO_JSON_DB = settings.PATH_TO_SHOPOZOR_JSON_DB
 
     def create(self):
-        with open(self.PATH_TO_JSON_DB) as f:
-            db_items = json.load(f, object_hook=object_hook)
-        types = defaultdict(list)
-        # Sort db objects by its model
-        for item in db_items:
-            model = item.pop("model")
-            types[model].append(item)
-
+        types = get_types_from_json(self.PATH_TO_JSON_DB)
         self.create_shops(shops_data=types["shopozor.shop"])
 
     def create_shops(self, shops_data):
