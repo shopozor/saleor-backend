@@ -63,22 +63,18 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
       | Rex          |
       | Softozor     |
 
-@wip
+  @wip
   @fixture.user-accounts @HackerAbuse
   Plan du Scénario: L'utilisateur définit un mot de passe non conforme dans les temps
 
     Si l'utilisateur entre un mot de passe non conforme, cela signifie qu'il a contourné les vérifications
-    de l'application client. Dans ce cas, le mot de passe reste inchangé et son lien s'invalide. Il peut
-    refaire une demande de réinitialisation et recommencer le processus.
-
-    # Il va falloir trouver quelles données utilisateur changer dans ce cas pour invalider le token (puisque
-    # le token ne s'invalide que si des données utilisateur ont changé ou s'il a expiré).
-    # Probablement qu'il ne nous sera pas possible d'invalider le token. Il faudra dans ce cas plutôt blacklister le token.
+    de l'application client. Dans ce cas, le mot de passe reste inchangé et son lien reste valide.
 
     Etant donné un <utilisateur> qui a reçu un lien de réinitialisation de mot de passe
     Lorsqu'il définit un mot de passe non conforme au plus tard 1 jour après sa réception
     Alors son mot de passe reste inchangé
-    Et son lien de réinitialisation est invalidé
+    Et son lien de réinitialisation reste valide
+    Et il obtient un message d'erreur stipulant que son mot de passe n'est pas conforme
 
     Exemples:
       | utilisateur  |
