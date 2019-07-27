@@ -45,10 +45,10 @@ def step_impl(context):
                                                       latitude=shop_data['geocoordinates']['latitude'], longitude=shop_data['geocoordinates']['longitude']).exists())
 
 
+# TODO: complete data_factory with more data like latitude / longitude, name, description when they are ready
+# TODO: instead of trying to get the data from the database, get it from the graphql response fixture!
+# TODO: maybe generate the response here based on the fixture database Shops.json
 @then(u'il obtient la liste de tous les Produits qui y sont publiés')
 def step_impl(context):
     selected_shop = context.selected_shop
-    # 2. get products from selected shop
-
-    # 3. compare products' properties with those received in the response (id, name, variants, category, productType)
     raise NotImplementedError('step not yet implemented')
