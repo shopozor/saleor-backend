@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from features.utils.auth.queries import login
 from features.utils.auth.account_handling import get_current_encrypted_password
 from features.utils.auth.credentials_checks import assertPasswordIsCompliant, assertPasswordIsNotCompliant
 from features.utils.auth.mail_confirmation import ActivationMailHandler, gather_email_activation_data, check_that_email_was_sent_to_user, check_that_email_is_received_soon_enough, check_compulsory_password_reinit_credential_arguments
@@ -159,15 +160,9 @@ def step_impl(context):
 @then(u'son nouveau mot de passe est sauvegardé')
 def step_impl(context):
     context.test.assertEqual(context.successful_set_password, context.response)
-    # Additionally, we check that the new password can be used:
-    # TODO: use login method from logUserIn.py
-    query = get_query_from_file('login.graphql')
-    variables = {
-        'email': context.current_user['email'],
-        'password': context.credentials['password']
-    }
-    response = context.test.client.post_graphql(query, variables)
-    content = get_graphql_content(response)
+    test_client = context.test.client
+    content = login(
+        test_client, email=context.current_user['email'], password=context.credentials['password'])
     login_data = content['data']['login']
     context.test.assertIsNotNone(login_data['token'])
     context.test.assertEqual(0, len(login_data['errors']))
