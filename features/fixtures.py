@@ -167,6 +167,14 @@ def successful_set_password(context):
 
 
 @fixture
+def password_not_compliant(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'ResetUserPassword', 'Responses', 'PasswordNotCompliant.json'))
+    context.password_not_compliant = data
+    return data
+
+
+@fixture
 def expired_link(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'ExpiredLink.json'))
@@ -199,6 +207,8 @@ def password_reset(context):
     return use_composite_fixture_with(context, [fixture_call_params(unknown),
                                                 fixture_call_params(
                                                     successful_set_password),
+                                                fixture_call_params(
+                                                    password_not_compliant),
                                                 fixture_call_params(
                                                     expired_link),
                                                 fixture_call_params(successful_password_reset)])
