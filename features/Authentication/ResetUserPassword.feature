@@ -63,7 +63,6 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
       | Rex          |
       | Softozor     |
 
-  @wip
   @fixture.user-accounts @HackerAbuse
   Plan du Scénario: L'utilisateur définit un mot de passe non conforme dans les temps
 

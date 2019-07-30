@@ -135,12 +135,8 @@ def step_impl(context):
 
 @then(u'il obtient un message d\'erreur stipulant que son mot de passe n\'est pas conforme à la politique des mots de passe')
 def step_impl(context):
-    expected_error = {
-        'field': None,
-        'message': 'PASSWORD_NOT_COMPLIANT'
-    }
     context.test.assertTrue(
-        expected_error in context.response['data']['consumerCreate']['errors'])
+        context.password_not_compliant in context.response['data']['consumerCreate']['errors'])
 
 
 @then(u'son compte est créé')

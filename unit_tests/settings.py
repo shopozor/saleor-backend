@@ -45,5 +45,4 @@ PASSWORD_RESET_TIMEOUT_DAYS = 1
 # MEDIA_ROOT = None
 # MAX_CHECKOUT_LINE_QUANTITY = 50
 
-
-# PASSWORD_HASHERS = ["tests.dummy_password_hasher.DummyHasher"]
+PASSWORD_HASHERS = ["tests.dummy_password_hasher.DummyHasher"]
