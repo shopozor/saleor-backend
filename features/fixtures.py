@@ -4,6 +4,7 @@ from behave import fixture
 from behave.fixture import use_composite_fixture_with, fixture_call_params
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
+from features.data_factories import ProductFactory, ShopFactory
 from features.utils.auth.account_handling import create_database_superuser, create_database_user
 from features.utils.auth.password_generation import set_password
 from features.utils.fixtures.loader import get_data_from_json_fixture
@@ -142,14 +143,6 @@ def successful_signup(context):
 
 
 @fixture
-def expired_account_confirmation_link(context):
-    data = get_data_from_json_fixture(
-        os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'ExpiredAccountConfirmationLink.json'))
-    context.expired_account_confirmation_link = data
-    return data
-
-
-@fixture
 def successful_account_confirmation(context):
     data = get_data_from_json_fixture(
         os.path.join('Authentication', 'RegisterConsumer', 'Responses', 'SuccessfulAccountConfirmation.json'))
@@ -174,10 +167,18 @@ def successful_set_password(context):
 
 
 @fixture
-def expired_password_reset_link(context):
+def password_not_compliant(context):
     data = get_data_from_json_fixture(
-        os.path.join('Authentication', 'ResetUserPassword', 'Responses', 'ExpiredPasswordResetLink.json'))
-    context.expired_password_reset_link = data
+        os.path.join('Authentication', 'PasswordNotCompliant.json'))
+    context.password_not_compliant = data
+    return data
+
+
+@fixture
+def expired_link(context):
+    data = get_data_from_json_fixture(
+        os.path.join('Authentication', 'ExpiredLink.json'))
+    context.expired_link = data
     return data
 
 
@@ -195,10 +196,11 @@ def signup(context):
     return use_composite_fixture_with(context,
                                       [fixture_call_params(unknown),
                                        fixture_call_params(successful_signup),
-                                          fixture_call_params(
-                                              expired_account_confirmation_link),
-                                          fixture_call_params(
-                                              successful_account_confirmation)])
+                                       fixture_call_params(
+                                          expired_link),
+                                       fixture_call_params(
+                                          successful_account_confirmation),
+                                       fixture_call_params(password_not_compliant)])
 
 
 @fixture
@@ -207,5 +209,15 @@ def password_reset(context):
                                                 fixture_call_params(
                                                     successful_set_password),
                                                 fixture_call_params(
-                                                    expired_password_reset_link),
+                                                    password_not_compliant),
+                                                fixture_call_params(
+                                                    expired_link),
                                                 fixture_call_params(successful_password_reset)])
+
+
+@fixture
+def shops(context):
+    product_factory = ProductFactory(create_images=False)
+    product_factory.create()
+    shop_factory = ShopFactory()
+    shop_factory.create()

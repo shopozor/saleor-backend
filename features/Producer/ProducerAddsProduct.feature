@@ -2,7 +2,7 @@
 
 # TODO: pour publier un Produit, le Producteur doit avoir le droit de publier dans une liste de Shops définie par le Rex
 
-@initial-release @producer @wip
+@initial-release @producer @wip @in-preparation
 Fonctionnalité: Le Producteur ajoute un Produit à son inventaire
 
   **En tant que Producteur,  

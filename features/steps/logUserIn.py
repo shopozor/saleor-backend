@@ -1,21 +1,12 @@
 from behave import given, then, when
 from django.conf import settings
 
-from features.utils.auth.credentials_checks import check_compulsory_login_credential_arguments
+from features.utils.auth.queries import login
 from features.utils.auth.account_handling import create_database_user
-from features.utils.graphql.loader import get_query_from_file
 from shopozor.models import MODELS_PERMISSIONS
-from tests.api.utils import get_graphql_content
 
 import features.types
 import jwt
-
-
-def login(client, **kwargs):
-    check_compulsory_login_credential_arguments(kwargs)
-    query = get_query_from_file('login.graphql')
-    response = client.post_graphql(query, kwargs)
-    return get_graphql_content(response)
 
 
 @given(u'un utilisateur non identifié sur le Shopozor')

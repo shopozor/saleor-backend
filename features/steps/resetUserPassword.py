@@ -1,7 +1,10 @@
 from behave import given, then, when
 from copy import deepcopy
 from datetime import datetime, timedelta
+from django.contrib.auth.tokens import default_token_generator
 from django.core import mail
+from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
+from features.utils.auth.queries import login
 from features.utils.auth.account_handling import get_current_encrypted_password
 from features.utils.auth.credentials_checks import assertPasswordIsCompliant, assertPasswordIsNotCompliant
 from features.utils.auth.mail_confirmation import ActivationMailHandler, gather_email_activation_data, check_that_email_was_sent_to_user, check_that_email_is_received_soon_enough, check_compulsory_password_reinit_credential_arguments
@@ -39,7 +42,7 @@ def registered_user(context, persona):
         'Rex': context.rex,
         'Softozor': context.softozor,
     }
-    user = switch[persona]
+    user = deepcopy(switch[persona])
     user['encrypted_password'] = get_current_encrypted_password(user['email'])
     return user
 
@@ -157,15 +160,9 @@ def step_impl(context):
 @then(u'son nouveau mot de passe est sauvegardé')
 def step_impl(context):
     context.test.assertEqual(context.successful_set_password, context.response)
-    # Additionally, we check that the new password can be used:
-    # TODO: use login method from logUserIn.py
-    query = get_query_from_file('login.graphql')
-    variables = {
-        'email': context.current_user['email'],
-        'password': context.credentials['password']
-    }
-    response = context.test.client.post_graphql(query, variables)
-    content = get_graphql_content(response)
+    test_client = context.test.client
+    content = login(
+        test_client, email=context.current_user['email'], password=context.credentials['password'])
     login_data = content['data']['login']
     context.test.assertIsNotNone(login_data['token'])
     context.test.assertEqual(0, len(login_data['errors']))
@@ -179,4 +176,24 @@ def step_impl(context):
     test_client = context.test.client
     response = set_new_password(test_client, **context.credentials)
     context.test.assertEqual(
-        context.expired_password_reset_link, response)
+        context.expired_link, response['data']['setPassword'])
+
+
+def get_user_instance_from_encoded_user_id(encoded_user_id):
+    decoded_user_id = urlsafe_base64_decode(encoded_user_id).decode()
+    return User.objects.get(pk=decoded_user_id)
+
+
+@then(u'son lien de réinitialisation reste valide')
+def step_impl(context):
+    encoded_user_id = context.credentials['encodedUserId']
+    decoded_user = get_user_instance_from_encoded_user_id(encoded_user_id)
+    token = context.credentials['oneTimeToken']
+    context.test.assertTrue(
+        default_token_generator.check_token(decoded_user, token))
+
+
+@then(u'il obtient un message d\'erreur stipulant que son mot de passe n\'est pas conforme')
+def step_impl(context):
+    context.test.assertTrue(
+        context.password_not_compliant in context.response['data']['setPassword']['errors'])

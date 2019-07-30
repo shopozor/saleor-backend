@@ -1,6 +1,6 @@
 #language: fr
 
-@initial-release @auth @wip
+@initial-release @auth @wip @in-preparation
 Fonctionnalité: Désinscrire un Producteur
 
   *En tant que Responsable ou Rex,  

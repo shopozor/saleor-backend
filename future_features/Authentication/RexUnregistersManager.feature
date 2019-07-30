@@ -1,6 +1,6 @@
 #language: fr
 
-@initial-release @auth @wip
+@initial-release @auth @wip @in-preparation
 Fonctionnalité: Le Rex désinscrit un Responsable
 
   *En tant que Rex,  
