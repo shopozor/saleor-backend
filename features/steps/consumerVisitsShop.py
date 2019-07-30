@@ -32,7 +32,7 @@ def step_impl(context):
     test_client = context.test.client
     context.response = query_shop_catalogue(test_client, shop.id)
 
-
+# TODO: compare the response with a generated graphql response from the fixture data?
 @then(u'il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale')
 def step_impl(context):
     expected_shops = Shop.objects.all()
