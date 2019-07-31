@@ -220,3 +220,55 @@ def shops(context):
     product_factory.create()
     shop_factory = ShopFactory()
     shop_factory.create()
+
+# TODO: we want a django command that generates the 'Shops.json' / 'populatedb_data.json' fixture files
+# TODO: we want a django command that generates the expected shops list / expected shops catalogues graphql responses
+# 1. run command to generate the Shops.json and populatedb_data.json files (always the same files) --> only run once and have those files in version control
+# 2. run command to generate the expected shops list and catalogues from the Shops.json and populatedb_data.json fixtures --> also have those files in version control
+# 3. read those files here
+@fixture
+def expected_shop_list(context):
+    shops_fixture = get_data_from_json_fixture('Shops.json')
+    expected_list = {
+        'data': {
+            'shops': {
+                'edges': []
+            }
+        }
+    }
+    for shop_fixture in shops_fixture:
+        node = {
+            'node': {
+                'id': shop_fixture['pk'],
+                'name': shop_fixture['fields']['name'],
+                'description': shop_fixture['fields']['description'],
+                'geocoordinates': {
+                    'latitude': shop_fixture['fields']['latitude'],
+                    'longitude': shop_fixture['fields']['longitude']
+                }
+            }
+        }
+        expected_list['data']['shops']['edges'].append(node)
+    context.expected_shop_list = expected_list
+    return expected_list
+
+
+@fixture
+def expected_shop_catalogues(context):
+    shops_fixture = get_data_from_json_fixture('Shops.json')
+    products_fixture = get_data_from_json_fixture(os.path.join(
+        '..', '..', 'saleor', 'saleor', 'static', 'populatedb_data.json'))
+    expected_catalogues[shop_id] = {
+        'data': {
+            'shopCatalogue': {
+                'products': {
+                    'edges': []
+                }
+            }
+        }
+    }
+
+
+@fixture
+def shops_fixtures(context):
+    return use_composite_fixture_with(context, [fixture_call_params(shops), fixture_call_params(expected_shop_list)])

@@ -8,6 +8,8 @@ from saleor.core.utils.json_serializer import object_hook
 from saleor.product.models import ProductVariant
 from shopozor.models import Shop
 
+# TODO: we need a UserFactory!
+
 
 def sort_db_items_by_model(db_items):
     types = defaultdict(list)
