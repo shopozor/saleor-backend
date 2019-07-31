@@ -93,7 +93,7 @@ application:
                 DATABASE_URL: postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
                 CACHE_URL: redis://:${globals.REDIS_PASSWORD}@${nodes.nosqldb.intIP}:6379/0
     deployRepo:
-      api:
+      - api [cp]:
         - method: environment.vcs.CreateProject
           params:
             type: git
@@ -102,10 +102,12 @@ application:
             branch: GIT_BRANCH
             login: GIT_USER
             password: GIT_PASSWORD
+      - restartNodes:
+        - nodeGroup: cp
+      - api [cp]:
         - method: environment.vcs.Update
           params:
             context: ${globals.CONTEXT}
-      nodeGroup: cp
     createVirtualEnv:
       - cmd[cp]:
           - cd ~
