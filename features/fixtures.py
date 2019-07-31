@@ -221,11 +221,7 @@ def shops(context):
     shop_factory = ShopFactory()
     shop_factory.create()
 
-# TODO: we want a django command that generates the 'Shops.json' / 'populatedb_data.json' fixture files
-# TODO: we want a django command that generates the expected shops list / expected shops catalogues graphql responses
-# 1. run command to generate the Shops.json and populatedb_data.json files (always the same files) --> only run once and have those files in version control
-# 2. run command to generate the expected shops list and catalogues from the Shops.json and populatedb_data.json fixtures --> also have those files in version control
-# 3. read those files here
+
 @fixture
 def expected_shop_list(context):
     shops_fixture = get_data_from_json_fixture('Shops.json')
@@ -258,15 +254,47 @@ def expected_shop_catalogues(context):
     shops_fixture = get_data_from_json_fixture('Shops.json')
     products_fixture = get_data_from_json_fixture(os.path.join(
         '..', '..', 'saleor', 'saleor', 'static', 'populatedb_data.json'))
-    expected_catalogues[shop_id] = {
-        'data': {
-            'shopCatalogue': {
-                'products': {
-                    'edges': []
+    # TODO: get the producers from the users_fixture
+
+    expected_catalogues = dict()
+    for shop in shops_fixture:
+        expected_catalogues[shop['pk']] = {
+            'data': {
+                'shopCatalogue': {
+                    'products': {
+                        'edges': []
+                    }
                 }
             }
         }
-    }
+        edges = expected_catalogues[shop['pk']
+                                    ]['data']['shopCatalogue']['products']['edges']
+        for variant_id in shop['fields']['product_variants']:
+            variant = [entry for entry in products_fixture if entry['model']
+                       == 'product.productvariant' and entry['pk'] == variant_id][0]
+            product = [entry for entry in products_fixture if entry['model'] ==
+                       'product.product' and entry['pk'] == variant['fields']['product']][0]
+            edges_with_product_id = [
+                edge for edge in edges if edge['node']['id'] == product['pk']]
+            if edges_with_product_id:
+                edge = edges_with_product_id[0]
+                new_variant = {
+                    'id': variant_id
+                }
+                edge['node']['variants'].append(new_variant)
+            else:
+                node = {
+                    'node': {
+                        'id': product['pk'],
+                        'name': product['fields']['name'],
+                        'variants': [{
+                            'id': variant_id
+                        }]
+                    }
+                }
+                edges.append(node)
+
+    # TODO: add producer linking
 
 
 @fixture
