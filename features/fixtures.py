@@ -2,6 +2,7 @@ import os.path
 
 from behave import fixture
 from behave.fixture import use_composite_fixture_with, fixture_call_params
+from django.conf import settings
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from features.data_factories import ProductFactory, ShopFactory
@@ -216,87 +217,32 @@ def password_reset(context):
 
 @fixture
 def shops(context):
-    product_factory = ProductFactory(create_images=False)
-    product_factory.create()
-    shop_factory = ShopFactory()
-    shop_factory.create()
+    context.fixtures = ['saleor.json', 'Shops.json']
 
 
 @fixture
 def expected_shop_list(context):
-    shops_fixture = get_data_from_json_fixture('Shops.json')
-    expected_list = {
-        'data': {
-            'shops': {
-                'edges': []
-            }
-        }
-    }
-    for shop_fixture in shops_fixture:
-        node = {
-            'node': {
-                'id': shop_fixture['pk'],
-                'name': shop_fixture['fields']['name'],
-                'description': shop_fixture['fields']['description'],
-                'geocoordinates': {
-                    'latitude': shop_fixture['fields']['latitude'],
-                    'longitude': shop_fixture['fields']['longitude']
-                }
-            }
-        }
-        expected_list['data']['shops']['edges'].append(node)
-    context.expected_shop_list = expected_list
-    return expected_list
+    shop_list = get_data_from_json_fixture(
+        os.path.join('Consumer', 'Shops.json'))
+    context.expected_shop_list = shop_list
+    return shop_list
 
 
 @fixture
 def expected_shop_catalogues(context):
-    shops_fixture = get_data_from_json_fixture('Shops.json')
-    products_fixture = get_data_from_json_fixture(os.path.join(
-        '..', '..', 'saleor', 'saleor', 'static', 'populatedb_data.json'))
-    # TODO: get the producers from the users_fixture
-
-    expected_catalogues = dict()
-    for shop in shops_fixture:
-        expected_catalogues[shop['pk']] = {
-            'data': {
-                'shopCatalogue': {
-                    'products': {
-                        'edges': []
-                    }
-                }
-            }
-        }
-        edges = expected_catalogues[shop['pk']
-                                    ]['data']['shopCatalogue']['products']['edges']
-        for variant_id in shop['fields']['product_variants']:
-            variant = [entry for entry in products_fixture if entry['model']
-                       == 'product.productvariant' and entry['pk'] == variant_id][0]
-            product = [entry for entry in products_fixture if entry['model'] ==
-                       'product.product' and entry['pk'] == variant['fields']['product']][0]
-            edges_with_product_id = [
-                edge for edge in edges if edge['node']['id'] == product['pk']]
-            if edges_with_product_id:
-                edge = edges_with_product_id[0]
-                new_variant = {
-                    'id': variant_id
-                }
-                edge['node']['variants'].append(new_variant)
-            else:
-                node = {
-                    'node': {
-                        'id': product['pk'],
-                        'name': product['fields']['name'],
-                        'variants': [{
-                            'id': variant_id
-                        }]
-                    }
-                }
-                edges.append(node)
-
-    # TODO: add producer linking
+    catalogues_folder = os.path.join(
+        settings.FIXTURES_FOLDER, 'Consumer', 'Catalogues')
+    catalogues = [os.path.splitext(f)[0] for f in os.listdir(
+        catalogues_folder) if os.path.isfile(os.path.join(catalogues_folder, f))]
+    shop_catalogues = {}
+    for catalogue in catalogues:
+        shop_id = catalogue.split('-')[1]
+        shop_catalogues[shop_id] = get_data_from_json_fixture(os.path.join(
+            'Consumer', 'Catalogues', '{name}.json'.format(name=catalogue)))
+    context.expected_shop_catalogues = shop_catalogues
+    return shop_catalogues
 
 
 @fixture
 def shops_fixtures(context):
-    return use_composite_fixture_with(context, [fixture_call_params(shops), fixture_call_params(expected_shop_list)])
+    return use_composite_fixture_with(context, [fixture_call_params(shops), fixture_call_params(expected_shop_list), fixture_call_params(expected_shop_catalogues)])

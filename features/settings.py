@@ -44,3 +44,5 @@ DOMAIN_NAME = "shopozor.ch"
 EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 
 PASSWORD_RESET_TIMEOUT_DAYS = 1
+
+# TODO: specify path to django fixtures here with variable FIXTURE_DIRS

@@ -6,6 +6,8 @@ from features.utils.auth.account_handling import create_database_superuser, crea
 from saleor.account.models import User
 from shopozor.permissions import add_permissions
 
+import os
+
 
 def create_permissions():
     add_permissions(User, Permission, ContentType)

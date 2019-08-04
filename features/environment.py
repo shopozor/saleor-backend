@@ -16,7 +16,7 @@ fixtures_registry = {
 
 
 def before_tag(context, tag):
-    logging.disable(logging.INFO)
+    logging.getLogger('django_measurements').disable(logging.WARNING)
     if tag.startswith("fixture."):
         return use_fixture_by_tag(tag, context, fixtures_registry)
 
