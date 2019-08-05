@@ -1,10 +1,6 @@
 [submodule "saleor"]
 	path = saleor
 	url = https://github.com/mirumee/saleor
-[submodule "features/fixtures"]
-	path = features/fixtures
-	url = https://github.com/shopozor/fixtures
-        branch = master
 [submodule "features/graphql"]
 	path = features/graphql
 	url = https://github.com/shopozor/graphql
