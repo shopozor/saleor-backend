@@ -102,9 +102,6 @@ application:
             branch: GIT_BRANCH
             login: GIT_USER
             password: GIT_PASSWORD
-      - restartNodes:
-        - nodeGroup: cp
-      - api [cp]:
         - method: environment.vcs.Update
           params:
             context: ${globals.CONTEXT}
