@@ -86,7 +86,9 @@ def softozor(context):
     context.softozor = user_data
     return user_data
 
-
+# TODO: each of the users needs to be added from a django fixture
+# TODO: for each user, a password is then assigned
+# TODO: probably a new user_passwords fixture is necessary <-- that will work iif the fixtures are applied everytime in the same order!
 @fixture
 def user_accounts(context):
     # the following fixtures add data to the database
