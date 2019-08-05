@@ -1,5 +1,3 @@
-import logging
-
 from behave import use_fixture
 from behave.fixture import use_fixture_by_tag
 from django.contrib.auth.models import AnonymousUser
@@ -16,7 +14,6 @@ fixtures_registry = {
 
 
 def before_tag(context, tag):
-    logging.getLogger('django_measurements').disable(logging.WARNING)
     if tag.startswith("fixture."):
         return use_fixture_by_tag(tag, context, fixtures_registry)
 
