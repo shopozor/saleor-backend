@@ -85,7 +85,7 @@ class Command(BaseCommand):
                             help='Folder where to output the JSON files')
 
     def handle(self, *args, **options):
-        output_folder = options['output_folder'] if options['output_folder'] else settings.FIXTURES_FOLDER
+        output_folder = options['output_folder'] if options['output_folder'] else settings.GRAPHQL_RESPONSES_FOLDER
 
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)

@@ -14,8 +14,8 @@ SALEOR_PLACEHOLDERS_DIR = os.path.join(
 PATH_TO_SHOPOZOR_JSON_DB = os.path.join(
     PROJECT_ROOT, 'features', 'fixtures', 'Shops.json')
 
-FIXTURES_FOLDER = os.path.join('features', 'fixtures')
-GRAPHQL_QUERIES_FOLDER = os.path.join('features', 'graphql')
+GRAPHQL_RESPONSES_FOLDER = os.path.join('features', 'graphql', 'responses')
+GRAPHQL_CALLS_FOLDER = os.path.join('features', 'graphql', 'calls')
 
 INSTALLED_APPS.append('behave_django')
 INSTALLED_APPS.append('features')
@@ -44,5 +44,22 @@ DOMAIN_NAME = "shopozor.ch"
 EMAIL_BACKEND = 'django.core.mail.backends.locmem.EmailBackend'
 
 PASSWORD_RESET_TIMEOUT_DAYS = 1
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "root": {"level": "ERROR", "handlers": ["console"]},
+    "formatters": {
+        "simple": {"format": "%(levelname)s %(message)s"},
+    },
+    "handlers": {
+        "console": {
+            "level": "ERROR",
+            "class": "logging.StreamHandler",
+            "formatter": "simple",
+        },
+    }
+}
+
 
 # TODO: specify path to django fixtures here with variable FIXTURE_DIRS
