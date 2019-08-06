@@ -195,4 +195,5 @@ def step_impl(context):
 
 @then(u'il obtient un message d\'erreur stipulant que son mot de passe n\'est pas conforme')
 def step_impl(context):
-    context.test.assertEqual(context.password_not_compliant, context.response)
+    context.test.assertTrue(
+        context.password_not_compliant in context.response['data']['setPassword']['errors'])

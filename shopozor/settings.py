@@ -35,3 +35,10 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 TEST_RUNNER = "unit_tests.runner.PytestTestRunner"
+
+PASSWORD_HASHERS = [
+    'django.contrib.auth.hashers.BCryptSHA256PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2PasswordHasher',
+    'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
+    'django.contrib.auth.hashers.Argon2PasswordHasher',
+]
