@@ -16,7 +16,6 @@ from shopozor.permissions import add_permissions
 @fixture
 def permissions(context):
     add_permissions(User, Permission, ContentType)
-    # context.fixtures = ['permissions.json']
 
 
 @fixture
@@ -31,7 +30,7 @@ def unknown(context):
 @fixture
 def consumer(context):
     user_data = get_data_from_json_fixture(
-        os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'Consommateur.json'))
+        os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'Consommateurs.json'))[0]
     create_database_user(user_data)
     context.consumer = user_data
     return user_data
@@ -49,7 +48,7 @@ def inactive_customer(context):
 @fixture
 def producer(context):
     user_data = get_data_from_json_fixture(
-        os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'Producteur.json'))
+        os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'Producteurs.json'))[0]
     create_database_user(user_data)
     context.producer = user_data
     return user_data
@@ -58,7 +57,7 @@ def producer(context):
 @fixture
 def manager(context):
     user_data = get_data_from_json_fixture(
-        os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'Responsable.json'))
+        os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'Responsables.json'))[0]
     create_database_user(user_data)
     context.manager = user_data
     return user_data
@@ -81,9 +80,7 @@ def softozor(context):
     context.softozor = user_data
     return user_data
 
-# TODO: each of the users needs to be added from a django fixture
-# TODO: for each user, a password is then assigned
-# TODO: probably a new user_passwords fixture is necessary <-- that will work iif the fixtures are applied everytime in the same order!
+
 @fixture
 def user_accounts(context):
     # the following fixtures add data to the database
