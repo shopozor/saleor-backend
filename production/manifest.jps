@@ -111,7 +111,7 @@ application:
           params:
             type: git
             context: ${globals.CONTEXT}
-            url: https://github.com/softozor/shopozor-backend
+            url: https://github.com/shopozor/backend
             branch: GIT_BRANCH
             login: GIT_USER
             password: GIT_PASSWORD
@@ -131,7 +131,7 @@ application:
     # TODO: setup production data here:
     setupJwt:
       - script: ${baseUrl}/scripts/SetJwtEnvVars.js
-        url: https://raw.githubusercontent.com/softozor/shopozor-fixtures/master/Authentication/Credentials/Jwt.json
+        url: ${baseUrl}/features/fixtures/Jwt.json
     migrateDB:
       cmd [cp]:
         - cd ${globals.PATH_TO_CONTEXT}

@@ -17,11 +17,15 @@ def get_user_tokens():
     query = login_query()
     client = ApiClient(user=AnonymousUser())
     result = {}
-    for persona in 'Consommateur', 'Producteur', 'Responsable', 'Rex', 'Softozor':
+    for persona in 'Consommateurs', 'Producteurs', 'Responsables', 'Rex', 'Softozor':
         user_data = get_data_from_json_fixture(os.path.join(
             'Authentication', 'Credentials', persona + '.json'))
-        variables = dict(email=user_data['email'],
-                         password=user_data['password'])
+        if isinstance(user_data, list):
+            user = user_data[0]
+        else:
+            user = user_data
+        variables = dict(email=user['email'],
+                         password=user['password'])
         response = get_graphql_content(client.post_graphql(query, variables))
         result[persona] = response['data']['login']['token']
     return result
