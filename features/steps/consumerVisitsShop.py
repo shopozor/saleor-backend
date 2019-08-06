@@ -28,21 +28,14 @@ def step_impl(context):
 @when(u'Incognito visite un Shop')
 def step_impl(context):
     shop = Shop.objects.first()
-    context.selected_shop = shop
+    context.current_shop = shop
     test_client = context.test.client
     context.response = query_shop_catalogue(test_client, shop.id)
 
-# TODO: compare the response with a generated graphql response from the fixture data?
+
 @then(u'il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale')
 def step_impl(context):
-    expected_shops = Shop.objects.all()
-    shop_edges_data = context.response['data']['shops']['edges']
-    context.test.assertEqual(expected_shops.count(), len(shop_edges_data))
-
-    for edge in shop_edges_data:
-        shop_data = edge['node']
-        context.test.assertTrue(expected_shops.filter(pk=shop_data['id'], name=shop_data['name'], description=shop_data['description'],
-                                                      latitude=shop_data['geocoordinates']['latitude'], longitude=shop_data['geocoordinates']['longitude']).exists())
+    context.test.assertEqual(context.expected_shop_list, context.response)
 
 
 # TODO: complete data_factory with more data like latitude / longitude, name, description when they are ready
@@ -50,5 +43,5 @@ def step_impl(context):
 # TODO: maybe generate the response here based on the fixture database Shops.json
 @then(u'il obtient la liste de tous les Produits qui y sont publiés')
 def step_impl(context):
-    selected_shop = context.selected_shop
+    current_shop = context.current_shop
     raise NotImplementedError('step not yet implemented')

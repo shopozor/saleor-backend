@@ -172,6 +172,6 @@ Running the Shopozor backend acceptance tests do not require any frontend instal
 ```
 cd shopozor-backend
 . ./venv/bin/activate
-python manage.py behave --keepdb --tags=\"~wip\"
+python manage.py behave --keepdb --tags ~wip
 ```
 You can get rid of the `--tags` option if you want to run the features that are "work in progress" too.
