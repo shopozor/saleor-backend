@@ -1,5 +1,5 @@
 from django.contrib.auth.models import Permission
-from features.utils.auth.password_generation import RandomCompliantPasswordGenerator
+from features.utils.auth.password_generation import set_password
 from saleor.account.models import User
 
 
@@ -8,8 +8,9 @@ def create_database_user(user_data):
     is_active = False if 'isActive' not in user_data else user_data['isActive']
     user = User.objects.create(
         email=user_data['email'], is_staff=is_staff, is_active=is_active)
-    if 'password' in user_data:
-        user.set_password(user_data['password'])
+    if 'password' not in user_data:
+        set_password(user_data)
+    user.set_password(user_data['password'])
     if 'permissions' in user_data:
         for permission in user_data['permissions']:
             user.user_permissions.add(Permission.objects.get(
@@ -20,6 +21,7 @@ def create_database_user(user_data):
 
 def create_database_superuser(user_data):
     user = User.objects.create_superuser(email=user_data['email'])
+    set_password(user_data)
     user.set_password(user_data['password'])
     user.save()
 

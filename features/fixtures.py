@@ -16,6 +16,7 @@ from shopozor.permissions import add_permissions
 @fixture
 def permissions(context):
     add_permissions(User, Permission, ContentType)
+    # context.fixtures = ['permissions.json']
 
 
 @fixture
@@ -31,7 +32,6 @@ def unknown(context):
 def consumer(context):
     user_data = get_data_from_json_fixture(
         os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'Consommateur.json'))
-    set_password(user_data)
     create_database_user(user_data)
     context.consumer = user_data
     return user_data
@@ -41,7 +41,6 @@ def consumer(context):
 def inactive_customer(context):
     user_data = get_data_from_json_fixture(
         os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'InactiveConsumer.json'))
-    set_password(user_data)
     create_database_user(user_data)
     context.inactive_customer = user_data
     return user_data
@@ -51,7 +50,6 @@ def inactive_customer(context):
 def producer(context):
     user_data = get_data_from_json_fixture(
         os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'Producteur.json'))
-    set_password(user_data)
     create_database_user(user_data)
     context.producer = user_data
     return user_data
@@ -61,7 +59,6 @@ def producer(context):
 def manager(context):
     user_data = get_data_from_json_fixture(
         os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'Responsable.json'))
-    set_password(user_data)
     create_database_user(user_data)
     context.manager = user_data
     return user_data
@@ -71,7 +68,6 @@ def manager(context):
 def rex(context):
     user_data = get_data_from_json_fixture(
         os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'Rex.json'))
-    set_password(user_data)
     create_database_user(user_data)
     context.rex = user_data
     return user_data
@@ -81,7 +77,6 @@ def rex(context):
 def softozor(context):
     user_data = get_data_from_json_fixture(
         os.path.join('features', 'fixtures', 'Authentication', 'Credentials', 'Softozor.json'))
-    set_password(user_data)
     create_database_superuser(user_data)
     context.softozor = user_data
     return user_data
