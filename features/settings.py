@@ -61,5 +61,4 @@ LOGGING = {
     }
 }
 
-
-# TODO: specify path to django fixtures here with variable FIXTURE_DIRS
+FIXTURE_DIRS = [os.path.join('features', 'fixtures')]
