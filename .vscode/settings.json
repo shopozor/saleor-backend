@@ -1,0 +1,16 @@
+{
+  "files.associations": {
+    "*.jps": "yaml"
+  },
+  "files.exclude": {
+    "**/*.pyc": true,
+    "**/.DS_Store": true,
+    "**/.git": true,
+    "**/.hg": true,
+    "**/.svn": true,
+    "**/CVS": true,
+    "**/__pycache__": true
+  },
+  "python.formatting.provider": "autopep8",
+  "python.linting.enabled": true
+}

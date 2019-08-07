@@ -1,0 +1,2 @@
+class UnableToDefineCompliantPassword(Exception):
+    pass

@@ -1,0 +1,23 @@
+*.py[cod]
+*.log
+*.pot
+*.pyc
+.coverage
+.testmondata
+__pycache__/
+
+# development-specific env
+dev.env
+
+# pycharm ide
+.idea/*
+
+# data
+/venv/
+/windows-venv/
+
+# generated specification
+/specification/
+
+# local environment settings
+*.local

@@ -1,8 +1,8 @@
 import graphene
 
-from saleor.graphql.account.schema import AccountMutations, AccountQueries
+# from saleor.graphql.account.schema import AccountMutations, AccountQueries
 # from saleor.graphql.checkout.schema import CheckoutMutations, CheckoutQueries
-from saleor.graphql.core.schema import CoreMutations
+# from saleor.graphql.core.schema import CoreMutations
 # from saleor.graphql.discount.schema import DiscountMutations, DiscountQueries
 # from saleor.graphql.menu.schema import MenuMutations, MenuQueries
 # from saleor.graphql.order.schema import OrderMutations, OrderQueries
@@ -12,12 +12,14 @@ from saleor.graphql.core.schema import CoreMutations
 # from saleor.graphql.shipping.schema import ShippingMutations, ShippingQueries
 # from saleor.graphql.shop.schema import ShopMutations, ShopQueries
 
+from shopozor.graphql.auth.schema import AuthMutations, AuthQueries
 
-class Query(AccountQueries):
+
+class Query(AuthQueries):
     node = graphene.Node.Field()
 
 
-class Mutations(CoreMutations, AccountMutations):
+class Mutations(AuthMutations):
     pass
 
 

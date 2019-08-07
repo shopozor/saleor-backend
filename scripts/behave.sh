@@ -1,3 +1,3 @@
 #! /bin/bash
 
-python3 manage.py behave --settings features.settings
+python manage.py behave --keepdb --settings features.settings

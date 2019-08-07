@@ -1,0 +1,8 @@
+mutation Logout($token: String!) {
+  logout(token: $token) {
+    errors {
+      field
+      message
+    }
+  }
+}
