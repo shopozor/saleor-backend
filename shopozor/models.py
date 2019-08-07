@@ -16,5 +16,6 @@ class HackerAbuseEvents(models.Model):
 
 class Shop(models.Model):
     # TODO: lat / long field --> DecimalField(max_digits=9, decimal_places=6)
+    name = models.CharField(max_length=256, blank=True)
     product_variants = models.ManyToManyField(
         ProductVariant, blank=True, related_name="catalogues")
