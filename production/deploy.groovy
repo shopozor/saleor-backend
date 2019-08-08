@@ -10,7 +10,7 @@ pipeline {
     stage('Publish docker container') {
       steps {
         script {
-            sh 'echo $TAG'
+            sh 'echo $TEST_VAR'
             sh "cp production/Dockerfile production/.dockerignore ."
             sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
             sh "docker build -t $DOCKER_REPO ."
