@@ -23,9 +23,3 @@ os.environ['DJANGO_SETTINGS_MODULE'] = 'shopozor.settings'
 # setting points here.
 application = get_wsgi_application()
 application = health_check(application, "/health/")
-
-print("TROUDUC")
-# TODO: before calling  uwsgi --ini shopozor/wsgi/uwsgi.ini
-# TODO: do export DJANGO_SETTINGS_MODULE=shopozor.settings
-# TODO: do export PORT=8000
-# TODO: apparently, shopozor.settings is not called at all
