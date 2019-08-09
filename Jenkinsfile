@@ -1,12 +1,12 @@
 pipeline {
   agent {
     docker {
-      image 'python:latest'
+      image 'python:3.7'
     }
   }
   environment {
     REPORTS_FOLDER = 'junit-reports'
-    VENV = 'venv'
+    // VENV = 'venv'
   }
   stages {
     stage('Virtual Environment Installation') {
@@ -20,7 +20,7 @@ pipeline {
           // sh "chmod u+x ./scripts/install/*.sh"
           // sh ". $VENV/bin/activate && ./scripts/install/install.sh"
           // sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
-          sh "pip install pipenv"
+          sh "pip install pipenv --user"
           sh "pipenv install --user --deploy --dev"
         }
       }
