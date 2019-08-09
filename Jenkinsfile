@@ -23,6 +23,7 @@ pipeline {
           // sh "chmod u+x ./scripts/install/*.sh"
           // sh ". $VENV/bin/activate && ./scripts/install/install.sh"
           // sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
+          sh "echo $PATH"
           sh "pip install pipenv --user"
           sh "pipenv install --user --deploy --dev"
         }
