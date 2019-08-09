@@ -8,14 +8,11 @@ pipeline {
   }
   environment {
     REPORTS_FOLDER = 'junit-reports'
+    PIPENV_VENV_IN_PROJECT = "enabled"
+    PATH = "$PATH:$WORKSPACE/.venv/bin"
   }
   stages {
     stage('Virtual Environment Installation') {
-      environment {
-        PIPENV_VENV_IN_PROJECT = "enabled"
-        // export WORKON_HOME=$HOME/.virtualenvs
-        PATH = "$PATH:$WORKSPACE/.venv/bin"
-      }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
           sh "pip install pipenv --user"
@@ -23,13 +20,13 @@ pipeline {
         }
       }
     }
-    // stage('Build saleor frontend') {
-    //   steps {
-    //     withEnv(["HOME=$WORKSPACE"]) {
-    //       sh "cd saleor && npm i && npm run build-assets && npm run build-emails"
-    //     }
-    //   }
-    // }
+    stage('Build saleor frontend') {
+      steps {
+        withEnv(["HOME=$WORKSPACE"]) {
+          sh "cd saleor && npm i && npm run build-assets && npm run build-emails"
+        }
+      }
+    }
     stage('Performing saleor unit tests') {
       environment {
         DATABASE_URL = credentials('postgres-credentials')
@@ -38,7 +35,7 @@ pipeline {
       }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "cd saleor && $WORKSPACE/.venv/bin/pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
+          sh "cd saleor && pipenv run $WORKSPACE/.venv/bin/pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
         }
       }
     }
@@ -50,7 +47,7 @@ pipeline {
       }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
+          sh "pipenv run $WORKSPACE/.venv/bin/pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
         }
       }
     }
