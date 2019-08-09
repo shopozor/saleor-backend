@@ -11,7 +11,7 @@ pipeline {
   stages {
     stage('Virtual Environment Installation') {
       environment {
-        PATH = "$PATH:$HOME/.local/bin"
+        PATH = "$PATH:$WORKSPACE/.local/bin"
       }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
