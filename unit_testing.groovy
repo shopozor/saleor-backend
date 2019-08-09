@@ -15,7 +15,7 @@ pipeline {
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "pip uninstall pipenv"
+          sh "pip uninstall -y pipenv"
           sh "pip install pipenv --user"
           sh "pipenv install --deploy --dev"
         }
