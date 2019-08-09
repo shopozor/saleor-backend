@@ -24,7 +24,10 @@ pipeline {
       }
       steps {
         script {
-          sh "./production/deploy-to-jelastic.sh $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $PRODUCTION_ENV_NAME cp $PATH_TO_JPS $TAG"
+          SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
+          sh "chmod u+x $SCRIPT_TO_RUN"
+          sh "dos2unix $SCRIPT_TO_RUN"
+          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $PRODUCTION_ENV_NAME cp $PATH_TO_JPS $TAG"
         }
       }
     }
