@@ -33,7 +33,8 @@ pipeline {
       }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "export PATH=$PATH:$(pipenv --venv)/bin"
+          // pipenv --venv
+          sh "export PATH=$PATH:/var/jenkins_home/workspace/backend-unit-pr/.local/share/virtualenvs/backend-unit-pr-yNsOKfVd/bin"
           sh "cd saleor && pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
         }
       }
