@@ -3,54 +3,52 @@
 pipeline {
   agent {
     docker {
-      image 'python:3.7'
+      image 'nikolaik/python-nodejs:latest'
     }
   }
   environment {
     REPORTS_FOLDER = 'junit-reports'
-    PIPENV_VENV_IN_PROJECT = "enabled"
-    PATH = "$PATH:$WORKSPACE/.venv/bin:$WORKSPACE/.local/bin"
+    VENV = 'venv'
   }
   stages {
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "pip install pipenv --user"
-          sh "$WORKSPACE/.local/bin/pipenv install --deploy --dev"
+          sh "virtualenv $VENV"
+          sh ". $VENV/bin/activate && pip install dos2unix"
+          sh "chmod u+x ./scripts/install/*.sh"
+          sh "python venv/lib/python3.7/site-packages/dos2unix.py scripts/install/install.sh scripts/install/install.sh"
+          sh "python venv/lib/python3.7/site-packages/dos2unix.py scripts/install/install-dev.sh scripts/install/install-dev.sh"
+          sh ". $VENV/bin/activate && ./scripts/install/install.sh"
+          sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
         }
       }
     }
-    // stage('Build saleor frontend') {
-    //   steps {
-    //     withEnv(["HOME=$WORKSPACE"]) {
-    //       sh "cd saleor && npm i && npm run build-assets && npm run build-emails"
-    //     }
-    //   }
-    // }
-    // stage('Performing saleor unit tests') {
-    //   environment {
-    //     DATABASE_URL = credentials('postgres-credentials')
-    //     DJANGO_SETTINGS_MODULE = 'tests.settings'
-    //     PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
-    //   }
-    //   steps {
-    //     withEnv(["HOME=$WORKSPACE"]) {
-    //       sh "cd saleor && pipenv run $WORKSPACE/.venv/bin/pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
-    //     }
-    //   }
-    // }
+    stage('Build saleor frontend') {
+      steps {
+        withEnv(["HOME=$WORKSPACE"]) {
+          sh "cd saleor && npm i && npm run build-assets && npm run build-emails"
+        }
+      }
+    }
+    stage('Performing saleor unit tests') {
+      environment {
+        DATABASE_URL = credentials('postgres-credentials')
+        DJANGO_SETTINGS_MODULE = 'tests.settings'
+        PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
+      }
+      steps {
+        sh ". $VENV/bin/activate && cd saleor && pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
+      }
+    }
     stage('Performing shopozor unit tests') {
       environment {
         DATABASE_URL = credentials('postgres-credentials')
         DJANGO_SETTINGS_MODULE = 'unit_tests.settings'
         PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
-        SECRET_KEY = 'theSecretKey'
       }
       steps {
-        withEnv(["HOME=$WORKSPACE"]) {
-          sh "$WORKSPACE/.local/bin/pipenv shell"
-          sh "pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
-        }
+        sh ". $VENV/bin/activate && pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
       }
     }
   }
