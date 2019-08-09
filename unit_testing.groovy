@@ -9,14 +9,14 @@ pipeline {
   environment {
     REPORTS_FOLDER = 'junit-reports'
     PIPENV_VENV_IN_PROJECT = "enabled"
-    PATH = "$PATH:$WORKSPACE/.venv/bin"
+    PATH = "$PATH:$WORKSPACE/.venv/bin:$WORKSPACE/.local/bin"
   }
   stages {
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
           sh "pip install pipenv --user"
-          sh "$WORKSPACE/.local/bin/pipenv install --deploy --dev"
+          sh "pipenv install --deploy --dev"
         }
       }
     }
@@ -48,7 +48,7 @@ pipeline {
       }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "$WORKSPACE/.venv/bin/pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
+          sh "pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
         }
       }
     }
