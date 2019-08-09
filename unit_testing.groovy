@@ -15,7 +15,7 @@ pipeline {
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          // sh "pip install pipenv --user"
+          sh "pip install pipenv --user"
           sh "pipenv install --deploy --dev"
         }
       }
