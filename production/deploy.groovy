@@ -15,5 +15,21 @@ pipeline {
         }
       }
     }
+    stage('Deploy environment') {
+      environment {
+        JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
+        JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
+        PRODUCTION_ENV_NAME = "shopozor-backend"
+        PATH_TO_JPS = "./production/manifest.jps"
+      }
+      steps {
+        script {
+          SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
+          sh "chmod u+x $SCRIPT_TO_RUN"
+          sh "dos2unix $SCRIPT_TO_RUN"
+          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $PRODUCTION_ENV_NAME cp $PATH_TO_JPS $TAG"
+        }
+      }
+    }
   }
 }
