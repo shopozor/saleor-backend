@@ -12,14 +12,16 @@ pipeline {
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "pip install virtualenv --user"
-          sh "$WORKSPACE/.local/bin/virtualenv $VENV"
-          sh ". $VENV/bin/activate && pip install dos2unix"
-          sh "python venv/lib/python3.7/site-packages/dos2unix.py scripts/install/install.sh scripts/install/install.sh"
-          sh "python venv/lib/python3.7/site-packages/dos2unix.py scripts/install/install-dev.sh scripts/install/install-dev.sh"
-          sh "chmod u+x ./scripts/install/*.sh"
-          sh ". $VENV/bin/activate && ./scripts/install/install.sh"
-          sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
+          // sh "pip install virtualenv --user"
+          // sh "$WORKSPACE/.local/bin/virtualenv $VENV"
+          // sh ". $VENV/bin/activate && pip install dos2unix"
+          // sh "python venv/lib/python3.7/site-packages/dos2unix.py scripts/install/install.sh scripts/install/install.sh"
+          // sh "python venv/lib/python3.7/site-packages/dos2unix.py scripts/install/install-dev.sh scripts/install/install-dev.sh"
+          // sh "chmod u+x ./scripts/install/*.sh"
+          // sh ". $VENV/bin/activate && ./scripts/install/install.sh"
+          // sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
+          sh "pip install pipenv"
+          sh "pipenv install --system --deploy --dev"
         }
       }
     }
@@ -35,7 +37,8 @@ pipeline {
         SECRET_KEY = 'theSecretKey'
       }
       steps {
-        sh ". $VENV/bin/activate && python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags=\"~wip\""
+        // sh ". $VENV/bin/activate && python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags=\"~wip\""
+        sh "python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags ~wip"
       }
     }
   }
