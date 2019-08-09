@@ -21,7 +21,7 @@ pipeline {
           // sh ". $VENV/bin/activate && ./scripts/install/install.sh"
           // sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
           sh "pip install pipenv"
-          sh "pipenv install --system --deploy --dev"
+          sh "pipenv install --user --deploy --dev"
         }
       }
     }
