@@ -11,7 +11,7 @@ RUN apt-get -y update \
 RUN pip3 install pipenv
 COPY Pipfile Pipfile.lock /app/
 WORKDIR /app
-RUN pipenv install --system --deploy --dev
+RUN pipenv install --system --deploy
 
 RUN groupadd -r saleor && useradd -r -g saleor saleor
 
