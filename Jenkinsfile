@@ -37,8 +37,10 @@ pipeline {
         SECRET_KEY = 'theSecretKey'
       }
       steps {
+        withEnv(["HOME=$WORKSPACE"]) {
         // sh ". $VENV/bin/activate && python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags ~wip"
-          sh "pipenv run python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags ~wip"
+          sh "$WORKSPACE/.local/bin/pipenv run python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags ~wip"
+        }
       }
     }
   }
