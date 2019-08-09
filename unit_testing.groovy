@@ -12,17 +12,18 @@ pipeline {
   stages {
     stage('Virtual Environment Installation') {
       steps {
-        // withEnv(["HOME=$WORKSPACE"]) {
-          sh "pip install pipenv"
-          sh "pipenv install --system --deploy --dev"
-        // }
+        withEnv(["HOME=$WORKSPACE"]) {
+          sh "pip install pipenv --user"
+          sh "whereis pipenv"
+          sh "$WORKSPACE/.local/bin/pipenv install --deploy --dev"
+        }
       }
     }
     stage('Build saleor frontend') {
       steps {
-        // withEnv(["HOME=$WORKSPACE"]) {
+        withEnv(["HOME=$WORKSPACE"]) {
           sh "cd saleor && npm i && npm run build-assets && npm run build-emails"
-        // }
+        }
       }
     }
     stage('Performing saleor unit tests') {
@@ -32,9 +33,9 @@ pipeline {
         PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
       }
       steps {
-        // withEnv(["HOME=$WORKSPACE"]) {
-          sh "cd saleor && pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
-        // }
+        withEnv(["HOME=$WORKSPACE"]) {
+          sh "cd saleor && $WORKSPACE/.local/bin/pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
+        }
       }
     }
     stage('Performing shopozor unit tests') {
@@ -44,9 +45,9 @@ pipeline {
         PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
       }
       steps {
-        // withEnv(["HOME=$WORKSPACE"]) {
-          sh "pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
-        // }
+        withEnv(["HOME=$WORKSPACE"]) {
+          sh "$WORKSPACE/.local/bin/pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
+        }
       }
     }
   }
