@@ -13,7 +13,7 @@ pipeline {
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "pip install pipenv --user"
+          // sh "pip install pipenv --user"
           sh "pipenv install --deploy --dev"
         }
       }
@@ -45,7 +45,7 @@ pipeline {
       }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
+          sh "$WORKSPACE/.local/bin/pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
         }
       }
     }
