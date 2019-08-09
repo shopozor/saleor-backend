@@ -15,7 +15,6 @@ pipeline {
         withEnv(["HOME=$WORKSPACE"]) {
           sh "pip install pipenv --user"
           sh "pipenv install --deploy --dev"
-          sh "cd /usr/local && find . -name 'pytest'"
         }
       }
     }
@@ -26,30 +25,31 @@ pipeline {
     //     }
     //   }
     // }
-    // stage('Performing saleor unit tests') {
-    //   environment {
-    //     DATABASE_URL = credentials('postgres-credentials')
-    //     DJANGO_SETTINGS_MODULE = 'tests.settings'
-    //     PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
-    //   }
-    //   steps {
-    //     withEnv(["HOME=$WORKSPACE"]) {
-    //       sh "cd saleor && pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
-    //     }
-    //   }
-    // }
-    // stage('Performing shopozor unit tests') {
-    //   environment {
-    //     DATABASE_URL = credentials('postgres-credentials')
-    //     DJANGO_SETTINGS_MODULE = 'unit_tests.settings'
-    //     PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
-    //   }
-    //   steps {
-    //     withEnv(["HOME=$WORKSPACE"]) {
-    //       sh "$WORKSPACE/.local/bin/pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
-    //     }
-    //   }
-    // }
+    stage('Performing saleor unit tests') {
+      environment {
+        DATABASE_URL = credentials('postgres-credentials')
+        DJANGO_SETTINGS_MODULE = 'tests.settings'
+        PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
+      }
+      steps {
+        withEnv(["HOME=$WORKSPACE"]) {
+          sh "export PATH=$PATH:$(pipenv --venv)/bin"
+          sh "cd saleor && pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
+        }
+      }
+    }
+    stage('Performing shopozor unit tests') {
+      environment {
+        DATABASE_URL = credentials('postgres-credentials')
+        DJANGO_SETTINGS_MODULE = 'unit_tests.settings'
+        PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
+      }
+      steps {
+        withEnv(["HOME=$WORKSPACE"]) {
+          sh "pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
+        }
+      }
+    }
   }
   post {
     always {
