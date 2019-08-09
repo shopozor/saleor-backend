@@ -16,7 +16,7 @@ pipeline {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
           sh "pip install pipenv --user"
-          sh "pipenv install --deploy --dev"
+          sh "$WORKSPACE/.local/bin/pipenv install --deploy --dev"
         }
       }
     }
@@ -48,7 +48,7 @@ pipeline {
       }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "pipenv run $WORKSPACE/.venv/bin/pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
+          sh "$WORKSPACE/.local/bin/pipenv run $WORKSPACE/.venv/bin/pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
         }
       }
     }
