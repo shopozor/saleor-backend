@@ -11,6 +11,11 @@ pipeline {
   }
   stages {
     stage('Virtual Environment Installation') {
+      environment {
+        PIPENV_VENV_IN_PROJECT = "enabled"
+        // export WORKON_HOME=$HOME/.virtualenvs
+        PATH = "$PATH:$WORKSPACE/.venv/bin"
+      }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
           sh "pip install pipenv --user"
@@ -33,9 +38,7 @@ pipeline {
       }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          // pipenv --venv
-          sh "export PATH=$PATH:/var/jenkins_home/workspace/backend-unit-pr/.local/share/virtualenvs/backend-unit-pr-yNsOKfVd/bin"
-          sh "cd saleor && pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
+          sh "cd saleor && $WORKSPACE/.venv/bin/pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
         }
       }
     }
