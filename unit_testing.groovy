@@ -20,25 +20,25 @@ pipeline {
         }
       }
     }
-    stage('Build saleor frontend') {
-      steps {
-        withEnv(["HOME=$WORKSPACE"]) {
-          sh "cd saleor && npm i && npm run build-assets && npm run build-emails"
-        }
-      }
-    }
-    stage('Performing saleor unit tests') {
-      environment {
-        DATABASE_URL = credentials('postgres-credentials')
-        DJANGO_SETTINGS_MODULE = 'tests.settings'
-        PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
-      }
-      steps {
-        withEnv(["HOME=$WORKSPACE"]) {
-          sh "cd saleor && pipenv run $WORKSPACE/.venv/bin/pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
-        }
-      }
-    }
+    // stage('Build saleor frontend') {
+    //   steps {
+    //     withEnv(["HOME=$WORKSPACE"]) {
+    //       sh "cd saleor && npm i && npm run build-assets && npm run build-emails"
+    //     }
+    //   }
+    // }
+    // stage('Performing saleor unit tests') {
+    //   environment {
+    //     DATABASE_URL = credentials('postgres-credentials')
+    //     DJANGO_SETTINGS_MODULE = 'tests.settings'
+    //     PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
+    //   }
+    //   steps {
+    //     withEnv(["HOME=$WORKSPACE"]) {
+    //       sh "cd saleor && pipenv run $WORKSPACE/.venv/bin/pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
+    //     }
+    //   }
+    // }
     stage('Performing shopozor unit tests') {
       environment {
         DATABASE_URL = credentials('postgres-credentials')
