@@ -48,7 +48,7 @@ pipeline {
       }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "$WORKSPACE/.local/bin/pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
+          sh "$WORKSPACE/.local/bin/pipenv run $WORKSPACE/.local/bin/pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
         }
       }
     }
