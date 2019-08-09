@@ -3,21 +3,20 @@
 pipeline {
   agent {
     docker {
-      image 'nikolaik/python-nodejs:latest'
+      image 'python:3.7'
     }
   }
   environment {
     REPORTS_FOLDER = 'junit-reports'
-    PIPENV_VENV_IN_PROJECT = "enabled"
-    PATH = "$PATH:$WORKSPACE/.venv/bin"
+    // PIPENV_VENV_IN_PROJECT = "enabled"
+    // PATH = "$PATH:$WORKSPACE/.venv/bin"
   }
   stages {
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "pip uninstall -y pipenv"
           sh "pip install pipenv --user"
-          sh "pipenv install --deploy --dev"
+          sh "$WORKSPACE/.local/bin/pipenv install --deploy --dev"
         }
       }
     }
@@ -45,10 +44,11 @@ pipeline {
         DATABASE_URL = credentials('postgres-credentials')
         DJANGO_SETTINGS_MODULE = 'unit_tests.settings'
         PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
+        SECRET_KEY = 'theSecretKey'
       }
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          sh "pipenv run $WORKSPACE/.venv/bin/pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
+          sh "$WORKSPACE/.local/bin/pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
         }
       }
     }
