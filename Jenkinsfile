@@ -10,8 +10,11 @@ pipeline {
   }
   stages {
     stage('Virtual Environment Installation') {
+      environment {
+        PATH = "$PATH:$HOME/.local/bin"
+      }
       steps {
-        withEnv(["HOME=$WORKSPACE, PATH=$HOME/.local/bin"]) {
+        withEnv(["HOME=$WORKSPACE"]) {
           // sh "pip install virtualenv --user"
           // sh "$WORKSPACE/.local/bin/virtualenv $VENV"
           // sh ". $VENV/bin/activate && pip install dos2unix"
