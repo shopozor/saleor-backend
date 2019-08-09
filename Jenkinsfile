@@ -14,7 +14,7 @@ pipeline {
         PATH = "$PATH:$WORKSPACE/.local/bin"
       }
       steps {
-        withEnv(["HOME=$WORKSPACE"]) {
+        // withEnv(["HOME=$WORKSPACE"]) {
           // sh "pip install virtualenv --user"
           // sh "$WORKSPACE/.local/bin/virtualenv $VENV"
           // sh ". $VENV/bin/activate && pip install dos2unix"
@@ -26,7 +26,7 @@ pipeline {
           sh "echo $PATH"
           sh "pip install pipenv --user"
           sh "pipenv install --user --deploy --dev"
-        }
+        // }
       }
     }
     stage('Performing acceptance tests') {
