@@ -13,42 +13,42 @@ pipeline {
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
-          // sh "pip install pipenv --user"
-          sh "pipenv install --deploy --dev"
+          sh "pip install pipenv --user"
+          // sh "pipenv install --deploy --dev"
         }
       }
     }
-    stage('Build saleor frontend') {
-      steps {
-        withEnv(["HOME=$WORKSPACE"]) {
-          sh "cd saleor && npm i && npm run build-assets && npm run build-emails"
-        }
-      }
-    }
-    stage('Performing saleor unit tests') {
-      environment {
-        DATABASE_URL = credentials('postgres-credentials')
-        DJANGO_SETTINGS_MODULE = 'tests.settings'
-        PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
-      }
-      steps {
-        withEnv(["HOME=$WORKSPACE"]) {
-          sh "cd saleor && pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
-        }
-      }
-    }
-    stage('Performing shopozor unit tests') {
-      environment {
-        DATABASE_URL = credentials('postgres-credentials')
-        DJANGO_SETTINGS_MODULE = 'unit_tests.settings'
-        PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
-      }
-      steps {
-        withEnv(["HOME=$WORKSPACE"]) {
-          sh "$WORKSPACE/.local/bin/pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
-        }
-      }
-    }
+    // stage('Build saleor frontend') {
+    //   steps {
+    //     withEnv(["HOME=$WORKSPACE"]) {
+    //       sh "cd saleor && npm i && npm run build-assets && npm run build-emails"
+    //     }
+    //   }
+    // }
+    // stage('Performing saleor unit tests') {
+    //   environment {
+    //     DATABASE_URL = credentials('postgres-credentials')
+    //     DJANGO_SETTINGS_MODULE = 'tests.settings'
+    //     PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
+    //   }
+    //   steps {
+    //     withEnv(["HOME=$WORKSPACE"]) {
+    //       sh "cd saleor && pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
+    //     }
+    //   }
+    // }
+    // stage('Performing shopozor unit tests') {
+    //   environment {
+    //     DATABASE_URL = credentials('postgres-credentials')
+    //     DJANGO_SETTINGS_MODULE = 'unit_tests.settings'
+    //     PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
+    //   }
+    //   steps {
+    //     withEnv(["HOME=$WORKSPACE"]) {
+    //       sh "$WORKSPACE/.local/bin/pipenv run pytest -ra --junitxml=$REPORTS_FOLDER/shopozor-unit-tests.xml"
+    //     }
+    //   }
+    // }
   }
   post {
     always {
