@@ -22,7 +22,7 @@ pipeline {
           // sh ". $VENV/bin/activate && ./scripts/install/install-dev.sh"
           sh "echo $PATH"
           sh "pip install pipenv --user"
-          sh "$WORKSPACE/.local/bin/pipenv install --user --deploy --dev"
+          sh "$WORKSPACE/.local/bin/pipenv install --deploy --dev"
         }
       }
     }
