@@ -8,10 +8,15 @@ RUN apt-get -y update \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install pipenv
-COPY Pipfile Pipfile.lock /app/
+COPY . /app
+
 WORKDIR /app
-RUN pipenv install --system --deploy --dev
+
+RUN chmod u+x ./scripts/install/*.sh \
+  && ./scripts/install/install.sh
+
+# TODO: the installation of the dev dependencies needs to be removed
+RUN ./scripts/install/install-dev.sh
 
 RUN groupadd -r saleor && useradd -r -g saleor saleor
 
@@ -27,9 +32,6 @@ RUN apt-get update \
     mime-support \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/*
-
-COPY . /app
-WORKDIR /app
 
 RUN chown -R saleor:saleor /app/
 
