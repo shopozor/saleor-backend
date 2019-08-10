@@ -57,6 +57,8 @@ deployToJelastic() {
     redeployEnvironment $SESSION "${ENV_NAME}" ${DEPLOY_GROUP} ${TAG}
   fi
 
+  # TODO: restart container!
+
   exit 0
 }
 

@@ -11,7 +11,8 @@ RUN apt-get -y update \
 RUN pip3 install pipenv
 COPY Pipfile Pipfile.lock /app/
 WORKDIR /app
-RUN pipenv install --system --deploy
+# TODO: --dev needs to be removed
+RUN pipenv install --system --deploy --dev
 
 RUN groupadd -r saleor && useradd -r -g saleor saleor
 
@@ -29,7 +30,6 @@ RUN apt-get update \
   && rm -rf /var/lib/apt/lists/*
 
 COPY . /app
-WORKDIR /app
 
 RUN chown -R saleor:saleor /app/
 

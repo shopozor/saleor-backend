@@ -14,5 +14,4 @@
 /venv/
 Jenkinsfile
 unit_testing.groovy
-requirements*.txt
 dev.env
