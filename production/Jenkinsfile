@@ -1,8 +1,10 @@
 pipeline {
+  // TODO: make sure we always checkout the staging branch
   agent any
   environment {
     DOCKER_CREDENTIALS = credentials('docker-credentials')
-    DOCKER_REPO = "softozor/shopozor-backend:$TAG"
+    DOCKER_REPO = "softozor/shopozor-backend:staging"
+    STAGING_ENV_NAME = "shopozor-backend-staging"
   }
   stages {
     stage('Publish docker container') {
@@ -19,7 +21,6 @@ pipeline {
       environment {
         JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
         JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
-        PRODUCTION_ENV_NAME = "shopozor-backend"
         PATH_TO_JPS = "./production/manifest.jps"
       }
       steps {
@@ -27,9 +28,38 @@ pipeline {
           SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
           sh "chmod u+x $SCRIPT_TO_RUN"
           sh "dos2unix $SCRIPT_TO_RUN"
-          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $PRODUCTION_ENV_NAME cp $PATH_TO_JPS $TAG"
+          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $STAGING_ENV_NAME cp $PATH_TO_JPS $TAG"
         }
       }
     }
+    // stage('Check environment') {
+    // TODO: check environment stuff like ssl, DEBUG=False, ALLOWED_HOSTS, security checks, etc.
+    // }
+    stage('Check GraphQL endpoint') {
+      environment {
+        GRAPHQL_ENDPOINT = "${STAGING_ENV_NAME}.hidora.com/graphql/"
+      }
+      steps {
+        script {
+          SCRIPT_TO_RUN = './production/test-graphql.sh'
+          sh "chmod u+x $SCRIPT_TO_RUN"
+          sh "dos2unix $SCRIPT_TO_RUN"
+          sh "$SCRIPT_TO_RUN $GRAPHQL_ENDPOINT"
+        }
+      }
+    }
+    // stage('Tag staging version') {
+    // TODO: Tag the version with version $TAG
+    // TODO: possibility add a comment retrieved from pipeline parameters like the TAG
+    // }
+    // TODO: is this working? --> create the backend-deploy-to-prod job and see what happens!
+    // stage ('Deploy to prod') {
+    //   build job: 'backend-deploy-to-prod', parameters: [[$class: 'StringParameterValue', name: 'TAG', value: $TAG]]
+    // }
   }
 }
+
+// TODO: backend-deploy-to-prod pipeline:
+// 1. checkout TAG
+// 2. deploy image
+// <-- probably not necessary because upon call of git tag, we switch to tag and can directly build and deploy the image!
