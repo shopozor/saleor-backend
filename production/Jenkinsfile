@@ -1,34 +1,34 @@
 pipeline {
-  // TODO: make sure we always checkout the staging branch
   agent any
   environment {
     DOCKER_CREDENTIALS = credentials('docker-credentials')
-    DOCKER_REPO = "softozor/shopozor-backend:staging"
+    JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
+    JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
+    PRODUCTION_DOCKER_REPO = "softozor/shopozor-backend:$TAG"
+    PATH_TO_JPS = "./production/manifest.jps"
+    PRODUCTION_ENV_NAME = "shopozor-backend"
+    STAGING_BRANCH = "staging"
+    STAGING_DOCKER_REPO = "softozor/shopozor-backend:staging"
     STAGING_ENV_NAME = "shopozor-backend-staging"
   }
   stages {
-    stage('Publish docker container') {
+    stage('Publish staging docker container') {
       steps {
         script {
             sh "cp production/Dockerfile production/.dockerignore ."
             sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
-            sh "docker build --network=host -t $DOCKER_REPO ."
-            sh "docker push $DOCKER_REPO"
+            sh "docker build --network=host -t $STAGING_DOCKER_REPO ."
+            sh "docker push $STAGING_DOCKER_REPO"
         }
       }
     }
-    stage('Deploy environment') {
-      environment {
-        JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
-        JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
-        PATH_TO_JPS = "./production/manifest.jps"
-      }
+    stage('Deploy staging environment') {
       steps {
         script {
           SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
           sh "chmod u+x $SCRIPT_TO_RUN"
           sh "dos2unix $SCRIPT_TO_RUN"
-          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $STAGING_ENV_NAME cp $PATH_TO_JPS $TAG"
+          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $STAGING_ENV_NAME cp $PATH_TO_JPS $STAGING_BRANCH"
         }
       }
     }
@@ -48,18 +48,34 @@ pipeline {
         }
       }
     }
-    // stage('Tag staging version') {
-    // TODO: Tag the version with version $TAG
-    // TODO: possibility add a comment retrieved from pipeline parameters like the TAG
-    // }
-    // TODO: is this working? --> create the backend-deploy-to-prod job and see what happens!
-    // stage ('Deploy to prod') {
-    //   build job: 'backend-deploy-to-prod', parameters: [[$class: 'StringParameterValue', name: 'TAG', value: $TAG]]
-    // }
+    stage('Tag staging version') {
+      steps {
+        script {
+          sh "git tag $TAG -m $DESCRIPTION"
+          sh "git push origin $TAG"
+          sh "git checkout $TAG"
+        }
+      }
+    }
+    stage('Publish production docker container') {
+      steps {
+        script {
+            sh "cp production/Dockerfile production/.dockerignore ."
+            sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
+            sh "docker build --network=host -t $PRODUCTION_DOCKER_REPO ."
+            sh "docker push $PRODUCTION_DOCKER_REPO"
+        }
+      }
+    }
+    stage('Deploy production environment') {
+      steps {
+        script {
+          SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
+          sh "chmod u+x $SCRIPT_TO_RUN"
+          sh "dos2unix $SCRIPT_TO_RUN"
+          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $PRODUCTION_ENV_NAME cp $PATH_TO_JPS $TAG"
+        }
+      }
+    }
   }
 }
-
-// TODO: backend-deploy-to-prod pipeline:
-// 1. checkout TAG
-// 2. deploy image
-// <-- probably not necessary because upon call of git tag, we switch to tag and can directly build and deploy the image!
