@@ -27,7 +27,7 @@ application:
             DOCKER_EXPOSED_PORT: 22,80,443
         - image: softozor/shopozor-backend
           nodeGroup: cp
-          tag: latest
+          tag: DOCKER_TAG
           displayName: Application servers
           count: 1
           fixedCloudlets: 4

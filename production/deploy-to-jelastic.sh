@@ -51,7 +51,6 @@ deployToJelastic() {
     installEnv $SESSION "${ENV_NAME}" "$MANIFEST"
     # the environment installed from the manifest deploys some tag that might not be the one we want
     # therefore, we redeploy with the desired tag
-    redeployEnvironment $SESSION "${ENV_NAME}" ${DEPLOY_GROUP} ${TAG}
   else
     startEnvIfNecessary $SESSION "${ENV_NAME}" "$ENVS"
     redeployEnvironment $SESSION "${ENV_NAME}" ${DEPLOY_GROUP} ${TAG}
