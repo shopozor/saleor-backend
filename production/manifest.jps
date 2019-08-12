@@ -43,7 +43,7 @@ application:
             PORT: 8000
             PYTHONUNBUFFERED: 1
             PROCESSES: 1
-            DEBUG: False
+            DEBUG: "False"
         - nodeGroup: sqldb
           nodeType: postgresql
           tag: 11.2
