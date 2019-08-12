@@ -43,8 +43,7 @@ application:
             PORT: 8000
             PYTHONUNBUFFERED: 1
             PROCESSES: 1
-            # TODO: needs to be set to False
-            DEBUG: True
+            DEBUG: False
         - nodeGroup: sqldb
           nodeType: postgresql
           tag: 11.2
