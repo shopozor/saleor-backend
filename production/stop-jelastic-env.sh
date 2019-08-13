@@ -5,7 +5,7 @@ if [ $# -ne 5 ] ; then
   exit 0
 fi
 
-. common/e2e/helpers.sh
+. production/helpers.sh
 
 HOSTER_URL=$1
 APPID=$2

@@ -46,6 +46,7 @@ pipeline {
         GRAPHQL_ENDPOINT = "${STAGING_ENV_NAME}.hidora.com/graphql/"
       }
       steps {
+        // TODO: is this failing if the script returns 1?
         script {
           SCRIPT_TO_RUN = './production/test-graphql.sh'
           sh "chmod u+x $SCRIPT_TO_RUN"
@@ -68,7 +69,7 @@ pipeline {
     stage('Tag staging version') {
       steps {
         script {
-          sh "git tag $TAG -m $DESCRIPTION"
+          sh "git tag $TAG -m \"$DESCRIPTION\"""
           sh "git push origin $TAG"
           sh "git checkout $TAG"
         }
