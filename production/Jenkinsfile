@@ -72,7 +72,7 @@ pipeline {
       }
       steps {
         script {
-          echo GIT_URL.split('/')[2].split(':')[0]
+          echo GIT_URL.split('/')[2]
           sh "git remote rm origin"
           /*sh "git remote add origin https://$GITHUB_CREDENTIALS_USR:$GITHUB_CREDENTIALS_PSW@${GIT_URL#https://}"
           // sh "git config --global user.name softozor-deployer"
