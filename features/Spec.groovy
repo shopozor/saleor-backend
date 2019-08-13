@@ -1,9 +1,5 @@
 pipeline {
-  agent {
-    docker {
-      image 'python:latest'
-    }
-  }
+  agent any
   stages {
     stage('Spec generation') {
       steps {
