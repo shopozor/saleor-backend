@@ -11,7 +11,7 @@ pipeline {
     STAGING_ENV_NAME = "shopozor-backend-staging"
   }
   stages {
-    stage('Publish staging docker container') {
+    /*stage('Publish staging docker container') {
       steps {
         script {
             sh "cp production/Dockerfile production/.dockerignore ."
@@ -65,10 +65,12 @@ pipeline {
           sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $STAGING_ENV_NAME"
         }
       }
-    }
+    }*/
     stage('Tag staging version') {
       steps {
         script {
+          sh "git config --global user.name softozor-deployer"
+          sh "git config --global user.email softozor-deployer@softozor.ch"
           sh "git tag $TAG -m \"$DESCRIPTION\""
           sh "git push origin $TAG"
           sh "git checkout $TAG"
