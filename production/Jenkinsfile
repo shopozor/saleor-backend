@@ -72,14 +72,14 @@ pipeline {
       }
       steps {
         script {
-          echo GIT_URL.drop(7)
+          def originUrl = "https://$GITHUB_CREDENTIALS_USR:$GITHUB_CREDENTIALS_PSW@" + GIT_URL.drop(8)
           sh "git remote rm origin"
-          /*sh "git remote add origin https://$GITHUB_CREDENTIALS_USR:$GITHUB_CREDENTIALS_PSW@${GIT_URL#https://}"
+          sh "git remote add origin $originUrl"
           // sh "git config --global user.name softozor-deployer"
           // sh "git config --global user.email softozor-deployer@softozor.ch"
           sh "git tag $TAG -m \"$DESCRIPTION\""
           sh "git push origin $TAG"
-          sh "git checkout $TAG"*/
+          sh "git checkout $TAG"
         }
       }
     }
