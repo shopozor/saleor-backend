@@ -43,6 +43,7 @@ pipeline {
     always {
       script {
          junit "**/$REPORTS_FOLDER/*.xml"
+         // TODO: build backend-spec project
       }
     }
   }
