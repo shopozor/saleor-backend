@@ -69,7 +69,7 @@ pipeline {
     stage('Tag staging version') {
       steps {
         script {
-          sh "git tag $TAG -m \"$DESCRIPTION\"""
+          sh "git tag $TAG -m \"$DESCRIPTION\""
           sh "git push origin $TAG"
           sh "git checkout $TAG"
         }
