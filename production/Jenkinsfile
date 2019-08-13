@@ -73,6 +73,7 @@ pipeline {
       steps {
         script {
           sh "env"
+          sh "git remote rm origin"
           sh "git remote add origin https://$GITHUB_CREDENTIALS_USR:$GITHUB_CREDENTIALS_PSW@github.com/shopozor/backend.git"
           sh "git config --global user.name softozor-deployer"
           sh "git config --global user.email softozor-deployer@softozor.ch"
