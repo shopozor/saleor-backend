@@ -72,39 +72,37 @@ pipeline {
       }
       steps {
         script {
-          sh "env"
-          sh "git remote -v"
           sh "git remote rm origin"
-          sh "git remote add origin https://$GITHUB_CREDENTIALS_USR:$GITHUB_CREDENTIALS_PSW@github.com/shopozor/backend.git"
-          sh "git config --global user.name softozor-deployer"
-          sh "git config --global user.email softozor-deployer@softozor.ch"
+          sh "git remote add origin https://$GITHUB_CREDENTIALS_USR:$GITHUB_CREDENTIALS_PSW@${GIT_URL#https://}"
+          // sh "git config --global user.name softozor-deployer"
+          // sh "git config --global user.email softozor-deployer@softozor.ch"
           sh "git tag $TAG -m \"$DESCRIPTION\""
           sh "git push origin $TAG"
           sh "git checkout $TAG"
         }
       }
     }
-    stage('Publish production docker container') {
-      steps {
-        script {
-            sh "cp production/Dockerfile production/.dockerignore ."
-            sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
-            sh "docker build --network=host -t $PRODUCTION_DOCKER_REPO ."
-            sh "docker push $PRODUCTION_DOCKER_REPO"
-        }
-      }
-    }
-    stage('Deploy production environment') {
-      steps {
-        script {
-          sh "cp $PATH_TO_JPS manifest.jps"
-          sh "sed -i \"s/DOCKER_TAG/$TAG/g\" manifest.jps"
-          SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
-          sh "chmod u+x $SCRIPT_TO_RUN"
-          sh "dos2unix $SCRIPT_TO_RUN"
-          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $PRODUCTION_ENV_NAME cp manifest.jps $TAG"
-        }
-      }
-    }
+    // stage('Publish production docker container') {
+    //   steps {
+    //     script {
+    //         sh "cp production/Dockerfile production/.dockerignore ."
+    //         sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
+    //         sh "docker build --network=host -t $PRODUCTION_DOCKER_REPO ."
+    //         sh "docker push $PRODUCTION_DOCKER_REPO"
+    //     }
+    //   }
+    // }
+    // stage('Deploy production environment') {
+    //   steps {
+    //     script {
+    //       sh "cp $PATH_TO_JPS manifest.jps"
+    //       sh "sed -i \"s/DOCKER_TAG/$TAG/g\" manifest.jps"
+    //       SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
+    //       sh "chmod u+x $SCRIPT_TO_RUN"
+    //       sh "dos2unix $SCRIPT_TO_RUN"
+    //       sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $PRODUCTION_ENV_NAME cp manifest.jps $TAG"
+    //     }
+    //   }
+    // }
   }
 }
