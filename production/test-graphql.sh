@@ -7,7 +7,7 @@ fi
 
 GRAPHQL_URL=$1
 
-EXPECTED_RESPONSE='{"errors": [{"message": "You do not have permission to perform this action", "locations": [{"line": 1, "column": 9}], "path": ["me"]}], "data": {"me": null}}'
+EXPECTED_RESPONSE='{"errors": [{"message": "You do not have permission to perform this action", "locations": [{"line": 1, "column": 9}], "path": ["me"]}], "data": {"me": nul}}'
 
 TIME_OUT_IN_SECONDS=1800
 TIMER_DELTA_IN_SECONDS=5

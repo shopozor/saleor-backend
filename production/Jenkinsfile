@@ -11,7 +11,7 @@ pipeline {
     STAGING_ENV_NAME = "shopozor-backend-staging"
   }
   stages {
-    /*stage('Publish staging docker container') {
+    stage('Publish staging docker container') {
       steps {
         script {
             sh "cp production/Dockerfile production/.dockerignore ."
@@ -65,7 +65,7 @@ pipeline {
           sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $STAGING_ENV_NAME"
         }
       }
-    }*/
+    }
     stage('Tag staging version') {
       environment {
         GITHUB_CREDENTIALS = credentials('github-credentials')
@@ -83,27 +83,27 @@ pipeline {
         }
       }
     }
-    // stage('Publish production docker container') {
-    //   steps {
-    //     script {
-    //         sh "cp production/Dockerfile production/.dockerignore ."
-    //         sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
-    //         sh "docker build --network=host -t $PRODUCTION_DOCKER_REPO ."
-    //         sh "docker push $PRODUCTION_DOCKER_REPO"
-    //     }
-    //   }
-    // }
-    // stage('Deploy production environment') {
-    //   steps {
-    //     script {
-    //       sh "cp $PATH_TO_JPS manifest.jps"
-    //       sh "sed -i \"s/DOCKER_TAG/$TAG/g\" manifest.jps"
-    //       SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
-    //       sh "chmod u+x $SCRIPT_TO_RUN"
-    //       sh "dos2unix $SCRIPT_TO_RUN"
-    //       sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $PRODUCTION_ENV_NAME cp manifest.jps $TAG"
-    //     }
-    //   }
-    // }
+    stage('Publish production docker container') {
+      steps {
+        script {
+            sh "cp production/Dockerfile production/.dockerignore ."
+            sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
+            sh "docker build --network=host -t $PRODUCTION_DOCKER_REPO ."
+            sh "docker push $PRODUCTION_DOCKER_REPO"
+        }
+      }
+    }
+    stage('Deploy production environment') {
+      steps {
+        script {
+          sh "cp $PATH_TO_JPS manifest.jps"
+          sh "sed -i \"s/DOCKER_TAG/$TAG/g\" manifest.jps"
+          SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
+          sh "chmod u+x $SCRIPT_TO_RUN"
+          sh "dos2unix $SCRIPT_TO_RUN"
+          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $PRODUCTION_ENV_NAME cp manifest.jps $TAG"
+        }
+      }
+    }
   }
 }
