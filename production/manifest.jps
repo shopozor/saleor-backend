@@ -27,7 +27,7 @@ application:
             DOCKER_EXPOSED_PORT: 22,80,443
         - image: softozor/shopozor-backend
           nodeGroup: cp
-          tag: latest
+          tag: DOCKER_TAG
           displayName: Application servers
           count: 1
           fixedCloudlets: 4
@@ -43,8 +43,7 @@ application:
             PORT: 8000
             PYTHONUNBUFFERED: 1
             PROCESSES: 1
-            # TODO: needs to be set to False
-            DEBUG: True
+            DEBUG: "False"
         - nodeGroup: sqldb
           nodeType: postgresql
           tag: 11.2
