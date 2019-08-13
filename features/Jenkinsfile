@@ -7,7 +7,7 @@ pipeline {
   stages {
     stage('Build other job') {
       steps {
-        build job: 'backend-spec', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: $GIT_BRANCH]]
+        build job: 'backend-spec', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: GIT_BRANCH]]
       }
     }
   }
