@@ -7,12 +7,12 @@ pipeline {
   stages {
     stage('Build other job') {
       steps {
-          build 'backend-spec'
+        sh "env"
+        build job: 'backend-spec', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: $BRANCH]]
       }
     }
   }
 }
-
 // pipeline {
 //   agent {
 //     docker {
@@ -24,11 +24,6 @@ pipeline {
 //     VENV = 'venv'
 //   }
 //   stages {
-//     stage('Build other job') {
-//       steps {
-//          build 'backend-spec'
-//       }
-//     }
 //     stage('Virtual Environment Installation') {
 //       steps {
 //         withEnv(["HOME=$WORKSPACE"]) {
@@ -63,8 +58,7 @@ pipeline {
 //     always {
 //       script {
 //          junit "**/$REPORTS_FOLDER/*.xml"
-//          // TODO: build backend-spec project
-//          build 'backend-spec'
+//          build job: 'backend-spec', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: $BRANCH]]
 //       }
 //     }
 //   }
