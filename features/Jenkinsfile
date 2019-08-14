@@ -9,12 +9,6 @@ pipeline {
     VENV = 'venv'
   }
   stages {
-    stage('Hello world') {
-      steps {
-        sh "env"
-        sh "exit 1"
-      }
-    }
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
@@ -49,7 +43,7 @@ pipeline {
     always {
       script {
         junit "**/$REPORTS_FOLDER/*.xml"
-        if(GIT_BRANCH == 'dev' || GIT_BRANCH == 'master') {
+        if(GIT_BRANCH == 'origin/dev' || GIT_BRANCH == 'origin/master') {
           build job: 'backend-spec', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: GIT_BRANCH]]
         }
       }
