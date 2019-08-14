@@ -33,25 +33,9 @@ pipeline {
         }
       }
     }
-    stage('Check environment') {
-      // TODO: check environment stuff like ssl, DEBUG=False, ALLOWED_HOSTS, security checks, etc.
+    stage('Check staging environment') {
       steps {
-        script {
-          echo "CURRENTLY NO ENVIRONMENT TESTS DONE!"
-        }
-      }
-    }
-    stage('Check GraphQL endpoint') {
-      environment {
-        GRAPHQL_ENDPOINT = "${STAGING_ENV_NAME}.hidora.com/graphql/"
-      }
-      steps {
-        script {
-          SCRIPT_TO_RUN = './production/test-graphql.sh'
-          sh "chmod u+x $SCRIPT_TO_RUN"
-          sh "dos2unix $SCRIPT_TO_RUN"
-          sh "$SCRIPT_TO_RUN $GRAPHQL_ENDPOINT"
-        }
+        build job: 'backend-security', parameters: [[$class: 'StringParameterValue', name: 'HIDORA_DOMAIN', value: STAGING_ENV_NAME]]
       }
     }
     stage('Stop staging environment') {
@@ -100,6 +84,11 @@ pipeline {
           sh "dos2unix $SCRIPT_TO_RUN"
           sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $PRODUCTION_ENV_NAME cp manifest.jps $TAG"
         }
+      }
+    }
+    stage('Check production environment') {
+      steps {
+        build job: 'backend-security', parameters: [[$class: 'StringParameterValue', name: 'HIDORA_DOMAIN', value: PRODUCTION_ENV_NAME]]
       }
     }
   }
