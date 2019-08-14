@@ -43,7 +43,7 @@ pipeline {
     always {
       script {
         junit "**/$REPORTS_FOLDER/*.xml"
-        if(env.BRANCH_NAME == 'dev' || env.BRANCH_NAME == 'master') {
+        if(GIT_BRANCH == 'dev' || GIT_BRANCH == 'master') {
           build job: 'backend-spec', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: GIT_BRANCH]]
         }
       }
