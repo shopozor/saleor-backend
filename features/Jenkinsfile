@@ -9,6 +9,12 @@ pipeline {
     VENV = 'venv'
   }
   stages {
+    stage('Hello world') {
+      steps {
+        sh "env"
+        sh "exit 1"
+      }
+    }
     stage('Virtual Environment Installation') {
       steps {
         withEnv(["HOME=$WORKSPACE"]) {
