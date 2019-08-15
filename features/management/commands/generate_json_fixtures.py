@@ -5,7 +5,7 @@ from features.utils.fixtures.loader import get_data_from_json_fixture
 import json
 import os
 
-PATH_TO_SHOPS_FIXTURE = os.path.join('features', 'fixtures', '_Shops.json')
+PATH_TO_SHOPS_FIXTURE = os.path.join('features', 'fixtures', 'Shops.json')
 PATH_TO_SALEOR_FIXTURE = os.path.join('features', 'fixtures', 'saleor.json')
 
 
@@ -36,6 +36,17 @@ def generate_shop_list():
     return expected_list
 
 
+def postprocess_is_available_flag(edges):
+    for edge in edges:
+        # an edge is more or less a product
+        has_stock = any(variant['stockQuantity'] >
+                        0 for variant in edge['node']['variants'])
+        for variant in edge['node']['variants']:
+            # a variant is available <==> product is visible and has stock
+            # a product has stock <==> any of its variant has stock
+            variant['isAvailable'] = variant['isAvailable'] and has_stock
+
+
 def generate_shop_catalogues():
     shops_fixture = get_data_from_json_fixture(PATH_TO_SHOPS_FIXTURE)
     products_fixture = get_data_from_json_fixture(PATH_TO_SALEOR_FIXTURE)
@@ -63,23 +74,32 @@ def generate_shop_catalogues():
                 continue
             edges_with_product_id = [
                 edge for edge in edges if edge['node']['id'] == product['pk']]
+            new_variant = {
+                'id': variant_id,
+                'name': variant['fields']['name'],
+                'isAvailable': product['fields']['is_published'],
+                'stockQuantity': max(variant['fields']['quantity'] - variant['fields']['quantity_allocated'], 0),
+                # pricing price gross currency amount
+            }
             if edges_with_product_id:
                 edge = edges_with_product_id[0]
-                new_variant = {
-                    'id': variant_id
-                }
                 edge['node']['variants'].append(new_variant)
             else:
                 node = {
                     'node': {
                         'id': product['pk'],
                         'name': product['fields']['name'],
-                        'variants': [{
-                            'id': variant_id
-                        }]
+                        'variants': [new_variant]
+                        # images id alt url
+                        # category id
+                        # productType id
+                        # producer firstName lastName
                     }
                 }
                 edges.append(node)
+
+    postprocess_is_available_flag(edges)
+
     return expected_catalogues
 
 
