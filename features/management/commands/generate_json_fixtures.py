@@ -7,7 +7,8 @@ import os
 
 
 def generate_shop_list():
-    shops_fixture = get_data_from_json_fixture('Shops.json')
+    shops_fixture = get_data_from_json_fixture(
+        os.path.join('features', 'fixtures', 'Shops.json'))
     expected_list = {
         'data': {
             'shops': {
@@ -15,26 +16,29 @@ def generate_shop_list():
             }
         }
     }
+    edges = expected_list['data']['shops']['edges']
     for shop_fixture in shops_fixture:
+        fields = shop_fixture['fields']
         node = {
             'node': {
                 'id': shop_fixture['pk'],
-                'name': shop_fixture['fields']['name'],
-                'description': shop_fixture['fields']['description'],
+                'name': fields['name'],
+                'description': fields['description'],
                 'geocoordinates': {
-                    'latitude': shop_fixture['fields']['latitude'],
-                    'longitude': shop_fixture['fields']['longitude']
+                    'latitude': fields['latitude'],
+                    'longitude': fields['longitude']
                 }
             }
         }
-        expected_list['data']['shops']['edges'].append(node)
+        edges.append(node)
     return expected_list
 
 
 def generate_shop_catalogues():
-    shops_fixture = get_data_from_json_fixture('Shops.json')
+    shops_fixture = get_data_from_json_fixture(
+        os.path.join('features', 'fixtures', 'Shops.json'))
     products_fixture = get_data_from_json_fixture(os.path.join(
-        '..', '..', 'saleor', 'saleor', 'static', 'populatedb_data.json'))
+        'features', 'fixtures', 'saleor.json'))
     # TODO: get the producers from the users_fixture
 
     expected_catalogues = dict()
@@ -81,11 +85,11 @@ class Command(BaseCommand):
     help = 'Generate the JSON expected responses to the GraphQL queries tested in the acceptance tests.'
 
     def add_arguments(self, parser):
-        parser.add_argument('-o', '--output-folder', type=str,
+        parser.add_argument('-o', '--output-folder', type=str, default=settings.GRAPHQL_RESPONSES_FOLDER,
                             help='Folder where to output the JSON files')
 
     def handle(self, *args, **options):
-        output_folder = options['output_folder'] if options['output_folder'] else settings.GRAPHQL_RESPONSES_FOLDER
+        output_folder = options['output_folder']
 
         if not os.path.exists(output_folder):
             os.makedirs(output_folder)
