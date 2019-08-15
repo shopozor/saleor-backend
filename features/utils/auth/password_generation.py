@@ -28,6 +28,8 @@ class RandomCompliantPasswordGenerator:
             'Max allowed number of attempts to generate a random password reached.')
 
     def __generate_random_password(self):
+        allowed_punctuation = string.punctuation.replace(
+            '"', '').replace("'", '')
         allowed_chars = ''.join(
-            (string.digits, string.ascii_letters, string.punctuation))
+            (string.digits, string.ascii_letters, allowed_punctuation))
         return ''.join(random.choice(allowed_chars) for _ in range(self.PASSWORD_LENGTH))
