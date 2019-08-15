@@ -81,8 +81,9 @@ def generate_shop_catalogues():
     return expected_catalogues
 
 
-def output_object_to_json(object, full_filename):
-    with open(full_filename, 'w') as json_file:
+def output_object_to_json(object, output_dir, output_filename):
+    os.makedirs(output_dir, exist_ok=True)
+    with open(os.path.join(output_dir, output_filename), 'w') as json_file:
         json.dump(object, json_file, sort_keys=True, indent=2)
         json_file.write('\n')
 
@@ -100,14 +101,11 @@ class Command(BaseCommand):
         os.makedirs(output_folder, exist_ok=True)
 
         consumer_output_dir = os.path.join(output_folder, 'Consumer')
-        os.makedirs(consumer_output_dir, exist_ok=True)
-
-        output_object_to_json(generate_shop_list(), os.path.join(
-            consumer_output_dir, 'Shops.json'))
+        output_object_to_json(generate_shop_list(),
+                              consumer_output_dir, 'Shops.json')
 
         catalogues_output_dir = os.path.join(consumer_output_dir, 'Catalogues')
-        os.makedirs(catalogues_output_dir, exist_ok=True)
         shop_catalogues = generate_shop_catalogues()
         for catalogue in shop_catalogues:
-            output_object_to_json(shop_catalogues[catalogue], os.path.join(
-                catalogues_output_dir, 'Shop-{id}.json'.format(id=catalogue)))
+            output_object_to_json(
+                shop_catalogues[catalogue], catalogues_output_dir, 'Shop-{id}.json'.format(id=catalogue))
