@@ -81,6 +81,12 @@ def generate_shop_catalogues():
     return expected_catalogues
 
 
+def output_object_to_json(object, full_filename):
+    with open(full_filename, 'w') as json_file:
+        json.dump(object, json_file, sort_keys=True, indent=2)
+        json_file.write('\n')
+
+
 class Command(BaseCommand):
     help = 'Generate the JSON expected responses to the GraphQL queries tested in the acceptance tests.'
 
@@ -96,13 +102,12 @@ class Command(BaseCommand):
         consumer_output_dir = os.path.join(output_folder, 'Consumer')
         os.makedirs(consumer_output_dir, exist_ok=True)
 
-        with open(os.path.join(consumer_output_dir, 'Shops.json'), 'w') as json_file:
-            json.dump(generate_shop_list(), json_file, sort_keys=True)
+        output_object_to_json(generate_shop_list(), os.path.join(
+            consumer_output_dir, 'Shops.json'))
 
         catalogues_output_dir = os.path.join(consumer_output_dir, 'Catalogues')
         os.makedirs(catalogues_output_dir, exist_ok=True)
         shop_catalogues = generate_shop_catalogues()
         for catalogue in shop_catalogues:
-            with open(os.path.join(catalogues_output_dir, 'Shop-{id}.json'.format(id=catalogue)), 'w') as json_file:
-                json.dump(shop_catalogues[catalogue],
-                          json_file, sort_keys=True)
+            output_object_to_json(shop_catalogues[catalogue], os.path.join(
+                catalogues_output_dir, 'Shop-{id}.json'.format(id=catalogue)))
