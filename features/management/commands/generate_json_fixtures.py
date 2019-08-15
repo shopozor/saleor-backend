@@ -5,10 +5,12 @@ from features.utils.fixtures.loader import get_data_from_json_fixture
 import json
 import os
 
+PATH_TO_SHOPS_FIXTURE = os.path.join('features', 'fixtures', '_Shops.json')
+PATH_TO_SALEOR_FIXTURE = os.path.join('features', 'fixtures', 'saleor.json')
+
 
 def generate_shop_list():
-    shops_fixture = get_data_from_json_fixture(
-        os.path.join('features', 'fixtures', 'Shops.json'))
+    shops_fixture = get_data_from_json_fixture(PATH_TO_SHOPS_FIXTURE)
     expected_list = {
         'data': {
             'shops': {
@@ -35,10 +37,8 @@ def generate_shop_list():
 
 
 def generate_shop_catalogues():
-    shops_fixture = get_data_from_json_fixture(
-        os.path.join('features', 'fixtures', 'Shops.json'))
-    products_fixture = get_data_from_json_fixture(os.path.join(
-        'features', 'fixtures', 'saleor.json'))
+    shops_fixture = get_data_from_json_fixture(PATH_TO_SHOPS_FIXTURE)
+    products_fixture = get_data_from_json_fixture(PATH_TO_SALEOR_FIXTURE)
 
     expected_catalogues = dict()
     for shop in shops_fixture:
