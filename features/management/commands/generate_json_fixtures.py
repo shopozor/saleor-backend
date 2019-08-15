@@ -39,7 +39,6 @@ def generate_shop_catalogues():
         os.path.join('features', 'fixtures', 'Shops.json'))
     products_fixture = get_data_from_json_fixture(os.path.join(
         'features', 'fixtures', 'saleor.json'))
-    # TODO: get the producers from the users_fixture
 
     expected_catalogues = dict()
     for shop in shops_fixture:
@@ -59,6 +58,9 @@ def generate_shop_catalogues():
                        == 'product.productvariant' and entry['pk'] == variant_id][0]
             product = [entry for entry in products_fixture if entry['model'] ==
                        'product.product' and entry['pk'] == variant['fields']['product']][0]
+            is_published = product['fields']['is_published']
+            if not is_published:
+                continue
             edges_with_product_id = [
                 edge for edge in edges if edge['node']['id'] == product['pk']]
             if edges_with_product_id:
@@ -81,6 +83,13 @@ def generate_shop_catalogues():
     return expected_catalogues
 
 
+def output_object_to_json(object, output_dir, output_filename):
+    os.makedirs(output_dir, exist_ok=True)
+    with open(os.path.join(output_dir, output_filename), 'w') as json_file:
+        json.dump(object, json_file, sort_keys=True, indent=2)
+        json_file.write('\n')
+
+
 def output_shop_list(output_dir):
     consumer_output_dir = os.path.join(output_dir, 'Consumer')
     output_object_to_json(generate_shop_list(),
@@ -95,13 +104,6 @@ def output_shop_catalogues(output_dir):
             shop_catalogues[catalogue], catalogues_output_dir, 'Shop-{id}.json'.format(id=catalogue))
 
 
-def output_object_to_json(object, output_dir, output_filename):
-    os.makedirs(output_dir, exist_ok=True)
-    with open(os.path.join(output_dir, output_filename), 'w') as json_file:
-        json.dump(object, json_file, sort_keys=True, indent=2)
-        json_file.write('\n')
-
-
 class Command(BaseCommand):
     help = 'Generate the JSON expected responses to the GraphQL queries tested in the acceptance tests.'
 
@@ -114,3 +116,7 @@ class Command(BaseCommand):
         os.makedirs(output_folder, exist_ok=True)
         output_shop_list(output_folder)
         output_shop_catalogues(output_folder)
+
+
+# TODO: we need some products in the saleor database that have is_published == false
+# TODO: get the producers from the users_fixture
