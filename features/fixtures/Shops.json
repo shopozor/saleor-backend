@@ -1,6 +1,9 @@
 [
   {
     "fields": {
+      "description": "blablabli budzo Onnens",
+      "latitude": 46.7716,
+      "longitude": 7.0382,
       "name": "La Budzonnerie d'Onnens",
       "product_variants": [
         171,
