@@ -47,6 +47,32 @@ def postprocess_is_available_flag(edges):
             variant['isAvailable'] = variant['isAvailable'] and has_stock
 
 
+def get_pricing(variant_fields, product_fields):
+    # This method is perfectly fine as long as we don't incorporate taxes
+    # When we take taxes into account, we'll need to adapt this method
+    # This will document how the taxes are taken into account
+    pricing = {}
+    if 'price_override' in variant_fields and variant_fields['price_override'] is not None:
+        pricing = {
+            'price': {
+                'gross': {
+                    'currency': variant_fields['price_override']['currency'],
+                    'amount': variant_fields['price_override']['amount'],
+                }
+            }
+        }
+    else:
+        pricing = {
+            'price': {
+                'gross': {
+                    'currency': product_fields['price']['currency'],
+                    'amount': product_fields['price']['amount'],
+                }
+            }
+        }
+    return pricing
+
+
 def generate_shop_catalogues():
     shops_fixture = get_data_from_json_fixture(PATH_TO_SHOPS_FIXTURE)
     products_fixture = get_data_from_json_fixture(PATH_TO_SALEOR_FIXTURE)
@@ -74,12 +100,13 @@ def generate_shop_catalogues():
                 continue
             edges_with_product_id = [
                 edge for edge in edges if edge['node']['id'] == product['pk']]
+
             new_variant = {
                 'id': variant_id,
                 'name': variant['fields']['name'],
                 'isAvailable': product['fields']['is_published'],
                 'stockQuantity': max(variant['fields']['quantity'] - variant['fields']['quantity_allocated'], 0),
-                # pricing price gross currency amount
+                'pricing': get_pricing(variant['fields'], product['fields'])
             }
             if edges_with_product_id:
                 edge = edges_with_product_id[0]
@@ -89,10 +116,20 @@ def generate_shop_catalogues():
                     'node': {
                         'id': product['pk'],
                         'name': product['fields']['name'],
-                        'variants': [new_variant]
-                        # images id alt url
-                        # category id
-                        # productType id
+                        'variants': [new_variant],
+                        'images': [{
+                            'id': fixture['pk'],
+                            'alt': fixture['fields']['alt'],
+                            # TODO: url needs to be of the form http://localhost:8000/media/products/saleordemoproduct_fd_juice_06_JwLMquZ.png, so we need
+                            # to figure out where the http://localhost:8000/media/ is coming from
+                            'url': fixture['fields']['image'],
+                        } for fixture in products_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']],
+                        'category': {
+                            'id': product['fields']['category']
+                        },
+                        'productType': {
+                            'id': product['fields']['product_type']
+                        },
                         # producer firstName lastName
                     }
                 }
@@ -140,3 +177,4 @@ class Command(BaseCommand):
 
 # TODO: we need some products in the saleor database that have is_published == false
 # TODO: get the producers from the users_fixture
+# TODO: generate product images automatically and put them in the /media/products/ folder
