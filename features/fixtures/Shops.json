@@ -13,5 +13,20 @@
     },
     "model": "shopozor.shop",
     "pk": 1
+  },
+  {
+    "fields": {
+      "user_id": 2
+    },
+    "model": "shopozor.staff",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "product_id": 73,
+      "staff_id": 2
+    },
+    "model": "shopozor.productstaff",
+    "pk": 1
   }
 ]

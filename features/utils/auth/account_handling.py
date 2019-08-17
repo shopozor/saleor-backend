@@ -16,6 +16,7 @@ def create_database_user(user_data):
             user.user_permissions.add(Permission.objects.get(
                 codename=permission['code'].lower()))
     user.save()
+    user_data['id'] = user.id
     return user
 
 
@@ -24,6 +25,7 @@ def create_database_superuser(user_data):
     set_password(user_data)
     user.set_password(user_data['password'])
     user.save()
+    user_data['id'] = user.id
 
 
 def get_current_encrypted_password(email):
