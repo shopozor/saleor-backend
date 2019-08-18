@@ -75,8 +75,9 @@ def get_pricing(variant_fields, product_fields):
 
 
 def generate_shop_catalogues():
-    shops_fixture = get_data_from_json_fixture(PATH_TO_SHOPS_FIXTURE)
     products_fixture = get_data_from_json_fixture(PATH_TO_SALEOR_FIXTURE)
+    shops_fixture = get_data_from_json_fixture(PATH_TO_SHOPS_FIXTURE)
+    users_fixture = get_data_from_json_fixture(PATH_TO_USERS_FIXTURE)
 
     expected_catalogues = dict()
     for shop in [shop for shop in shops_fixture if shop['model'] == 'shopozor.shop']:
@@ -113,6 +114,15 @@ def generate_shop_catalogues():
                 edge = edges_with_product_id[0]
                 edge['node']['variants'].append(new_variant)
             else:
+                staff_ids = [entry['fields']['staff_id'] for entry in shops_fixture if entry['model']
+                             == 'shopozor.productstaff' and entry['fields']['product_id'] == product['pk']]
+                associated_producer = {}
+                if len(staff_ids) > 0:
+                    staff_id = staff_ids[0]
+                    associated_producer = [{
+                        # TODO: we need the user's first and last names!!!!
+                        'email': user['email']
+                    } for user in users_fixture if user['id'] == staff_id]
                 node = {
                     'node': {
                         'id': product['pk'],
@@ -131,7 +141,7 @@ def generate_shop_catalogues():
                         'productType': {
                             'id': product['fields']['product_type']
                         },
-                        # producer firstName lastName
+                        'producer': associated_producer
                     }
                 }
                 edges.append(node)
@@ -177,5 +187,4 @@ class Command(BaseCommand):
 
 
 # TODO: we need some products in the saleor database that have is_published == false
-# TODO: get the producers from the users_fixture
 # TODO: generate product images automatically and put them in the /media/products/ folder

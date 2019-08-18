@@ -10,27 +10,26 @@ import os
 
 
 def create_users():
-    users = {}
+    users = []
     for persona in 'Consommateurs', 'Producteurs', 'Responsables', 'Rex':
-        users[persona] = []
         user_data = get_data_from_json_fixture(os.path.join(
             'features', 'fixtures', 'Users', persona + '.json'))
         if isinstance(user_data, list):
             for user in user_data:
                 create_database_user(user)
-                users[persona].append(user)
+                users.append(user)
         else:
             create_database_user(user_data)
-            users[persona].append(user_data)
+            users.append(user_data)
     return users
 
 
 def create_superusers():
-    users = {}
+    users = []
     user_data = get_data_from_json_fixture(os.path.join(
         'features', 'fixtures', 'Users', 'Softozor.json'))
     create_database_superuser(user_data)
-    users['Softozor'] = user_data
+    users.append(user_data)
     return users
 
 
@@ -47,7 +46,7 @@ class Command(BaseCommand):
         users = create_users()
         super_users = create_superusers()
 
-        users.update(super_users)
+        users.extend(super_users)
 
         with open(os.path.join(output_folder, 'Users.json'), 'w') as json_file:
             json.dump(users, json_file, sort_keys=True, indent=2)

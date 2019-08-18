@@ -23,7 +23,7 @@
   },
   {
     "fields": {
-      "product_id": 73,
+      "product_id": 61,
       "staff_id": 2
     },
     "model": "shopozor.productstaff",
