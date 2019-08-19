@@ -5,9 +5,9 @@ from features.utils.fixtures.loader import get_data_from_json_fixture
 import json
 import os
 
-PATH_TO_SALEOR_FIXTURE = os.path.join('features', 'fixtures', 'saleor.json')
-PATH_TO_SHOPS_FIXTURE = os.path.join('features', 'fixtures', 'Shops.json')
-PATH_TO_USERS_FIXTURE = os.path.join('features', 'fixtures', 'Users.json')
+PATH_TO_SALEOR_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'saleor.json')
+PATH_TO_SHOPS_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'Shops.json')
+PATH_TO_USERS_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'Users.json')
 
 
 def generate_shop_list():
