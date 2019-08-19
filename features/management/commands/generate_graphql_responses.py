@@ -119,8 +119,8 @@ def generate_shop_catalogues():
                 if len(staff_ids) > 0:
                     staff_id = staff_ids[0]
                     associated_producer = [{
-                        # TODO: we need the user's first and last names!!!!
-                        'email': user['email']
+                        'firstName': user['first_name'],
+                        'lastName': user['last_name']
                     } for user in users_fixture if user['id'] == staff_id]
                 node = {
                     'node': {
