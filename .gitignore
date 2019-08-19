@@ -19,5 +19,8 @@ dev.env
 # generated specification
 /specification/
 
+# unwanted generated fixtures
+/features/fixtures/Users.json
+
 # local environment settings
 *.local
