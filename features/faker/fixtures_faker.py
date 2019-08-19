@@ -30,3 +30,21 @@ class UserFactory:
                 'last_name': last_name
             })
         return result
+
+    def create_managers(list_size=1):
+        result = []
+        for _ in range(0, list_size):
+            first_name = fake.first_name()
+            last_name = fake.last_name()
+            domain_name = fake.free_email_domain()
+            result.append({
+                'email': '%s.%s@%s' % (first_name, last_name, domain_name),
+                'isActive': True,
+                'isStaff': True,
+                'first_name': first_name,
+                'last_name': last_name,
+                'permissions': [{
+                    'code': 'MANAGE_PRODUCERS'
+                }]
+            })
+        return result

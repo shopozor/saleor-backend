@@ -1,8 +1,118 @@
 [
   {
-    "email": "responsable@budzons.ch",
+    "email": "Raymond.Bonvin@sunrise.ch",
+    "first_name": "Raymond",
     "isActive": true,
     "isStaff": true,
+    "last_name": "Bonvin",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Laurent.B\u00e9guelin@sunrise.ch",
+    "first_name": "Laurent",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "B\u00e9guelin",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Arthur.B\u00e9guelin@romandie.com",
+    "first_name": "Arthur",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "B\u00e9guelin",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Charlotte.Marti@gmail.com",
+    "first_name": "Charlotte",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Marti",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Hugo.Vienne@vtxnet.ch",
+    "first_name": "Hugo",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Vienne",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Denise.Candaux@sunrise.ch",
+    "first_name": "Denise",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Candaux",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Julien.Comman@yahoo.fr",
+    "first_name": "Julien",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Comman",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Maria.Bourquin@hotmail.fr",
+    "first_name": "Maria",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bourquin",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "V\u00e9ronique.Cousin@sunrise.ch",
+    "first_name": "V\u00e9ronique",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Cousin",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Simone.Boechat@gmail.com",
+    "first_name": "Simone",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Boechat",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"

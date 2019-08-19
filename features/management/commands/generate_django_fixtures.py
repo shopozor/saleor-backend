@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from features.faker.fixtures_faker import UserFactory
-from features.utils.fixtures.json import dump
+from features.utils.fixtures import json
 
 import os
 
@@ -17,8 +17,18 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         output_folder = options['output_folder']
 
+        # TODO: create a reasonable amount of users here
+        # Consumers > Producers > Managers
         consumers = UserFactory.create_consumers(10)
-        dump(consumers, os.path.join(output_folder, 'Users', 'Consommateurs.json'))
+        json.dump(consumers, os.path.join(
+            output_folder, 'Users', 'Consommateurs.json'))
 
         producers = UserFactory.create_producers(10)
-        dump(producers, os.path.join(output_folder, 'Users', 'Producteurs.json'))
+        json.dump(producers, os.path.join(
+            output_folder, 'Users', 'Producteurs.json'))
+
+        managers = UserFactory.create_managers(10)
+        json.dump(managers, os.path.join(
+            output_folder, 'Users', 'Responsables.json'))
+
+        # TODO: link producers with products
