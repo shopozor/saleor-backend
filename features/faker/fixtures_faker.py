@@ -1,6 +1,6 @@
 from faker import Faker
 
-import json
+import unidecode
 
 fake = Faker('fr_CH')
 fake.seed('features')
@@ -23,7 +23,8 @@ class UserFactory:
             last_name = fake.last_name()
             domain_name = fake.free_email_domain()
             result.append({
-                'email': '%s.%s@%s' % (first_name, last_name, domain_name),
+                # get rid of any potential French accent from the first and last name
+                'email': unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name)),
                 'isActive': True,
                 'isStaff': True,
                 'first_name': first_name,
@@ -38,7 +39,8 @@ class UserFactory:
             last_name = fake.last_name()
             domain_name = fake.free_email_domain()
             result.append({
-                'email': '%s.%s@%s' % (first_name, last_name, domain_name),
+                # get rid of any potential French accent from the first and last name
+                'email': unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name)),
                 'isActive': True,
                 'isStaff': True,
                 'first_name': first_name,

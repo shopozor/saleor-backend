@@ -17,13 +17,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         output_folder = options['output_folder']
 
-        # TODO: create a reasonable amount of users here
-        # Consumers > Producers > Managers
-        consumers = UserFactory.create_consumers(10)
+        consumers = UserFactory.create_consumers(1000)
         json.dump(consumers, os.path.join(
             output_folder, 'Users', 'Consommateurs.json'))
 
-        producers = UserFactory.create_producers(10)
+        producers = UserFactory.create_producers(100)
         json.dump(producers, os.path.join(
             output_folder, 'Users', 'Producteurs.json'))
 
