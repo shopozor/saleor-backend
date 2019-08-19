@@ -1,72 +1,702 @@
 [
   {
-    "email": "Louis.Chevrolet@hispeed.ch",
-    "first_name": "Louis",
+    "email": "Stephane.Tinguely@bluewin.ch",
+    "first_name": "St\u00e9phane",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Chevrolet"
+    "last_name": "Tinguely"
   },
   {
-    "email": "Jean-Claude.Jacot-Descombes@sunrise.ch",
-    "first_name": "Jean-Claude",
+    "email": "Henri.Beurret@hispeed.ch",
+    "first_name": "Henri",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Beurret"
+  },
+  {
+    "email": "Sophie.Beguin@bluewin.ch",
+    "first_name": "Sophie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Beguin"
+  },
+  {
+    "email": "Emma.Babey@hotmail.fr",
+    "first_name": "Emma",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Babey"
+  },
+  {
+    "email": "Monique.Carraud@bluewin.ch",
+    "first_name": "Monique",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Carraud"
+  },
+  {
+    "email": "Sebastien.Bonvini@bluewin.ch",
+    "first_name": "S\u00e9bastien",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bonvini"
+  },
+  {
+    "email": "Sarah.Bouvier@hotmail.fr",
+    "first_name": "Sarah",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bouvier"
+  },
+  {
+    "email": "Georges.Menthonnex@bluewin.ch",
+    "first_name": "Georges",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Menthonnex"
+  },
+  {
+    "email": "Sebastien.Beuchat@gmail.com",
+    "first_name": "S\u00e9bastien",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Beuchat"
+  },
+  {
+    "email": "Alicia.Georges@yahoo.fr",
+    "first_name": "Alicia",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Georges"
+  },
+  {
+    "email": "Nolan.Grojean@hispeed.ch",
+    "first_name": "Nolan",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Grojean"
+  },
+  {
+    "email": "Celine.Comte@hotmail.fr",
+    "first_name": "C\u00e9line",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Comte"
+  },
+  {
+    "email": "Yvette.Courvoisier@hotmail.fr",
+    "first_name": "Yvette",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Courvoisier"
+  },
+  {
+    "email": "Christian.Crevoisier@vtxnet.ch",
+    "first_name": "Christian",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Crevoisier"
+  },
+  {
+    "email": "Bernard.Duroux@bluewin.ch",
+    "first_name": "Bernard",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Duroux"
+  },
+  {
+    "email": "Gabriel.Jacot-Descombes@hotmail.fr",
+    "first_name": "Gabriel",
     "isActive": true,
     "isStaff": true,
     "last_name": "Jacot-Descombes"
   },
   {
-    "email": "Jacques.Bugnon@sunrise.ch",
-    "first_name": "Jacques",
+    "email": "Emma.Chatriand@hotmail.fr",
+    "first_name": "Emma",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bugnon"
+    "last_name": "Chatriand"
   },
   {
-    "email": "Jacqueline.Robadey@gmail.com",
-    "first_name": "Jacqueline",
+    "email": "Elisabeth.Barbey@hotmail.fr",
+    "first_name": "Elisabeth",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Robadey"
+    "last_name": "Barbey"
   },
   {
-    "email": "Maurice.Paschoud@vtxnet.ch",
-    "first_name": "Maurice",
+    "email": "Emilie.Rey@gmail.com",
+    "first_name": "Emilie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Paschoud"
+    "last_name": "Rey"
   },
   {
-    "email": "Charles.Cousin@gmail.com",
-    "first_name": "Charles",
+    "email": "Veronique.Godet@hotmail.fr",
+    "first_name": "V\u00e9ronique",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Godet"
+  },
+  {
+    "email": "Sandra.Comman@sunrise.ch",
+    "first_name": "Sandra",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Comman"
+  },
+  {
+    "email": "Lisa.Charpie@romandie.com",
+    "first_name": "Lisa",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Charpi\u00e9"
+  },
+  {
+    "email": "Odette.Monney@vtxnet.ch",
+    "first_name": "Odette",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Monney"
+  },
+  {
+    "email": "Nathan.Besse@vtxnet.ch",
+    "first_name": "Nathan",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Besse"
+  },
+  {
+    "email": "Matteo.Conrad@romandie.com",
+    "first_name": "Matteo",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Conrad"
+  },
+  {
+    "email": "David.Martin@yahoo.fr",
+    "first_name": "David",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Martin"
+  },
+  {
+    "email": "Sarah.Crevoisier@bluewin.ch",
+    "first_name": "Sarah",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Crevoisier"
+  },
+  {
+    "email": "Romain.Cornut@bluewin.ch",
+    "first_name": "Romain",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Cornut"
+  },
+  {
+    "email": "Albert.Cousin@gmail.com",
+    "first_name": "Albert",
     "isActive": true,
     "isStaff": true,
     "last_name": "Cousin"
   },
   {
-    "email": "Christian.Corbat@hispeed.ch",
-    "first_name": "Christian",
+    "email": "Suzanne.Cossy@hispeed.ch",
+    "first_name": "Suzanne",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Corbat"
+    "last_name": "Cossy"
   },
   {
-    "email": "Julie.Montandon@sunrise.ch",
-    "first_name": "Julie",
+    "email": "Lucie.Beuchat@hotmail.fr",
+    "first_name": "Lucie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Montandon"
+    "last_name": "Beuchat"
   },
   {
-    "email": "Georgette.Pachoud@sunrise.ch",
+    "email": "Georgette.Carraud@vtxnet.ch",
     "first_name": "Georgette",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Carraud"
+  },
+  {
+    "email": "Emilie.Treboux@hispeed.ch",
+    "first_name": "Emilie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Treboux"
+  },
+  {
+    "email": "Gerard.Muriset@hispeed.ch",
+    "first_name": "G\u00e9rard",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Muriset"
+  },
+  {
+    "email": "Michel.Bernasconi@gmail.com",
+    "first_name": "Michel",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bernasconi"
+  },
+  {
+    "email": "Suzanne.Monnet@hotmail.fr",
+    "first_name": "Suzanne",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Monnet"
+  },
+  {
+    "email": "Ethan.Cattin@gmail.com",
+    "first_name": "Ethan",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Cattin"
+  },
+  {
+    "email": "Georgette.Robert@vtxnet.ch",
+    "first_name": "Georgette",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Robert"
+  },
+  {
+    "email": "Sylvie.Peitrequin@yahoo.fr",
+    "first_name": "Sylvie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Peitrequin"
+  },
+  {
+    "email": "Frederic.Chopard@hotmail.fr",
+    "first_name": "Fr\u00e9d\u00e9ric",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Chopard"
+  },
+  {
+    "email": "Madeleine.Robadey@yahoo.fr",
+    "first_name": "Madeleine",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Robadey"
+  },
+  {
+    "email": "Samuel.Cosandey@bluewin.ch",
+    "first_name": "Samuel",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Cosandey"
+  },
+  {
+    "email": "Therese.Barbey@romandie.com",
+    "first_name": "Th\u00e9r\u00e8se",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Barbey"
+  },
+  {
+    "email": "Maxime.Morard@romandie.com",
+    "first_name": "Maxime",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Morard"
+  },
+  {
+    "email": "Marcelle.Treboux@hotmail.fr",
+    "first_name": "Marcelle",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Treboux"
+  },
+  {
+    "email": "Marcel.Wicht@hispeed.ch",
+    "first_name": "Marcel",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Wicht"
+  },
+  {
+    "email": "Monique.Crevoisier@vtxnet.ch",
+    "first_name": "Monique",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Crevoisier"
+  },
+  {
+    "email": "Leo.Alber@sunrise.ch",
+    "first_name": "L\u00e9o",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Alber"
+  },
+  {
+    "email": "Alexandre.Corpataux@sunrise.ch",
+    "first_name": "Alexandre",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Corpataux"
+  },
+  {
+    "email": "Jean-Claude.Candaux@yahoo.fr",
+    "first_name": "Jean-Claude",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Candaux"
+  },
+  {
+    "email": "Sylvie.Thorens@yahoo.fr",
+    "first_name": "Sylvie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Thorens"
+  },
+  {
+    "email": "Ethan.Bourquard@vtxnet.ch",
+    "first_name": "Ethan",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bourquard"
+  },
+  {
+    "email": "Francois.Jacot-Descombes@yahoo.fr",
+    "first_name": "Fran\u00e7ois",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Jacot-Descombes"
+  },
+  {
+    "email": "Leo.Humbert@yahoo.fr",
+    "first_name": "L\u00e9o",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Humbert"
+  },
+  {
+    "email": "Lea.Carraud@hispeed.ch",
+    "first_name": "L\u00e9a",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Carraud"
+  },
+  {
+    "email": "Elisa.Cossy@bluewin.ch",
+    "first_name": "Elisa",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Cossy"
+  },
+  {
+    "email": "Romain.Galland@bluewin.ch",
+    "first_name": "Romain",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Galland"
+  },
+  {
+    "email": "Pascal.Diesbach@vtxnet.ch",
+    "first_name": "Pascal",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Diesbach"
+  },
+  {
+    "email": "Sylvie.Muller@gmail.com",
+    "first_name": "Sylvie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "M\u00fcller"
+  },
+  {
+    "email": "Emma.Theraulaz@hotmail.fr",
+    "first_name": "Emma",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Th\u00e9raulaz"
+  },
+  {
+    "email": "Danielle.Chaudet@hispeed.ch",
+    "first_name": "Danielle",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Chaudet"
+  },
+  {
+    "email": "Yvette.Alber@romandie.com",
+    "first_name": "Yvette",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Alber"
+  },
+  {
+    "email": "Luca.Chopard@gmail.com",
+    "first_name": "Luca",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Chopard"
+  },
+  {
+    "email": "Kevin.Balmat@vtxnet.ch",
+    "first_name": "Kevin",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Balmat"
+  },
+  {
+    "email": "Claude.Martin@romandie.com",
+    "first_name": "Claude",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Martin"
+  },
+  {
+    "email": "Charlotte.Vermeil@gmail.com",
+    "first_name": "Charlotte",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Vermeil"
+  },
+  {
+    "email": "Georges.Evequoz@bluewin.ch",
+    "first_name": "Georges",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Ev\u00e9quoz"
+  },
+  {
+    "email": "Gerard.Cretton@romandie.com",
+    "first_name": "G\u00e9rard",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Cretton"
+  },
+  {
+    "email": "Manuel.Deladoey@vtxnet.ch",
+    "first_name": "Manuel",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Delado\u00eby"
+  },
+  {
+    "email": "Sara.Carron@hispeed.ch",
+    "first_name": "Sara",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Carron"
+  },
+  {
+    "email": "Jean-Pierre.Vonlanthen@hispeed.ch",
+    "first_name": "Jean-Pierre",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Vonlanthen"
+  },
+  {
+    "email": "Elodie.Babey@gmail.com",
+    "first_name": "Elodie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Babey"
+  },
+  {
+    "email": "Theo.Carraux@romandie.com",
+    "first_name": "Th\u00e9o",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Carraux"
+  },
+  {
+    "email": "Yvonne.Gillieron@romandie.com",
+    "first_name": "Yvonne",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Gilli\u00e9ron"
+  },
+  {
+    "email": "Anne.Pachoud@hotmail.fr",
+    "first_name": "Anne",
     "isActive": true,
     "isStaff": true,
     "last_name": "Pachoud"
   },
   {
-    "email": "Emma.Vonlanthen@sunrise.ch",
-    "first_name": "Emma",
+    "email": "Theo.Deshusses@hotmail.fr",
+    "first_name": "Th\u00e9o",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Vonlanthen"
+    "last_name": "Deshusses"
+  },
+  {
+    "email": "Laurent.Bugnon@hotmail.fr",
+    "first_name": "Laurent",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bugnon"
+  },
+  {
+    "email": "Claudine.Francillon@sunrise.ch",
+    "first_name": "Claudine",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Francillon"
+  },
+  {
+    "email": "Aurelie.Bochud@romandie.com",
+    "first_name": "Aur\u00e9lie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bochud"
+  },
+  {
+    "email": "Monique.Bourquard@yahoo.fr",
+    "first_name": "Monique",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bourquard"
+  },
+  {
+    "email": "Sylvie.Beguin@vtxnet.ch",
+    "first_name": "Sylvie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Beguin"
+  },
+  {
+    "email": "Francois.Chatriand@yahoo.fr",
+    "first_name": "Fran\u00e7ois",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Chatriand"
+  },
+  {
+    "email": "Michael.Montandon@sunrise.ch",
+    "first_name": "Michael",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Montandon"
+  },
+  {
+    "email": "Germaine.Cosendey@hotmail.fr",
+    "first_name": "Germaine",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Cosendey"
+  },
+  {
+    "email": "Patrick.Chatriant@bluewin.ch",
+    "first_name": "Patrick",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Chatriant"
+  },
+  {
+    "email": "Laurent.Carraud@romandie.com",
+    "first_name": "Laurent",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Carraud"
+  },
+  {
+    "email": "Julie.Bochud@hispeed.ch",
+    "first_name": "Julie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bochud"
+  },
+  {
+    "email": "Robert.Beguelin@hotmail.fr",
+    "first_name": "Robert",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "B\u00e9guelin"
+  },
+  {
+    "email": "Thierry.Deleze@hotmail.fr",
+    "first_name": "Thierry",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Del\u00e8ze"
+  },
+  {
+    "email": "Lucas.Bavaud@hispeed.ch",
+    "first_name": "Lucas",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bavaud"
+  },
+  {
+    "email": "Vanessa.Nussle@yahoo.fr",
+    "first_name": "Vanessa",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Nussl\u00e9"
+  },
+  {
+    "email": "Nicole.Vallelian@romandie.com",
+    "first_name": "Nicole",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Vall\u00e9lian"
+  },
+  {
+    "email": "Gerard.Aeby@hispeed.ch",
+    "first_name": "G\u00e9rard",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Aeby"
+  },
+  {
+    "email": "Patricia.Bouvier@gmail.com",
+    "first_name": "Patricia",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bouvier"
+  },
+  {
+    "email": "Patricia.Bonvini@romandie.com",
+    "first_name": "Patricia",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bonvini"
+  },
+  {
+    "email": "Melanie.Cattin@bluewin.ch",
+    "first_name": "M\u00e9lanie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Cattin"
+  },
+  {
+    "email": "Yvonne.Barman@gmail.com",
+    "first_name": "Yvonne",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Barman"
+  },
+  {
+    "email": "Anna.Barbey@vtxnet.ch",
+    "first_name": "Anna",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Barbey"
+  },
+  {
+    "email": "Simone.Menthonnex@hispeed.ch",
+    "first_name": "Simone",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Menthonnex"
+  },
+  {
+    "email": "Sebastien.Musy@hotmail.fr",
+    "first_name": "S\u00e9bastien",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Musy"
   }
 ]

@@ -1,10 +1,10 @@
 [
   {
-    "email": "Raymond.Bonvin@sunrise.ch",
-    "first_name": "Raymond",
+    "email": "Patrick.Chappuis@yahoo.fr",
+    "first_name": "Patrick",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bonvin",
+    "last_name": "Chappuis",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -12,11 +12,11 @@
     ]
   },
   {
-    "email": "Laurent.B\u00e9guelin@sunrise.ch",
-    "first_name": "Laurent",
+    "email": "Guillaume.Alber@yahoo.fr",
+    "first_name": "Guillaume",
     "isActive": true,
     "isStaff": true,
-    "last_name": "B\u00e9guelin",
+    "last_name": "Alber",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -24,56 +24,8 @@
     ]
   },
   {
-    "email": "Arthur.B\u00e9guelin@romandie.com",
-    "first_name": "Arthur",
-    "isActive": true,
-    "isStaff": true,
-    "last_name": "B\u00e9guelin",
-    "permissions": [
-      {
-        "code": "MANAGE_PRODUCERS"
-      }
-    ]
-  },
-  {
-    "email": "Charlotte.Marti@gmail.com",
-    "first_name": "Charlotte",
-    "isActive": true,
-    "isStaff": true,
-    "last_name": "Marti",
-    "permissions": [
-      {
-        "code": "MANAGE_PRODUCERS"
-      }
-    ]
-  },
-  {
-    "email": "Hugo.Vienne@vtxnet.ch",
-    "first_name": "Hugo",
-    "isActive": true,
-    "isStaff": true,
-    "last_name": "Vienne",
-    "permissions": [
-      {
-        "code": "MANAGE_PRODUCERS"
-      }
-    ]
-  },
-  {
-    "email": "Denise.Candaux@sunrise.ch",
-    "first_name": "Denise",
-    "isActive": true,
-    "isStaff": true,
-    "last_name": "Candaux",
-    "permissions": [
-      {
-        "code": "MANAGE_PRODUCERS"
-      }
-    ]
-  },
-  {
-    "email": "Julien.Comman@yahoo.fr",
-    "first_name": "Julien",
+    "email": "Elodie.Comman@romandie.com",
+    "first_name": "Elodie",
     "isActive": true,
     "isStaff": true,
     "last_name": "Comman",
@@ -84,11 +36,11 @@
     ]
   },
   {
-    "email": "Maria.Bourquin@hotmail.fr",
-    "first_name": "Maria",
+    "email": "Samuel.Duvanel@vtxnet.ch",
+    "first_name": "Samuel",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bourquin",
+    "last_name": "Duvanel",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -96,11 +48,11 @@
     ]
   },
   {
-    "email": "V\u00e9ronique.Cousin@sunrise.ch",
-    "first_name": "V\u00e9ronique",
+    "email": "Mathieu.Isella@vtxnet.ch",
+    "first_name": "Mathieu",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Cousin",
+    "last_name": "Isella",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -108,11 +60,59 @@
     ]
   },
   {
-    "email": "Simone.Boechat@gmail.com",
-    "first_name": "Simone",
+    "email": "Manuel.Rosselat@gmail.com",
+    "first_name": "Manuel",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Boechat",
+    "last_name": "Rosselat",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Vincent.Julliard@sunrise.ch",
+    "first_name": "Vincent",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Julliard",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Lucie.Carraux@gmail.com",
+    "first_name": "Lucie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Carraux",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Claudine.Vuille@romandie.com",
+    "first_name": "Claudine",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Vuille",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Isabelle.Rosselat@bluewin.ch",
+    "first_name": "Isabelle",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Rosselat",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"

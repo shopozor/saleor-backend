@@ -42,3 +42,6 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.PBKDF2SHA1PasswordHasher',
     'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
+
+DEFAULT_COUNTRY = os.environ.get("DEFAULT_COUNTRY", "CH")
+DEFAULT_CURRENCY = os.environ.get("DEFAULT_CURRENCY", "CHF")
