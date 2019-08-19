@@ -7,6 +7,10 @@ fake.seed('features')
 
 
 class UserFactory:
+    def create_email(first_name, last_name):
+        domain_name = fake.free_email_domain()
+        return unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name))
+
     def create_consumers(list_size=1):
         result = []
         for _ in range(0, list_size):
@@ -21,10 +25,9 @@ class UserFactory:
         for _ in range(0, list_size):
             first_name = fake.first_name()
             last_name = fake.last_name()
-            domain_name = fake.free_email_domain()
             result.append({
                 # get rid of any potential French accent from the first and last name
-                'email': unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name)),
+                'email': UserFactory.create_email(first_name, last_name),
                 'isActive': True,
                 'isStaff': True,
                 'first_name': first_name,
@@ -37,10 +40,9 @@ class UserFactory:
         for _ in range(0, list_size):
             first_name = fake.first_name()
             last_name = fake.last_name()
-            domain_name = fake.free_email_domain()
             result.append({
                 # get rid of any potential French accent from the first and last name
-                'email': unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name)),
+                'email': UserFactory.create_email(first_name, last_name),
                 'isActive': True,
                 'isStaff': True,
                 'first_name': first_name,
