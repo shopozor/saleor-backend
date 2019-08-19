@@ -1,6 +1,42 @@
 [
   {
-    "email": "consommateur@budzons.ch",
+    "email": "wduvanel@hotmail.fr",
+    "isActive": true
+  },
+  {
+    "email": "charlotterapraz@yahoo.fr",
+    "isActive": true
+  },
+  {
+    "email": "rrapin@vienne.net",
+    "isActive": true
+  },
+  {
+    "email": "catherineboichat@boillat.net",
+    "isActive": true
+  },
+  {
+    "email": "lucasmueller@joly.com",
+    "isActive": true
+  },
+  {
+    "email": "claudejoye@vtxnet.ch",
+    "isActive": true
+  },
+  {
+    "email": "emayor@vtxnet.ch",
+    "isActive": true
+  },
+  {
+    "email": "meyerdenise@hispeed.ch",
+    "isActive": true
+  },
+  {
+    "email": "denisejomini@romandie.com",
+    "isActive": true
+  },
+  {
+    "email": "jolyhugo@guberan.ch",
     "isActive": true
   }
 ]

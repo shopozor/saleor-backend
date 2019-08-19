@@ -272,7 +272,7 @@
       "price": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 7,
       "publication_date": null,
@@ -317,7 +317,7 @@
       "price": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 7,
       "publication_date": null,
@@ -362,7 +362,7 @@
       "price": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 7,
       "publication_date": null,
@@ -407,7 +407,7 @@
       "price": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 7,
       "publication_date": null,
@@ -452,7 +452,7 @@
       "price": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 7,
       "publication_date": null,
@@ -497,7 +497,7 @@
       "price": {
         "_type": "Money",
         "amount": "3.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 9,
       "publication_date": null,
@@ -542,7 +542,7 @@
       "price": {
         "_type": "Money",
         "amount": "3.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 9,
       "publication_date": null,
@@ -587,7 +587,7 @@
       "price": {
         "_type": "Money",
         "amount": "3.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 9,
       "publication_date": null,
@@ -632,7 +632,7 @@
       "price": {
         "_type": "Money",
         "amount": "3.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 9,
       "publication_date": null,
@@ -677,7 +677,7 @@
       "price": {
         "_type": "Money",
         "amount": "3.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 9,
       "publication_date": null,
@@ -722,7 +722,7 @@
       "price": {
         "_type": "Money",
         "amount": "3.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 9,
       "publication_date": null,
@@ -767,7 +767,7 @@
       "price": {
         "_type": "Money",
         "amount": "3.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 9,
       "publication_date": null,
@@ -812,7 +812,7 @@
       "price": {
         "_type": "Money",
         "amount": "3.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 9,
       "publication_date": null,
@@ -857,7 +857,7 @@
       "price": {
         "_type": "Money",
         "amount": "3.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 9,
       "publication_date": null,
@@ -902,7 +902,7 @@
       "price": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 10,
       "publication_date": null,
@@ -947,7 +947,7 @@
       "price": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 10,
       "publication_date": null,
@@ -992,7 +992,7 @@
       "price": {
         "_type": "Money",
         "amount": "3.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 11,
       "publication_date": null,
@@ -1037,7 +1037,7 @@
       "price": {
         "_type": "Money",
         "amount": "3.20",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 11,
       "publication_date": null,
@@ -1082,7 +1082,7 @@
       "price": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 12,
       "publication_date": null,
@@ -1127,7 +1127,7 @@
       "price": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 12,
       "publication_date": null,
@@ -1172,7 +1172,7 @@
       "price": {
         "_type": "Money",
         "amount": "59.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 13,
       "publication_date": null,
@@ -1217,7 +1217,7 @@
       "price": {
         "_type": "Money",
         "amount": "49.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 13,
       "publication_date": null,
@@ -1262,7 +1262,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1307,7 +1307,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1352,7 +1352,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1397,7 +1397,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1442,7 +1442,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1487,7 +1487,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1532,7 +1532,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1577,7 +1577,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1622,7 +1622,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1667,7 +1667,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1712,7 +1712,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1757,7 +1757,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1802,7 +1802,7 @@
       "price": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product_type": 14,
       "publication_date": null,
@@ -1820,13 +1820,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 61,
       "quantity": 113,
@@ -1844,13 +1844,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2.5l",
       "price_override": {
         "_type": "Money",
         "amount": "35.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 61,
       "quantity": 21,
@@ -1868,13 +1868,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "5l",
       "price_override": {
         "_type": "Money",
         "amount": "49.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 61,
       "quantity": 11,
@@ -1892,13 +1892,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 62,
       "quantity": 43,
@@ -1916,13 +1916,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2.5l",
       "price_override": {
         "_type": "Money",
         "amount": "25.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 62,
       "quantity": 110,
@@ -1940,13 +1940,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "25.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "5l",
       "price_override": {
         "_type": "Money",
         "amount": "49.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 62,
       "quantity": 125,
@@ -1964,13 +1964,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 63,
       "quantity": 1235,
@@ -1988,13 +1988,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2.5l",
       "price_override": {
         "_type": "Money",
         "amount": "25.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 63,
       "quantity": 1222,
@@ -2012,13 +2012,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "5l",
       "price_override": {
         "_type": "Money",
         "amount": "49.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 63,
       "quantity": 472,
@@ -2036,13 +2036,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 64,
       "quantity": 991,
@@ -2060,13 +2060,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2.5l",
       "price_override": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 64,
       "quantity": 760,
@@ -2084,13 +2084,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "5l",
       "price_override": {
         "_type": "Money",
         "amount": "49.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 64,
       "quantity": 578,
@@ -2108,13 +2108,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 65,
       "quantity": 427,
@@ -2132,13 +2132,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2.5l",
       "price_override": {
         "_type": "Money",
         "amount": "30.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 65,
       "quantity": 513,
@@ -2156,13 +2156,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "15.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "5l",
       "price_override": {
         "_type": "Money",
         "amount": "49.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 65,
       "quantity": 155,
@@ -2180,7 +2180,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "500ml",
       "price_override": null,
@@ -2200,13 +2200,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.50",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 71,
       "quantity": 177,
@@ -2224,13 +2224,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "2.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2l",
       "price_override": {
         "_type": "Money",
         "amount": "7.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 71,
       "quantity": 221,
@@ -2312,13 +2312,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "11.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "45cm x 45cm",
       "price_override": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 85,
       "quantity": 9869,
@@ -2336,7 +2336,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "12.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "55cm x 55cm",
       "price_override": null,
@@ -2356,7 +2356,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "13.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "45cm x 45cm",
       "price_override": null,
@@ -2376,7 +2376,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "13.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "55cm x 55cm",
       "price_override": null,
@@ -2396,7 +2396,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "500ml",
       "price_override": null,
@@ -2416,13 +2416,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.50",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 72,
       "quantity": 178,
@@ -2440,13 +2440,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "2.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2l",
       "price_override": {
         "_type": "Money",
         "amount": "7.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 72,
       "quantity": 224,
@@ -2464,7 +2464,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "500ml",
       "price_override": null,
@@ -2484,13 +2484,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.50",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 73,
       "quantity": 181,
@@ -2508,13 +2508,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "2.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2l",
       "price_override": {
         "_type": "Money",
         "amount": "7.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 73,
       "quantity": 223,
@@ -2532,7 +2532,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "500ml",
       "price_override": null,
@@ -2552,13 +2552,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.50",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 74,
       "quantity": 185,
@@ -2576,13 +2576,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "2.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2l",
       "price_override": {
         "_type": "Money",
         "amount": "7.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 74,
       "quantity": 225,
@@ -2600,7 +2600,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "500ml",
       "price_override": null,
@@ -2620,13 +2620,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.50",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 75,
       "quantity": 187,
@@ -2644,13 +2644,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "2.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2l",
       "price_override": {
         "_type": "Money",
         "amount": "7.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 75,
       "quantity": 225,
@@ -2668,7 +2668,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "500ml",
       "price_override": null,
@@ -2688,13 +2688,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.50",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 76,
       "quantity": 179,
@@ -2712,13 +2712,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "2.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2l",
       "price_override": {
         "_type": "Money",
         "amount": "7.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 76,
       "quantity": 238,
@@ -2736,7 +2736,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "500ml",
       "price_override": null,
@@ -2756,13 +2756,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.50",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 77,
       "quantity": 177,
@@ -2780,13 +2780,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "2.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2l",
       "price_override": {
         "_type": "Money",
         "amount": "7.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 77,
       "quantity": 221,
@@ -2804,7 +2804,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "500ml",
       "price_override": null,
@@ -2824,13 +2824,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.50",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 78,
       "quantity": 181,
@@ -2848,13 +2848,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "2.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2l",
       "price_override": {
         "_type": "Money",
         "amount": "7.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 78,
       "quantity": 228,
@@ -2872,7 +2872,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "500ml",
       "price_override": null,
@@ -2892,13 +2892,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "1.50",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "1l",
       "price_override": {
         "_type": "Money",
         "amount": "5.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 79,
       "quantity": 179,
@@ -2916,13 +2916,13 @@
       "cost_price": {
         "_type": "Money",
         "amount": "2.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "2l",
       "price_override": {
         "_type": "Money",
         "amount": "7.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "product": 79,
       "quantity": 229,
@@ -2940,7 +2940,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "39",
       "price_override": null,
@@ -2960,7 +2960,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "40",
       "price_override": null,
@@ -2980,7 +2980,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "41",
       "price_override": null,
@@ -3000,7 +3000,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "42",
       "price_override": null,
@@ -3020,7 +3020,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "43",
       "price_override": null,
@@ -3040,7 +3040,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "40",
       "price_override": null,
@@ -3060,7 +3060,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "41",
       "price_override": null,
@@ -3096,7 +3096,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "20.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "45",
       "price_override": null,
@@ -3116,7 +3116,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -3136,7 +3136,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -3156,7 +3156,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -3176,7 +3176,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -3196,7 +3196,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -3216,7 +3216,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -3236,7 +3236,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -3256,7 +3256,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -3276,7 +3276,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -3296,7 +3296,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -3316,7 +3316,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -3336,7 +3336,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -3356,7 +3356,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -3376,7 +3376,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -3396,7 +3396,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -3416,7 +3416,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -3436,7 +3436,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -3456,7 +3456,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -3476,7 +3476,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -3496,7 +3496,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -3516,7 +3516,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -3536,7 +3536,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -3556,7 +3556,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -3576,7 +3576,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -3596,7 +3596,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -3616,7 +3616,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -3636,7 +3636,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -3656,7 +3656,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -3676,7 +3676,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -3696,7 +3696,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -3716,7 +3716,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -3736,7 +3736,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -3756,7 +3756,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -3776,7 +3776,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -3796,7 +3796,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -3816,7 +3816,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -3836,7 +3836,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -3856,7 +3856,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -3876,7 +3876,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -3896,7 +3896,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -3916,7 +3916,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -3936,7 +3936,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -3956,7 +3956,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -3976,7 +3976,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -3996,7 +3996,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -4016,7 +4016,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -4036,7 +4036,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -4056,7 +4056,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -4076,7 +4076,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -4096,7 +4096,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -4116,7 +4116,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -4136,7 +4136,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -4156,7 +4156,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -4176,7 +4176,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -4196,7 +4196,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -4216,7 +4216,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -4236,7 +4236,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -4256,7 +4256,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -4276,7 +4276,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -4296,7 +4296,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,
@@ -4316,7 +4316,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "S",
       "price_override": null,
@@ -4336,7 +4336,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "M",
       "price_override": null,
@@ -4356,7 +4356,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "L",
       "price_override": null,
@@ -4376,7 +4376,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XL",
       "price_override": null,
@@ -4396,7 +4396,7 @@
       "cost_price": {
         "_type": "Money",
         "amount": "10.00",
-        "currency": "USD"
+        "currency": "CHF"
       },
       "name": "XXL",
       "price_override": null,

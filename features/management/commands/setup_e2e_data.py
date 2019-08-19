@@ -1,18 +1,17 @@
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
-from features.utils.fixtures.loader import get_data_from_json_fixture
+from features.utils.fixtures import json
 from features.utils.auth.account_handling import create_database_superuser, create_database_user
 from saleor.account.models import User
 
-import json
 import os
 
 
 def create_users():
     users = []
     for persona in 'Consommateurs', 'Producteurs', 'Responsables', 'Rex':
-        user_data = get_data_from_json_fixture(os.path.join(
+        user_data = json.load(os.path.join(
             'features', 'fixtures', 'Users', persona + '.json'))
         if isinstance(user_data, list):
             for user in user_data:
@@ -26,7 +25,7 @@ def create_users():
 
 def create_superusers():
     users = []
-    user_data = get_data_from_json_fixture(os.path.join(
+    user_data = json.load(os.path.join(
         'features', 'fixtures', 'Users', 'Softozor.json'))
     create_database_superuser(user_data)
     users.append(user_data)
@@ -48,8 +47,7 @@ class Command(BaseCommand):
 
         users.extend(super_users)
 
-        with open(os.path.join(output_folder, 'Users.json'), 'w') as json_file:
-            json.dump(users, json_file, sort_keys=True, indent=2)
+        json.dump(users, os.path.join(output_folder, 'Users.json'))
 
         call_command('loaddata', os.path.join(
             'features', 'fixtures', 'saleor.json'))

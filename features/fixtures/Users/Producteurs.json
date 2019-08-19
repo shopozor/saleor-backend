@@ -1,7 +1,72 @@
 [
   {
-    "email": "producteur@budzons.ch",
+    "email": "Louis.Chevrolet@hispeed.ch",
+    "first_name": "Louis",
     "isActive": true,
-    "isStaff": true
+    "isStaff": true,
+    "last_name": "Chevrolet"
+  },
+  {
+    "email": "Jean-Claude.Jacot-Descombes@sunrise.ch",
+    "first_name": "Jean-Claude",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Jacot-Descombes"
+  },
+  {
+    "email": "Jacques.Bugnon@sunrise.ch",
+    "first_name": "Jacques",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Bugnon"
+  },
+  {
+    "email": "Jacqueline.Robadey@gmail.com",
+    "first_name": "Jacqueline",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Robadey"
+  },
+  {
+    "email": "Maurice.Paschoud@vtxnet.ch",
+    "first_name": "Maurice",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Paschoud"
+  },
+  {
+    "email": "Charles.Cousin@gmail.com",
+    "first_name": "Charles",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Cousin"
+  },
+  {
+    "email": "Christian.Corbat@hispeed.ch",
+    "first_name": "Christian",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Corbat"
+  },
+  {
+    "email": "Julie.Montandon@sunrise.ch",
+    "first_name": "Julie",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Montandon"
+  },
+  {
+    "email": "Georgette.Pachoud@sunrise.ch",
+    "first_name": "Georgette",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Pachoud"
+  },
+  {
+    "email": "Emma.Vonlanthen@sunrise.ch",
+    "first_name": "Emma",
+    "isActive": true,
+    "isStaff": true,
+    "last_name": "Vonlanthen"
   }
 ]

@@ -1,8 +1,7 @@
 from django.conf import settings
 from django.core.management.base import BaseCommand
-from features.utils.fixtures.loader import get_data_from_json_fixture
+from features.utils.fixtures import json
 
-import json
 import os
 
 PATH_TO_SALEOR_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'saleor.json')
@@ -11,7 +10,7 @@ PATH_TO_USERS_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'Users.json')
 
 
 def generate_shop_list():
-    shops_fixture = get_data_from_json_fixture(PATH_TO_SHOPS_FIXTURE)
+    shops_fixture = json.load(PATH_TO_SHOPS_FIXTURE)
     expected_list = {
         'data': {
             'shops': {
@@ -75,9 +74,9 @@ def get_pricing(variant_fields, product_fields):
 
 
 def generate_shop_catalogues():
-    products_fixture = get_data_from_json_fixture(PATH_TO_SALEOR_FIXTURE)
-    shops_fixture = get_data_from_json_fixture(PATH_TO_SHOPS_FIXTURE)
-    users_fixture = get_data_from_json_fixture(PATH_TO_USERS_FIXTURE)
+    products_fixture = json.load(PATH_TO_SALEOR_FIXTURE)
+    shops_fixture = json.load(PATH_TO_SHOPS_FIXTURE)
+    users_fixture = json.load(PATH_TO_USERS_FIXTURE)
 
     expected_catalogues = dict()
     for shop in [shop for shop in shops_fixture if shop['model'] == 'shopozor.shop']:
@@ -153,9 +152,7 @@ def generate_shop_catalogues():
 
 def output_object_to_json(object, output_dir, output_filename):
     os.makedirs(output_dir, exist_ok=True)
-    with open(os.path.join(output_dir, output_filename), 'w') as json_file:
-        json.dump(object, json_file, sort_keys=True, indent=2)
-        json_file.write('\n')
+    json.dump(object, os.path.join(output_dir, output_filename))
 
 
 def output_shop_list(output_dir):

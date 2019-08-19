@@ -10,6 +10,9 @@ def create_database_user(user_data):
         email=user_data['email'], is_staff=is_staff, is_active=is_active)
     if 'password' not in user_data:
         set_password(user_data)
+    if all(key in user_data for key in ('last_name', 'first_name')):
+        user.first_name = user_data['first_name']
+        user.last_name = user_data['last_name']
     user.set_password(user_data['password'])
     if 'permissions' in user_data:
         for permission in user_data['permissions']:
