@@ -119,6 +119,7 @@ class FakeDataFactory:
         productstaff_pk = 1
         for producer in producers:
             nb_products = fake.random.randint(0, max_nb_products_per_producer)
+            producer_product_ids = []
             try:
                 producer_product_ids = fake.random_elements(
                     elements=product_ids, length=nb_products, unique=True)
@@ -147,22 +148,19 @@ class FakeDataFactory:
         max_nb_producers_per_shop = 10
         for shop_id in range(0, list_size):
             nb_producers = fake.random.randint(0, max_nb_producers_per_shop)
-            # 1. get a few producer_ids
+            shop_producer_ids = []
             try:
                 shop_producer_ids = fake.random_elements(
                     elements=producer_ids, length=nb_producers, unique=True)
             except ValueError:
                 print(
                     'Shop %d cannot have producers assigned as there are no producers anymore' % shop_id)
-            # 2. get the corresponding product_ids from the productstaff
             shop_product_ids = [item['fields']['product_id'] for item in productstaff if item['model']
                                 == 'shopozor.productstaff' and item['fields']['staff_id'] in shop_producer_ids]
-            # 3. get the variant_ids of all product_ids from the product_variants list
             variant_ids = [variant['pk']
                            for variant in product_variants if variant['fields']['product'] in shop_product_ids]
-            # 4. remove the selected producer_ids from the original producer_ids list
             producer_ids = [
-                id for id in producer_ids if id not in shop_product_ids]
+                id for id in producer_ids if id not in shop_producer_ids]
 
             result.append({
                 'model': 'shopozor.shop',
