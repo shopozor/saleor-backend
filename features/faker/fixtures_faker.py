@@ -1,8 +1,6 @@
-from django.conf import settings
 from faker import Faker
 from features.faker.providers.geo import Provider as ShopozorGeoProvider
 from features.faker.providers.product_variant import Provider as ProductVariantProvider
-from features.utils.fixtures import json
 
 import os
 import unidecode
@@ -12,8 +10,6 @@ fake.seed('features')
 
 fake.add_provider(ShopozorGeoProvider)
 fake.add_provider(ProductVariantProvider)
-
-PATH_TO_SALEOR_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'saleor.json')
 
 
 class UserFactory:
@@ -27,7 +23,10 @@ class UserFactory:
         for _ in range(0, list_size):
             result.append({
                 'email': fake.email(),
-                'isActive': True
+                'isActive': True,
+                'isStaff': False,
+                'isSuperUser': False,
+                'permissions': []
             })
         return result
 
@@ -41,8 +40,10 @@ class UserFactory:
                 'email': UserFactory.create_email(first_name, last_name),
                 'isActive': True,
                 'isStaff': True,
+                'isSuperUser': False,
                 'first_name': first_name,
-                'last_name': last_name
+                'last_name': last_name,
+                'permissions': []
             })
         return result
 
@@ -56,6 +57,7 @@ class UserFactory:
                 'email': UserFactory.create_email(first_name, last_name),
                 'isActive': True,
                 'isStaff': True,
+                'isSuperUser': False,
                 'first_name': first_name,
                 'last_name': last_name,
                 'permissions': [{
@@ -64,11 +66,39 @@ class UserFactory:
             })
         return result
 
-    def create_shops(nb_variants, list_size=1):
+    def create_rex():
+        return {
+            'email': 'rex@%s' % fake.free_email_domain(),
+            'isActive': True,
+            'isStaff': True,
+            'isSuperUser': False,
+            'permissions': [
+                {
+                    'code': 'MANAGE_STAFF'
+                },
+                {
+                    'code': 'MANAGE_USERS'
+                },
+                {
+                    'code': 'MANAGE_PRODUCERS'
+                },
+                {
+                    'code': 'MANAGE_MANAGERS'
+                }
+            ]
+        }
+
+    def create_softozor():
+        return {
+            'email': 'softozor@%s' % fake.free_email_domain(),
+            'isActive': True,
+            'isStaff': True,
+            'isSuperUser': True,
+            'permissions': []
+        }
+
+    def create_shops(producers, products, product_variants, list_size=1):
         result = []
-        products_fixture = json.load(PATH_TO_SALEOR_FIXTURE)
-        product_variant_ids = [
-            item['pk'] for item in products_fixture if item['model'] == 'product.productvariant']
 
         for shop_id in range(0, list_size):
             result.append({
@@ -79,7 +109,8 @@ class UserFactory:
                     'name': fake.sentence(nb_words=5, variable_nb_words=True, ext_word_list=None),
                     'latitude': float(fake.local_latitude()),
                     'longitude': float(fake.local_longitude()),
-                    'product_variants': fake.variant_ids(product_variant_ids, nb_variants)
+                    # 'product_variants': fake.variant_ids(product_variant_ids, nb_variants)
+                    'product_variants': []
                 }
             })
         return result

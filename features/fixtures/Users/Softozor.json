@@ -1,5 +1,7 @@
 {
-  "email": "softozor@budzons.ch",
+  "email": "softozor@yahoo.fr",
   "isActive": true,
-  "isStaff": true
+  "isStaff": true,
+  "isSuperUser": true,
+  "permissions": []
 }

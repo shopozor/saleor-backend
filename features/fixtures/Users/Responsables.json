@@ -4,6 +4,7 @@
     "first_name": "Patrick",
     "isActive": true,
     "isStaff": true,
+    "isSuperUser": false,
     "last_name": "Chappuis",
     "permissions": [
       {
@@ -16,6 +17,7 @@
     "first_name": "Guillaume",
     "isActive": true,
     "isStaff": true,
+    "isSuperUser": false,
     "last_name": "Alber",
     "permissions": [
       {
@@ -28,6 +30,7 @@
     "first_name": "Elodie",
     "isActive": true,
     "isStaff": true,
+    "isSuperUser": false,
     "last_name": "Comman",
     "permissions": [
       {
@@ -40,6 +43,7 @@
     "first_name": "Samuel",
     "isActive": true,
     "isStaff": true,
+    "isSuperUser": false,
     "last_name": "Duvanel",
     "permissions": [
       {
@@ -52,6 +56,7 @@
     "first_name": "Mathieu",
     "isActive": true,
     "isStaff": true,
+    "isSuperUser": false,
     "last_name": "Isella",
     "permissions": [
       {
@@ -64,6 +69,7 @@
     "first_name": "Manuel",
     "isActive": true,
     "isStaff": true,
+    "isSuperUser": false,
     "last_name": "Rosselat",
     "permissions": [
       {
@@ -76,6 +82,7 @@
     "first_name": "Vincent",
     "isActive": true,
     "isStaff": true,
+    "isSuperUser": false,
     "last_name": "Julliard",
     "permissions": [
       {
@@ -88,6 +95,7 @@
     "first_name": "Lucie",
     "isActive": true,
     "isStaff": true,
+    "isSuperUser": false,
     "last_name": "Carraux",
     "permissions": [
       {
@@ -100,6 +108,7 @@
     "first_name": "Claudine",
     "isActive": true,
     "isStaff": true,
+    "isSuperUser": false,
     "last_name": "Vuille",
     "permissions": [
       {
@@ -112,6 +121,7 @@
     "first_name": "Isabelle",
     "isActive": true,
     "isStaff": true,
+    "isSuperUser": false,
     "last_name": "Rosselat",
     "permissions": [
       {

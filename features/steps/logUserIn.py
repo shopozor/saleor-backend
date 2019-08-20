@@ -20,7 +20,8 @@ def step_impl(context, is_active, has_password):
         'email': 'hacker_abuse@budzons.ch',
         'password': 'password' if has_password else '',
         'isActive': is_active,
-        'isStaff': False
+        'isStaff': False,
+        'isSuperUser': False
     }
     create_database_user(user_data)
     context.user = user_data

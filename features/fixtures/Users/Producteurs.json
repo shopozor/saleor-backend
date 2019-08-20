@@ -4,699 +4,899 @@
     "first_name": "St\u00e9phane",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Tinguely"
+    "isSuperUser": false,
+    "last_name": "Tinguely",
+    "permissions": []
   },
   {
     "email": "Henri.Beurret@hispeed.ch",
     "first_name": "Henri",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Beurret"
+    "isSuperUser": false,
+    "last_name": "Beurret",
+    "permissions": []
   },
   {
     "email": "Sophie.Beguin@bluewin.ch",
     "first_name": "Sophie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Beguin"
+    "isSuperUser": false,
+    "last_name": "Beguin",
+    "permissions": []
   },
   {
     "email": "Emma.Babey@hotmail.fr",
     "first_name": "Emma",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Babey"
+    "isSuperUser": false,
+    "last_name": "Babey",
+    "permissions": []
   },
   {
     "email": "Monique.Carraud@bluewin.ch",
     "first_name": "Monique",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Carraud"
+    "isSuperUser": false,
+    "last_name": "Carraud",
+    "permissions": []
   },
   {
     "email": "Sebastien.Bonvini@bluewin.ch",
     "first_name": "S\u00e9bastien",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bonvini"
+    "isSuperUser": false,
+    "last_name": "Bonvini",
+    "permissions": []
   },
   {
     "email": "Sarah.Bouvier@hotmail.fr",
     "first_name": "Sarah",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bouvier"
+    "isSuperUser": false,
+    "last_name": "Bouvier",
+    "permissions": []
   },
   {
     "email": "Georges.Menthonnex@bluewin.ch",
     "first_name": "Georges",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Menthonnex"
+    "isSuperUser": false,
+    "last_name": "Menthonnex",
+    "permissions": []
   },
   {
     "email": "Sebastien.Beuchat@gmail.com",
     "first_name": "S\u00e9bastien",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Beuchat"
+    "isSuperUser": false,
+    "last_name": "Beuchat",
+    "permissions": []
   },
   {
     "email": "Alicia.Georges@yahoo.fr",
     "first_name": "Alicia",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Georges"
+    "isSuperUser": false,
+    "last_name": "Georges",
+    "permissions": []
   },
   {
     "email": "Nolan.Grojean@hispeed.ch",
     "first_name": "Nolan",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Grojean"
+    "isSuperUser": false,
+    "last_name": "Grojean",
+    "permissions": []
   },
   {
     "email": "Celine.Comte@hotmail.fr",
     "first_name": "C\u00e9line",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Comte"
+    "isSuperUser": false,
+    "last_name": "Comte",
+    "permissions": []
   },
   {
     "email": "Yvette.Courvoisier@hotmail.fr",
     "first_name": "Yvette",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Courvoisier"
+    "isSuperUser": false,
+    "last_name": "Courvoisier",
+    "permissions": []
   },
   {
     "email": "Christian.Crevoisier@vtxnet.ch",
     "first_name": "Christian",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Crevoisier"
+    "isSuperUser": false,
+    "last_name": "Crevoisier",
+    "permissions": []
   },
   {
     "email": "Bernard.Duroux@bluewin.ch",
     "first_name": "Bernard",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Duroux"
+    "isSuperUser": false,
+    "last_name": "Duroux",
+    "permissions": []
   },
   {
     "email": "Gabriel.Jacot-Descombes@hotmail.fr",
     "first_name": "Gabriel",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Jacot-Descombes"
+    "isSuperUser": false,
+    "last_name": "Jacot-Descombes",
+    "permissions": []
   },
   {
     "email": "Emma.Chatriand@hotmail.fr",
     "first_name": "Emma",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Chatriand"
+    "isSuperUser": false,
+    "last_name": "Chatriand",
+    "permissions": []
   },
   {
     "email": "Elisabeth.Barbey@hotmail.fr",
     "first_name": "Elisabeth",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Barbey"
+    "isSuperUser": false,
+    "last_name": "Barbey",
+    "permissions": []
   },
   {
     "email": "Emilie.Rey@gmail.com",
     "first_name": "Emilie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Rey"
+    "isSuperUser": false,
+    "last_name": "Rey",
+    "permissions": []
   },
   {
     "email": "Veronique.Godet@hotmail.fr",
     "first_name": "V\u00e9ronique",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Godet"
+    "isSuperUser": false,
+    "last_name": "Godet",
+    "permissions": []
   },
   {
     "email": "Sandra.Comman@sunrise.ch",
     "first_name": "Sandra",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Comman"
+    "isSuperUser": false,
+    "last_name": "Comman",
+    "permissions": []
   },
   {
     "email": "Lisa.Charpie@romandie.com",
     "first_name": "Lisa",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Charpi\u00e9"
+    "isSuperUser": false,
+    "last_name": "Charpi\u00e9",
+    "permissions": []
   },
   {
     "email": "Odette.Monney@vtxnet.ch",
     "first_name": "Odette",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Monney"
+    "isSuperUser": false,
+    "last_name": "Monney",
+    "permissions": []
   },
   {
     "email": "Nathan.Besse@vtxnet.ch",
     "first_name": "Nathan",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Besse"
+    "isSuperUser": false,
+    "last_name": "Besse",
+    "permissions": []
   },
   {
     "email": "Matteo.Conrad@romandie.com",
     "first_name": "Matteo",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Conrad"
+    "isSuperUser": false,
+    "last_name": "Conrad",
+    "permissions": []
   },
   {
     "email": "David.Martin@yahoo.fr",
     "first_name": "David",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Martin"
+    "isSuperUser": false,
+    "last_name": "Martin",
+    "permissions": []
   },
   {
     "email": "Sarah.Crevoisier@bluewin.ch",
     "first_name": "Sarah",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Crevoisier"
+    "isSuperUser": false,
+    "last_name": "Crevoisier",
+    "permissions": []
   },
   {
     "email": "Romain.Cornut@bluewin.ch",
     "first_name": "Romain",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Cornut"
+    "isSuperUser": false,
+    "last_name": "Cornut",
+    "permissions": []
   },
   {
     "email": "Albert.Cousin@gmail.com",
     "first_name": "Albert",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Cousin"
+    "isSuperUser": false,
+    "last_name": "Cousin",
+    "permissions": []
   },
   {
     "email": "Suzanne.Cossy@hispeed.ch",
     "first_name": "Suzanne",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Cossy"
+    "isSuperUser": false,
+    "last_name": "Cossy",
+    "permissions": []
   },
   {
     "email": "Lucie.Beuchat@hotmail.fr",
     "first_name": "Lucie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Beuchat"
+    "isSuperUser": false,
+    "last_name": "Beuchat",
+    "permissions": []
   },
   {
     "email": "Georgette.Carraud@vtxnet.ch",
     "first_name": "Georgette",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Carraud"
+    "isSuperUser": false,
+    "last_name": "Carraud",
+    "permissions": []
   },
   {
     "email": "Emilie.Treboux@hispeed.ch",
     "first_name": "Emilie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Treboux"
+    "isSuperUser": false,
+    "last_name": "Treboux",
+    "permissions": []
   },
   {
     "email": "Gerard.Muriset@hispeed.ch",
     "first_name": "G\u00e9rard",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Muriset"
+    "isSuperUser": false,
+    "last_name": "Muriset",
+    "permissions": []
   },
   {
     "email": "Michel.Bernasconi@gmail.com",
     "first_name": "Michel",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bernasconi"
+    "isSuperUser": false,
+    "last_name": "Bernasconi",
+    "permissions": []
   },
   {
     "email": "Suzanne.Monnet@hotmail.fr",
     "first_name": "Suzanne",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Monnet"
+    "isSuperUser": false,
+    "last_name": "Monnet",
+    "permissions": []
   },
   {
     "email": "Ethan.Cattin@gmail.com",
     "first_name": "Ethan",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Cattin"
+    "isSuperUser": false,
+    "last_name": "Cattin",
+    "permissions": []
   },
   {
     "email": "Georgette.Robert@vtxnet.ch",
     "first_name": "Georgette",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Robert"
+    "isSuperUser": false,
+    "last_name": "Robert",
+    "permissions": []
   },
   {
     "email": "Sylvie.Peitrequin@yahoo.fr",
     "first_name": "Sylvie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Peitrequin"
+    "isSuperUser": false,
+    "last_name": "Peitrequin",
+    "permissions": []
   },
   {
     "email": "Frederic.Chopard@hotmail.fr",
     "first_name": "Fr\u00e9d\u00e9ric",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Chopard"
+    "isSuperUser": false,
+    "last_name": "Chopard",
+    "permissions": []
   },
   {
     "email": "Madeleine.Robadey@yahoo.fr",
     "first_name": "Madeleine",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Robadey"
+    "isSuperUser": false,
+    "last_name": "Robadey",
+    "permissions": []
   },
   {
     "email": "Samuel.Cosandey@bluewin.ch",
     "first_name": "Samuel",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Cosandey"
+    "isSuperUser": false,
+    "last_name": "Cosandey",
+    "permissions": []
   },
   {
     "email": "Therese.Barbey@romandie.com",
     "first_name": "Th\u00e9r\u00e8se",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Barbey"
+    "isSuperUser": false,
+    "last_name": "Barbey",
+    "permissions": []
   },
   {
     "email": "Maxime.Morard@romandie.com",
     "first_name": "Maxime",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Morard"
+    "isSuperUser": false,
+    "last_name": "Morard",
+    "permissions": []
   },
   {
     "email": "Marcelle.Treboux@hotmail.fr",
     "first_name": "Marcelle",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Treboux"
+    "isSuperUser": false,
+    "last_name": "Treboux",
+    "permissions": []
   },
   {
     "email": "Marcel.Wicht@hispeed.ch",
     "first_name": "Marcel",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Wicht"
+    "isSuperUser": false,
+    "last_name": "Wicht",
+    "permissions": []
   },
   {
     "email": "Monique.Crevoisier@vtxnet.ch",
     "first_name": "Monique",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Crevoisier"
+    "isSuperUser": false,
+    "last_name": "Crevoisier",
+    "permissions": []
   },
   {
     "email": "Leo.Alber@sunrise.ch",
     "first_name": "L\u00e9o",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Alber"
+    "isSuperUser": false,
+    "last_name": "Alber",
+    "permissions": []
   },
   {
     "email": "Alexandre.Corpataux@sunrise.ch",
     "first_name": "Alexandre",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Corpataux"
+    "isSuperUser": false,
+    "last_name": "Corpataux",
+    "permissions": []
   },
   {
     "email": "Jean-Claude.Candaux@yahoo.fr",
     "first_name": "Jean-Claude",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Candaux"
+    "isSuperUser": false,
+    "last_name": "Candaux",
+    "permissions": []
   },
   {
     "email": "Sylvie.Thorens@yahoo.fr",
     "first_name": "Sylvie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Thorens"
+    "isSuperUser": false,
+    "last_name": "Thorens",
+    "permissions": []
   },
   {
     "email": "Ethan.Bourquard@vtxnet.ch",
     "first_name": "Ethan",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bourquard"
+    "isSuperUser": false,
+    "last_name": "Bourquard",
+    "permissions": []
   },
   {
     "email": "Francois.Jacot-Descombes@yahoo.fr",
     "first_name": "Fran\u00e7ois",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Jacot-Descombes"
+    "isSuperUser": false,
+    "last_name": "Jacot-Descombes",
+    "permissions": []
   },
   {
     "email": "Leo.Humbert@yahoo.fr",
     "first_name": "L\u00e9o",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Humbert"
+    "isSuperUser": false,
+    "last_name": "Humbert",
+    "permissions": []
   },
   {
     "email": "Lea.Carraud@hispeed.ch",
     "first_name": "L\u00e9a",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Carraud"
+    "isSuperUser": false,
+    "last_name": "Carraud",
+    "permissions": []
   },
   {
     "email": "Elisa.Cossy@bluewin.ch",
     "first_name": "Elisa",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Cossy"
+    "isSuperUser": false,
+    "last_name": "Cossy",
+    "permissions": []
   },
   {
     "email": "Romain.Galland@bluewin.ch",
     "first_name": "Romain",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Galland"
+    "isSuperUser": false,
+    "last_name": "Galland",
+    "permissions": []
   },
   {
     "email": "Pascal.Diesbach@vtxnet.ch",
     "first_name": "Pascal",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Diesbach"
+    "isSuperUser": false,
+    "last_name": "Diesbach",
+    "permissions": []
   },
   {
     "email": "Sylvie.Muller@gmail.com",
     "first_name": "Sylvie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "M\u00fcller"
+    "isSuperUser": false,
+    "last_name": "M\u00fcller",
+    "permissions": []
   },
   {
     "email": "Emma.Theraulaz@hotmail.fr",
     "first_name": "Emma",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Th\u00e9raulaz"
+    "isSuperUser": false,
+    "last_name": "Th\u00e9raulaz",
+    "permissions": []
   },
   {
     "email": "Danielle.Chaudet@hispeed.ch",
     "first_name": "Danielle",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Chaudet"
+    "isSuperUser": false,
+    "last_name": "Chaudet",
+    "permissions": []
   },
   {
     "email": "Yvette.Alber@romandie.com",
     "first_name": "Yvette",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Alber"
+    "isSuperUser": false,
+    "last_name": "Alber",
+    "permissions": []
   },
   {
     "email": "Luca.Chopard@gmail.com",
     "first_name": "Luca",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Chopard"
+    "isSuperUser": false,
+    "last_name": "Chopard",
+    "permissions": []
   },
   {
     "email": "Kevin.Balmat@vtxnet.ch",
     "first_name": "Kevin",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Balmat"
+    "isSuperUser": false,
+    "last_name": "Balmat",
+    "permissions": []
   },
   {
     "email": "Claude.Martin@romandie.com",
     "first_name": "Claude",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Martin"
+    "isSuperUser": false,
+    "last_name": "Martin",
+    "permissions": []
   },
   {
     "email": "Charlotte.Vermeil@gmail.com",
     "first_name": "Charlotte",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Vermeil"
+    "isSuperUser": false,
+    "last_name": "Vermeil",
+    "permissions": []
   },
   {
     "email": "Georges.Evequoz@bluewin.ch",
     "first_name": "Georges",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Ev\u00e9quoz"
+    "isSuperUser": false,
+    "last_name": "Ev\u00e9quoz",
+    "permissions": []
   },
   {
     "email": "Gerard.Cretton@romandie.com",
     "first_name": "G\u00e9rard",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Cretton"
+    "isSuperUser": false,
+    "last_name": "Cretton",
+    "permissions": []
   },
   {
     "email": "Manuel.Deladoey@vtxnet.ch",
     "first_name": "Manuel",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Delado\u00eby"
+    "isSuperUser": false,
+    "last_name": "Delado\u00eby",
+    "permissions": []
   },
   {
     "email": "Sara.Carron@hispeed.ch",
     "first_name": "Sara",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Carron"
+    "isSuperUser": false,
+    "last_name": "Carron",
+    "permissions": []
   },
   {
     "email": "Jean-Pierre.Vonlanthen@hispeed.ch",
     "first_name": "Jean-Pierre",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Vonlanthen"
+    "isSuperUser": false,
+    "last_name": "Vonlanthen",
+    "permissions": []
   },
   {
     "email": "Elodie.Babey@gmail.com",
     "first_name": "Elodie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Babey"
+    "isSuperUser": false,
+    "last_name": "Babey",
+    "permissions": []
   },
   {
     "email": "Theo.Carraux@romandie.com",
     "first_name": "Th\u00e9o",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Carraux"
+    "isSuperUser": false,
+    "last_name": "Carraux",
+    "permissions": []
   },
   {
     "email": "Yvonne.Gillieron@romandie.com",
     "first_name": "Yvonne",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Gilli\u00e9ron"
+    "isSuperUser": false,
+    "last_name": "Gilli\u00e9ron",
+    "permissions": []
   },
   {
     "email": "Anne.Pachoud@hotmail.fr",
     "first_name": "Anne",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Pachoud"
+    "isSuperUser": false,
+    "last_name": "Pachoud",
+    "permissions": []
   },
   {
     "email": "Theo.Deshusses@hotmail.fr",
     "first_name": "Th\u00e9o",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Deshusses"
+    "isSuperUser": false,
+    "last_name": "Deshusses",
+    "permissions": []
   },
   {
     "email": "Laurent.Bugnon@hotmail.fr",
     "first_name": "Laurent",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bugnon"
+    "isSuperUser": false,
+    "last_name": "Bugnon",
+    "permissions": []
   },
   {
     "email": "Claudine.Francillon@sunrise.ch",
     "first_name": "Claudine",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Francillon"
+    "isSuperUser": false,
+    "last_name": "Francillon",
+    "permissions": []
   },
   {
     "email": "Aurelie.Bochud@romandie.com",
     "first_name": "Aur\u00e9lie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bochud"
+    "isSuperUser": false,
+    "last_name": "Bochud",
+    "permissions": []
   },
   {
     "email": "Monique.Bourquard@yahoo.fr",
     "first_name": "Monique",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bourquard"
+    "isSuperUser": false,
+    "last_name": "Bourquard",
+    "permissions": []
   },
   {
     "email": "Sylvie.Beguin@vtxnet.ch",
     "first_name": "Sylvie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Beguin"
+    "isSuperUser": false,
+    "last_name": "Beguin",
+    "permissions": []
   },
   {
     "email": "Francois.Chatriand@yahoo.fr",
     "first_name": "Fran\u00e7ois",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Chatriand"
+    "isSuperUser": false,
+    "last_name": "Chatriand",
+    "permissions": []
   },
   {
     "email": "Michael.Montandon@sunrise.ch",
     "first_name": "Michael",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Montandon"
+    "isSuperUser": false,
+    "last_name": "Montandon",
+    "permissions": []
   },
   {
     "email": "Germaine.Cosendey@hotmail.fr",
     "first_name": "Germaine",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Cosendey"
+    "isSuperUser": false,
+    "last_name": "Cosendey",
+    "permissions": []
   },
   {
     "email": "Patrick.Chatriant@bluewin.ch",
     "first_name": "Patrick",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Chatriant"
+    "isSuperUser": false,
+    "last_name": "Chatriant",
+    "permissions": []
   },
   {
     "email": "Laurent.Carraud@romandie.com",
     "first_name": "Laurent",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Carraud"
+    "isSuperUser": false,
+    "last_name": "Carraud",
+    "permissions": []
   },
   {
     "email": "Julie.Bochud@hispeed.ch",
     "first_name": "Julie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bochud"
+    "isSuperUser": false,
+    "last_name": "Bochud",
+    "permissions": []
   },
   {
     "email": "Robert.Beguelin@hotmail.fr",
     "first_name": "Robert",
     "isActive": true,
     "isStaff": true,
-    "last_name": "B\u00e9guelin"
+    "isSuperUser": false,
+    "last_name": "B\u00e9guelin",
+    "permissions": []
   },
   {
     "email": "Thierry.Deleze@hotmail.fr",
     "first_name": "Thierry",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Del\u00e8ze"
+    "isSuperUser": false,
+    "last_name": "Del\u00e8ze",
+    "permissions": []
   },
   {
     "email": "Lucas.Bavaud@hispeed.ch",
     "first_name": "Lucas",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bavaud"
+    "isSuperUser": false,
+    "last_name": "Bavaud",
+    "permissions": []
   },
   {
     "email": "Vanessa.Nussle@yahoo.fr",
     "first_name": "Vanessa",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Nussl\u00e9"
+    "isSuperUser": false,
+    "last_name": "Nussl\u00e9",
+    "permissions": []
   },
   {
     "email": "Nicole.Vallelian@romandie.com",
     "first_name": "Nicole",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Vall\u00e9lian"
+    "isSuperUser": false,
+    "last_name": "Vall\u00e9lian",
+    "permissions": []
   },
   {
     "email": "Gerard.Aeby@hispeed.ch",
     "first_name": "G\u00e9rard",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Aeby"
+    "isSuperUser": false,
+    "last_name": "Aeby",
+    "permissions": []
   },
   {
     "email": "Patricia.Bouvier@gmail.com",
     "first_name": "Patricia",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bouvier"
+    "isSuperUser": false,
+    "last_name": "Bouvier",
+    "permissions": []
   },
   {
     "email": "Patricia.Bonvini@romandie.com",
     "first_name": "Patricia",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Bonvini"
+    "isSuperUser": false,
+    "last_name": "Bonvini",
+    "permissions": []
   },
   {
     "email": "Melanie.Cattin@bluewin.ch",
     "first_name": "M\u00e9lanie",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Cattin"
+    "isSuperUser": false,
+    "last_name": "Cattin",
+    "permissions": []
   },
   {
     "email": "Yvonne.Barman@gmail.com",
     "first_name": "Yvonne",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Barman"
+    "isSuperUser": false,
+    "last_name": "Barman",
+    "permissions": []
   },
   {
     "email": "Anna.Barbey@vtxnet.ch",
     "first_name": "Anna",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Barbey"
+    "isSuperUser": false,
+    "last_name": "Barbey",
+    "permissions": []
   },
   {
     "email": "Simone.Menthonnex@hispeed.ch",
     "first_name": "Simone",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Menthonnex"
+    "isSuperUser": false,
+    "last_name": "Menthonnex",
+    "permissions": []
   },
   {
     "email": "Sebastien.Musy@hotmail.fr",
     "first_name": "S\u00e9bastien",
     "isActive": true,
     "isStaff": true,
-    "last_name": "Musy"
+    "isSuperUser": false,
+    "last_name": "Musy",
+    "permissions": []
   }
 ]

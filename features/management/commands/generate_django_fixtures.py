@@ -6,6 +6,8 @@ from features.utils.fixtures import json
 
 import os
 
+PATH_TO_SALEOR_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'saleor.json')
+
 
 class Command(BaseCommand):
     help = 'Generates the relevant django fixtures for the sake of acceptance testing.'
@@ -25,8 +27,25 @@ class Command(BaseCommand):
         json.dump(producers, os.path.join(
             output_folder, 'Users', 'Producteurs.json'))
 
-        managers = UserFactory.create_managers(10)
+        nb_of_managers = 10
+        managers = UserFactory.create_managers(nb_of_managers)
         json.dump(managers, os.path.join(
             output_folder, 'Users', 'Responsables.json'))
 
-        # TODO: link producers with products
+        rex = UserFactory.create_rex()
+        json.dump(rex, os.path.join(
+            output_folder, 'Users', 'Rex.json'))
+
+        softozor = UserFactory.create_softozor()
+        json.dump(softozor, os.path.join(
+            output_folder, 'Users', 'Softozor.json'))
+
+        # TODO: link producers with products ==> generate the Shops.json django fixture
+        saleor_fixture = json.load(PATH_TO_SALEOR_FIXTURE)
+        products = [item for item in saleor_fixture if item['model']
+                    == 'product.product']
+        product_variants = [
+            item for item in saleor_fixture if item['model'] == 'product.productvariant']
+        shops = UserFactory.create_shops(
+            producers, products, product_variants, nb_of_managers)
+        json.dump(shops, os.path.join(output_folder, '_Shops.json'))

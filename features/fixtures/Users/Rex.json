@@ -1,7 +1,8 @@
 {
-  "email": "rex@budzons.ch",
+  "email": "rex@sunrise.ch",
   "isActive": true,
   "isStaff": true,
+  "isSuperUser": false,
   "permissions": [
     {
       "code": "MANAGE_STAFF"

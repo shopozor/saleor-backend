@@ -5,7 +5,7 @@ from behave.fixture import use_composite_fixture_with, fixture_call_params
 from django.conf import settings
 from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
-from features.utils.auth.account_handling import create_database_superuser, create_database_user
+from features.utils.auth.account_handling import create_database_user
 from features.utils.auth.password_generation import set_password
 from features.utils.fixtures import json
 from features.utils.graphql.loader import get_query_from_file
@@ -76,7 +76,7 @@ def rex(context):
 def softozor(context):
     user_data = json.load(
         os.path.join('features', 'fixtures', 'Users', 'Softozor.json'))
-    create_database_superuser(user_data)
+    create_database_user(user_data)
     context.softozor = user_data
     return user_data
 

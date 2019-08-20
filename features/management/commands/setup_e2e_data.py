@@ -2,7 +2,7 @@ from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
 from features.utils.fixtures import json
-from features.utils.auth.account_handling import create_database_superuser, create_database_user
+from features.utils.auth.account_handling import create_database_user
 from saleor.account.models import User
 
 import os
@@ -27,7 +27,7 @@ def create_superusers():
     users = []
     user_data = json.load(os.path.join(
         'features', 'fixtures', 'Users', 'Softozor.json'))
-    create_database_superuser(user_data)
+    create_database_user(user_data)
     users.append(user_data)
     return users
 

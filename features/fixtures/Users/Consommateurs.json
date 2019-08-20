@@ -1,4002 +1,7002 @@
 [
   {
     "email": "wduvanel@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charlotterapraz@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rrapin@vienne.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "catherineboichat@boillat.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lucasmueller@joly.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "claudejoye@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "emayor@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "meyerdenise@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "denisejomini@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jolyhugo@guberan.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "germainebouvier@peitrequin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "tmonnet@chatriant.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "davidbarman@matile.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hnussle@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "henripiccand@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mbahon@gillieron.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "viennevalerie@candaux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lucaspellet@beurret.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cboechat@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vallelianmonique@chevrolet.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bourquardjacques@rossellat.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "carronana@mottet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "michel53@comment.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laurence08@godet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "robertthierry@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "martisamuel@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "melanie66@quartier.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bernard83@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "emmagodet@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "besseanna@pasquier.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fbeguin@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "catherine54@boichat.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ouldry@morard.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "uchopard@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alicia25@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "thomas17@grosjean.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charlotte76@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "qcomment@saudan.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kevincousin@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gerardchatriand@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "udeleze@nussle.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hguberan@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "thierry37@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "stephanie10@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "dgalland@carraux.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gilbert06@evequoz.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "denise97@mueller.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bourquardjean-claude@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christopherobert@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bonviniflorian@pellet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "coignyluca@diesbach.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "paschoudalexandre@curdy.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "elisabeth83@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "eliane79@mercier.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "morardcaroline@botteron.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "andre83@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chappuissimone@barillon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "monnetchristophe@candaux.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rolandmonnard@cornut.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "simonequartier@rapin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "michael24@chatriand.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "learomanens@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "wsansonnens@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cornutfabienne@mottiez.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lbesse@muriset.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gillieronaurelie@jacot-descombes.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "madeleinejoye@theraulaz.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "beguelinmelanie@montandon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "thierry41@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gilbertpolla@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laurent18@pachoud.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "daniel52@grojean.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hpeitrequin@bugnon.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jessica67@cousin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "durouxjessica@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fcattin@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "simonevienne@cossy.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "louisbrandt@carraud.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "emilie65@diesbach.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marianne19@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zoematile@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ajoye@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "paschoudjose@bovet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chloe15@rappaz.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zoe31@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jacquesrobert@besancon.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "corinne16@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "wchatriand@bonvini.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jbesancon@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "masserondanielle@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "georges86@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "albertcorpataux@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "philippe34@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chantal17@barillon.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chappuismichel@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cbesancon@vallelian.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mathieusaudan@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "georgeschevrolet@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "philipperobert@chapuis.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "evamasseron@chatriant.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "evamarti@boillat.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chatriantroger@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "barbeymadeleine@broquet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jacquelineboillat@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christophetinguely@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alicia17@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "piccandmanuel@brandt.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fwicht@musy.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bernard54@morard.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "patriciapachoud@bahon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christian26@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "olivier01@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bruno80@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "louisgeorges@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mathieu83@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kevinchappuis@comte.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "beguinalain@gillieron.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ethan81@martin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "patriciamueller@bouvier.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "henrimasseron@niquille.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gillieronfrederic@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bblanc@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nusslemarguerite@chenaux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ujomini@marti.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "francois06@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alainsaudan@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nicolaschevalley@cosandey.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "emma85@deladoey.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "wcretton@beurret.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "henri88@grojean.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "trapraz@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sbourquard@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "albercatherine@romanens.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "corpatauxpascal@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "carolinerapin@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gabrielaeby@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vbourquin@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "tdubey@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hugodroz@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "valerierapraz@boichat.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jcornuz@bahon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "beuchatfrederic@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lauracarraux@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mariannerey@carron.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "francois03@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xromanens@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ucoigny@deshusses.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "patrickbouvier@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sophiegillieron@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alicia78@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "patriciacorbat@paschoud.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sdeshusses@bovet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lmaire@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nicolas38@badan.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "corbatstephanie@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chantal04@diesbach.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "floriancomment@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cboichat@rosselat.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mauricebalmat@georges.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vincentrosselat@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "wjoye@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "corinnedeladoey@maire.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rene21@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "uldryhugo@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "conradjulien@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "elodie62@chatriant.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "godetjean-claude@courvoisier.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bdroz@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chloe81@rey.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "thorensjose@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ubesancon@piccand.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "emiliepachoud@mueller.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ychatriand@aebi.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nnuesslin@cretton.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aurelieblanc@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "boechathelene@bahon.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "menthonnexelodie@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "achevrolet@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jessica98@quartier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zgillieron@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "manon86@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "julien61@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aurelie73@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laurentcornut@fonjallaz.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jmuriset@diesbach.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rgillieron@chenaux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bahonpierre@carron.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sara26@robert.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "yvettecarron@grosjean.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "thomaschapuis@cattin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "emiliemarti@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lucaquartier@morand.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zbabey@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xmottet@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "roger61@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "yvette05@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "maurice94@paccot.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fcandaux@bujard.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "reychristiane@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "blancsara@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "martielisabeth@botteron.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alberttheraulaz@joye.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "isellaclaude@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "coignyolivier@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "florian37@meyer.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bernard42@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cousinlouis@brahier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lara57@bochud.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "julien83@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lucievermeil@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alicia44@corpataux.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hcomment@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "waebi@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laura10@niquille.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nuesslindaniel@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "yduvanel@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aevequoz@morand.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jrapraz@courvoisier.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charpieliliane@matile.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "broquetmanuel@carraud.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nmontandon@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "julie34@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "conradjeanne@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "wcrivelli@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "quartierlucie@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gabrielbourquin@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "boichatana@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "germaineconrad@cousin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nolan11@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laurent91@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vdiesbach@monnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "stephane23@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mchapuis@peitrequin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "odettemorand@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "murisetpierre@pachoud.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "crettonpatrick@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "georges61@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "thomasaebi@thorens.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "francois03@monnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "henrirapin@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chloe85@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "romainmeyer@marti.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "josiane40@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gpachoud@corpataux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alexandrechappuis@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ycousin@bavaud.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "blanccharlotte@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ecomte@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marianne50@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "qcomman@marti.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rapinpatricia@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "stephane27@barman.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "merciersara@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ccornut@beguelin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ethan17@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "helenequartier@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ubahon@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "barillonantonio@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "olivierbrandt@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "morandlouis@pasquier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "omonney@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mrosselet@corbat.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lucagalland@barillon.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "manuel89@vallelian.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "andre60@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "thomascorbat@grosjean.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gerard02@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cosandeyolivier@muriset.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "niquilleflorian@bavaud.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "simonecossy@guberan.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fniquille@botteron.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "claude27@vermeil.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sophie48@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "simone70@chatriant.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "julienconrad@chevrolet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "danielle36@badel.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "celine57@alber.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "balmatlaurent@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "paulquartier@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "stephane89@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mathildemeyer@badan.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zoe28@babey.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bernasconichristine@babey.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bbalmat@rossellat.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "romainboechat@badel.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "odette92@vonlanthen.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "olivier29@droz.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bonvinjose@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nicolas00@bouvier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "celinemarti@corbat.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bruno89@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "matteo03@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "meyersophie@cosendey.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "isabelle49@bovet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "balmatbernard@isella.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "barillonelodie@besse.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "georges49@beuchat.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "stephanie21@boechat.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chenauxpascal@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "monnetsylvie@balmat.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ovienne@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "tsandoz@polla.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nusslenathan@grosjean.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marianne78@charpie.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "madeleine66@cosandey.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "annevuille@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pascalromanens@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kevin32@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "upaschoud@jomini.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "deshussesalexandre@bourquin.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "joyeliliane@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "arthurbeurret@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "francillonmaxime@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "humbertdavid@bochud.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ipellet@vallelian.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mauricecharpie@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "patrickberberat@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hugogrosjean@rapin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "julie06@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "privetsuzanne@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "niquillelaurence@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "denise95@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "wisella@monney.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "babeystephanie@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cmayor@thorens.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bruno41@besse.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bonvinchantal@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "viennebruno@privet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jean-claude94@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "odetteprivet@bavaud.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "robadeymarianne@corpataux.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "michelmonnet@deleze.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xbarbey@georges.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "muellermichel@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "florianpasquier@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "robertlaura@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "eric14@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "catherinechatriant@dubey.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lea75@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "muellernelly@carraux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "deshussessylvie@marti.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "maurice77@vallelian.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vonlanthenolivier@vienne.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gillieronmanuel@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "adiesbach@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "icomment@vuille.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chantaljulliard@saudan.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christopherapraz@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "eliane26@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christinegodet@bahon.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "francillonclara@chapuis.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cbarbey@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gmueller@boechat.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "comtemelanie@mottet.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chevalleythierry@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xrosselet@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "musyantonio@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "suzannemuriset@diesbach.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "germainetreboux@thorens.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "anamorand@monney.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aebyceline@barman.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "loic27@georges.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jeannebahon@duroux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hbernasconi@isella.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "baeby@vuille.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fpachoud@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lisaguberan@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aboillat@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "juliemonnet@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nmayor@maire.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mathieurobadey@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "roland19@humbert.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "margueritemaire@besse.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rolandprivet@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pdeleze@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ntinguely@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "wjulliard@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gwicht@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "odette84@uldry.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "dubeynathalie@boichat.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nellycandaux@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "barmanyvonne@mueller.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "dbroquet@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xmottet@comment.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "idiesbach@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kevequoz@chapuis.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marguerite79@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "trebouxchristine@monnet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "qmottet@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mbrandt@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "camille99@vermeil.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ebonvini@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "theraulaznathan@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nmasseron@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hmottet@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bonvinromain@bugnon.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "theraulazsara@tinguely.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "elianejacot-guillarmod@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "boechatlea@mueller.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chantaldeladoey@montandon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "samuel41@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "emiliemottiez@rey.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sansonnensliliane@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "romainbourquin@robert.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vprivet@besancon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "danielthorens@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nathalie93@conrad.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rcornut@treboux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "manuel44@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "camillerapraz@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ubourquard@carron.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "drozsimone@duvanel.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "clara34@chatriant.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "manonmayor@treboux.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bujardmaxime@georges.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rapinnicolas@aebi.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "noah99@rappaz.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ddroz@masseron.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "isabelle19@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "loiccosendey@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bde-dardel@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "julliardthomas@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chatriandvanessa@duroux.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cattinalexandre@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "obarillon@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "veronique51@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aureliebochud@barbey.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "claragrosjean@galland.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "drosselat@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "monique21@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "danielbouvier@badel.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "claudinedeleze@rappaz.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charlottechevrolet@uldry.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pchenaux@carraux.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "trapraz@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "delezealicia@evequoz.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cmarti@rosselat.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nrappaz@saudan.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "culdry@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "catherine92@jacot-guillarmod.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "beurretluca@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "qbonvini@cretton.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "oaeby@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "joyesophie@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sandoznicolas@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "patricia56@curdy.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "acourvoisier@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ocrivelli@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "georges02@comment.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ycorbat@wicht.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charpiesylvie@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "montandonjonathan@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bourquinmichael@boichat.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hcarraux@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "commanlaetitia@bonvin.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jacquelinebujard@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "simone92@cossy.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gcoigny@cattin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sebastien15@cattin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "theo74@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "frapraz@jomini.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "tthorens@pachoud.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "robert25@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "delezesandrine@broquet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bmasseron@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "eva66@de.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kbrandt@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "valerie50@muriset.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "muellerfrederic@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "monique17@duroux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vdroz@duroux.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "celine81@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cbouvier@cossy.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vnuesslin@monnet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marianne82@grojean.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "renepolla@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zoeuldry@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fmuriset@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marcellejulliard@muriset.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "davidchatriand@marti.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "matteo61@menthonnex.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jacquescharpie@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bourquinemilie@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "brandtpatricia@beguin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "carronflorian@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "montandonana@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ubovet@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "guillaumedeleze@vonlanthen.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marcellecourvoisier@guberan.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "romain25@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "paulgalland@babey.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laurencemasseron@martin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marcelboechat@cousin.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "florian75@piccand.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "corpatauxandre@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "utheraulaz@pachoud.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "margueritemonnard@bourquin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nicoleblanc@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rwicht@romanens.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xmottiez@rosselet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "georgette64@mottet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pascalcharpie@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sebastiencomman@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xbotteron@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "menthonnextherese@duroux.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "brapin@paccot.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "thierry53@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "crettonrobert@georges.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mairelara@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hcornut@corbat.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "grojeangabriel@charpie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "michaelmaire@mercier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kgalland@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sophiealber@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "florianfrancillon@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aliciachatriand@morand.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "patrick38@muriset.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zbeuret@chappuis.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "boillatmadeleine@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "commanelodie@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "philippebonvini@bovet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "theochappuis@francillon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mariabesse@vienne.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "brunochapuis@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "obeguin@godet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "muellerleo@muriset.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "arobert@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "guillaume54@badan.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marcellepeitrequin@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jean-pierre38@quartier.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bochudfabienne@aeby.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alain54@deleze.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jean-clauderosselat@beguin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "romain99@jomini.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rbouvier@rosselat.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bchopard@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "arthurcorbat@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bourquardhenri@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "veroniquepellet@vonlanthen.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ycharpie@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "germainebochud@brahier.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jacot-descombesmarguerite@barillon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "wuldry@crivelli.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marcel12@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rchapuis@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "elisa22@chenaux.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lbourquard@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "diesbachjeanne@besse.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "celine74@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "romanenselisa@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sophie58@rey.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pelletsylvie@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marguerite15@comte.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "evamottiez@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "muellerfrederic@duroux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nbarman@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "isellacharlotte@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bavaudjeanne@thorens.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vanessa50@treboux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nniquille@guberan.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christophemorard@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "brahieremilie@barman.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "annajacot-guillarmod@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gerarddroz@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vonlanthenjonathan@chevrolet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sebastien67@rosselet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "leatreboux@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bvienne@bourquard.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lcandaux@corbat.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marcellegrojean@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cousinandre@comman.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "danielle78@polla.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nathanbonvini@vuille.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "diesbachbernard@pasquier.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aliceevequoz@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vermeilvincent@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ujoye@curdy.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "josianethorens@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "stephanierosselet@bugnon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rappazchristiane@monnet.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "evapaccot@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "louis94@chappuis.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lbalmat@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laurent05@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "madeleinemartin@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marcellebouvier@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "robadeyraymond@montandon.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fonjallazfrederic@chapuis.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "trebouxhelene@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "theraulazeva@mottet.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "raymondrossellat@robadey.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jolylouis@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "robert61@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lucaspeitrequin@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pasquiermichel@musy.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "margueritebrahier@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "henricarraux@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "carolinemottiez@musy.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bmasseron@monnard.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cossyjosiane@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lbovet@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "saudanethan@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "qbochud@mercier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xbalmat@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christine15@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "melanie64@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "yvonne03@cattin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zoebahon@monnard.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "elisabethgrosjean@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "maurice81@corpataux.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "theosandoz@guberan.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "loic48@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rossellatcharlotte@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chloe43@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "dubeycharles@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chantal22@grojean.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "boechatroland@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kcousin@bovet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alainboillat@romanens.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "martinphilippe@marty.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "veronique58@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bourquardpascal@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "wichtluca@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sansonnensnicolas@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "eva44@thorens.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rappazandre@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "corinnemonnet@sansonnens.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gboichat@rappaz.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "philippeaebi@cornut.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "celinepachoud@grojean.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sandramayor@morand.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chatriantcatherine@guberan.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chloe51@jacot-descombes.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ethan03@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hugo66@montandon.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chapuisjulie@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "amonnet@pellet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aurelie74@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sophie40@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ycornut@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "robadeybernard@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charpiesimone@chevalley.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "beguinjulien@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cornuttheo@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "morandpierre@chaudet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charles70@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mairefabienne@chatriant.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "emma68@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mathieu55@chopard.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ababey@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rene20@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "comteroland@curdy.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pascal98@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "camillebujard@deleze.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jgillieron@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "michelbugnon@polla.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alain28@beuchat.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "evequozmarcelle@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "camille38@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jacot-guillarmodcharlotte@mercier.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rchevrolet@badel.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xmusy@vermeil.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "monnardgeorges@montandon.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "paschoudgabriel@wicht.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "delezesandrine@cretton.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "david58@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "noahcharpie@brandt.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chantal53@humbert.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lauragrosjean@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "guberanbruno@duvanel.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "barbeyaurelie@gillieron.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christianecourvoisier@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "manuelrobadey@broquet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aliciabourquin@brahier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bblanc@aebi.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pachoudnicole@joye.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "durouxmarianne@rapraz.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nathanbourquin@bourquin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vincentcarraud@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alice96@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "qniquille@jacot-descombes.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "wrobadey@bovet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "david97@cosendey.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "hmercier@cornut.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "paulbernasconi@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "odette66@cossy.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "opaschoud@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "krapin@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cornuzchantal@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jacquelinechevalley@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "corbatsylvie@peitrequin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aliciachappuis@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zoemayor@vienne.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laurence07@berberat.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kcomte@privet.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "emmarobadey@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "isabelle90@bernasconi.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "malber@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "noahbouvier@bahon.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "elisa27@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kcornuz@gillieron.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fabienne77@broquet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "icarron@marty.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "egalland@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "martydaniel@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bruno93@balmat.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "upaschoud@bourquard.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "paccotmaurice@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cornutcatherine@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "claudinebouvier@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "louisbeuret@mayor.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nicolas33@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mathieu49@bonvin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cousinlucas@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "eric23@chaudet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cosandeymarianne@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ttreboux@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "erosselat@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aureliehumbert@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lcorpataux@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "smorand@grosjean.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "tcorboz@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "michael01@monnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "julienduroux@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christian50@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mathieucarraud@thorens.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nicolasdeleze@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "simonebujard@vermeil.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chatriandveronique@diesbach.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christianerappaz@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christianepasquier@beguelin.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cbarillon@carraud.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jmuriset@jomini.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lucierappaz@paccot.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pjoly@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "eva06@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chloeblanc@crivelli.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "de-dardelgermaine@grand.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charles52@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jacot-guillarmodsuzanne@robert.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jrobert@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "elodiegrojean@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lauranussle@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jose18@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nathan80@aebi.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "amueller@babey.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "icornut@droz.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "oliviermenthonnex@charpie.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "maria71@monnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "loicguberan@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rappazmaria@morard.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pollathierry@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nchatriant@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ana39@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nathalievallelian@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bonvinroland@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vuillelucie@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marcellerosselat@nuesslin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "stephane78@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "simone85@saudan.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "humbertaurelie@mottet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vnuesslin@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christine83@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sansonnensgilbert@uldry.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xcrevoisier@corbat.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "andregrojean@bugnon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "monique15@candaux.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "corbatlaurence@chevrolet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aurelie89@droz.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fonjallazpatrick@maire.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "eva66@boechat.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jeannemasseron@vermeil.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nprivet@grosjean.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "trebouxpierre@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "viennecaroline@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jchenaux@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vienneanne@julliard.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "beurretbruno@maire.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "luciewicht@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cornutchristophe@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rapraznicole@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "msaudan@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charlotte63@robert.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kbotteron@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bouvierveronique@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "raymondpasquier@barman.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gbadel@coigny.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "crettongeorges@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "paulrappaz@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "annachevrolet@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jessicaquartier@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "montandonmanuel@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chevroletmelanie@nuesslin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mauricemonnet@bujard.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zoe97@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mmarti@broquet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "beuchatceline@barillon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "tgillieron@rappaz.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bovetlaurence@bonvini.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "david95@blanc.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "emma36@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "diesbachnolan@monnet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pierre22@crevoisier.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kcrivelli@marti.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sebastien82@chopard.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lisablanc@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zgalland@besse.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "elianeblanc@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xsaudan@bouvier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bochudcorinne@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bberberat@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pachoudnathalie@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "guillaumechevalley@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sebastienquartier@mueller.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cornuzmanon@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "isellajosiane@droz.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "evienne@blanc.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bernasconichristian@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pcrivelli@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cornuzgeorges@beuchat.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zfonjallaz@deleze.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "babeyjean@thorens.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "theresecorbat@joye.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "matilejean@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fredericpaschoud@humbert.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gallandmaria@polla.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jolymatteo@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "matteo39@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laurentcorpataux@comman.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "barillonstephane@pellet.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "anabujard@bouvier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laura96@chenaux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "claudinechaudet@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "liliane14@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "coignysophie@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vincentwicht@evequoz.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mathieu62@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "brandtphilippe@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mbourquard@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nicoledeleze@wicht.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alicia92@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "beguelinthierry@crevoisier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jeannepachoud@blanc.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "camillejacot-guillarmod@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "tbourquin@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "wchatriant@mueller.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ethanguberan@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "simone63@crevoisier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "psaudan@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bourquardelisabeth@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "henripiccand@boichat.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zbadan@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chevroletluca@cossy.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aprivet@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vgrojean@botteron.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "georgespaul@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "elodie88@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nusslevanessa@comment.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "elisa47@boichat.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "beguinlaurence@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "oboillat@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "saramorard@cretton.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christine41@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "yduroux@beuret.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pdeladoey@curdy.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gpaschoud@deleze.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "samuelgrojean@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laurence13@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chloejacot-descombes@chatriand.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "veroniquecurdy@monney.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "xboillat@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rmonney@georges.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "georges55@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gerardbeuchat@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lucacorpataux@morard.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "francoise97@deleze.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lea36@pellet.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "manuelrosselat@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mgeorges@evequoz.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jeanne25@chapuis.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "annacretton@boechat.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "camillemercier@tinguely.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bourquardisabelle@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "qdeleze@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bessefrancois@musy.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fbochud@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mercierhenri@monnard.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "germainebrandt@cousin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gilbertpiccand@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ybernasconi@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "celine89@matile.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charles48@alber.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "eliane59@sansonnens.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pascalbujard@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "julie03@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jean-claude29@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "louis53@treboux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bovetsebastien@menthonnex.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ethan08@cattin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vonlanthennolan@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "laurentmorand@isella.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ecorpataux@beguelin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "albert49@gillieron.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "annebujard@monnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bavaudbernard@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bcossy@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "maria26@morard.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "martytherese@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gbavaud@matile.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rmeyer@niquille.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pascalcharpie@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "valerie45@mueller.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chenauxclaudine@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fabiennecarron@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "humbertroger@beuret.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pisella@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "maurice97@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "thomas36@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "efonjallaz@coigny.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "saebi@fonjallaz.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gallandraymond@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chaudetsimone@bahon.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "joyelucie@privet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "georgette16@besencon.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "djoly@brandt.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "germainecattin@deladoey.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "raprazdenise@wicht.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "moniquevermeil@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "barmanjacques@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "camille59@romanens.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "echenaux@morard.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lbeuchat@paccot.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "corbatcatherine@polla.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gillieronsara@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "commentjean@bavaud.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "matteo82@grand.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "florian66@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charlotteaebi@besencon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "simonerosselat@paschoud.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "georgette62@cosandey.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sophiepiccand@dubey.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cousinlisa@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christinechenaux@beguin.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "noahnussle@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "odette22@pasquier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "monnetgermaine@saudan.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "elisabeth92@berberat.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gerardpolla@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "patriciade-dardel@morand.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "chevroleteliane@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "leogeorges@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "yvettefonjallaz@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "piccandceline@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "mairegeorges@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ucourvoisier@peitrequin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "nusslealice@coigny.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "theo01@de.org",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "charlottealber@vtxnet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zbarman@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "lmasseron@rey.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "srobadey@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "andrevermeil@deleze.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jonathan10@comte.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kchaudet@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "marianne79@cattin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bonviniguillaume@corpataux.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "berberatdanielle@bourquard.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "ecornut@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "camillerosselet@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alaindeleze@rosselet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jacquesaeby@sandoz.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "noah14@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christiancandaux@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "bavaudmathilde@joly.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "courvoisiermarianne@hotmail.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pelletnicolas@sunrise.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "fcrevoisier@bluewin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "kmueller@isella.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vmuriset@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gcomment@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "eric66@julliard.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "pelletmathieu@treboux.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zoebourquin@boechat.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "qcomman@jacot-descombes.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "maximecrivelli@besancon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "jean-pierre91@montandon.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "muellerfrederic@bourquin.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "blancthierry@cousin.net",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "aliciabugnon@galland.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "cbarillon@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "rwicht@gmail.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "sarah24@yahoo.fr",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "zbesancon@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "alexandrenussle@chevrolet.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "gboillat@romandie.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "blancnathalie@vuille.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "claudinebonvin@pasquier.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "christineniquille@hispeed.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "morardsebastien@monnet.com",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   },
   {
     "email": "vvonlanthen@vienne.ch",
-    "isActive": true
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "permissions": []
   }
 ]
