@@ -58,7 +58,6 @@ class Command(BaseCommand):
 
         staff.extend(productstaff)
 
-        # TODO: we will need much more than 35 products and 124 variants!
         product_variants = [
             item for item in saleor_fixture if item['model'] == 'product.productvariant']
         print('nbProds    = ', len(products))
