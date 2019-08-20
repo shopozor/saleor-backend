@@ -181,7 +181,3 @@ class Command(BaseCommand):
         os.makedirs(output_folder, exist_ok=True)
         output_shop_list(output_folder)
         output_shop_catalogues(output_folder)
-
-
-# TODO: we need some products in the saleor database that have is_published == false
-# TODO: generate product images automatically and put them in the /media/products/ folder
