@@ -1,6 +1,5 @@
 from faker import Faker
 from features.faker.providers.geo import Provider as ShopozorGeoProvider
-from features.faker.providers.product import Provider as ProductProvider
 
 import os
 import unidecode
@@ -9,12 +8,11 @@ fake = Faker('fr_CH')
 fake.seed('features')
 
 fake.add_provider(ShopozorGeoProvider)
-fake.add_provider(ProductProvider)
 
 # TODO: change this class' name
 
 
-class UserFactory:
+class FakeDataFactory:
 
     def create_email(first_name, last_name):
         domain_name = fake.free_email_domain()
@@ -41,7 +39,7 @@ class UserFactory:
             result.append({
                 'id': start_index + id,
                 # get rid of any potential French accent from the first and last name
-                'email': UserFactory.create_email(first_name, last_name),
+                'email': FakeDataFactory.create_email(first_name, last_name),
                 'isActive': True,
                 'isStaff': True,
                 'isSuperUser': False,
@@ -59,7 +57,7 @@ class UserFactory:
             result.append({
                 'id': start_index + id,
                 # get rid of any potential French accent from the first and last name
-                'email': UserFactory.create_email(first_name, last_name),
+                'email': FakeDataFactory.create_email(first_name, last_name),
                 'isActive': True,
                 'isStaff': True,
                 'isSuperUser': False,

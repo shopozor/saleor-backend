@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.core.management import call_command
 from django.core.management.base import BaseCommand
-from features.faker.fixtures_faker import UserFactory
+from features.faker.fixtures_faker import FakeDataFactory
 from features.utils.fixtures import json
 
 import os
@@ -21,38 +21,40 @@ class Command(BaseCommand):
 
         nb_of_consumers = 1000
         start_index = 1
-        consumers = UserFactory.create_consumers(start_index, nb_of_consumers)
+        consumers = FakeDataFactory.create_consumers(
+            start_index, nb_of_consumers)
         json.dump(consumers, os.path.join(
             output_folder, 'Users', 'Consommateurs.json'))
 
         nb_of_producers = 100
         start_index += nb_of_consumers
-        producers = UserFactory.create_producers(start_index, nb_of_producers)
+        producers = FakeDataFactory.create_producers(
+            start_index, nb_of_producers)
         json.dump(producers, os.path.join(
             output_folder, 'Users', 'Producteurs.json'))
 
         nb_of_managers = 10
         start_index += nb_of_producers
-        managers = UserFactory.create_managers(start_index, nb_of_managers)
+        managers = FakeDataFactory.create_managers(start_index, nb_of_managers)
         json.dump(managers, os.path.join(
             output_folder, 'Users', 'Responsables.json'))
 
         nb_of_rex = 1
         start_index += nb_of_managers
-        rex = UserFactory.create_rex(start_index)
+        rex = FakeDataFactory.create_rex(start_index)
         json.dump(rex, os.path.join(
             output_folder, 'Users', 'Rex.json'))
 
         start_index += nb_of_rex
-        softozor = UserFactory.create_softozor(start_index)
+        softozor = FakeDataFactory.create_softozor(start_index)
         json.dump(softozor, os.path.join(
             output_folder, 'Users', 'Softozor.json'))
 
-        staff = UserFactory.create_staff(producers)
+        staff = FakeDataFactory.create_staff(producers)
         saleor_fixture = json.load(PATH_TO_SALEOR_FIXTURE)
         products = [item for item in saleor_fixture if item['model']
                     == 'product.product']
-        productstaff = UserFactory.create_productstaff(producers, products)
+        productstaff = FakeDataFactory.create_productstaff(producers, products)
 
         staff.extend(productstaff)
 
@@ -61,7 +63,7 @@ class Command(BaseCommand):
             item for item in saleor_fixture if item['model'] == 'product.productvariant']
         print('nbProds    = ', len(products))
         print('nbVariants = ', len(product_variants))
-        shops = UserFactory.create_shops(
+        shops = FakeDataFactory.create_shops(
             producers, productstaff, product_variants, nb_of_managers)
 
         staff.extend(shops)
