@@ -1,14 +1,1129 @@
 [
   {
     "fields": {
-      "description": "blablabli budzo Onnens",
-      "latitude": 46.7716,
-      "longitude": 7.0382,
-      "name": "La Budzonnerie d'Onnens",
+      "user_id": 1001
+    },
+    "model": "shopozor.staff",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "user_id": 1002
+    },
+    "model": "shopozor.staff",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "user_id": 1003
+    },
+    "model": "shopozor.staff",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "user_id": 1004
+    },
+    "model": "shopozor.staff",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "user_id": 1005
+    },
+    "model": "shopozor.staff",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "user_id": 1006
+    },
+    "model": "shopozor.staff",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "user_id": 1007
+    },
+    "model": "shopozor.staff",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "user_id": 1008
+    },
+    "model": "shopozor.staff",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "user_id": 1009
+    },
+    "model": "shopozor.staff",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "user_id": 1010
+    },
+    "model": "shopozor.staff",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "user_id": 1011
+    },
+    "model": "shopozor.staff",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "user_id": 1012
+    },
+    "model": "shopozor.staff",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "user_id": 1013
+    },
+    "model": "shopozor.staff",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "user_id": 1014
+    },
+    "model": "shopozor.staff",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "user_id": 1015
+    },
+    "model": "shopozor.staff",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "user_id": 1016
+    },
+    "model": "shopozor.staff",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "user_id": 1017
+    },
+    "model": "shopozor.staff",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "user_id": 1018
+    },
+    "model": "shopozor.staff",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "user_id": 1019
+    },
+    "model": "shopozor.staff",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "user_id": 1020
+    },
+    "model": "shopozor.staff",
+    "pk": 20
+  },
+  {
+    "fields": {
+      "user_id": 1021
+    },
+    "model": "shopozor.staff",
+    "pk": 21
+  },
+  {
+    "fields": {
+      "user_id": 1022
+    },
+    "model": "shopozor.staff",
+    "pk": 22
+  },
+  {
+    "fields": {
+      "user_id": 1023
+    },
+    "model": "shopozor.staff",
+    "pk": 23
+  },
+  {
+    "fields": {
+      "user_id": 1024
+    },
+    "model": "shopozor.staff",
+    "pk": 24
+  },
+  {
+    "fields": {
+      "user_id": 1025
+    },
+    "model": "shopozor.staff",
+    "pk": 25
+  },
+  {
+    "fields": {
+      "user_id": 1026
+    },
+    "model": "shopozor.staff",
+    "pk": 26
+  },
+  {
+    "fields": {
+      "user_id": 1027
+    },
+    "model": "shopozor.staff",
+    "pk": 27
+  },
+  {
+    "fields": {
+      "user_id": 1028
+    },
+    "model": "shopozor.staff",
+    "pk": 28
+  },
+  {
+    "fields": {
+      "user_id": 1029
+    },
+    "model": "shopozor.staff",
+    "pk": 29
+  },
+  {
+    "fields": {
+      "user_id": 1030
+    },
+    "model": "shopozor.staff",
+    "pk": 30
+  },
+  {
+    "fields": {
+      "user_id": 1031
+    },
+    "model": "shopozor.staff",
+    "pk": 31
+  },
+  {
+    "fields": {
+      "user_id": 1032
+    },
+    "model": "shopozor.staff",
+    "pk": 32
+  },
+  {
+    "fields": {
+      "user_id": 1033
+    },
+    "model": "shopozor.staff",
+    "pk": 33
+  },
+  {
+    "fields": {
+      "user_id": 1034
+    },
+    "model": "shopozor.staff",
+    "pk": 34
+  },
+  {
+    "fields": {
+      "user_id": 1035
+    },
+    "model": "shopozor.staff",
+    "pk": 35
+  },
+  {
+    "fields": {
+      "user_id": 1036
+    },
+    "model": "shopozor.staff",
+    "pk": 36
+  },
+  {
+    "fields": {
+      "user_id": 1037
+    },
+    "model": "shopozor.staff",
+    "pk": 37
+  },
+  {
+    "fields": {
+      "user_id": 1038
+    },
+    "model": "shopozor.staff",
+    "pk": 38
+  },
+  {
+    "fields": {
+      "user_id": 1039
+    },
+    "model": "shopozor.staff",
+    "pk": 39
+  },
+  {
+    "fields": {
+      "user_id": 1040
+    },
+    "model": "shopozor.staff",
+    "pk": 40
+  },
+  {
+    "fields": {
+      "user_id": 1041
+    },
+    "model": "shopozor.staff",
+    "pk": 41
+  },
+  {
+    "fields": {
+      "user_id": 1042
+    },
+    "model": "shopozor.staff",
+    "pk": 42
+  },
+  {
+    "fields": {
+      "user_id": 1043
+    },
+    "model": "shopozor.staff",
+    "pk": 43
+  },
+  {
+    "fields": {
+      "user_id": 1044
+    },
+    "model": "shopozor.staff",
+    "pk": 44
+  },
+  {
+    "fields": {
+      "user_id": 1045
+    },
+    "model": "shopozor.staff",
+    "pk": 45
+  },
+  {
+    "fields": {
+      "user_id": 1046
+    },
+    "model": "shopozor.staff",
+    "pk": 46
+  },
+  {
+    "fields": {
+      "user_id": 1047
+    },
+    "model": "shopozor.staff",
+    "pk": 47
+  },
+  {
+    "fields": {
+      "user_id": 1048
+    },
+    "model": "shopozor.staff",
+    "pk": 48
+  },
+  {
+    "fields": {
+      "user_id": 1049
+    },
+    "model": "shopozor.staff",
+    "pk": 49
+  },
+  {
+    "fields": {
+      "user_id": 1050
+    },
+    "model": "shopozor.staff",
+    "pk": 50
+  },
+  {
+    "fields": {
+      "user_id": 1051
+    },
+    "model": "shopozor.staff",
+    "pk": 51
+  },
+  {
+    "fields": {
+      "user_id": 1052
+    },
+    "model": "shopozor.staff",
+    "pk": 52
+  },
+  {
+    "fields": {
+      "user_id": 1053
+    },
+    "model": "shopozor.staff",
+    "pk": 53
+  },
+  {
+    "fields": {
+      "user_id": 1054
+    },
+    "model": "shopozor.staff",
+    "pk": 54
+  },
+  {
+    "fields": {
+      "user_id": 1055
+    },
+    "model": "shopozor.staff",
+    "pk": 55
+  },
+  {
+    "fields": {
+      "user_id": 1056
+    },
+    "model": "shopozor.staff",
+    "pk": 56
+  },
+  {
+    "fields": {
+      "user_id": 1057
+    },
+    "model": "shopozor.staff",
+    "pk": 57
+  },
+  {
+    "fields": {
+      "user_id": 1058
+    },
+    "model": "shopozor.staff",
+    "pk": 58
+  },
+  {
+    "fields": {
+      "user_id": 1059
+    },
+    "model": "shopozor.staff",
+    "pk": 59
+  },
+  {
+    "fields": {
+      "user_id": 1060
+    },
+    "model": "shopozor.staff",
+    "pk": 60
+  },
+  {
+    "fields": {
+      "user_id": 1061
+    },
+    "model": "shopozor.staff",
+    "pk": 61
+  },
+  {
+    "fields": {
+      "user_id": 1062
+    },
+    "model": "shopozor.staff",
+    "pk": 62
+  },
+  {
+    "fields": {
+      "user_id": 1063
+    },
+    "model": "shopozor.staff",
+    "pk": 63
+  },
+  {
+    "fields": {
+      "user_id": 1064
+    },
+    "model": "shopozor.staff",
+    "pk": 64
+  },
+  {
+    "fields": {
+      "user_id": 1065
+    },
+    "model": "shopozor.staff",
+    "pk": 65
+  },
+  {
+    "fields": {
+      "user_id": 1066
+    },
+    "model": "shopozor.staff",
+    "pk": 66
+  },
+  {
+    "fields": {
+      "user_id": 1067
+    },
+    "model": "shopozor.staff",
+    "pk": 67
+  },
+  {
+    "fields": {
+      "user_id": 1068
+    },
+    "model": "shopozor.staff",
+    "pk": 68
+  },
+  {
+    "fields": {
+      "user_id": 1069
+    },
+    "model": "shopozor.staff",
+    "pk": 69
+  },
+  {
+    "fields": {
+      "user_id": 1070
+    },
+    "model": "shopozor.staff",
+    "pk": 70
+  },
+  {
+    "fields": {
+      "user_id": 1071
+    },
+    "model": "shopozor.staff",
+    "pk": 71
+  },
+  {
+    "fields": {
+      "user_id": 1072
+    },
+    "model": "shopozor.staff",
+    "pk": 72
+  },
+  {
+    "fields": {
+      "user_id": 1073
+    },
+    "model": "shopozor.staff",
+    "pk": 73
+  },
+  {
+    "fields": {
+      "user_id": 1074
+    },
+    "model": "shopozor.staff",
+    "pk": 74
+  },
+  {
+    "fields": {
+      "user_id": 1075
+    },
+    "model": "shopozor.staff",
+    "pk": 75
+  },
+  {
+    "fields": {
+      "user_id": 1076
+    },
+    "model": "shopozor.staff",
+    "pk": 76
+  },
+  {
+    "fields": {
+      "user_id": 1077
+    },
+    "model": "shopozor.staff",
+    "pk": 77
+  },
+  {
+    "fields": {
+      "user_id": 1078
+    },
+    "model": "shopozor.staff",
+    "pk": 78
+  },
+  {
+    "fields": {
+      "user_id": 1079
+    },
+    "model": "shopozor.staff",
+    "pk": 79
+  },
+  {
+    "fields": {
+      "user_id": 1080
+    },
+    "model": "shopozor.staff",
+    "pk": 80
+  },
+  {
+    "fields": {
+      "user_id": 1081
+    },
+    "model": "shopozor.staff",
+    "pk": 81
+  },
+  {
+    "fields": {
+      "user_id": 1082
+    },
+    "model": "shopozor.staff",
+    "pk": 82
+  },
+  {
+    "fields": {
+      "user_id": 1083
+    },
+    "model": "shopozor.staff",
+    "pk": 83
+  },
+  {
+    "fields": {
+      "user_id": 1084
+    },
+    "model": "shopozor.staff",
+    "pk": 84
+  },
+  {
+    "fields": {
+      "user_id": 1085
+    },
+    "model": "shopozor.staff",
+    "pk": 85
+  },
+  {
+    "fields": {
+      "user_id": 1086
+    },
+    "model": "shopozor.staff",
+    "pk": 86
+  },
+  {
+    "fields": {
+      "user_id": 1087
+    },
+    "model": "shopozor.staff",
+    "pk": 87
+  },
+  {
+    "fields": {
+      "user_id": 1088
+    },
+    "model": "shopozor.staff",
+    "pk": 88
+  },
+  {
+    "fields": {
+      "user_id": 1089
+    },
+    "model": "shopozor.staff",
+    "pk": 89
+  },
+  {
+    "fields": {
+      "user_id": 1090
+    },
+    "model": "shopozor.staff",
+    "pk": 90
+  },
+  {
+    "fields": {
+      "user_id": 1091
+    },
+    "model": "shopozor.staff",
+    "pk": 91
+  },
+  {
+    "fields": {
+      "user_id": 1092
+    },
+    "model": "shopozor.staff",
+    "pk": 92
+  },
+  {
+    "fields": {
+      "user_id": 1093
+    },
+    "model": "shopozor.staff",
+    "pk": 93
+  },
+  {
+    "fields": {
+      "user_id": 1094
+    },
+    "model": "shopozor.staff",
+    "pk": 94
+  },
+  {
+    "fields": {
+      "user_id": 1095
+    },
+    "model": "shopozor.staff",
+    "pk": 95
+  },
+  {
+    "fields": {
+      "user_id": 1096
+    },
+    "model": "shopozor.staff",
+    "pk": 96
+  },
+  {
+    "fields": {
+      "user_id": 1097
+    },
+    "model": "shopozor.staff",
+    "pk": 97
+  },
+  {
+    "fields": {
+      "user_id": 1098
+    },
+    "model": "shopozor.staff",
+    "pk": 98
+  },
+  {
+    "fields": {
+      "user_id": 1099
+    },
+    "model": "shopozor.staff",
+    "pk": 99
+  },
+  {
+    "fields": {
+      "user_id": 1100
+    },
+    "model": "shopozor.staff",
+    "pk": 100
+  },
+  {
+    "fields": {
+      "product_id": 63,
+      "staff_id": 1001
+    },
+    "model": "shopozor.productstaff",
+    "pk": 1
+  },
+  {
+    "fields": {
+      "product_id": 62,
+      "staff_id": 1001
+    },
+    "model": "shopozor.productstaff",
+    "pk": 2
+  },
+  {
+    "fields": {
+      "product_id": 77,
+      "staff_id": 1001
+    },
+    "model": "shopozor.productstaff",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "product_id": 86,
+      "staff_id": 1001
+    },
+    "model": "shopozor.productstaff",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "product_id": 71,
+      "staff_id": 1001
+    },
+    "model": "shopozor.productstaff",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "product_id": 89,
+      "staff_id": 1002
+    },
+    "model": "shopozor.productstaff",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "product_id": 78,
+      "staff_id": 1002
+    },
+    "model": "shopozor.productstaff",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "product_id": 108,
+      "staff_id": 1002
+    },
+    "model": "shopozor.productstaff",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "product_id": 117,
+      "staff_id": 1002
+    },
+    "model": "shopozor.productstaff",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "product_id": 110,
+      "staff_id": 1003
+    },
+    "model": "shopozor.productstaff",
+    "pk": 10
+  },
+  {
+    "fields": {
+      "product_id": 87,
+      "staff_id": 1003
+    },
+    "model": "shopozor.productstaff",
+    "pk": 11
+  },
+  {
+    "fields": {
+      "product_id": 73,
+      "staff_id": 1003
+    },
+    "model": "shopozor.productstaff",
+    "pk": 12
+  },
+  {
+    "fields": {
+      "product_id": 65,
+      "staff_id": 1004
+    },
+    "model": "shopozor.productstaff",
+    "pk": 13
+  },
+  {
+    "fields": {
+      "product_id": 111,
+      "staff_id": 1004
+    },
+    "model": "shopozor.productstaff",
+    "pk": 14
+  },
+  {
+    "fields": {
+      "product_id": 113,
+      "staff_id": 1004
+    },
+    "model": "shopozor.productstaff",
+    "pk": 15
+  },
+  {
+    "fields": {
+      "product_id": 76,
+      "staff_id": 1004
+    },
+    "model": "shopozor.productstaff",
+    "pk": 16
+  },
+  {
+    "fields": {
+      "product_id": 109,
+      "staff_id": 1004
+    },
+    "model": "shopozor.productstaff",
+    "pk": 17
+  },
+  {
+    "fields": {
+      "product_id": 72,
+      "staff_id": 1004
+    },
+    "model": "shopozor.productstaff",
+    "pk": 18
+  },
+  {
+    "fields": {
+      "product_id": 115,
+      "staff_id": 1004
+    },
+    "model": "shopozor.productstaff",
+    "pk": 19
+  },
+  {
+    "fields": {
+      "product_id": 112,
+      "staff_id": 1004
+    },
+    "model": "shopozor.productstaff",
+    "pk": 20
+  },
+  {
+    "fields": {
+      "product_id": 88,
+      "staff_id": 1004
+    },
+    "model": "shopozor.productstaff",
+    "pk": 21
+  },
+  {
+    "fields": {
+      "product_id": 83,
+      "staff_id": 1004
+    },
+    "model": "shopozor.productstaff",
+    "pk": 22
+  },
+  {
+    "fields": {
+      "product_id": 82,
+      "staff_id": 1005
+    },
+    "model": "shopozor.productstaff",
+    "pk": 23
+  },
+  {
+    "fields": {
+      "product_id": 114,
+      "staff_id": 1005
+    },
+    "model": "shopozor.productstaff",
+    "pk": 24
+  },
+  {
+    "fields": {
+      "product_id": 61,
+      "staff_id": 1007
+    },
+    "model": "shopozor.productstaff",
+    "pk": 25
+  },
+  {
+    "fields": {
+      "product_id": 116,
+      "staff_id": 1007
+    },
+    "model": "shopozor.productstaff",
+    "pk": 26
+  },
+  {
+    "fields": {
+      "product_id": 84,
+      "staff_id": 1007
+    },
+    "model": "shopozor.productstaff",
+    "pk": 27
+  },
+  {
+    "fields": {
+      "product_id": 74,
+      "staff_id": 1007
+    },
+    "model": "shopozor.productstaff",
+    "pk": 28
+  },
+  {
+    "fields": {
+      "product_id": 118,
+      "staff_id": 1007
+    },
+    "model": "shopozor.productstaff",
+    "pk": 29
+  },
+  {
+    "fields": {
+      "product_id": 75,
+      "staff_id": 1007
+    },
+    "model": "shopozor.productstaff",
+    "pk": 30
+  },
+  {
+    "fields": {
+      "product_id": 85,
+      "staff_id": 1007
+    },
+    "model": "shopozor.productstaff",
+    "pk": 31
+  },
+  {
+    "fields": {
+      "product_id": 61,
+      "staff_id": 1008
+    },
+    "model": "shopozor.productstaff",
+    "pk": 32
+  },
+  {
+    "fields": {
+      "product_id": 116,
+      "staff_id": 1008
+    },
+    "model": "shopozor.productstaff",
+    "pk": 33
+  },
+  {
+    "fields": {
+      "product_id": 84,
+      "staff_id": 1008
+    },
+    "model": "shopozor.productstaff",
+    "pk": 34
+  },
+  {
+    "fields": {
+      "product_id": 74,
+      "staff_id": 1008
+    },
+    "model": "shopozor.productstaff",
+    "pk": 35
+  },
+  {
+    "fields": {
+      "product_id": 118,
+      "staff_id": 1008
+    },
+    "model": "shopozor.productstaff",
+    "pk": 36
+  },
+  {
+    "fields": {
+      "product_id": 75,
+      "staff_id": 1008
+    },
+    "model": "shopozor.productstaff",
+    "pk": 37
+  },
+  {
+    "fields": {
+      "product_id": 85,
+      "staff_id": 1008
+    },
+    "model": "shopozor.productstaff",
+    "pk": 38
+  },
+  {
+    "fields": {
+      "product_id": 64,
+      "staff_id": 1017
+    },
+    "model": "shopozor.productstaff",
+    "pk": 39
+  },
+  {
+    "fields": {
+      "product_id": 79,
+      "staff_id": 1017
+    },
+    "model": "shopozor.productstaff",
+    "pk": 40
+  },
+  {
+    "fields": {
+      "product_id": 107,
+      "staff_id": 1017
+    },
+    "model": "shopozor.productstaff",
+    "pk": 41
+  },
+  {
+    "fields": {
+      "product_id": 81,
+      "staff_id": 1017
+    },
+    "model": "shopozor.productstaff",
+    "pk": 42
+  },
+  {
+    "fields": {
+      "product_id": 64,
+      "staff_id": 1018
+    },
+    "model": "shopozor.productstaff",
+    "pk": 43
+  },
+  {
+    "fields": {
+      "product_id": 79,
+      "staff_id": 1018
+    },
+    "model": "shopozor.productstaff",
+    "pk": 44
+  },
+  {
+    "fields": {
+      "product_id": 107,
+      "staff_id": 1018
+    },
+    "model": "shopozor.productstaff",
+    "pk": 45
+  },
+  {
+    "fields": {
+      "product_id": 81,
+      "staff_id": 1018
+    },
+    "model": "shopozor.productstaff",
+    "pk": 46
+  },
+  {
+    "fields": {
+      "product_id": 64,
+      "staff_id": 1019
+    },
+    "model": "shopozor.productstaff",
+    "pk": 47
+  },
+  {
+    "fields": {
+      "product_id": 79,
+      "staff_id": 1019
+    },
+    "model": "shopozor.productstaff",
+    "pk": 48
+  },
+  {
+    "fields": {
+      "product_id": 107,
+      "staff_id": 1019
+    },
+    "model": "shopozor.productstaff",
+    "pk": 49
+  },
+  {
+    "fields": {
+      "product_id": 81,
+      "staff_id": 1019
+    },
+    "model": "shopozor.productstaff",
+    "pk": 50
+  },
+  {
+    "fields": {
+      "description": "Sequi occaecati laborum ut deleniti. Dolore atque eum atque non quia sapiente. Sapiente reprehenderit nostrum consequatur.",
+      "latitude": 46.942319,
+      "longitude": 7.109721,
+      "name": "Possimus praesentium impedit.",
       "product_variants": [
-        171,
-        172,
-        173
+        220,
+        221,
+        222,
+        251,
+        252,
+        253,
+        254,
+        255,
+        261,
+        262,
+        263,
+        264,
+        265,
+        306,
+        307,
+        308,
+        309,
+        310
       ]
     },
     "model": "shopozor.shop",
@@ -16,17 +1131,179 @@
   },
   {
     "fields": {
-      "user_id": 1005
+      "description": "Dolores qui quos quaerat ducimus hic nesciunt. Sequi consequatur repellat repellendus facere voluptatem nobis. Amet hic tenetur esse nam.",
+      "latitude": 46.420449,
+      "longitude": 7.057439,
+      "name": "Tenetur odio eligendi rerum.",
+      "product_variants": []
     },
-    "model": "shopozor.staff",
-    "pk": 1
+    "model": "shopozor.shop",
+    "pk": 2
   },
   {
     "fields": {
-      "product_id": 61,
-      "staff_id": 1005
+      "description": "Tenetur eos dolorum neque harum.\nDeleniti nam similique voluptates ut nemo deleniti iusto.\nA explicabo odio veritatis est recusandae. Modi officia saepe voluptatem ipsum pariatur voluptas quod.",
+      "latitude": 46.596499,
+      "longitude": 6.940103,
+      "name": "Earum iste mollitia.",
+      "product_variants": [
+        180,
+        181,
+        182,
+        193,
+        223,
+        224,
+        225,
+        256,
+        257,
+        258,
+        259,
+        260
+      ]
     },
-    "model": "shopozor.productstaff",
-    "pk": 1
+    "model": "shopozor.shop",
+    "pk": 3
+  },
+  {
+    "fields": {
+      "description": "Nobis atque similique. Nihil provident vero. Voluptatum alias doloribus dolor maiores.\nVero quasi ipsum atque. Natus laudantium sequi nesciunt.\nSequi totam quae. Totam aliquam sapiente quidem.",
+      "latitude": 47.193067,
+      "longitude": 7.101158,
+      "name": "Velit voluptatem ab.",
+      "product_variants": []
+    },
+    "model": "shopozor.shop",
+    "pk": 4
+  },
+  {
+    "fields": {
+      "description": "Vero nisi ullam sit modi aspernatur soluta. Iure eum unde quo quis illum consequuntur. Perspiciatis animi ducimus unde.",
+      "latitude": 46.756214,
+      "longitude": 7.037036,
+      "name": "Quas rem in assumenda tenetur repudiandae.",
+      "product_variants": [
+        220,
+        221,
+        222,
+        251,
+        252,
+        253,
+        254,
+        255,
+        261,
+        262,
+        263,
+        264,
+        265,
+        306,
+        307,
+        308,
+        309,
+        310
+      ]
+    },
+    "model": "shopozor.shop",
+    "pk": 5
+  },
+  {
+    "fields": {
+      "description": "Officia id itaque vero.\nVoluptas fugiat totam corporis pariatur ipsam. Modi aut ullam a eaque incidunt eum voluptatibus.",
+      "latitude": 46.82429,
+      "longitude": 7.202532,
+      "name": "Quibusdam vero quisquam at officiis.",
+      "product_variants": []
+    },
+    "model": "shopozor.shop",
+    "pk": 6
+  },
+  {
+    "fields": {
+      "description": "In omnis beatae magni. Odit qui labore nisi. Est deleniti architecto magnam veritatis.",
+      "latitude": 46.685397,
+      "longitude": 7.123343,
+      "name": "Mollitia est eveniet.",
+      "product_variants": [
+        171,
+        172,
+        173,
+        196,
+        197,
+        198,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        301,
+        302,
+        303,
+        304,
+        305,
+        311,
+        312,
+        313,
+        314,
+        315
+      ]
+    },
+    "model": "shopozor.shop",
+    "pk": 7
+  },
+  {
+    "fields": {
+      "description": "Unde ut facilis vero. Dolores natus at consectetur quisquam. Est eum aliquid amet voluptates animi sint culpa.",
+      "latitude": 46.299891,
+      "longitude": 6.894234,
+      "name": "Dolore alias non.",
+      "product_variants": []
+    },
+    "model": "shopozor.shop",
+    "pk": 8
+  },
+  {
+    "fields": {
+      "description": "Facere alias quae maxime. Harum asperiores culpa quia in.\nIllo iste maiores iste. Similique repudiandae nesciunt.\nAccusantium culpa vitae reiciendis modi earum voluptatibus.",
+      "latitude": 46.749093,
+      "longitude": 6.965299,
+      "name": "Expedita unde quibusdam enim.",
+      "product_variants": []
+    },
+    "model": "shopozor.shop",
+    "pk": 9
+  },
+  {
+    "fields": {
+      "description": "Tempora minus veritatis nesciunt. Veniam ea ea doloribus quia porro saepe veniam. Cumque cumque officiis ipsa inventore velit neque.",
+      "latitude": 46.721134,
+      "longitude": 7.150203,
+      "name": "Harum est voluptates.",
+      "product_variants": [
+        171,
+        172,
+        173,
+        196,
+        197,
+        198,
+        208,
+        209,
+        210,
+        211,
+        212,
+        213,
+        301,
+        302,
+        303,
+        304,
+        305,
+        311,
+        312,
+        313,
+        314,
+        315
+      ]
+    },
+    "model": "shopozor.shop",
+    "pk": 10
   }
 ]

@@ -55,16 +55,14 @@ class Command(BaseCommand):
         productstaff = UserFactory.create_productstaff(producers, products)
 
         staff.extend(productstaff)
-        json.dump(staff, os.path.join(output_folder, '_Shops.json'))
 
-        # TODO: staff, productstaff, and shops need to be first extended and then output to the Shop.json file
         # TODO: we will need much more than 35 products and 124 variants!
-        #
-        # product_variants = [
-        #     item for item in saleor_fixture if item['model'] == 'product.productvariant']
-        # print('nbProds    = ', len(products))
-        # print('nbVariants = ', len(product_variants))
-        # # producer_ids = [producer['id'] for producer in producers]
-        # shops = UserFactory.create_shops(
-        #     producers, products, product_variants, nb_of_managers)
-        # json.dump(shops, os.path.join(output_folder, '_Shops.json'))
+        product_variants = [
+            item for item in saleor_fixture if item['model'] == 'product.productvariant']
+        print('nbProds    = ', len(products))
+        print('nbVariants = ', len(product_variants))
+        shops = UserFactory.create_shops(
+            producers, productstaff, product_variants, nb_of_managers)
+
+        staff.extend(shops)
+        json.dump(staff, os.path.join(output_folder, 'Shops.json'))

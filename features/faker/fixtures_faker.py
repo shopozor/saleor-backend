@@ -141,37 +141,40 @@ class UserFactory:
                 id for id in product_ids if id not in producer_product_ids]
         return result
 
-    def create_shops(producers, products, product_variants, list_size=1):
+    def create_shops(producers, productstaff, product_variants, list_size=1):
         result = []
+
+        producer_ids = [producer['id'] for producer in producers]
 
         max_nb_producers_per_shop = 10
         for shop_id in range(0, list_size):
-            # TODO
-            # 1. choose a few producers
-            # producer_ids = fake.producer_ids(max_nb_producers_per_shop)
-            nb_producers = fake.random.randint(1, max_nb_producers_per_shop)
-            shop_producers = fake.random_elements(
-                elements=producers, length=nb_producers, unique=True)
-            # 2. for each producer:
-
-            # 2.1 choose a few products
-            # 2.2 associate producers with products
-            # 3 take all variants associated with each product of step 2
-            # 4. remove the few producers of step 1 from the original list of producers
-            # 5. remove the few products of step 2 from the original list of products
+            nb_producers = fake.random.randint(0, max_nb_producers_per_shop)
+            # 1. get a few producer_ids
+            try:
+                shop_producer_ids = fake.random_elements(
+                    elements=producer_ids, length=nb_producers, unique=True)
+            except ValueError:
+                print(
+                    'Shop %d cannot have producers assigned as there are no producers anymore' % shop_id)
+            # 2. get the corresponding product_ids from the productstaff
+            shop_product_ids = [item['fields']['product_id'] for item in productstaff if item['model']
+                                == 'shopozor.productstaff' and item['fields']['staff_id'] in shop_producer_ids]
+            # 3. get the variant_ids of all product_ids from the product_variants list
+            variant_ids = [variant['pk']
+                           for variant in product_variants if variant['fields']['product'] in shop_product_ids]
+            # 4. remove the selected producer_ids from the original producer_ids list
+            producer_ids = [
+                id for id in producer_ids if id not in shop_product_ids]
 
             result.append({
                 'model': 'shopozor.shop',
-                'pk': shop_id,
+                'pk': shop_id + 1,
                 'fields': {
                     'description': fake.text(max_nb_chars=200, ext_word_list=None),
                     'name': fake.sentence(nb_words=5, variable_nb_words=True, ext_word_list=None),
                     'latitude': float(fake.local_latitude()),
                     'longitude': float(fake.local_longitude()),
-                    # 'product_variants': fake.variant_ids(product_variant_ids, nb_variants)
-                    'product_variants': []
+                    'product_variants': variant_ids
                 }
             })
         return result
-
-# TODO: generate productstaff model instances before generating the shops!
