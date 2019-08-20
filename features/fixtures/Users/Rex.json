@@ -1,5 +1,6 @@
 {
   "email": "rex@sunrise.ch",
+  "id": 1111,
   "isActive": true,
   "isStaff": true,
   "isSuperUser": false,

@@ -28,7 +28,6 @@ def create_database_user(user_data):
                 codename=permission['code'].lower()))
 
     user.save()
-    user_data['id'] = user.id
 
     return user
 

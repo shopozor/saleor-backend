@@ -19,33 +19,44 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         output_folder = options['output_folder']
 
-        consumers = UserFactory.create_consumers(1000)
+        nb_of_consumers = 1000
+        start_index = 1
+        consumers = UserFactory.create_consumers(start_index, nb_of_consumers)
         json.dump(consumers, os.path.join(
             output_folder, 'Users', 'Consommateurs.json'))
 
-        producers = UserFactory.create_producers(100)
+        nb_of_producers = 100
+        start_index = start_index + nb_of_consumers
+        producers = UserFactory.create_producers(start_index, nb_of_producers)
         json.dump(producers, os.path.join(
             output_folder, 'Users', 'Producteurs.json'))
 
         nb_of_managers = 10
-        managers = UserFactory.create_managers(nb_of_managers)
+        start_index = start_index + nb_of_producers
+        managers = UserFactory.create_managers(start_index, nb_of_managers)
         json.dump(managers, os.path.join(
             output_folder, 'Users', 'Responsables.json'))
 
-        rex = UserFactory.create_rex()
+        nb_of_rex = 1
+        start_index = start_index + nb_of_managers
+        rex = UserFactory.create_rex(start_index)
         json.dump(rex, os.path.join(
             output_folder, 'Users', 'Rex.json'))
 
-        softozor = UserFactory.create_softozor()
+        start_index = start_index + nb_of_rex
+        softozor = UserFactory.create_softozor(start_index)
         json.dump(softozor, os.path.join(
             output_folder, 'Users', 'Softozor.json'))
 
-        # TODO: link producers with products ==> generate the Shops.json django fixture
+        # TODO: we will need much more than 35 products and 124 variants!
         saleor_fixture = json.load(PATH_TO_SALEOR_FIXTURE)
         products = [item for item in saleor_fixture if item['model']
                     == 'product.product']
         product_variants = [
             item for item in saleor_fixture if item['model'] == 'product.productvariant']
+        print('nbProds    = ', len(products))
+        print('nbVariants = ', len(product_variants))
+        producer_ids = [producer['id'] for producer in producers]
         shops = UserFactory.create_shops(
-            producers, products, product_variants, nb_of_managers)
+            producer_ids, products, product_variants, nb_of_managers)
         json.dump(shops, os.path.join(output_folder, '_Shops.json'))

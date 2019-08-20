@@ -10,25 +10,20 @@ import os
 
 def create_users():
     users = []
-    for persona in 'Consommateurs', 'Producteurs', 'Responsables', 'Rex':
+    for persona in 'Consommateurs', 'Producteurs', 'Responsables', 'Rex', 'Softozor':
         user_data = json.load(os.path.join(
             'features', 'fixtures', 'Users', persona + '.json'))
         if isinstance(user_data, list):
             for user in user_data:
-                create_database_user(user)
+                stored_user = create_database_user(user)
+                assert stored_user.pk == user['id'], '[%s] - %d should equal %d' % (
+                    persona, stored_user.pk, user['id'])
                 users.append(user)
         else:
-            create_database_user(user_data)
+            stored_user = create_database_user(user_data)
+            assert stored_user.pk == user_data['id'], '[%s] - %d should equal %d' % (
+                persona, stored_user.pk, user_data['id'])
             users.append(user_data)
-    return users
-
-
-def create_superusers():
-    users = []
-    user_data = json.load(os.path.join(
-        'features', 'fixtures', 'Users', 'Softozor.json'))
-    create_database_user(user_data)
-    users.append(user_data)
     return users
 
 
@@ -43,10 +38,6 @@ class Command(BaseCommand):
         output_folder = options['output_folder']
 
         users = create_users()
-        super_users = create_superusers()
-
-        users.extend(super_users)
-
         json.dump(users, os.path.join(output_folder, 'Users.json'))
 
         call_command('loaddata', os.path.join(

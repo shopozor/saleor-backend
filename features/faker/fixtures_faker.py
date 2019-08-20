@@ -18,10 +18,11 @@ class UserFactory:
         domain_name = fake.free_email_domain()
         return unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name))
 
-    def create_consumers(list_size=1):
+    def create_consumers(start_index, list_size=1):
         result = []
-        for _ in range(0, list_size):
+        for id in range(0, list_size):
             result.append({
+                'id': start_index + id,
                 'email': fake.email(),
                 'isActive': True,
                 'isStaff': False,
@@ -30,12 +31,13 @@ class UserFactory:
             })
         return result
 
-    def create_producers(list_size=1):
+    def create_producers(start_index, list_size=1):
         result = []
-        for _ in range(0, list_size):
+        for id in range(0, list_size):
             first_name = fake.first_name()
             last_name = fake.last_name()
             result.append({
+                'id': start_index + id,
                 # get rid of any potential French accent from the first and last name
                 'email': UserFactory.create_email(first_name, last_name),
                 'isActive': True,
@@ -47,12 +49,13 @@ class UserFactory:
             })
         return result
 
-    def create_managers(list_size=1):
+    def create_managers(start_index, list_size=1):
         result = []
-        for _ in range(0, list_size):
+        for id in range(0, list_size):
             first_name = fake.first_name()
             last_name = fake.last_name()
             result.append({
+                'id': start_index + id,
                 # get rid of any potential French accent from the first and last name
                 'email': UserFactory.create_email(first_name, last_name),
                 'isActive': True,
@@ -66,8 +69,9 @@ class UserFactory:
             })
         return result
 
-    def create_rex():
+    def create_rex(start_index):
         return {
+            'id': start_index,
             'email': 'rex@%s' % fake.free_email_domain(),
             'isActive': True,
             'isStaff': True,
@@ -88,8 +92,9 @@ class UserFactory:
             ]
         }
 
-    def create_softozor():
+    def create_softozor(start_index):
         return {
+            'id': start_index,
             'email': 'softozor@%s' % fake.free_email_domain(),
             'isActive': True,
             'isStaff': True,
@@ -97,10 +102,16 @@ class UserFactory:
             'permissions': []
         }
 
-    def create_shops(producers, products, product_variants, list_size=1):
+    def create_shops(producer_ids, products, product_variants, list_size=1):
         result = []
 
         for shop_id in range(0, list_size):
+            # TODO
+            # 1. choose a few producers
+            # 2. choose a few products
+            # 3. take all variants associated with each product of step 2
+            # n. remove the few producers of step 1 from the original list of producers
+            # n. remove the few products of step 2 from the original list of products
             result.append({
                 'model': 'shopozor.shop',
                 'pk': shop_id,

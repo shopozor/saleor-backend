@@ -2,6 +2,7 @@
   {
     "email": "Patrick.Chappuis@yahoo.fr",
     "first_name": "Patrick",
+    "id": 1101,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -15,6 +16,7 @@
   {
     "email": "Guillaume.Alber@yahoo.fr",
     "first_name": "Guillaume",
+    "id": 1102,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -28,6 +30,7 @@
   {
     "email": "Elodie.Comman@romandie.com",
     "first_name": "Elodie",
+    "id": 1103,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -41,6 +44,7 @@
   {
     "email": "Samuel.Duvanel@vtxnet.ch",
     "first_name": "Samuel",
+    "id": 1104,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -54,6 +58,7 @@
   {
     "email": "Mathieu.Isella@vtxnet.ch",
     "first_name": "Mathieu",
+    "id": 1105,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -67,6 +72,7 @@
   {
     "email": "Manuel.Rosselat@gmail.com",
     "first_name": "Manuel",
+    "id": 1106,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -80,6 +86,7 @@
   {
     "email": "Vincent.Julliard@sunrise.ch",
     "first_name": "Vincent",
+    "id": 1107,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -93,6 +100,7 @@
   {
     "email": "Lucie.Carraux@gmail.com",
     "first_name": "Lucie",
+    "id": 1108,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -106,6 +114,7 @@
   {
     "email": "Claudine.Vuille@romandie.com",
     "first_name": "Claudine",
+    "id": 1109,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -119,6 +128,7 @@
   {
     "email": "Isabelle.Rosselat@bluewin.ch",
     "first_name": "Isabelle",
+    "id": 1110,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
