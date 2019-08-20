@@ -1,6 +1,6 @@
 from faker import Faker
 from features.faker.providers.geo import Provider as ShopozorGeoProvider
-from features.faker.providers.product_variant import Provider as ProductVariantProvider
+from features.faker.providers.product import Provider as ProductProvider
 
 import os
 import unidecode
@@ -9,7 +9,7 @@ fake = Faker('fr_CH')
 fake.seed('features')
 
 fake.add_provider(ShopozorGeoProvider)
-fake.add_provider(ProductVariantProvider)
+fake.add_provider(ProductProvider)
 
 
 class UserFactory:
