@@ -8,12 +8,12 @@ import unidecode
 class FakeDataFactory:
 
     def __init__(self):
-        self.fake = Faker('fr_CH')
-        self.fake.seed('features')
-        self.fake.add_provider(ShopozorGeoProvider)
+        self.__fake = Faker('fr_CH')
+        self.__fake.seed('features')
+        self.__fake.add_provider(ShopozorGeoProvider)
 
     def create_email(self, first_name, last_name):
-        domain_name = self.fake.free_email_domain()
+        domain_name = self.__fake.free_email_domain()
         return unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name))
 
     def create_consumers(self, start_index, list_size=1):
@@ -21,7 +21,7 @@ class FakeDataFactory:
         for id in range(0, list_size):
             result.append({
                 'id': start_index + id,
-                'email': self.fake.email(),
+                'email': self.__fake.email(),
                 'isActive': True,
                 'isStaff': False,
                 'isSuperUser': False,
@@ -32,8 +32,8 @@ class FakeDataFactory:
     def create_producers(self, start_index, list_size=1):
         result = []
         for id in range(0, list_size):
-            first_name = self.fake.first_name()
-            last_name = self.fake.last_name()
+            first_name = self.__fake.first_name()
+            last_name = self.__fake.last_name()
             result.append({
                 'id': start_index + id,
                 # get rid of any potential French accent from the first and last name
@@ -50,8 +50,8 @@ class FakeDataFactory:
     def create_managers(self, start_index, list_size=1):
         result = []
         for id in range(0, list_size):
-            first_name = self.fake.first_name()
-            last_name = self.fake.last_name()
+            first_name = self.__fake.first_name()
+            last_name = self.__fake.last_name()
             result.append({
                 'id': start_index + id,
                 # get rid of any potential French accent from the first and last name
@@ -70,7 +70,7 @@ class FakeDataFactory:
     def create_rex(self, start_index):
         return {
             'id': start_index,
-            'email': 'rex@%s' % self.fake.free_email_domain(),
+            'email': 'rex@%s' % self.__fake.free_email_domain(),
             'isActive': True,
             'isStaff': True,
             'isSuperUser': False,
@@ -93,7 +93,7 @@ class FakeDataFactory:
     def create_softozor(self, start_index):
         return {
             'id': start_index,
-            'email': 'softozor@%s' % self.fake.free_email_domain(),
+            'email': 'softozor@%s' % self.__fake.free_email_domain(),
             'isActive': True,
             'isStaff': True,
             'isSuperUser': True,
@@ -110,9 +110,9 @@ class FakeDataFactory:
             'pk': user['id'] - offset + 1
         } for user in producers]
 
-    def try_to_get_random_elements(self, elements, length):
+    def __try_to_get_random_elements(self, elements, length):
         try:
-            return self.fake.random_elements(
+            return self.__fake.random_elements(
                 elements=elements, length=length, unique=True)
         except ValueError:
             return []
@@ -123,9 +123,9 @@ class FakeDataFactory:
         result = []
         productstaff_pk = 1
         for producer in producers:
-            nb_products = self.fake.random.randint(
+            nb_products = self.__fake.random.randint(
                 0, max_nb_products_per_producer)
-            producer_product_ids = self.try_to_get_random_elements(
+            producer_product_ids = self.__try_to_get_random_elements(
                 product_ids, nb_products)
             for producer_product_id in producer_product_ids:
                 result.append({
@@ -148,9 +148,9 @@ class FakeDataFactory:
 
         max_nb_producers_per_shop = 10
         for shop_id in range(0, list_size):
-            nb_producers = self.fake.random.randint(
+            nb_producers = self.__fake.random.randint(
                 0, max_nb_producers_per_shop)
-            shop_producer_ids = self.try_to_get_random_elements(
+            shop_producer_ids = self.__try_to_get_random_elements(
                 producer_ids, nb_producers)
             shop_product_ids = [item['fields']['product_id'] for item in productstaff if item['model']
                                 == 'shopozor.productstaff' and item['fields']['staff_id'] in shop_producer_ids]
@@ -163,10 +163,10 @@ class FakeDataFactory:
                 'model': 'shopozor.shop',
                 'pk': shop_id + 1,
                 'fields': {
-                    'description': self.fake.text(max_nb_chars=200, ext_word_list=None),
-                    'name': self.fake.sentence(nb_words=5, variable_nb_words=True, ext_word_list=None),
-                    'latitude': float(self.fake.local_latitude()),
-                    'longitude': float(self.fake.local_longitude()),
+                    'description': self.__fake.text(max_nb_chars=200, ext_word_list=None),
+                    'name': self.__fake.sentence(nb_words=5, variable_nb_words=True, ext_word_list=None),
+                    'latitude': float(self.__fake.local_latitude()),
+                    'longitude': float(self.__fake.local_longitude()),
                     'product_variants': variant_ids
                 }
             })
