@@ -9,8 +9,6 @@ fake.seed('features')
 
 fake.add_provider(ShopozorGeoProvider)
 
-# TODO: change this class' name
-
 
 class FakeDataFactory:
 
@@ -112,6 +110,13 @@ class FakeDataFactory:
             'pk': user['id'] - offset + 1
         } for user in producers]
 
+    def try_to_get_random_elements(elements, length):
+        try:
+            return fake.random_elements(
+                elements=elements, length=length, unique=True)
+        except ValueError:
+            return []
+
     def create_productstaff(producers, products):
         product_ids = [product['pk'] for product in products]
         max_nb_products_per_producer = 10
@@ -119,13 +124,8 @@ class FakeDataFactory:
         productstaff_pk = 1
         for producer in producers:
             nb_products = fake.random.randint(0, max_nb_products_per_producer)
-            producer_product_ids = []
-            try:
-                producer_product_ids = fake.random_elements(
-                    elements=product_ids, length=nb_products, unique=True)
-            except ValueError:
-                print('Producer %s %s cannot have products assigned as there are no products anymore' % (
-                    producer['first_name'], producer['last_name']))
+            producer_product_ids = FakeDataFactory.try_to_get_random_elements(
+                product_ids, nb_products)
             for producer_product_id in producer_product_ids:
                 result.append({
                     "fields": {
@@ -148,13 +148,8 @@ class FakeDataFactory:
         max_nb_producers_per_shop = 10
         for shop_id in range(0, list_size):
             nb_producers = fake.random.randint(0, max_nb_producers_per_shop)
-            shop_producer_ids = []
-            try:
-                shop_producer_ids = fake.random_elements(
-                    elements=producer_ids, length=nb_producers, unique=True)
-            except ValueError:
-                print(
-                    'Shop %d cannot have producers assigned as there are no producers anymore' % shop_id)
+            shop_producer_ids = FakeDataFactory.try_to_get_random_elements(
+                producer_ids, nb_producers)
             shop_product_ids = [item['fields']['product_id'] for item in productstaff if item['model']
                                 == 'shopozor.productstaff' and item['fields']['staff_id'] in shop_producer_ids]
             variant_ids = [variant['pk']
@@ -174,3 +169,49 @@ class FakeDataFactory:
                 }
             })
         return result
+
+#   {
+#     "fields": {
+#       "attributes": "{\"15\": \"46\", \"21\": \"68\"}",
+#       "category": 8,
+#       "charge_taxes": true,
+#       "description": "Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!",
+#       "description_json": {
+#         "blocks": [
+#           {
+#             "data": {},
+#             "depth": 0,
+#             "entityRanges": [],
+#             "inlineStyleRanges": [],
+#             "key": "",
+#             "text": "Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!",
+#             "type": "unstyled"
+#           }
+#         ],
+#         "entityMap": {}
+#       },
+#       "is_published": true,
+#       "meta": {
+#         "taxes": {
+#           "vatlayer": {
+#             "code": "standard",
+#             "description": ""
+#           }
+#         }
+#       },
+#       "name": "Seaman Lager",
+#       "price": {
+#         "_type": "Money",
+#         "amount": "3.00",
+#         "currency": "CHF"
+#       },
+#       "product_type": 11,
+#       "publication_date": null,
+#       "seo_description": "Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!",
+#       "seo_title": "",
+#       "updated_at": "2019-03-06T12:47:38.530Z",
+#       "weight": 1.0
+#     },
+#     "model": "product.product",
+#     "pk": 83
+#   }
