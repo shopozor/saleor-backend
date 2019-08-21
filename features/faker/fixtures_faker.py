@@ -1,3 +1,4 @@
+from django.conf import settings
 from faker import Faker
 from features.faker.providers.geo import Provider as ShopozorGeoProvider
 from features.faker.providers.product import Provider as ProductProvider
@@ -253,53 +254,60 @@ class FakeDataFactory:
         start_pk = 1
         return [self.__producttype(pk, type) for pk, type in enumerate(producttypes, start_pk)]
 
+    def __product(self, pk, category, producttype):
+        description = self.__fake.description()
+        return {
+            'fields': {
+                # TODO: generate the attributes!
+                'attributes': "{\"15\": \"46\", \"21\": \"68\"}",
+                'category': category,
+                'charge_taxes': True,
+                'description': description,
+                'description_json': {
+                    'blocks': [
+                        {
+                            'data': {},
+                            'depth': 0,
+                            'entityRanges': [],
+                            'inlineStyleRanges': [],
+                            'key': '',
+                            'text': description,
+                            'type': 'unstyled'
+                        }
+                    ],
+                    'entityMap': {}
+                },
+                'is_published': self.__fake.is_published(),
+                'meta': {
+                    'taxes': {
+                        'vatlayer': {
+                            'code': 'standard',
+                            'description': ''
+                        }
+                    }
+                },
+                'name': self.__fake.product_name(),
+                'price': {
+                    '_type': 'Money',
+                    'amount': self.__fake.money_amount(),
+                    'currency': settings.DEFAULT_CURRENCY
+                },
+                'product_type': producttype,
+                'publication_date': None,
+                'seo_description': description,
+                'seo_title': '',
+                # TODO: if it is necessary, put the datetime.now()
+                # 'updated_at': '2019-03-06T12:47:38.530Z',
+                'weight': self.__fake.weight()
+            },
+            'model': 'product.product',
+            'pk': pk
+        }
+
     # TODO: for each category and related producttype, generate product?
 
     # TODO: be careful with product generation; if the product belongs to a producttype with has_variants == False, then it needs to have an empty variant
     # TODO: for each category and producttype, generate products?
-    # def __product(self, pk, categories, producttypes):
-    #     return {
-    #         'fields': {
-    #         'attributes': "{\"15\": \"46\", \"21\": \"68\"}",
-    #         'category': 8,
-    #         'charge_taxes': true,
-    #         'description': 'Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!',
-    #         'description_json': {
-    #             'blocks': [
-    #             {
-    #                 'data': {},
-    #                 'depth': 0,
-    #                 'entityRanges': [],
-    #                 'inlineStyleRanges': [],
-    #                 'key': '',
-    #                 'text': 'Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!',
-    #                 'type': 'unstyled'
-    #             }
-    #             ],
-    #             'entityMap': {}
-    #         },
-    #         'is_published': true,
-    #         'meta': {
-    #             'taxes': {
-    #             'vatlayer': {
-    #                 'code': 'standard',
-    #                 'description': ''
-    #             }
-    #             }
-    #         },
-    #         'name': 'Seaman Lager',
-    #         'price': {
-    #             '_type': 'Money',
-    #             'amount': '3.00',
-    #             'currency': 'CHF'
-    #         },
-    #         'product_type': 11,
-    #         'publication_date': null,
-    #         'seo_description': 'Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!',
-    #         'seo_title': '',
-    #         'updated_at': '2019-03-06T12:47:38.530Z',
-    #         'weight': 1.0
-    #         },
-    #         'model': 'product.product',
-    #         'pk': 83
-    #     }
+    # TODO: need max amount of products per producttype
+    def create_products(self):
+        pass
