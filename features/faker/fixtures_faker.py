@@ -4,24 +4,24 @@ from features.faker.providers.geo import Provider as ShopozorGeoProvider
 import os
 import unidecode
 
-fake = Faker('fr_CH')
-fake.seed('features')
-
-fake.add_provider(ShopozorGeoProvider)
-
 
 class FakeDataFactory:
 
-    def create_email(first_name, last_name):
-        domain_name = fake.free_email_domain()
+    def __init__(self):
+        self.fake = Faker('fr_CH')
+        self.fake.seed('features')
+        self.fake.add_provider(ShopozorGeoProvider)
+
+    def create_email(self, first_name, last_name):
+        domain_name = self.fake.free_email_domain()
         return unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name))
 
-    def create_consumers(start_index, list_size=1):
+    def create_consumers(self, start_index, list_size=1):
         result = []
         for id in range(0, list_size):
             result.append({
                 'id': start_index + id,
-                'email': fake.email(),
+                'email': self.fake.email(),
                 'isActive': True,
                 'isStaff': False,
                 'isSuperUser': False,
@@ -29,15 +29,15 @@ class FakeDataFactory:
             })
         return result
 
-    def create_producers(start_index, list_size=1):
+    def create_producers(self, start_index, list_size=1):
         result = []
         for id in range(0, list_size):
-            first_name = fake.first_name()
-            last_name = fake.last_name()
+            first_name = self.fake.first_name()
+            last_name = self.fake.last_name()
             result.append({
                 'id': start_index + id,
                 # get rid of any potential French accent from the first and last name
-                'email': FakeDataFactory.create_email(first_name, last_name),
+                'email': self.create_email(first_name, last_name),
                 'isActive': True,
                 'isStaff': True,
                 'isSuperUser': False,
@@ -47,15 +47,15 @@ class FakeDataFactory:
             })
         return result
 
-    def create_managers(start_index, list_size=1):
+    def create_managers(self, start_index, list_size=1):
         result = []
         for id in range(0, list_size):
-            first_name = fake.first_name()
-            last_name = fake.last_name()
+            first_name = self.fake.first_name()
+            last_name = self.fake.last_name()
             result.append({
                 'id': start_index + id,
                 # get rid of any potential French accent from the first and last name
-                'email': FakeDataFactory.create_email(first_name, last_name),
+                'email': self.create_email(first_name, last_name),
                 'isActive': True,
                 'isStaff': True,
                 'isSuperUser': False,
@@ -67,10 +67,10 @@ class FakeDataFactory:
             })
         return result
 
-    def create_rex(start_index):
+    def create_rex(self, start_index):
         return {
             'id': start_index,
-            'email': 'rex@%s' % fake.free_email_domain(),
+            'email': 'rex@%s' % self.fake.free_email_domain(),
             'isActive': True,
             'isStaff': True,
             'isSuperUser': False,
@@ -90,17 +90,17 @@ class FakeDataFactory:
             ]
         }
 
-    def create_softozor(start_index):
+    def create_softozor(self, start_index):
         return {
             'id': start_index,
-            'email': 'softozor@%s' % fake.free_email_domain(),
+            'email': 'softozor@%s' % self.fake.free_email_domain(),
             'isActive': True,
             'isStaff': True,
             'isSuperUser': True,
             'permissions': []
         }
 
-    def create_staff(producers):
+    def create_staff(self, producers):
         offset = producers[0]['id']
         return [{
             'fields': {
@@ -110,21 +110,22 @@ class FakeDataFactory:
             'pk': user['id'] - offset + 1
         } for user in producers]
 
-    def try_to_get_random_elements(elements, length):
+    def try_to_get_random_elements(self, elements, length):
         try:
-            return fake.random_elements(
+            return self.fake.random_elements(
                 elements=elements, length=length, unique=True)
         except ValueError:
             return []
 
-    def create_productstaff(producers, products):
+    def create_productstaff(self, producers, products):
         product_ids = [product['pk'] for product in products]
         max_nb_products_per_producer = 10
         result = []
         productstaff_pk = 1
         for producer in producers:
-            nb_products = fake.random.randint(0, max_nb_products_per_producer)
-            producer_product_ids = FakeDataFactory.try_to_get_random_elements(
+            nb_products = self.fake.random.randint(
+                0, max_nb_products_per_producer)
+            producer_product_ids = self.try_to_get_random_elements(
                 product_ids, nb_products)
             for producer_product_id in producer_product_ids:
                 result.append({
@@ -140,15 +141,16 @@ class FakeDataFactory:
                 id for id in product_ids if id not in producer_product_ids]
         return result
 
-    def create_shops(producers, productstaff, product_variants, list_size=1):
+    def create_shops(self, producers, productstaff, product_variants, list_size=1):
         result = []
 
         producer_ids = [producer['id'] for producer in producers]
 
         max_nb_producers_per_shop = 10
         for shop_id in range(0, list_size):
-            nb_producers = fake.random.randint(0, max_nb_producers_per_shop)
-            shop_producer_ids = FakeDataFactory.try_to_get_random_elements(
+            nb_producers = self.fake.random.randint(
+                0, max_nb_producers_per_shop)
+            shop_producer_ids = self.try_to_get_random_elements(
                 producer_ids, nb_producers)
             shop_product_ids = [item['fields']['product_id'] for item in productstaff if item['model']
                                 == 'shopozor.productstaff' and item['fields']['staff_id'] in shop_producer_ids]
@@ -161,10 +163,10 @@ class FakeDataFactory:
                 'model': 'shopozor.shop',
                 'pk': shop_id + 1,
                 'fields': {
-                    'description': fake.text(max_nb_chars=200, ext_word_list=None),
-                    'name': fake.sentence(nb_words=5, variable_nb_words=True, ext_word_list=None),
-                    'latitude': float(fake.local_latitude()),
-                    'longitude': float(fake.local_longitude()),
+                    'description': self.fake.text(max_nb_chars=200, ext_word_list=None),
+                    'name': self.fake.sentence(nb_words=5, variable_nb_words=True, ext_word_list=None),
+                    'latitude': float(self.fake.local_latitude()),
+                    'longitude': float(self.fake.local_longitude()),
                     'product_variants': variant_ids
                 }
             })

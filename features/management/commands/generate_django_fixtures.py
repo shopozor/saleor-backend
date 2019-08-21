@@ -19,42 +19,44 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         output_folder = options['output_folder']
 
+        factory = FakeDataFactory()
+
         nb_of_consumers = 1000
         start_index = 1
-        consumers = FakeDataFactory.create_consumers(
+        consumers = factory.create_consumers(
             start_index, nb_of_consumers)
         json.dump(consumers, os.path.join(
             output_folder, 'Users', 'Consommateurs.json'))
 
         nb_of_producers = 100
         start_index += nb_of_consumers
-        producers = FakeDataFactory.create_producers(
+        producers = factory.create_producers(
             start_index, nb_of_producers)
         json.dump(producers, os.path.join(
             output_folder, 'Users', 'Producteurs.json'))
 
         nb_of_managers = 10
         start_index += nb_of_producers
-        managers = FakeDataFactory.create_managers(start_index, nb_of_managers)
+        managers = factory.create_managers(start_index, nb_of_managers)
         json.dump(managers, os.path.join(
             output_folder, 'Users', 'Responsables.json'))
 
         nb_of_rex = 1
         start_index += nb_of_managers
-        rex = FakeDataFactory.create_rex(start_index)
+        rex = factory.create_rex(start_index)
         json.dump(rex, os.path.join(
             output_folder, 'Users', 'Rex.json'))
 
         start_index += nb_of_rex
-        softozor = FakeDataFactory.create_softozor(start_index)
+        softozor = factory.create_softozor(start_index)
         json.dump(softozor, os.path.join(
             output_folder, 'Users', 'Softozor.json'))
 
-        staff = FakeDataFactory.create_staff(producers)
+        staff = factory.create_staff(producers)
         saleor_fixture = json.load(PATH_TO_SALEOR_FIXTURE)
         products = [item for item in saleor_fixture if item['model']
                     == 'product.product']
-        productstaff = FakeDataFactory.create_productstaff(producers, products)
+        productstaff = factory.create_productstaff(producers, products)
 
         staff.extend(productstaff)
 
@@ -62,7 +64,7 @@ class Command(BaseCommand):
             item for item in saleor_fixture if item['model'] == 'product.productvariant']
         print('nbProds    = ', len(products))
         print('nbVariants = ', len(product_variants))
-        shops = FakeDataFactory.create_shops(
+        shops = factory.create_shops(
             producers, productstaff, product_variants, nb_of_managers)
 
         staff.extend(shops)
