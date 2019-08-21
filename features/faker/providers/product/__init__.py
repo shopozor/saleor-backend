@@ -3,9 +3,6 @@ from faker.providers.lorem.la import Provider as LoremProvider
 
 class Provider(LoremProvider):
 
-    def producttype_name(self):
-        return self.word()
-
     def weight(self):
         return round(self.generator.random.uniform(0, 100), 2)
 

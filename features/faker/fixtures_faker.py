@@ -2,15 +2,24 @@ from faker import Faker
 from features.faker.providers.geo import Provider as ShopozorGeoProvider
 from features.faker.providers.product import Provider as ProductProvider
 
+import itertools
 import os
 import unidecode
 
 
 class FakeDataFactory:
 
-    categories = (
-        'Fruits & Légumes', 'Viandes', 'Fromages', 'Epicerie', 'Crèmerie', 'Boulangerie', 'Boissons', 'Traiteur', 'Maison & Jardin'
-    )
+    category_types = {
+        'Fruits': ('Pomme', 'Ananas', 'Poire', 'Mangue', 'Orange', 'Raisin', 'Abricot', 'Prune', 'Pêche', 'Exotique', 'Raisinet', 'Groseille', 'Rhubarbe', 'Cerise', 'Framboise'),
+        'Légumes': ('Carotte', 'Haricot', 'Salade', 'Tomate', 'Choux-fleur', 'Brocoli', 'Chou', 'Courgette', 'Aubergine', 'Poivron', 'Petit pois', 'Radis', 'Oignon', 'Betterave', 'Céleri', 'Concombre', 'Côte de bette', 'Echalotte', 'Epinard', 'Fenouil', 'Laitue', 'Navet'),
+        'Boucherie': ('Salami', 'Charcuterie', 'Saucisse', 'Saucisson', 'Ragoût de boeuf', 'Escalope de poulet', 'Steak haché', 'Cordon bleu', 'Brochette', 'Cervelas', 'Fondue chinoise'),
+        'Epicerie': ('Truffes', 'Pâtes', 'Lentilles', 'Huile', 'Farine', 'Panier garni', 'Confiture', 'Foie gras', 'Beans', 'Cornichons', 'Moutarde', 'Epices', 'Oeufs'),
+        'Laiterie': ('Lait', 'Beurre', 'Crème double', 'Fondue', 'Fromage'),
+        'Boulangerie': ('Pain', 'Croissant', 'Demi-lune', 'Petit pain', 'Pain au chocolat', 'Gâteau', 'Sandwich', 'Canapé', 'Cuchaule', 'Sablé', 'Baguette', 'Bricelet', 'Macaron', 'Croquet', 'Pain d\'anis', 'Brioche', 'Tresse'),
+        'Boissons': ('Bière', 'Sirop', 'Limonade', 'Thé', 'Soda', 'Vin', 'Eau'),
+        'Traiteur': ('Burgers', 'Sushis', 'Fondue', 'Fondue chinoise', 'Kebabs'),
+        'Nettoyages': ('Savon', 'Liquide vaisselle', 'Pastilles lave-vaisselle', 'Linge', 'Détergent')
+    }
 
     def __init__(self, max_nb_products_per_producer=10, max_nb_producers_per_shop=10):
         self.__fake = Faker('fr_CH')
@@ -214,13 +223,10 @@ class FakeDataFactory:
         }
 
     def create_categories(self):
-        result = []
-        pk = 1
-        for category in self.categories:
-            result.append(self.__category(pk, category))
-        return result
+        start_pk = 1
+        return [self.__category(pk, category) for pk, category in enumerate(self.category_types, start_pk)]
 
-    def __producttype(self, pk):
+    def __producttype(self, pk, name):
         return {
             'fields': {
                 # TODO: does this field mean that the corresponding products have no variants? --> an empty variant seems to be assigned to such products, probably in order to be able to define attributes on the variant
@@ -234,19 +240,18 @@ class FakeDataFactory:
                         }
                     }
                 },
-                'name': self.__fake.producttype_name(),
+                'name': name,
                 'weight': self.__fake.weight()
             },
             'model': 'product.producttype',
             'pk': pk
         }
 
-    # TODO: for each category, there will be producttypes?
-    def create_producttypes(self, list_size=1):
-        result = []
-        for pk in range(1, list_size + 1):
-            result.append(self.__producttype(pk))
-        return result
+    def create_producttypes(self):
+        producttypes = list(itertools.chain.from_iterable(
+            self.category_types.values()))
+        start_pk = 1
+        return [self.__producttype(pk, type) for pk, type in enumerate(producttypes, start_pk)]
 
     # TODO: for each category and related producttype, generate product?
 
