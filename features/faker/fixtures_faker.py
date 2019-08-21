@@ -7,10 +7,12 @@ import unidecode
 
 class FakeDataFactory:
 
-    def __init__(self):
+    def __init__(self, max_nb_products_per_producer=10, max_nb_producers_per_shop=10):
         self.__fake = Faker('fr_CH')
         self.__fake.seed('features')
         self.__fake.add_provider(ShopozorGeoProvider)
+        self.__MAX_NB_PRODUCERS_PER_SHOP = max_nb_producers_per_shop
+        self.__MAX_NB_PRODUCTS_PER_PRODUCER = max_nb_products_per_producer
 
     def create_email(self, first_name, last_name):
         domain_name = self.__fake.free_email_domain()
@@ -132,12 +134,11 @@ class FakeDataFactory:
 
     def create_productstaff(self, producers, products):
         product_ids = [product['pk'] for product in products]
-        max_nb_products_per_producer = 10
         result = []
         productstaff_pk = 1
         for producer in producers:
             nb_products = self.__fake.random.randint(
-                0, max_nb_products_per_producer)
+                0, self.__MAX_NB_PRODUCTS_PER_PRODUCER)
             producer_product_ids = self.__try_to_get_random_elements(
                 product_ids, nb_products)
             for producer_product_id in producer_product_ids:
@@ -166,10 +167,9 @@ class FakeDataFactory:
 
         producer_ids = [producer['id'] for producer in producers]
 
-        max_nb_producers_per_shop = 10
         for shop_id in range(0, list_size):
             nb_producers = self.__fake.random.randint(
-                0, max_nb_producers_per_shop)
+                0, self.__MAX_NB_PRODUCERS_PER_SHOP)
             shop_producer_ids = self.__try_to_get_random_elements(
                 producer_ids, nb_producers)
             shop_product_ids = [item['fields']['product_id'] for item in productstaff if item['model']
@@ -181,6 +181,74 @@ class FakeDataFactory:
             result.append(self.__shop(shop_id + 1, variant_ids))
 
         return result
+
+    def __category(self, pk):
+        return {
+            'fields': {
+                # TODO: generate random image
+                'background_image': 'category-backgrounds/accessories.jpg',
+                'background_image_alt': '',
+                'description': '',
+                'description_json': {
+                    'blocks': [{
+                        'data': {},
+                        'depth': 0,
+                        'entityRanges': [],
+                        'inlineStyleRanges': [],
+                        'key': '',
+                        'text': '',
+                        'type': 'unstyled'
+                    }],
+                    'entityMap': {}
+                },
+                'level': 0,
+                'lft': 1,
+                'name': self.__fake.word(ext_word_list=None),
+                'parent': None,
+                'rght': 2,
+                'seo_description': '',
+                'seo_title': '',
+                'slug': self.__fake.slug(),
+                'tree_id': pk
+            },
+            'model': 'product.category',
+            'pk': pk
+        }
+
+    def create_categories(self, list_size=1):
+        result = []
+        for pk in range(1, list_size + 1):
+            result.append(self.__category(pk))
+        return result
+
+    def __producttype(self, pk):
+        return {
+            'fields': {
+                # TODO: does this field mean that the corresponding products have no variants? --> an empty variant seems to be assigned to such products, probably in order to be able to define attributes on the variant
+                'has_variants': bool(self.__fake.random.getrandbits(1)),
+                'is_shipping_required': False,
+                'meta': {
+                    'taxes': {
+                        'vatlayer': {
+                            'code': 'standard',
+                            'description': ''
+                        }
+                    }
+                },
+                'name': self.__fake.word(ext_word_list=None),
+                'weight': round(self.__fake.random.uniform(0, 100), 2)
+            },
+            'model': 'product.producttype',
+            'pk': pk
+        }
+
+    def create_producttypes(self, list_size=1):
+        result = []
+        for pk in range(1, list_size + 1):
+            result.append(self.__producttype(pk))
+        return result
+
+    # TODO: be careful with product generation; if the product belongs to a producttype with has_variants == False, then it needs to have an empty variant
 
 #   {
 #     "fields": {

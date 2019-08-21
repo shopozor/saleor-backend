@@ -52,6 +52,12 @@ class Command(BaseCommand):
         json.dump(softozor, os.path.join(
             output_folder, 'Users', 'Softozor.json'))
 
+        # categories = factory.create_categories(10)
+        # print("categories = ", categories)
+
+        # producttypes = factory.create_producttypes(10)
+        # print("producttypes = ", producttypes)
+
         staff = factory.create_staff(producers)
         saleor_fixture = json.load(PATH_TO_SALEOR_FIXTURE)
         products = [item for item in saleor_fixture if item['model']
