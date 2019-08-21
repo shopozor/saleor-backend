@@ -1,5 +1,6 @@
 from faker import Faker
 from features.faker.providers.geo import Provider as ShopozorGeoProvider
+from features.faker.providers.product import Provider as ProductProvider
 
 import os
 import unidecode
@@ -7,10 +8,15 @@ import unidecode
 
 class FakeDataFactory:
 
+    categories = (
+        'Fruits & Légumes', 'Viandes', 'Fromages', 'Epicerie', 'Crèmerie', 'Boulangerie', 'Boissons', 'Traiteur', 'Maison & Jardin'
+    )
+
     def __init__(self, max_nb_products_per_producer=10, max_nb_producers_per_shop=10):
         self.__fake = Faker('fr_CH')
         self.__fake.seed('features')
         self.__fake.add_provider(ShopozorGeoProvider)
+        self.__fake.add_provider(ProductProvider)
         self.__MAX_NB_PRODUCERS_PER_SHOP = max_nb_producers_per_shop
         self.__MAX_NB_PRODUCTS_PER_PRODUCER = max_nb_products_per_producer
 
@@ -124,12 +130,12 @@ class FakeDataFactory:
 
     def __productstaff(self, pk, product_id, producer_id):
         return {
-            "fields": {
-                "product_id": product_id,
-                "staff_id": producer_id
+            'fields': {
+                'product_id': product_id,
+                'staff_id': producer_id
             },
-            "model": "shopozor.productstaff",
-            "pk": pk
+            'model': 'shopozor.productstaff',
+            'pk': pk
         }
 
     def create_productstaff(self, producers, products):
@@ -150,17 +156,9 @@ class FakeDataFactory:
         return result
 
     def __shop(self, pk, variant_ids):
-        return {
-            'model': 'shopozor.shop',
-            'pk': pk,
-            'fields': {
-                'description': self.__fake.text(max_nb_chars=200, ext_word_list=None),
-                'name': self.__fake.sentence(nb_words=5, variable_nb_words=True, ext_word_list=None),
-                'latitude': float(self.__fake.local_latitude()),
-                'longitude': float(self.__fake.local_longitude()),
-                'product_variants': variant_ids
-            }
-        }
+        latitude = float(self.__fake.local_latitude())
+        longitude = float(self.__fake.local_longitude())
+        return self.__fake.shop(pk, latitude, longitude, variant_ids)
 
     def create_shops(self, producers, productstaff, product_variants, list_size=1):
         result = []
@@ -182,7 +180,7 @@ class FakeDataFactory:
 
         return result
 
-    def __category(self, pk):
+    def __category(self, pk, name):
         return {
             'fields': {
                 # TODO: generate random image
@@ -203,7 +201,7 @@ class FakeDataFactory:
                 },
                 'level': 0,
                 'lft': 1,
-                'name': self.__fake.word(ext_word_list=None),
+                'name': name,
                 'parent': None,
                 'rght': 2,
                 'seo_description': '',
@@ -215,17 +213,18 @@ class FakeDataFactory:
             'pk': pk
         }
 
-    def create_categories(self, list_size=1):
+    def create_categories(self):
         result = []
-        for pk in range(1, list_size + 1):
-            result.append(self.__category(pk))
+        pk = 1
+        for category in self.categories:
+            result.append(self.__category(pk, category))
         return result
 
     def __producttype(self, pk):
         return {
             'fields': {
                 # TODO: does this field mean that the corresponding products have no variants? --> an empty variant seems to be assigned to such products, probably in order to be able to define attributes on the variant
-                'has_variants': bool(self.__fake.random.getrandbits(1)),
+                'has_variants': self.__fake.has_variants(),
                 'is_shipping_required': False,
                 'meta': {
                     'taxes': {
@@ -235,63 +234,67 @@ class FakeDataFactory:
                         }
                     }
                 },
-                'name': self.__fake.word(ext_word_list=None),
-                'weight': round(self.__fake.random.uniform(0, 100), 2)
+                'name': self.__fake.producttype_name(),
+                'weight': self.__fake.weight()
             },
             'model': 'product.producttype',
             'pk': pk
         }
 
+    # TODO: for each category, there will be producttypes?
     def create_producttypes(self, list_size=1):
         result = []
         for pk in range(1, list_size + 1):
             result.append(self.__producttype(pk))
         return result
 
-    # TODO: be careful with product generation; if the product belongs to a producttype with has_variants == False, then it needs to have an empty variant
+    # TODO: for each category and related producttype, generate product?
 
-#   {
-#     "fields": {
-#       "attributes": "{\"15\": \"46\", \"21\": \"68\"}",
-#       "category": 8,
-#       "charge_taxes": true,
-#       "description": "Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!",
-#       "description_json": {
-#         "blocks": [
-#           {
-#             "data": {},
-#             "depth": 0,
-#             "entityRanges": [],
-#             "inlineStyleRanges": [],
-#             "key": "",
-#             "text": "Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!",
-#             "type": "unstyled"
-#           }
-#         ],
-#         "entityMap": {}
-#       },
-#       "is_published": true,
-#       "meta": {
-#         "taxes": {
-#           "vatlayer": {
-#             "code": "standard",
-#             "description": ""
-#           }
-#         }
-#       },
-#       "name": "Seaman Lager",
-#       "price": {
-#         "_type": "Money",
-#         "amount": "3.00",
-#         "currency": "CHF"
-#       },
-#       "product_type": 11,
-#       "publication_date": null,
-#       "seo_description": "Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!",
-#       "seo_title": "",
-#       "updated_at": "2019-03-06T12:47:38.530Z",
-#       "weight": 1.0
-#     },
-#     "model": "product.product",
-#     "pk": 83
-#   }
+    # TODO: be careful with product generation; if the product belongs to a producttype with has_variants == False, then it needs to have an empty variant
+    # TODO: for each category and producttype, generate products?
+    # def __product(self, pk, categories, producttypes):
+    #     return {
+    #         'fields': {
+    #         'attributes': "{\"15\": \"46\", \"21\": \"68\"}",
+    #         'category': 8,
+    #         'charge_taxes': true,
+    #         'description': 'Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!',
+    #         'description_json': {
+    #             'blocks': [
+    #             {
+    #                 'data': {},
+    #                 'depth': 0,
+    #                 'entityRanges': [],
+    #                 'inlineStyleRanges': [],
+    #                 'key': '',
+    #                 'text': 'Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!',
+    #                 'type': 'unstyled'
+    #             }
+    #             ],
+    #             'entityMap': {}
+    #         },
+    #         'is_published': true,
+    #         'meta': {
+    #             'taxes': {
+    #             'vatlayer': {
+    #                 'code': 'standard',
+    #                 'description': ''
+    #             }
+    #             }
+    #         },
+    #         'name': 'Seaman Lager',
+    #         'price': {
+    #             '_type': 'Money',
+    #             'amount': '3.00',
+    #             'currency': 'CHF'
+    #         },
+    #         'product_type': 11,
+    #         'publication_date': null,
+    #         'seo_description': 'Find your sea legs and then lose the power to use them with extra strong seaman\u2019s lager. Don\u2019t drink and sail, me hearties!',
+    #         'seo_title': '',
+    #         'updated_at': '2019-03-06T12:47:38.530Z',
+    #         'weight': 1.0
+    #         },
+    #         'model': 'product.product',
+    #         'pk': 83
+    #     }
