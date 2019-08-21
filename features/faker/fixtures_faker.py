@@ -100,15 +100,18 @@ class FakeDataFactory:
             'permissions': []
         }
 
-    def create_staff(self, producers):
-        offset = producers[0]['id']
-        return [{
+    def __staff(self, pk, user_id):
+        return {
             'fields': {
-                'user_id': user['id']
+                'user_id': user_id
             },
             'model': 'shopozor.staff',
-            'pk': user['id'] - offset + 1
-        } for user in producers]
+            'pk': pk
+        }
+
+    def create_staff(self, producers):
+        offset = producers[0]['id']
+        return [self.__staff(user['id'] - offset + 1, user['id']) for user in producers]
 
     def __try_to_get_random_elements(self, elements, length):
         try:
@@ -116,6 +119,16 @@ class FakeDataFactory:
                 elements=elements, length=length, unique=True)
         except ValueError:
             return []
+
+    def __productstaff(self, pk, product_id, producer_id):
+        return {
+            "fields": {
+                "product_id": product_id,
+                "staff_id": producer_id
+            },
+            "model": "shopozor.productstaff",
+            "pk": pk
+        }
 
     def create_productstaff(self, producers, products):
         product_ids = [product['pk'] for product in products]
@@ -128,18 +141,25 @@ class FakeDataFactory:
             producer_product_ids = self.__try_to_get_random_elements(
                 product_ids, nb_products)
             for producer_product_id in producer_product_ids:
-                result.append({
-                    "fields": {
-                        "product_id": producer_product_id,
-                        "staff_id": producer['id']
-                    },
-                    "model": "shopozor.productstaff",
-                    "pk": productstaff_pk
-                })
+                result.append(self.__productstaff(
+                    productstaff_pk, producer_product_id, producer['id']))
                 productstaff_pk += 1
             product_ids = [
                 id for id in product_ids if id not in producer_product_ids]
         return result
+
+    def __shop(self, pk, variant_ids):
+        return {
+            'model': 'shopozor.shop',
+            'pk': pk,
+            'fields': {
+                'description': self.__fake.text(max_nb_chars=200, ext_word_list=None),
+                'name': self.__fake.sentence(nb_words=5, variable_nb_words=True, ext_word_list=None),
+                'latitude': float(self.__fake.local_latitude()),
+                'longitude': float(self.__fake.local_longitude()),
+                'product_variants': variant_ids
+            }
+        }
 
     def create_shops(self, producers, productstaff, product_variants, list_size=1):
         result = []
@@ -158,18 +178,8 @@ class FakeDataFactory:
                            for variant in product_variants if variant['fields']['product'] in shop_product_ids]
             producer_ids = [
                 id for id in producer_ids if id not in shop_producer_ids]
+            result.append(self.__shop(shop_id + 1, variant_ids))
 
-            result.append({
-                'model': 'shopozor.shop',
-                'pk': shop_id + 1,
-                'fields': {
-                    'description': self.__fake.text(max_nb_chars=200, ext_word_list=None),
-                    'name': self.__fake.sentence(nb_words=5, variable_nb_words=True, ext_word_list=None),
-                    'latitude': float(self.__fake.local_latitude()),
-                    'longitude': float(self.__fake.local_longitude()),
-                    'product_variants': variant_ids
-                }
-            })
         return result
 
 #   {
