@@ -309,5 +309,5 @@ class FakeDataFactory:
     # TODO: be careful with product generation; if the product belongs to a producttype with has_variants == False, then it needs to have an empty variant
     # TODO: for each category and producttype, generate products?
     # TODO: need max amount of products per producttype
-    def create_products(self):
+    def create_products(self, list_size=1):
         pass

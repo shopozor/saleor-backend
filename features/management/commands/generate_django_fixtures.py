@@ -52,19 +52,22 @@ class Command(BaseCommand):
         json.dump(softozor, os.path.join(
             output_folder, 'Users', 'Softozor.json'))
 
-        # categories = factory.create_categories(10)
-        # print("categories = ", categories)
+        shopozor = []
 
-        # producttypes = factory.create_producttypes(10)
-        # print("producttypes = ", producttypes)
+        categories = factory.create_categories()
+        shopozor.extend(categories)
+
+        producttypes = factory.create_producttypes()
+        shopozor.extend(producttypes)
 
         staff = factory.create_staff(producers)
+        shopozor.extend(staff)
+
         saleor_fixture = json.load(PATH_TO_SALEOR_FIXTURE)
         products = [item for item in saleor_fixture if item['model']
                     == 'product.product']
         productstaff = factory.create_productstaff(producers, products)
-
-        staff.extend(productstaff)
+        shopozor.extend(productstaff)
 
         product_variants = [
             item for item in saleor_fixture if item['model'] == 'product.productvariant']
@@ -72,6 +75,6 @@ class Command(BaseCommand):
         print('nbVariants = ', len(product_variants))
         shops = factory.create_shops(
             producers, productstaff, product_variants, nb_of_managers)
+        shopozor.extend(shops)
 
-        staff.extend(shops)
-        json.dump(staff, os.path.join(output_folder, 'Shops.json'))
+        json.dump(shopozor, os.path.join(output_folder, 'Shops.json'))
