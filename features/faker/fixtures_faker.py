@@ -230,8 +230,11 @@ class FakeDataFactory:
     def __producttype(self, pk, name):
         return {
             'fields': {
-                # TODO: does this field mean that the corresponding products have no variants? --> an empty variant seems to be assigned to such products, probably in order to be able to define attributes on the variant
-                'has_variants': self.__fake.has_variants(),
+                # we currently simplify this has_variant thing and put it to True all the time
+                # if a product belongs to a producttype with has_variants == False, then it needs to have an empty variant
+                # only the product and productvariant attributes carry information in such a case, which might be useful
+                # but not now
+                'has_variants': True,
                 'is_shipping_required': False,
                 'meta': {
                     'taxes': {
@@ -254,13 +257,14 @@ class FakeDataFactory:
         start_pk = 1
         return [self.__producttype(pk, type) for pk, type in enumerate(producttypes, start_pk)]
 
-    def __product(self, pk, category, producttype):
+    def __product(self, pk, category_id, producttype_id):
         description = self.__fake.description()
         return {
             'fields': {
                 # TODO: generate the attributes!
-                'attributes': "{\"15\": \"46\", \"21\": \"68\"}",
-                'category': category,
+                # 'attributes': '{"15": "46", "21": "68"}',
+                'attributes': '{}',
+                'category': category_id,
                 'charge_taxes': True,
                 'description': description,
                 'description_json': {
@@ -292,7 +296,7 @@ class FakeDataFactory:
                     'amount': self.__fake.money_amount(),
                     'currency': settings.DEFAULT_CURRENCY
                 },
-                'product_type': producttype,
+                'product_type': producttype_id,
                 'publication_date': None,
                 'seo_description': description,
                 'seo_title': '',
@@ -304,10 +308,16 @@ class FakeDataFactory:
             'pk': pk
         }
 
-    # TODO: for each category and related producttype, generate product?
-
-    # TODO: be careful with product generation; if the product belongs to a producttype with has_variants == False, then it needs to have an empty variant
-    # TODO: for each category and producttype, generate products?
-    # TODO: need max amount of products per producttype
-    def create_products(self, list_size=1):
-        pass
+    def create_products(self, categories, producttypes, list_size=1):
+        result = []
+        for pk in range(1, list_size + 1):
+            category_name = self.__fake.random_element(
+                elements=self.category_types.keys())
+            category_id = [category['pk']
+                           for category in categories if category['fields']['name'] == category_name][0]
+            producttype_name = self.__fake.random_element(
+                elements=self.category_types[category_name])
+            producttype_id = [
+                type['pk'] for type in producttypes if type['fields']['name'] == producttype_name][0]
+            result.append(self.__product(pk, category_id, producttype_id))
+        return result
