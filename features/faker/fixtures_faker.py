@@ -321,3 +321,30 @@ class FakeDataFactory:
                 type['pk'] for type in producttypes if type['fields']['name'] == producttype_name][0]
             result.append(self.__product(pk, category_id, producttype_id))
         return result
+
+    def __productvariant(self, pk, product_id):
+        return {
+            'fields': {
+                # TODO: generate attributes
+                'attributes': '{}',
+                'cost_price': {
+                    '_type': 'Money',
+                    'amount': '5.00',
+                    'currency': 'CHF'
+                },
+                'name': '1l',
+                'price_override': {
+                    '_type': 'Money',
+                    'amount': self.__fake.money_amount(),
+                    'currency': settings.DEFAULT_CURRENCY
+                },
+                'product': product_id,
+                'quantity': self.__fake.quantity(),
+                'quantity_allocated': self.__fake.quantity_allocated(),
+                'sku': self.__fake.sku(),
+                'track_inventory': True,
+                'weight': self.__fake.weight()
+            },
+            'model': 'product.productvariant',
+            'pk': pk
+        }
