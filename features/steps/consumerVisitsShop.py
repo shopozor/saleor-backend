@@ -21,8 +21,10 @@ def query_shop_catalogue(client, shop_id):
 
 @when(u'Incognito demande quels Shops il peut visiter')
 def step_impl(context):
+    print('nbr of shops = ', Shop.objects.count())
     test_client = context.test.client
     context.response = query_shops(test_client)
+    raise NotImplementedError('step not implemented')
 
 
 @when(u'Incognito visite un Shop')

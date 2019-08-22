@@ -211,6 +211,7 @@ def password_reset(context):
 
 @fixture
 def shops(context):
+    # TODO: use small, medium, large shop
     context.fixtures = ['Shopozor.json']
 
 

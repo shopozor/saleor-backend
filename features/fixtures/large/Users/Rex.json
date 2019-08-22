@@ -1,0 +1,23 @@
+[
+  {
+    "email": "Marianne.Balmat@romandie.com",
+    "id": 1121,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "permissions": [
+      {
+        "code": "MANAGE_STAFF"
+      },
+      {
+        "code": "MANAGE_USERS"
+      },
+      {
+        "code": "MANAGE_PRODUCERS"
+      },
+      {
+        "code": "MANAGE_MANAGERS"
+      }
+    ]
+  }
+]

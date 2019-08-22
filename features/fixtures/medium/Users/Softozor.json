@@ -1,0 +1,10 @@
+[
+  {
+    "email": "Danielle.Isella@yahoo.fr",
+    "id": 117,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": true,
+    "permissions": []
+  }
+]

@@ -20,7 +20,7 @@ dev.env
 /specification/
 
 # unwanted generated fixtures
-/features/fixtures/Users.json
+/features/fixtures/**/Users.json
 
 # local environment settings
 *.local

@@ -1,0 +1,10 @@
+[
+  {
+    "email": "Therese.Mottiez@vtxnet.ch",
+    "id": 1122,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": true,
+    "permissions": []
+  }
+]

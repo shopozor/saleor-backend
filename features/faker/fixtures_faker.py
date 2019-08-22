@@ -33,61 +33,63 @@ class FakeDataFactory:
         domain_name = self.__fake.free_email_domain()
         return unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name))
 
+    def __create_consumer(self, id):
+        return {
+            'id': id,
+            'email': self.__fake.email(),
+            'isActive': True,
+            'isStaff': False,
+            'isSuperUser': False,
+            'permissions': []
+        }
+
     def create_consumers(self, start_index, list_size=1):
-        result = []
-        for id in range(0, list_size):
-            result.append({
-                'id': start_index + id,
-                'email': self.__fake.email(),
-                'isActive': True,
-                'isStaff': False,
-                'isSuperUser': False,
-                'permissions': []
-            })
-        return result
+        return [self.__create_consumer(start_index + id) for id in range(0, list_size)]
+
+    def __create_producer(self, id):
+        first_name = self.__fake.first_name()
+        last_name = self.__fake.last_name()
+        return {
+            'id': id,
+            # get rid of any potential French accent from the first and last name
+            'email': self.create_email(first_name, last_name),
+            'isActive': True,
+            'isStaff': True,
+            'isSuperUser': False,
+            'first_name': first_name,
+            'last_name': last_name,
+            'permissions': []
+        }
 
     def create_producers(self, start_index, list_size=1):
-        result = []
-        for id in range(0, list_size):
-            first_name = self.__fake.first_name()
-            last_name = self.__fake.last_name()
-            result.append({
-                'id': start_index + id,
-                # get rid of any potential French accent from the first and last name
-                'email': self.create_email(first_name, last_name),
-                'isActive': True,
-                'isStaff': True,
-                'isSuperUser': False,
-                'first_name': first_name,
-                'last_name': last_name,
-                'permissions': []
-            })
-        return result
+        return [self.__create_producer(start_index + id) for id in range(0, list_size)]
+
+    def __create_manager(self, id):
+        first_name = self.__fake.first_name()
+        last_name = self.__fake.last_name()
+        return {
+            'id': id,
+            # get rid of any potential French accent from the first and last name
+            'email': self.create_email(first_name, last_name),
+            'isActive': True,
+            'isStaff': True,
+            'isSuperUser': False,
+            'first_name': first_name,
+            'last_name': last_name,
+            'permissions': [{
+                'code': 'MANAGE_PRODUCERS'
+            }]
+        }
 
     def create_managers(self, start_index, list_size=1):
-        result = []
-        for id in range(0, list_size):
-            first_name = self.__fake.first_name()
-            last_name = self.__fake.last_name()
-            result.append({
-                'id': start_index + id,
-                # get rid of any potential French accent from the first and last name
-                'email': self.create_email(first_name, last_name),
-                'isActive': True,
-                'isStaff': True,
-                'isSuperUser': False,
-                'first_name': first_name,
-                'last_name': last_name,
-                'permissions': [{
-                    'code': 'MANAGE_PRODUCERS'
-                }]
-            })
-        return result
+        return [self.__create_manager(start_index + id) for id in range(0, list_size)]
 
-    def create_rex(self, start_index):
+    def __create_rex(self, id):
+        first_name = self.__fake.first_name()
+        last_name = self.__fake.last_name()
         return {
-            'id': start_index,
-            'email': 'rex@%s' % self.__fake.free_email_domain(),
+            'id': id,
+            'email': self.create_email(first_name, last_name),
             'isActive': True,
             'isStaff': True,
             'isSuperUser': False,
@@ -107,15 +109,23 @@ class FakeDataFactory:
             ]
         }
 
-    def create_softozor(self, start_index):
+    def create_reges(self, start_index, list_size=1):
+        return [self.__create_rex(start_index + id) for id in range(0, list_size)]
+
+    def create_softozor(self, id):
+        first_name = self.__fake.first_name()
+        last_name = self.__fake.last_name()
         return {
-            'id': start_index,
-            'email': 'softozor@%s' % self.__fake.free_email_domain(),
+            'id': id,
+            'email': self.create_email(first_name, last_name),
             'isActive': True,
             'isStaff': True,
             'isSuperUser': True,
             'permissions': []
         }
+
+    def create_softozors(self, start_index, list_size=1):
+        return [self.create_softozor(start_index + id) for id in range(0, list_size)]
 
     def __staff(self, pk, user_id):
         return {

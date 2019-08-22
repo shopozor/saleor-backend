@@ -1,0 +1,72 @@
+[
+  {
+    "email": "Christophe.Tinguely@yahoo.fr",
+    "first_name": "Christophe",
+    "id": 111,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Tinguely",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Lisa.Menthonnex@bluewin.ch",
+    "first_name": "Lisa",
+    "id": 112,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Menthonnex",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Zoe.Crivelli@bluewin.ch",
+    "first_name": "Zo\u00e9",
+    "id": 113,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Crivelli",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Elisa.de Dardel@bluewin.ch",
+    "first_name": "Elisa",
+    "id": 114,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "de Dardel",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Andre.Corboz@hispeed.ch",
+    "first_name": "Andr\u00e9",
+    "id": 115,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Corboz",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  }
+]

@@ -4,12 +4,10 @@ from features.utils.fixtures import json
 
 import os
 
-PATH_TO_SHOPS_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'Shopozor.json')
-PATH_TO_USERS_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'Users.json')
 
-
-def generate_shop_list():
-    shops_fixture = json.load(PATH_TO_SHOPS_FIXTURE)
+def generate_shop_list(fixture_variant):
+    shops_fixture = json.load(os.path.join(
+        settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
     expected_list = {
         'data': {
             'shops': {
@@ -72,9 +70,11 @@ def get_pricing(variant_fields, product_fields):
     return pricing
 
 
-def generate_shop_catalogues():
-    shops_fixture = json.load(PATH_TO_SHOPS_FIXTURE)
-    users_fixture = json.load(PATH_TO_USERS_FIXTURE)
+def generate_shop_catalogues(fixture_variant):
+    shops_fixture = json.load(os.path.join(
+        settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
+    users_fixture = json.load(os.path.join(
+        settings.FIXTURE_DIRS[0], fixture_variant, 'Users.json'))
 
     expected_catalogues = dict()
     for shop in [shop for shop in shops_fixture if shop['model'] == 'shopozor.shop']:
@@ -153,15 +153,18 @@ def output_object_to_json(object, output_dir, output_filename):
     json.dump(object, os.path.join(output_dir, output_filename))
 
 
-def output_shop_list(output_dir):
-    consumer_output_dir = os.path.join(output_dir, 'Consumer')
-    output_object_to_json(generate_shop_list(),
+def output_shop_list(output_dir, variant):
+    os.makedirs(os.path.join(output_dir, variant), exist_ok=True)
+    consumer_output_dir = os.path.join(output_dir, variant, 'Consumer')
+    output_object_to_json(generate_shop_list(variant),
                           consumer_output_dir, 'Shops.json')
 
 
-def output_shop_catalogues(output_dir):
-    catalogues_output_dir = os.path.join(output_dir, 'Consumer', 'Catalogues')
-    shop_catalogues = generate_shop_catalogues()
+def output_shop_catalogues(output_dir, variant):
+    os.makedirs(os.path.join(output_dir, variant), exist_ok=True)
+    catalogues_output_dir = os.path.join(
+        output_dir, variant, 'Consumer', 'Catalogues')
+    shop_catalogues = generate_shop_catalogues(variant)
     for catalogue in shop_catalogues:
         output_object_to_json(
             shop_catalogues[catalogue], catalogues_output_dir, 'Shop-{id}.json'.format(id=catalogue))
@@ -177,5 +180,6 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         output_folder = options['output_folder']
         os.makedirs(output_folder, exist_ok=True)
-        output_shop_list(output_folder)
-        output_shop_catalogues(output_folder)
+        for variant in 'small', 'medium', 'large':
+            output_shop_list(output_folder, variant)
+            output_shop_catalogues(output_folder, variant)

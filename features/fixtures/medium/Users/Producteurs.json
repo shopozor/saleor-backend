@@ -1,0 +1,102 @@
+[
+  {
+    "email": "Rene.Carron@hispeed.ch",
+    "first_name": "Ren\u00e9",
+    "id": 101,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Carron",
+    "permissions": []
+  },
+  {
+    "email": "Emilie.Duroux@hotmail.fr",
+    "first_name": "Emilie",
+    "id": 102,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Duroux",
+    "permissions": []
+  },
+  {
+    "email": "Maxime.Comment@romandie.com",
+    "first_name": "Maxime",
+    "id": 103,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Comment",
+    "permissions": []
+  },
+  {
+    "email": "Julie.Bonvini@yahoo.fr",
+    "first_name": "Julie",
+    "id": 104,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Bonvini",
+    "permissions": []
+  },
+  {
+    "email": "Roger.Cosendey@bluewin.ch",
+    "first_name": "Roger",
+    "id": 105,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Cosendey",
+    "permissions": []
+  },
+  {
+    "email": "Bernard.Barbey@sunrise.ch",
+    "first_name": "Bernard",
+    "id": 106,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Barbey",
+    "permissions": []
+  },
+  {
+    "email": "Michel.Broquet@romandie.com",
+    "first_name": "Michel",
+    "id": 107,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Broquet",
+    "permissions": []
+  },
+  {
+    "email": "Maxime.Conrad@vtxnet.ch",
+    "first_name": "Maxime",
+    "id": 108,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Conrad",
+    "permissions": []
+  },
+  {
+    "email": "Romain.Monnet@hotmail.fr",
+    "first_name": "Romain",
+    "id": 109,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Monnet",
+    "permissions": []
+  },
+  {
+    "email": "Luca.Fonjallaz@bluewin.ch",
+    "first_name": "Luca",
+    "id": 110,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Fonjallaz",
+    "permissions": []
+  }
+]
