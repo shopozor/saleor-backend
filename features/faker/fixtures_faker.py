@@ -1,4 +1,3 @@
-from django.conf import settings
 from faker import Faker
 from features.faker.providers.geo import Provider as ShopozorGeoProvider
 from features.faker.providers.product import Provider as ProductProvider
@@ -291,17 +290,11 @@ class FakeDataFactory:
                     }
                 },
                 'name': self.__fake.product_name(),
-                'price': {
-                    '_type': 'Money',
-                    'amount': self.__fake.money_amount(),
-                    'currency': settings.DEFAULT_CURRENCY
-                },
+                'price': self.__fake.money_amount(),
                 'product_type': producttype_id,
                 'publication_date': None,
                 'seo_description': description,
                 'seo_title': '',
-                # TODO: if it is necessary, put the datetime.now()
-                # 'updated_at': '2019-03-06T12:47:38.530Z',
                 'weight': self.__fake.weight()
             },
             'model': 'product.product',
@@ -323,24 +316,17 @@ class FakeDataFactory:
         return result
 
     def __productvariant(self, pk, product_id):
+        quantity = self.__fake.quantity()
         return {
             'fields': {
                 # TODO: generate attributes
                 'attributes': '{}',
-                'cost_price': {
-                    '_type': 'Money',
-                    'amount': '5.00',
-                    'currency': 'CHF'
-                },
-                'name': '1l',
-                'price_override': {
-                    '_type': 'Money',
-                    'amount': self.__fake.money_amount(),
-                    'currency': settings.DEFAULT_CURRENCY
-                },
+                'cost_price': self.__fake.money_amount(),
+                'name': self.__fake.variant_name(),
+                'price_override': self.__fake.price_override(),
                 'product': product_id,
-                'quantity': self.__fake.quantity(),
-                'quantity_allocated': self.__fake.quantity_allocated(),
+                'quantity': quantity,
+                'quantity_allocated': self.__fake.quantity_allocated(quantity),
                 'sku': self.__fake.sku(),
                 'track_inventory': True,
                 'weight': self.__fake.weight()
@@ -348,3 +334,10 @@ class FakeDataFactory:
             'model': 'product.productvariant',
             'pk': pk
         }
+
+    def create_productvariants(self, product_ids, list_size=1):
+        result = []
+        for pk in range(1, list_size + 1):
+            product_id = self.__fake.random_element(product_ids)
+            result.append(self.__productvariant(pk, product_id))
+        return result

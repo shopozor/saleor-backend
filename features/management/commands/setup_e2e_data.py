@@ -41,6 +41,4 @@ class Command(BaseCommand):
         json.dump(users, os.path.join(output_folder, 'Users.json'))
 
         call_command('loaddata', os.path.join(
-            settings.FIXTURE_DIRS[0], 'saleor.json'))
-        call_command('loaddata', os.path.join(
-            settings.FIXTURE_DIRS[0], 'Shops.json'))
+            settings.FIXTURE_DIRS[0], 'Shopozor.json'))

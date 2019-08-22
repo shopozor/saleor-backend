@@ -4,8 +4,7 @@ from features.utils.fixtures import json
 
 import os
 
-PATH_TO_SALEOR_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'saleor.json')
-PATH_TO_SHOPS_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'Shops.json')
+PATH_TO_SHOPS_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'Shopozor.json')
 PATH_TO_USERS_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'Users.json')
 
 
@@ -74,7 +73,6 @@ def get_pricing(variant_fields, product_fields):
 
 
 def generate_shop_catalogues():
-    products_fixture = json.load(PATH_TO_SALEOR_FIXTURE)
     shops_fixture = json.load(PATH_TO_SHOPS_FIXTURE)
     users_fixture = json.load(PATH_TO_USERS_FIXTURE)
 
@@ -92,9 +90,9 @@ def generate_shop_catalogues():
         edges = expected_catalogues[shop['pk']
                                     ]['data']['shopCatalogue']['products']['edges']
         for variant_id in shop['fields']['product_variants']:
-            variant = [entry for entry in products_fixture if entry['model']
+            variant = [entry for entry in shops_fixture if entry['model']
                        == 'product.productvariant' and entry['pk'] == variant_id][0]
-            product = [entry for entry in products_fixture if entry['model'] ==
+            product = [entry for entry in shops_fixture if entry['model'] ==
                        'product.product' and entry['pk'] == variant['fields']['product']][0]
             is_published = product['fields']['is_published']
             if not is_published:
@@ -133,7 +131,7 @@ def generate_shop_catalogues():
                             # TODO: url needs to be of the form http://localhost:8000/media/products/saleordemoproduct_fd_juice_06_JwLMquZ.png, so we need
                             # to figure out where the http://localhost:8000/media/ is coming from
                             'url': fixture['fields']['image'],
-                        } for fixture in products_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']],
+                        } for fixture in shops_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']],
                         'category': {
                             'id': product['fields']['category']
                         },

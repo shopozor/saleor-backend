@@ -211,7 +211,7 @@ def password_reset(context):
 
 @fixture
 def shops(context):
-    context.fixtures = ['saleor.json', 'Shops.json']
+    context.fixtures = ['Shopozor.json']
 
 
 @fixture

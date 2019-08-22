@@ -6,8 +6,6 @@ from features.utils.fixtures import json
 
 import os
 
-PATH_TO_SALEOR_FIXTURE = os.path.join(settings.FIXTURE_DIRS[0], 'saleor.json')
-
 
 class Command(BaseCommand):
     help = 'Generates the relevant django fixtures for the sake of acceptance testing.'
@@ -60,21 +58,21 @@ class Command(BaseCommand):
         producttypes = factory.create_producttypes()
         shopozor.extend(producttypes)
 
+        products = factory.create_products(categories, producttypes, 1000)
+        shopozor.extend(products)
+
+        product_ids = [product['pk'] for product in products]
+        product_variants = factory.create_productvariants(product_ids, 10000)
+        shopozor.extend(product_variants)
+
         staff = factory.create_staff(producers)
         shopozor.extend(staff)
 
-        saleor_fixture = json.load(PATH_TO_SALEOR_FIXTURE)
-        products = [item for item in saleor_fixture if item['model']
-                    == 'product.product']
         productstaff = factory.create_productstaff(producers, products)
         shopozor.extend(productstaff)
 
-        product_variants = [
-            item for item in saleor_fixture if item['model'] == 'product.productvariant']
-        print('nbProds    = ', len(products))
-        print('nbVariants = ', len(product_variants))
         shops = factory.create_shops(
             producers, productstaff, product_variants, nb_of_managers)
         shopozor.extend(shops)
 
-        json.dump(shopozor, os.path.join(output_folder, 'Shops.json'))
+        json.dump(shopozor, os.path.join(output_folder, 'Shopozor.json'))
