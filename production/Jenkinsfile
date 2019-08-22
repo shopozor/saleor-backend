@@ -35,7 +35,10 @@ pipeline {
     }
     stage('Check staging environment') {
       steps {
-        build job: 'backend-security', parameters: [[$class: 'StringParameterValue', name: 'HIDORA_DOMAIN', value: STAGING_ENV_NAME]]
+        build job: 'security', parameters: [
+          string(name: 'HIDORA_DOMAIN', value: STAGING_ENV_NAME), 
+          string(name: 'APPLICATION_TYPE', value: 'backend')
+        ]
       }
     }
     stage('Stop staging environment') {
