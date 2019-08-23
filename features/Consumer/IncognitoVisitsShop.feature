@@ -1,7 +1,7 @@
 # language: fr
 
 @initial-release @consumer @wip
-@fixture.shops
+@fixture.small-shops
 Fonctionnalité: Un Incognito visite un Shop
 
   **En tant qu'Incognito,  
@@ -35,6 +35,7 @@ Fonctionnalité: Un Incognito visite un Shop
   Contexte: L'utilisateur est Incognito
 
     Etant donné un utilisateur non identifié sur le Shopozor
+
 
   Scénario: Incognito obtient la liste des Shops
 

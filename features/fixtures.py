@@ -7,7 +7,7 @@ from django.contrib.auth.models import Permission
 from django.contrib.contenttypes.models import ContentType
 from features.utils.auth.account_handling import create_database_user
 from features.utils.auth.password_generation import set_password
-from features.utils.fixtures import json
+from features.utils.fixtures import json, database_loader
 from features.utils.graphql.loader import get_query_from_file
 from saleor.account.models import User
 from shopozor.permissions import add_permissions
@@ -210,34 +210,40 @@ def password_reset(context):
 
 
 @fixture
-def shops(context):
-    # TODO: use small, medium, large shop
-    context.fixtures = ['Shopozor.json']
+def small_users_list(context):
+    users = database_loader.load_users_in_database('small')
+    context.users = users
+    return users
 
 
 @fixture
-def expected_shop_list(context):
+def small_shops(context):
+    context.fixtures = [os.path.join('small', 'Shopozor.json')]
+
+
+@fixture
+def expected_small_shop_list(context):
     shop_list = json.load(
-        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Consumer', 'Shops.json'))
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Shops.json'))
     context.expected_shop_list = shop_list
     return shop_list
 
 
 @fixture
-def expected_shop_catalogues(context):
+def expected_small_shop_catalogues(context):
     catalogues_folder = os.path.join(
-        settings.GRAPHQL_RESPONSES_FOLDER, 'Consumer', 'Catalogues')
+        settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Catalogues')
     catalogues = [os.path.splitext(f)[0] for f in os.listdir(
         catalogues_folder) if os.path.isfile(os.path.join(catalogues_folder, f))]
     shop_catalogues = {}
     for catalogue in catalogues:
         shop_id = catalogue.split('-')[1]
-        shop_catalogues[shop_id] = json.load(os.path.join(settings.GRAPHQL_RESPONSES_FOLDER,
+        shop_catalogues[shop_id] = json.load(os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'small',
                                                           'Consumer', 'Catalogues', '{name}.json'.format(name=catalogue)))
     context.expected_shop_catalogues = shop_catalogues
     return shop_catalogues
 
 
 @fixture
-def shops_fixtures(context):
-    return use_composite_fixture_with(context, [fixture_call_params(shops), fixture_call_params(expected_shop_list), fixture_call_params(expected_shop_catalogues)])
+def small_shops_fixtures(context):
+    return use_composite_fixture_with(context, [fixture_call_params(permissions), fixture_call_params(small_users_list), fixture_call_params(small_shops), fixture_call_params(expected_small_shop_list), fixture_call_params(expected_small_shop_catalogues)])
