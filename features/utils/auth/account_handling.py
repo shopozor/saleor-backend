@@ -6,12 +6,13 @@ from saleor.account.models import User
 def create_database_user(user_data):
     is_superuser = user_data['isSuperUser']
     if is_superuser:
-        user = User.objects.create_superuser(email=user_data['email'])
+        user = User.objects.create_superuser(
+            email=user_data['email'], pk=user_data['id'])
     else:
         is_staff = user_data['isStaff']
         is_active = user_data['isActive']
         user = User.objects.create(
-            email=user_data['email'], is_staff=is_staff, is_active=is_active)
+            email=user_data['email'], is_staff=is_staff, is_active=is_active, pk=user_data['id'])
 
     if 'password' not in user_data:
         set_password(user_data)
