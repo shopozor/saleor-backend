@@ -16,38 +16,46 @@ variants = {
         '#softozor': 1,
         '#products': 50,
         '#productvariants': 200,
-        '#shops': 2
+        '#shops': 2,
+        '#max(producers/shop)': 2,
+        '#max(products/producer)': 10
     },
     'medium': {
         '#consumers': 100,
-        '#producers': 10,
+        '#producers': 30,
         '#managers': 5,
         '#rex': 1,
         '#softozor': 1,
-        '#products': 100,
+        '#products': 300,
         '#productvariants': 500,
-        '#shops': 5
+        '#shops': 5,
+        '#max(producers/shop)': 6,
+        '#max(products/producer)': 10
     },
     'large': {
         '#consumers': 1000,
-        '#producers': 100,
+        '#producers': 150,
         '#managers': 20,
         '#rex': 1,
         '#softozor': 1,
-        '#products': 1000,
-        '#productvariants': 10000,
-        '#shops': 20
+        '#products': 5000,
+        '#productvariants': 50000,
+        '#shops': 20,
+        '#max(producers/shop)': 7,
+        '#max(products/producer)': 25
     }
 }
 
 
 def generate_variant(variant_name, output_folder):
-    factory = FakeDataFactory()
 
     variant = variants[variant_name]
     os.makedirs(os.path.join(output_folder, variant_name), exist_ok=True)
     os.makedirs(os.path.join(output_folder,
                              variant_name, 'Users'), exist_ok=True)
+
+    factory = FakeDataFactory(
+        variant['#max(products/producer)'], variant['#max(producers/shop)'])
 
     nb_of_consumers = variant['#consumers']
     start_index = 1

@@ -8896,22 +8896,55 @@
   },
   {
     "fields": {
-      "description": "Praesentium nulla consequatur culpa dolore. Eligendi assumenda similique in temporibus.\nMolestiae quasi perspiciatis amet autem error.",
-      "latitude": 46.584391,
-      "longitude": 6.824624,
-      "name": "Cupiditate impedit quisquam quam.",
-      "product_variants": []
+      "description": "Nisi reiciendis ea nemo deleniti occaecati voluptate excepturi. Temporibus accusantium illum repellendus debitis nesciunt.",
+      "latitude": 46.344447,
+      "longitude": 6.876756,
+      "name": "Nobis vero voluptates omnis autem aliquam.",
+      "product_variants": [
+        21,
+        27,
+        35,
+        40,
+        54,
+        75,
+        76,
+        92,
+        94,
+        96,
+        98,
+        110,
+        126,
+        165,
+        169,
+        182,
+        192,
+        195
+      ]
     },
     "model": "shopozor.shop",
     "pk": 1
   },
   {
     "fields": {
-      "description": "Quasi corrupti iure quisquam quae magnam. Reprehenderit ullam officia nihil maiores similique recusandae.\nNisi qui aspernatur quas. Labore minima voluptatum.",
-      "latitude": 47.245821,
-      "longitude": 6.828979,
-      "name": "Eaque pariatur blanditiis nemo.",
-      "product_variants": []
+      "description": "Hic praesentium rerum harum voluptatibus aut. Quasi corrupti iure quisquam quae magnam.",
+      "latitude": 47.14944,
+      "longitude": 6.897048,
+      "name": "Fugit nostrum illum.",
+      "product_variants": [
+        4,
+        6,
+        49,
+        72,
+        89,
+        107,
+        116,
+        123,
+        128,
+        135,
+        137,
+        160,
+        199
+      ]
     },
     "model": "shopozor.shop",
     "pk": 2

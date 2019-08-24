@@ -140,12 +140,9 @@ class FakeDataFactory:
         offset = producers[0]['id']
         return [self.__staff(user['id'] - offset + 1, user['id']) for user in producers]
 
-    def __try_to_get_random_elements(self, elements, length):
-        try:
-            return self.__fake.random_elements(
-                elements=elements, length=length, unique=True)
-        except ValueError:
-            return []
+    def __get_random_elements(self, elements, length):
+        return self.__fake.random_elements(
+            elements=elements, length=length, unique=True)
 
     def __productstaff(self, pk, product_id, producer_id):
         return {
@@ -164,7 +161,7 @@ class FakeDataFactory:
         for producer in producers:
             nb_products = self.__fake.random.randint(
                 0, self.__MAX_NB_PRODUCTS_PER_PRODUCER)
-            producer_product_ids = self.__try_to_get_random_elements(
+            producer_product_ids = self.__get_random_elements(
                 product_ids, nb_products)
             for producer_product_id in producer_product_ids:
                 result.append(self.__productstaff(
@@ -187,7 +184,7 @@ class FakeDataFactory:
         for shop_id in range(0, list_size):
             nb_producers = self.__fake.random.randint(
                 0, self.__MAX_NB_PRODUCERS_PER_SHOP)
-            shop_producer_ids = self.__try_to_get_random_elements(
+            shop_producer_ids = self.__get_random_elements(
                 producer_ids, nb_producers)
             shop_product_ids = [item['fields']['product_id'] for item in productstaff if item['model']
                                 == 'shopozor.productstaff' and item['fields']['staff_id'] in shop_producer_ids]

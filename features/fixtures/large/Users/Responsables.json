@@ -1,12 +1,12 @@
 [
   {
-    "email": "Patrick.Chappuis@yahoo.fr",
-    "first_name": "Patrick",
-    "id": 1101,
+    "email": "Danielle.Mottet@sunrise.ch",
+    "first_name": "Danielle",
+    "id": 1151,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
-    "last_name": "Chappuis",
+    "last_name": "Mottet",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -14,13 +14,13 @@
     ]
   },
   {
-    "email": "Guillaume.Alber@yahoo.fr",
-    "first_name": "Guillaume",
-    "id": 1102,
+    "email": "Melanie.Boechat@yahoo.fr",
+    "first_name": "M\u00e9lanie",
+    "id": 1152,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
-    "last_name": "Alber",
+    "last_name": "Boechat",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -28,13 +28,13 @@
     ]
   },
   {
-    "email": "Elodie.Comman@romandie.com",
-    "first_name": "Elodie",
-    "id": 1103,
+    "email": "Zoe.Beurret@sunrise.ch",
+    "first_name": "Zo\u00e9",
+    "id": 1153,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
-    "last_name": "Comman",
+    "last_name": "Beurret",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -42,9 +42,65 @@
     ]
   },
   {
-    "email": "Samuel.Duvanel@vtxnet.ch",
-    "first_name": "Samuel",
-    "id": 1104,
+    "email": "Eric.Jacot-Guillarmod@gmail.com",
+    "first_name": "Eric",
+    "id": 1154,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Jacot-Guillarmod",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Emilie.Bonvini@vtxnet.ch",
+    "first_name": "Emilie",
+    "id": 1155,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Bonvini",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Christine.Deladoey@bluewin.ch",
+    "first_name": "Christine",
+    "id": 1156,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Delado\u00eby",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Arthur.Brandt@hispeed.ch",
+    "first_name": "Arthur",
+    "id": 1157,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Brandt",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Veronique.Duvanel@romandie.com",
+    "first_name": "V\u00e9ronique",
+    "id": 1158,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -56,13 +112,13 @@
     ]
   },
   {
-    "email": "Mathieu.Isella@vtxnet.ch",
-    "first_name": "Mathieu",
-    "id": 1105,
+    "email": "Jonathan.Meyer@hispeed.ch",
+    "first_name": "Jonathan",
+    "id": 1159,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
-    "last_name": "Isella",
+    "last_name": "Meyer",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -70,13 +126,13 @@
     ]
   },
   {
-    "email": "Manuel.Rosselat@gmail.com",
-    "first_name": "Manuel",
-    "id": 1106,
+    "email": "Roger.Matile@hispeed.ch",
+    "first_name": "Roger",
+    "id": 1160,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
-    "last_name": "Rosselat",
+    "last_name": "Matile",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -84,13 +140,13 @@
     ]
   },
   {
-    "email": "Vincent.Julliard@sunrise.ch",
-    "first_name": "Vincent",
-    "id": 1107,
+    "email": "Zoe.Conrad@hotmail.fr",
+    "first_name": "Zo\u00e9",
+    "id": 1161,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
-    "last_name": "Julliard",
+    "last_name": "Conrad",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -98,9 +154,37 @@
     ]
   },
   {
-    "email": "Lucie.Carraux@gmail.com",
-    "first_name": "Lucie",
-    "id": 1108,
+    "email": "Georgette.Rey@yahoo.fr",
+    "first_name": "Georgette",
+    "id": 1162,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Rey",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Louis.Mottet@sunrise.ch",
+    "first_name": "Louis",
+    "id": 1163,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Mottet",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Jessica.Carraux@bluewin.ch",
+    "first_name": "Jessica",
+    "id": 1164,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -112,13 +196,13 @@
     ]
   },
   {
-    "email": "Claudine.Vuille@romandie.com",
+    "email": "Claudine.Nussle@sunrise.ch",
     "first_name": "Claudine",
-    "id": 1109,
+    "id": 1165,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
-    "last_name": "Vuille",
+    "last_name": "Nussl\u00e9",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -126,13 +210,13 @@
     ]
   },
   {
-    "email": "Isabelle.Rosselat@bluewin.ch",
-    "first_name": "Isabelle",
-    "id": 1110,
+    "email": "Georges.Pasquier@sunrise.ch",
+    "first_name": "Georges",
+    "id": 1166,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
-    "last_name": "Rosselat",
+    "last_name": "Pasquier",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -140,13 +224,13 @@
     ]
   },
   {
-    "email": "Madeleine.Corbat@sunrise.ch",
-    "first_name": "Madeleine",
-    "id": 1111,
+    "email": "Olivier.Vienne@romandie.com",
+    "first_name": "Olivier",
+    "id": 1167,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
-    "last_name": "Corbat",
+    "last_name": "Vienne",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -154,79 +238,9 @@
     ]
   },
   {
-    "email": "Bernard.Badan@vtxnet.ch",
-    "first_name": "Bernard",
-    "id": 1112,
-    "isActive": true,
-    "isStaff": true,
-    "isSuperUser": false,
-    "last_name": "Badan",
-    "permissions": [
-      {
-        "code": "MANAGE_PRODUCERS"
-      }
-    ]
-  },
-  {
-    "email": "Jacques.Berberat@yahoo.fr",
-    "first_name": "Jacques",
-    "id": 1113,
-    "isActive": true,
-    "isStaff": true,
-    "isSuperUser": false,
-    "last_name": "Berberat",
-    "permissions": [
-      {
-        "code": "MANAGE_PRODUCERS"
-      }
-    ]
-  },
-  {
-    "email": "Marcel.Rosselat@hotmail.fr",
-    "first_name": "Marcel",
-    "id": 1114,
-    "isActive": true,
-    "isStaff": true,
-    "isSuperUser": false,
-    "last_name": "Rosselat",
-    "permissions": [
-      {
-        "code": "MANAGE_PRODUCERS"
-      }
-    ]
-  },
-  {
-    "email": "Stephane.Joye@vtxnet.ch",
-    "first_name": "St\u00e9phane",
-    "id": 1115,
-    "isActive": true,
-    "isStaff": true,
-    "isSuperUser": false,
-    "last_name": "Joye",
-    "permissions": [
-      {
-        "code": "MANAGE_PRODUCERS"
-      }
-    ]
-  },
-  {
-    "email": "Aurelie.Pellet@bluewin.ch",
-    "first_name": "Aur\u00e9lie",
-    "id": 1116,
-    "isActive": true,
-    "isStaff": true,
-    "isSuperUser": false,
-    "last_name": "Pellet",
-    "permissions": [
-      {
-        "code": "MANAGE_PRODUCERS"
-      }
-    ]
-  },
-  {
-    "email": "Ana.Piccand@vtxnet.ch",
-    "first_name": "Ana",
-    "id": 1117,
+    "email": "Manuel.Piccand@yahoo.fr",
+    "first_name": "Manuel",
+    "id": 1168,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
@@ -238,13 +252,13 @@
     ]
   },
   {
-    "email": "Philippe.Mayor@bluewin.ch",
-    "first_name": "Philippe",
-    "id": 1118,
+    "email": "Nelly.Tinguely@yahoo.fr",
+    "first_name": "Nelly",
+    "id": 1169,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
-    "last_name": "Mayor",
+    "last_name": "Tinguely",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"
@@ -252,27 +266,13 @@
     ]
   },
   {
-    "email": "Arthur.Crevoisier@hotmail.fr",
-    "first_name": "Arthur",
-    "id": 1119,
+    "email": "Jessica.Mercier@gmail.com",
+    "first_name": "Jessica",
+    "id": 1170,
     "isActive": true,
     "isStaff": true,
     "isSuperUser": false,
-    "last_name": "Crevoisier",
-    "permissions": [
-      {
-        "code": "MANAGE_PRODUCERS"
-      }
-    ]
-  },
-  {
-    "email": "Christophe.Sandoz@hispeed.ch",
-    "first_name": "Christophe",
-    "id": 1120,
-    "isActive": true,
-    "isStaff": true,
-    "isSuperUser": false,
-    "last_name": "Sandoz",
+    "last_name": "Mercier",
     "permissions": [
       {
         "code": "MANAGE_PRODUCERS"

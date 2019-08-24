@@ -998,5 +998,505 @@
     "isSuperUser": false,
     "last_name": "Musy",
     "permissions": []
+  },
+  {
+    "email": "Patrick.Chappuis@yahoo.fr",
+    "first_name": "Patrick",
+    "id": 1101,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Chappuis",
+    "permissions": []
+  },
+  {
+    "email": "Guillaume.Alber@yahoo.fr",
+    "first_name": "Guillaume",
+    "id": 1102,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Alber",
+    "permissions": []
+  },
+  {
+    "email": "Elodie.Comman@romandie.com",
+    "first_name": "Elodie",
+    "id": 1103,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Comman",
+    "permissions": []
+  },
+  {
+    "email": "Samuel.Duvanel@vtxnet.ch",
+    "first_name": "Samuel",
+    "id": 1104,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Duvanel",
+    "permissions": []
+  },
+  {
+    "email": "Mathieu.Isella@vtxnet.ch",
+    "first_name": "Mathieu",
+    "id": 1105,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Isella",
+    "permissions": []
+  },
+  {
+    "email": "Manuel.Rosselat@gmail.com",
+    "first_name": "Manuel",
+    "id": 1106,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Rosselat",
+    "permissions": []
+  },
+  {
+    "email": "Vincent.Julliard@sunrise.ch",
+    "first_name": "Vincent",
+    "id": 1107,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Julliard",
+    "permissions": []
+  },
+  {
+    "email": "Lucie.Carraux@gmail.com",
+    "first_name": "Lucie",
+    "id": 1108,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Carraux",
+    "permissions": []
+  },
+  {
+    "email": "Claudine.Vuille@romandie.com",
+    "first_name": "Claudine",
+    "id": 1109,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Vuille",
+    "permissions": []
+  },
+  {
+    "email": "Isabelle.Rosselat@bluewin.ch",
+    "first_name": "Isabelle",
+    "id": 1110,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Rosselat",
+    "permissions": []
+  },
+  {
+    "email": "Madeleine.Corbat@sunrise.ch",
+    "first_name": "Madeleine",
+    "id": 1111,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Corbat",
+    "permissions": []
+  },
+  {
+    "email": "Bernard.Badan@vtxnet.ch",
+    "first_name": "Bernard",
+    "id": 1112,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Badan",
+    "permissions": []
+  },
+  {
+    "email": "Jacques.Berberat@yahoo.fr",
+    "first_name": "Jacques",
+    "id": 1113,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Berberat",
+    "permissions": []
+  },
+  {
+    "email": "Marcel.Rosselat@hotmail.fr",
+    "first_name": "Marcel",
+    "id": 1114,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Rosselat",
+    "permissions": []
+  },
+  {
+    "email": "Stephane.Joye@vtxnet.ch",
+    "first_name": "St\u00e9phane",
+    "id": 1115,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Joye",
+    "permissions": []
+  },
+  {
+    "email": "Aurelie.Pellet@bluewin.ch",
+    "first_name": "Aur\u00e9lie",
+    "id": 1116,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Pellet",
+    "permissions": []
+  },
+  {
+    "email": "Ana.Piccand@vtxnet.ch",
+    "first_name": "Ana",
+    "id": 1117,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Piccand",
+    "permissions": []
+  },
+  {
+    "email": "Philippe.Mayor@bluewin.ch",
+    "first_name": "Philippe",
+    "id": 1118,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Mayor",
+    "permissions": []
+  },
+  {
+    "email": "Arthur.Crevoisier@hotmail.fr",
+    "first_name": "Arthur",
+    "id": 1119,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Crevoisier",
+    "permissions": []
+  },
+  {
+    "email": "Christophe.Sandoz@hispeed.ch",
+    "first_name": "Christophe",
+    "id": 1120,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Sandoz",
+    "permissions": []
+  },
+  {
+    "email": "Marianne.Balmat@romandie.com",
+    "first_name": "Marianne",
+    "id": 1121,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Balmat",
+    "permissions": []
+  },
+  {
+    "email": "Therese.Mottiez@vtxnet.ch",
+    "first_name": "Th\u00e9r\u00e8se",
+    "id": 1122,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Mottiez",
+    "permissions": []
+  },
+  {
+    "email": "Yvonne.Jacot-Guillarmod@yahoo.fr",
+    "first_name": "Yvonne",
+    "id": 1123,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Jacot-Guillarmod",
+    "permissions": []
+  },
+  {
+    "email": "Eric.Montandon@gmail.com",
+    "first_name": "Eric",
+    "id": 1124,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Montandon",
+    "permissions": []
+  },
+  {
+    "email": "Nathan.Vienne@bluewin.ch",
+    "first_name": "Nathan",
+    "id": 1125,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Vienne",
+    "permissions": []
+  },
+  {
+    "email": "Mathilde.Chevalley@sunrise.ch",
+    "first_name": "Mathilde",
+    "id": 1126,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Chevalley",
+    "permissions": []
+  },
+  {
+    "email": "Pascal.Robadey@bluewin.ch",
+    "first_name": "Pascal",
+    "id": 1127,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Robadey",
+    "permissions": []
+  },
+  {
+    "email": "Emilie.Barillon@hotmail.fr",
+    "first_name": "Emilie",
+    "id": 1128,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Barillon",
+    "permissions": []
+  },
+  {
+    "email": "Louis.Barman@romandie.com",
+    "first_name": "Louis",
+    "id": 1129,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Barman",
+    "permissions": []
+  },
+  {
+    "email": "Anna.Coigny@vtxnet.ch",
+    "first_name": "Anna",
+    "id": 1130,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Coigny",
+    "permissions": []
+  },
+  {
+    "email": "Gilbert.Broquet@hotmail.fr",
+    "first_name": "Gilbert",
+    "id": 1131,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Broquet",
+    "permissions": []
+  },
+  {
+    "email": "Albert.Barillon@gmail.com",
+    "first_name": "Albert",
+    "id": 1132,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Barillon",
+    "permissions": []
+  },
+  {
+    "email": "Patricia.Paschoud@sunrise.ch",
+    "first_name": "Patricia",
+    "id": 1133,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Paschoud",
+    "permissions": []
+  },
+  {
+    "email": "Melanie.Bourquard@hispeed.ch",
+    "first_name": "M\u00e9lanie",
+    "id": 1134,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Bourquard",
+    "permissions": []
+  },
+  {
+    "email": "Patricia.Chapuis@yahoo.fr",
+    "first_name": "Patricia",
+    "id": 1135,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Chapuis",
+    "permissions": []
+  },
+  {
+    "email": "Elisabeth.Beguin@hispeed.ch",
+    "first_name": "Elisabeth",
+    "id": 1136,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Beguin",
+    "permissions": []
+  },
+  {
+    "email": "Julien.Deladoey@vtxnet.ch",
+    "first_name": "Julien",
+    "id": 1137,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Delado\u00eby",
+    "permissions": []
+  },
+  {
+    "email": "David.Brahier@vtxnet.ch",
+    "first_name": "David",
+    "id": 1138,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Brahier",
+    "permissions": []
+  },
+  {
+    "email": "Yvonne.Chappuis@yahoo.fr",
+    "first_name": "Yvonne",
+    "id": 1139,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Chappuis",
+    "permissions": []
+  },
+  {
+    "email": "Daniel.Chappuis@gmail.com",
+    "first_name": "Daniel",
+    "id": 1140,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Chappuis",
+    "permissions": []
+  },
+  {
+    "email": "Danielle.Beuchat@hispeed.ch",
+    "first_name": "Danielle",
+    "id": 1141,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Beuchat",
+    "permissions": []
+  },
+  {
+    "email": "Christophe.Cossy@hotmail.fr",
+    "first_name": "Christophe",
+    "id": 1142,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Cossy",
+    "permissions": []
+  },
+  {
+    "email": "Therese.Chenaux@gmail.com",
+    "first_name": "Th\u00e9r\u00e8se",
+    "id": 1143,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Chenaux",
+    "permissions": []
+  },
+  {
+    "email": "Michel.Evequoz@sunrise.ch",
+    "first_name": "Michel",
+    "id": 1144,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Ev\u00e9quoz",
+    "permissions": []
+  },
+  {
+    "email": "Robert.Cosendey@hotmail.fr",
+    "first_name": "Robert",
+    "id": 1145,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Cosendey",
+    "permissions": []
+  },
+  {
+    "email": "Sandra.Aeby@hotmail.fr",
+    "first_name": "Sandra",
+    "id": 1146,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Aeby",
+    "permissions": []
+  },
+  {
+    "email": "Nicole.Paccot@yahoo.fr",
+    "first_name": "Nicole",
+    "id": 1147,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Paccot",
+    "permissions": []
+  },
+  {
+    "email": "Madeleine.Menthonnex@yahoo.fr",
+    "first_name": "Madeleine",
+    "id": 1148,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Menthonnex",
+    "permissions": []
+  },
+  {
+    "email": "Luca.Rapin@hotmail.fr",
+    "first_name": "Luca",
+    "id": 1149,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Rapin",
+    "permissions": []
+  },
+  {
+    "email": "Eric.Chevrolet@gmail.com",
+    "first_name": "Eric",
+    "id": 1150,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Chevrolet",
+    "permissions": []
   }
 ]
