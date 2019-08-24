@@ -1,7 +1,6 @@
 # language: fr
 
 @initial-release @consumer @wip
-@fixture.small-shops
 Fonctionnalité: Un Incognito visite un Shop
 
   **En tant qu'Incognito,  
@@ -36,7 +35,7 @@ Fonctionnalité: Un Incognito visite un Shop
 
     Etant donné un utilisateur non identifié sur le Shopozor
 
-
+  @fixture.small-shops
   Scénario: Incognito obtient la liste des Shops
 
     La liste des Shops permet à Incognito de les situer sur une carte et de s'en faire
@@ -45,6 +44,7 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito demande quels Shops il peut visiter
     Alors il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale
 
+  @fixture.small-shops
   Scénario: Incognito visite un Shop
 
     Incognito peut entrer dans un Shop pour y consulter son catalogue de Produits. Celui-ci
@@ -54,6 +54,7 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito visite un Shop
     Alors il obtient la liste de tous les Produits qui y sont publiés
 
+  @fixture.small-shops
   Scénario: Chaque Produit est détaillé
 
     Incognito peut obtenir tous les détails de chacun des Produits appartenant

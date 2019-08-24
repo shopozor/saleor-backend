@@ -1,0 +1,1338 @@
+[
+  {
+    "email": "wduvanel@hotmail.fr",
+    "id": 1,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "NgcxhiIuk!wOf}i7Dy*Ciw~m/L~{uD)w",
+    "permissions": []
+  },
+  {
+    "email": "charlotterapraz@yahoo.fr",
+    "id": 2,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "sby=<EK(y{J9e@wBoFwx=,I?SQ-D}2)P",
+    "permissions": []
+  },
+  {
+    "email": "rrapin@vienne.net",
+    "id": 3,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "{1}~Lx\\;)uqrI~Q5hd\\k(zH,X|TBE^N0",
+    "permissions": []
+  },
+  {
+    "email": "catherineboichat@boillat.net",
+    "id": 4,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "=.l\\.1M/k#m|\\2CKdDgxU@?k!-.zF[T&",
+    "permissions": []
+  },
+  {
+    "email": "lucasmueller@joly.com",
+    "id": 5,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "#cmPrI`&C3]hB]L<rgo+DIjFxy}h7;(n",
+    "permissions": []
+  },
+  {
+    "email": "claudejoye@vtxnet.ch",
+    "id": 6,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "S2iLkVXP0iF34c]3s9^z>Kt%B%UGZX:3",
+    "permissions": []
+  },
+  {
+    "email": "emayor@vtxnet.ch",
+    "id": 7,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "wn79FW?Mx+OX{_1YvuE(K{TTcHEmW{MD",
+    "permissions": []
+  },
+  {
+    "email": "meyerdenise@hispeed.ch",
+    "id": 8,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "MX/X9gFL@G2bXgV5tCa!-m*[A&G92-<e",
+    "permissions": []
+  },
+  {
+    "email": "denisejomini@romandie.com",
+    "id": 9,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "oGMT.p|:6lCa3a%LYLDzi(>8we;QXHzw",
+    "permissions": []
+  },
+  {
+    "email": "jolyhugo@guberan.ch",
+    "id": 10,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "j6_q7pipK6u>-0>sZLZGb,xu0SpvqsoD",
+    "permissions": []
+  },
+  {
+    "email": "germainebouvier@peitrequin.com",
+    "id": 11,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "#@\\Q)r]FbdYjlIgl8g@+Y}uU$\\{[.v)5",
+    "permissions": []
+  },
+  {
+    "email": "tmonnet@chatriant.ch",
+    "id": 12,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "1r}@mm;tA4O.t8jAq~8x8my>J[Nw8p,i",
+    "permissions": []
+  },
+  {
+    "email": "davidbarman@matile.ch",
+    "id": 13,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "D@C{.$8-wBNV8LM#Kxy+7.wvRK^K~pu8",
+    "permissions": []
+  },
+  {
+    "email": "hnussle@vtxnet.ch",
+    "id": 14,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "nKpmivdc9B2{w^0@!zy8H6C(7n/lmf=e",
+    "permissions": []
+  },
+  {
+    "email": "henripiccand@hotmail.fr",
+    "id": 15,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "]cM@O{eiA|6!FdP)f@QI<wo3b/-cMj)}",
+    "permissions": []
+  },
+  {
+    "email": "mbahon@gillieron.ch",
+    "id": 16,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": ",0)@,vJi2fqkh$Qu_&icOt)q,<a+H#6%",
+    "permissions": []
+  },
+  {
+    "email": "viennevalerie@candaux.ch",
+    "id": 17,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "y:0Oy&zo]aV57^f6f_YP&~-VRrwM0te5",
+    "permissions": []
+  },
+  {
+    "email": "lucaspellet@beurret.net",
+    "id": 18,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "mwS=ANBGuH(*vj{3o37K.]k[3Y{+y]R(",
+    "permissions": []
+  },
+  {
+    "email": "cboechat@bluewin.ch",
+    "id": 19,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "M@=g_Tu?m?uqqq$%U/QpEz9JNYG[^n(8",
+    "permissions": []
+  },
+  {
+    "email": "vallelianmonique@chevrolet.org",
+    "id": 20,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "9f1f-x:}-=;bTv$Bdj@D8(Z#U,%6,8mO",
+    "permissions": []
+  },
+  {
+    "email": "bourquardjacques@rossellat.net",
+    "id": 21,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": ";`#$+\\@1#uvR]:@fs/m7]U,BaQcs3b>u",
+    "permissions": []
+  },
+  {
+    "email": "carronana@mottet.ch",
+    "id": 22,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "Dfh9C#pdu\\t}6S3?U6gcYV#W!c7KA]t4",
+    "permissions": []
+  },
+  {
+    "email": "michel53@comment.org",
+    "id": 23,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "\\)J&6#SNwUxmu-:#2s5xnK6vBEBKAJ;)",
+    "permissions": []
+  },
+  {
+    "email": "laurence08@godet.ch",
+    "id": 24,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "R^UKSd9=<4#-o6wkkTvs|5?ar3M=1(/>",
+    "permissions": []
+  },
+  {
+    "email": "robertthierry@sunrise.ch",
+    "id": 25,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "u?wUm;t,o;nx[+URc<>`@a;n]EJfr>@6",
+    "permissions": []
+  },
+  {
+    "email": "martisamuel@bluewin.ch",
+    "id": 26,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "52c^gM]8k/!IBQ$oS#.i?*Z.u2GA91h}",
+    "permissions": []
+  },
+  {
+    "email": "melanie66@quartier.com",
+    "id": 27,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "4~q{|2MNd=gdPclv+EgsH}L~:gX=f|Zt",
+    "permissions": []
+  },
+  {
+    "email": "bernard83@hispeed.ch",
+    "id": 28,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "HLf$@[b2pbD_>;}m@X+e<=I|jD1K12_l",
+    "permissions": []
+  },
+  {
+    "email": "emmagodet@sunrise.ch",
+    "id": 29,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "f!6u}f4GR5o)^lzle*=z-3TLsJH?e/YF",
+    "permissions": []
+  },
+  {
+    "email": "besseanna@pasquier.com",
+    "id": 30,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "TJzb[%Kl^\\>r9!ty0fB0!gXci1n9X49A",
+    "permissions": []
+  },
+  {
+    "email": "fbeguin@yahoo.fr",
+    "id": 31,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "ceJ:@uCPA.;7LLw/}Akm,jif:[=9yL?>",
+    "permissions": []
+  },
+  {
+    "email": "catherine54@boichat.com",
+    "id": 32,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "c5B@,@r1?m}(hZ>k}@a.tZ%@+Q;0}Az4",
+    "permissions": []
+  },
+  {
+    "email": "ouldry@morard.ch",
+    "id": 33,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "1Bu<T.-<Kgrr\\[#V;Fs-nks^in*`NVig",
+    "permissions": []
+  },
+  {
+    "email": "uchopard@hispeed.ch",
+    "id": 34,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "#gcsaW$\\gi9C5,t?0i28AknYuY19YCp%",
+    "permissions": []
+  },
+  {
+    "email": "alicia25@gmail.com",
+    "id": 35,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "-r^Ezn=`)#-9xPsDnR/Ux&Ee;g,`LRen",
+    "permissions": []
+  },
+  {
+    "email": "thomas17@grosjean.com",
+    "id": 36,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "~ib?4aN!q[oLfyn@+5Yj2?JuzX6oz7V$",
+    "permissions": []
+  },
+  {
+    "email": "charlotte76@sunrise.ch",
+    "id": 37,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "oz_A}by~c_Z-X\\qFIx9h)!e*rH&%PK7v",
+    "permissions": []
+  },
+  {
+    "email": "qcomment@saudan.com",
+    "id": 38,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": ":aEa(@*#s*p=:P5a$n1XT!B{HB!IY#`N",
+    "permissions": []
+  },
+  {
+    "email": "kevincousin@hispeed.ch",
+    "id": 39,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "5Ss{f|/uztvL?zr0R<02~2Y\\-+(v&L:e",
+    "permissions": []
+  },
+  {
+    "email": "gerardchatriand@sunrise.ch",
+    "id": 40,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "2`m8JE(}+Qfee~I/%2p3dD@v`Pd9,_T,",
+    "permissions": []
+  },
+  {
+    "email": "udeleze@nussle.com",
+    "id": 41,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "!p_f3nIv;oe`GDQ+]Wqs(=NE]UI#wZ_>",
+    "permissions": []
+  },
+  {
+    "email": "hguberan@yahoo.fr",
+    "id": 42,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "3a2!d7:l/9xcDR=eNvt<4y}Vz&Y?L92u",
+    "permissions": []
+  },
+  {
+    "email": "thierry37@yahoo.fr",
+    "id": 43,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "mncGS4C[&8N7X!>Rl5]xGu=nsa:H~bJ3",
+    "permissions": []
+  },
+  {
+    "email": "stephanie10@sunrise.ch",
+    "id": 44,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "YT&D=.@M~?R3nAH&&l0$C/|tHCW^<e/l",
+    "permissions": []
+  },
+  {
+    "email": "dgalland@carraux.org",
+    "id": 45,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "pAf,N0b:1sTT)b5-c97OQ!K?2<1?c`HR",
+    "permissions": []
+  },
+  {
+    "email": "gilbert06@evequoz.com",
+    "id": 46,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": ";2$md/XOZp#Os,E*5L$~`8Mv!;srgGO5",
+    "permissions": []
+  },
+  {
+    "email": "denise97@mueller.ch",
+    "id": 47,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "i&353dlXRS^c9%vZ}Q;=63Lbmt!vK;|i",
+    "permissions": []
+  },
+  {
+    "email": "bourquardjean-claude@vtxnet.ch",
+    "id": 48,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "-|6>:e6a8\\xozCApnIX&wo.xnd&;G[w+",
+    "permissions": []
+  },
+  {
+    "email": "christopherobert@hispeed.ch",
+    "id": 49,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "\\8<5v,`kenC2fbfgd~alRL?DM,pEB)WT",
+    "permissions": []
+  },
+  {
+    "email": "bonviniflorian@pellet.com",
+    "id": 50,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "m+,lXp/%E5[u0m?^^)~}EH9:*2Df*`,_",
+    "permissions": []
+  },
+  {
+    "email": "coignyluca@diesbach.net",
+    "id": 51,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "Taczzuy[={7dm+]Qrbd%KbKlOy{/{7ez",
+    "permissions": []
+  },
+  {
+    "email": "paschoudalexandre@curdy.com",
+    "id": 52,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "2P}v~CS}UR$}2V)i:5hN|A;Mh^AxPi_r",
+    "permissions": []
+  },
+  {
+    "email": "elisabeth83@hotmail.fr",
+    "id": 53,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "{dC@zX~f`;*Qiy9Qyjkn6Rb7TO3V?CuJ",
+    "permissions": []
+  },
+  {
+    "email": "eliane79@mercier.com",
+    "id": 54,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "-|dSR^7e}fK6emS|nW|f<wX$74sl,n}-",
+    "permissions": []
+  },
+  {
+    "email": "morardcaroline@botteron.com",
+    "id": 55,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": ".iB*4rneC*t7KE+kOxeptv,:E]XdqP_y",
+    "permissions": []
+  },
+  {
+    "email": "andre83@yahoo.fr",
+    "id": 56,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "=-`@&^tPG6wTM5.SWH;X)9[4<}\\WD^po",
+    "permissions": []
+  },
+  {
+    "email": "chappuissimone@barillon.com",
+    "id": 57,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "KaS@p1N`[V&lVA?$C-`xq2+)J2b%yW/u",
+    "permissions": []
+  },
+  {
+    "email": "monnetchristophe@candaux.org",
+    "id": 58,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "u$dB>&D,x;|vh&*wq(blO[Uh9Ube~R>p",
+    "permissions": []
+  },
+  {
+    "email": "rolandmonnard@cornut.net",
+    "id": 59,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "1*|0nW/Wc7@GG-N2NF5_g2!PquX+es|W",
+    "permissions": []
+  },
+  {
+    "email": "simonequartier@rapin.ch",
+    "id": 60,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "jQdWjc?gv^T2[>!qzI^``Yi;G$U|yPu|",
+    "permissions": []
+  },
+  {
+    "email": "michael24@chatriand.ch",
+    "id": 61,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "V9T)qMF8&vsb9r%t:J%R$cDrG~uMnXZO",
+    "permissions": []
+  },
+  {
+    "email": "learomanens@gmail.com",
+    "id": 62,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "7c0pQePZS5J6K;]HKm$|+uAMu=ITEqIP",
+    "permissions": []
+  },
+  {
+    "email": "wsansonnens@hotmail.fr",
+    "id": 63,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": ".ikYPSm`+.t^^7$D#a)d=`dpDbfE$l,9",
+    "permissions": []
+  },
+  {
+    "email": "cornutfabienne@mottiez.com",
+    "id": 64,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "_x;HX#GF~J9&atQZ3T\\-X@eudsziQ1[-",
+    "permissions": []
+  },
+  {
+    "email": "lbesse@muriset.com",
+    "id": 65,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "o=>[v}CD:&yQ*csYu3%i7gg~>CUBdf-j",
+    "permissions": []
+  },
+  {
+    "email": "gillieronaurelie@jacot-descombes.net",
+    "id": 66,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "(jPq7VLQE8Q-Xcs&L&ZR!<Srj\\NU-}Rq",
+    "permissions": []
+  },
+  {
+    "email": "madeleinejoye@theraulaz.org",
+    "id": 67,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "7j4/Egg|J:F;%yAn5ZWP!.v13^l3Wj@V",
+    "permissions": []
+  },
+  {
+    "email": "beguelinmelanie@montandon.com",
+    "id": 68,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "WL,v%!_>+p^T;!mIP{cWPK24^=1_x55U",
+    "permissions": []
+  },
+  {
+    "email": "thierry41@sunrise.ch",
+    "id": 69,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "!=A[wI2<lJ;&.8&g5d=s1U14NwaZ[>UP",
+    "permissions": []
+  },
+  {
+    "email": "gilbertpolla@vtxnet.ch",
+    "id": 70,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": ",8#|.1T.+#r+=Un2u9TJ!f8^J,\\zNlq2",
+    "permissions": []
+  },
+  {
+    "email": "laurent18@pachoud.com",
+    "id": 71,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "fj\\i>6tXirgen@*hZ~:]6rA*+0va(&I;",
+    "permissions": []
+  },
+  {
+    "email": "daniel52@grojean.com",
+    "id": 72,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "v-&>Nn{@j[y@TqKX=O?u-%67Gu#rdub/",
+    "permissions": []
+  },
+  {
+    "email": "hpeitrequin@bugnon.org",
+    "id": 73,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "1l&X/P#Bvf$\\O10oG]ttHp.YYJTZ{.0{",
+    "permissions": []
+  },
+  {
+    "email": "jessica67@cousin.com",
+    "id": 74,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "3#4bq!A_$SG/Kq*Yi|.53!~~c|9PvJ/R",
+    "permissions": []
+  },
+  {
+    "email": "durouxjessica@hotmail.fr",
+    "id": 75,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "3QSS-LbK_A//izE|Q*PS96RxuRsg5B(R",
+    "permissions": []
+  },
+  {
+    "email": "fcattin@sunrise.ch",
+    "id": 76,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": ".5u?/m1yM;uaMG[mbxn(u2=z%=-W=\\W`",
+    "permissions": []
+  },
+  {
+    "email": "simonevienne@cossy.net",
+    "id": 77,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "(mF<(\\a4;7Gd.>+Kt~:Ua)yE??5lQDH1",
+    "permissions": []
+  },
+  {
+    "email": "louisbrandt@carraud.com",
+    "id": 78,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "R}x6$<Rdv^PRosjc,-=6MkUV&`&7CkNw",
+    "permissions": []
+  },
+  {
+    "email": "emilie65@diesbach.org",
+    "id": 79,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "O=GZ}b&NkOYYfw|Xbei<f[JF^;%e5Pxm",
+    "permissions": []
+  },
+  {
+    "email": "marianne19@vtxnet.ch",
+    "id": 80,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "Yk[|9+<^!\\qx$C<d:F7C2eLhd)q{&x9:",
+    "permissions": []
+  },
+  {
+    "email": "zoematile@romandie.com",
+    "id": 81,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "NOaNax4fEO4DE$(>wvK`40e\\\\|zPkI|$",
+    "permissions": []
+  },
+  {
+    "email": "ajoye@sunrise.ch",
+    "id": 82,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "6U4}`waJO{kof2HyXTe~*)8(Gk3IQ@c^",
+    "permissions": []
+  },
+  {
+    "email": "paschoudjose@bovet.com",
+    "id": 83,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "95XZ{pZ[a0?&vXNnrf96o`da,zQ60At;",
+    "permissions": []
+  },
+  {
+    "email": "chloe15@rappaz.ch",
+    "id": 84,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "ba~qf~6km6<)O\\*}\\:i[<V7<kE5ducNo",
+    "permissions": []
+  },
+  {
+    "email": "zoe31@hispeed.ch",
+    "id": 85,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "/IhP04vw}N+O?X3_z?:Y-$]bYeKZ;\\iA",
+    "permissions": []
+  },
+  {
+    "email": "jacquesrobert@besancon.ch",
+    "id": 86,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "p7z4kg8z(/aSj>.[Gk!pnRksL!)_%>f.",
+    "permissions": []
+  },
+  {
+    "email": "corinne16@gmail.com",
+    "id": 87,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "R@J5w\\;4[NET0ke9n(sRfJAS#$;)]d$o",
+    "permissions": []
+  },
+  {
+    "email": "wchatriand@bonvini.com",
+    "id": 88,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "/9Kt4yHuY.U#qV*<)oK0~`VUlx.<Fr!I",
+    "permissions": []
+  },
+  {
+    "email": "jbesancon@vtxnet.ch",
+    "id": 89,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "A*J,WGV\\h+``fqtUzgdI9na.OO%FR3$;",
+    "permissions": []
+  },
+  {
+    "email": "masserondanielle@bluewin.ch",
+    "id": 90,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "*Hi)w$7BwFKQJMa$k=}TmL0(v~vPfoG#",
+    "permissions": []
+  },
+  {
+    "email": "georges86@yahoo.fr",
+    "id": 91,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "ih(ZPr{Y~xjTU%V3d7I<SbnGb]ggtvQ<",
+    "permissions": []
+  },
+  {
+    "email": "albertcorpataux@sunrise.ch",
+    "id": 92,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "s<I9r6IJ!B:A)7@Wn;,7}HZtPsGc2[<N",
+    "permissions": []
+  },
+  {
+    "email": "philippe34@gmail.com",
+    "id": 93,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "X55.6x@XsU^Ya.u4&poAoeuX|ydxVrK&",
+    "permissions": []
+  },
+  {
+    "email": "chantal17@barillon.net",
+    "id": 94,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "$<VE-5]p.fO!;[{c0JxOl{y:[p?I3_k$",
+    "permissions": []
+  },
+  {
+    "email": "chappuismichel@bluewin.ch",
+    "id": 95,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "%{q66!1S36wl^YTqu*d1~yEx\\SH.;0c]",
+    "permissions": []
+  },
+  {
+    "email": "cbesancon@vallelian.com",
+    "id": 96,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "a<E;31j}-v>zj:&uxmhL&siME5W`h_Z!",
+    "permissions": []
+  },
+  {
+    "email": "mathieusaudan@romandie.com",
+    "id": 97,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "5sJ*5Wo9]/TBH}YCk:)J$9DwH|*?(\\}8",
+    "permissions": []
+  },
+  {
+    "email": "georgeschevrolet@yahoo.fr",
+    "id": 98,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "/t.Hs-Ha_2YC?<vUg#Xy)`w$S{n(D0T]",
+    "permissions": []
+  },
+  {
+    "email": "philipperobert@chapuis.ch",
+    "id": 99,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "lBQ;p<1WOcFBZ~nhYPG[vMsCR1sf_v+!",
+    "permissions": []
+  },
+  {
+    "email": "evamasseron@chatriant.com",
+    "id": 100,
+    "isActive": true,
+    "isStaff": false,
+    "isSuperUser": false,
+    "password": "4A{#6bT,p%zwz:s@{aj&GYIg+*s6Lz_J",
+    "permissions": []
+  },
+  {
+    "email": "Rene.Carron@hispeed.ch",
+    "first_name": "Ren\u00e9",
+    "id": 101,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Carron",
+    "password": "/%,6(DK;^1[^SLxh;w}:yMN*3ibKU]pW",
+    "permissions": []
+  },
+  {
+    "email": "Emilie.Duroux@hotmail.fr",
+    "first_name": "Emilie",
+    "id": 102,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Duroux",
+    "password": "m:HQDsJTW>KvBKh1]|uQ{]&]`.GI6B@t",
+    "permissions": []
+  },
+  {
+    "email": "Maxime.Comment@romandie.com",
+    "first_name": "Maxime",
+    "id": 103,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Comment",
+    "password": "TPq+yJ^JI7g;Js~T]D|V];qykjlq4^#A",
+    "permissions": []
+  },
+  {
+    "email": "Julie.Bonvini@yahoo.fr",
+    "first_name": "Julie",
+    "id": 104,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Bonvini",
+    "password": "l(IGVY8oz^E6$sbY&vME.Rljf?`#(&BD",
+    "permissions": []
+  },
+  {
+    "email": "Roger.Cosendey@bluewin.ch",
+    "first_name": "Roger",
+    "id": 105,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Cosendey",
+    "password": "=dMaS^Zb33u$=Xe@ORjt&\\$ph<N=brKh",
+    "permissions": []
+  },
+  {
+    "email": "Bernard.Barbey@sunrise.ch",
+    "first_name": "Bernard",
+    "id": 106,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Barbey",
+    "password": "JuuO<qFsguo4~STxP73WSFiaHh]5~JDZ",
+    "permissions": []
+  },
+  {
+    "email": "Michel.Broquet@romandie.com",
+    "first_name": "Michel",
+    "id": 107,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Broquet",
+    "password": "$eiKYl~4jOyD]KPgToG+FW>\\ENw(uT,J",
+    "permissions": []
+  },
+  {
+    "email": "Maxime.Conrad@vtxnet.ch",
+    "first_name": "Maxime",
+    "id": 108,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Conrad",
+    "password": "`,n;*2\\3#_c9~,B14s^aX@=gx*)xv9Sb",
+    "permissions": []
+  },
+  {
+    "email": "Romain.Monnet@hotmail.fr",
+    "first_name": "Romain",
+    "id": 109,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Monnet",
+    "password": ">uBRl4Pkh^wNq\\p!Oe5E>sw2.$D]V2mT",
+    "permissions": []
+  },
+  {
+    "email": "Luca.Fonjallaz@bluewin.ch",
+    "first_name": "Luca",
+    "id": 110,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Fonjallaz",
+    "password": ":u$&!#L$lGmaA>c`!Bl1oJki:C;xa[|5",
+    "permissions": []
+  },
+  {
+    "email": "Christophe.Tinguely@yahoo.fr",
+    "first_name": "Christophe",
+    "id": 111,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Tinguely",
+    "password": "`&BoE347ex)(fP\\GqsqH(![zG]D7s.>U",
+    "permissions": []
+  },
+  {
+    "email": "Lisa.Menthonnex@bluewin.ch",
+    "first_name": "Lisa",
+    "id": 112,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Menthonnex",
+    "password": "L@754]20Ouksx{fek3XdP\\![XOy~]:<i",
+    "permissions": []
+  },
+  {
+    "email": "Zoe.Crivelli@bluewin.ch",
+    "first_name": "Zo\u00e9",
+    "id": 113,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Crivelli",
+    "password": "v~u<s?1:iem3mgXBpoT@tKw&.,((]<5z",
+    "permissions": []
+  },
+  {
+    "email": "Elisa.de Dardel@bluewin.ch",
+    "first_name": "Elisa",
+    "id": 114,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "de Dardel",
+    "password": "?r;2D-HhHywfzN{<6,;h/o/+nFJ!;8W&",
+    "permissions": []
+  },
+  {
+    "email": "Andre.Corboz@hispeed.ch",
+    "first_name": "Andr\u00e9",
+    "id": 115,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Corboz",
+    "password": "KPehsog|s5YH*8=p]N6X@BA9*]Y._q&u",
+    "permissions": []
+  },
+  {
+    "email": "Elisa.Comman@romandie.com",
+    "first_name": "Elisa",
+    "id": 116,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Comman",
+    "password": "x)!N<[JzKOXx-R(40]>8frUZrVBh9now",
+    "permissions": []
+  },
+  {
+    "email": "Danielle.Isella@yahoo.fr",
+    "first_name": "Danielle",
+    "id": 117,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Isella",
+    "password": "e2g4V7!Zo$jrSb*:ye|wIl9KBB}|v2r\\",
+    "permissions": []
+  },
+  {
+    "email": "Loic.Cornut@bluewin.ch",
+    "first_name": "Lo\u00efc",
+    "id": 118,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Cornut",
+    "password": "-pe?dXw:Aa&fj\\nsR@Ci{74C@Z!#T(e.",
+    "permissions": []
+  },
+  {
+    "email": "Mathilde.Quartier@yahoo.fr",
+    "first_name": "Mathilde",
+    "id": 119,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Quartier",
+    "password": "dl(h4dc92X%IG^@Rdy>^t%OF#]&A||Zj",
+    "permissions": []
+  },
+  {
+    "email": "Leo.Treboux@yahoo.fr",
+    "first_name": "L\u00e9o",
+    "id": 120,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Treboux",
+    "password": "d(.J?FhwQ|NHpz~Xe,D<z,5Af3H/$s|I",
+    "permissions": []
+  },
+  {
+    "email": "Luca.Piccand@vtxnet.ch",
+    "first_name": "Luca",
+    "id": 121,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Piccand",
+    "password": "t/ok8d#+_%u#P^vTGeJ5h!<<J&8}\\$Bz",
+    "permissions": []
+  },
+  {
+    "email": "Elodie.Bonvin@vtxnet.ch",
+    "first_name": "Elodie",
+    "id": 122,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Bonvin",
+    "password": ";I7:-BT|_MYt16<usRlp-lzunx{==lj_",
+    "permissions": []
+  },
+  {
+    "email": "Patricia.Rosselet@gmail.com",
+    "first_name": "Patricia",
+    "id": 123,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Rosselet",
+    "password": "P~M,nxoMq*Q#XbN*=%9%mE&HlF98JV2o",
+    "permissions": []
+  },
+  {
+    "email": "Corinne.Monnet@vtxnet.ch",
+    "first_name": "Corinne",
+    "id": 124,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Monnet",
+    "password": "GVv4gFM}xpPpaW*QyM!Z4*SjLN<|7aVH",
+    "permissions": []
+  },
+  {
+    "email": "Clara.Grojean@vtxnet.ch",
+    "first_name": "Clara",
+    "id": 125,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Grojean",
+    "password": "SWQnYYycG%WCkJzIHyVUolB-8-q3U(m%",
+    "permissions": []
+  },
+  {
+    "email": "Sophie.Marti@sunrise.ch",
+    "first_name": "Sophie",
+    "id": 126,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Marti",
+    "password": "%:7?^SBW.L0Ux2SZ7x@[/CdIwmTKVES$",
+    "permissions": []
+  },
+  {
+    "email": "Romain.Besencon@bluewin.ch",
+    "first_name": "Romain",
+    "id": 127,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Besen\u00e7on",
+    "password": "H7Pmm}/Dy_htZ,07[`:T.i_*KvZ[C`&O",
+    "permissions": []
+  },
+  {
+    "email": "Laura.Nusslin@sunrise.ch",
+    "first_name": "Laura",
+    "id": 128,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "N\u00fcsslin",
+    "password": "|CReNb|S(OkY2eiqk8Xdr,]jJ4p[$0]R",
+    "permissions": []
+  },
+  {
+    "email": "Manuel.Jacot-Descombes@romandie.com",
+    "first_name": "Manuel",
+    "id": 129,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Jacot-Descombes",
+    "password": ".tU}CAy<j[ST.|a7)DVA<3.REn,2q7SR",
+    "permissions": []
+  },
+  {
+    "email": "Bruno.Duvanel@hispeed.ch",
+    "first_name": "Bruno",
+    "id": 130,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Duvanel",
+    "password": "(&i%S;@8#::ZO-1]Vl8IVik?vNR^vS@i",
+    "permissions": []
+  },
+  {
+    "email": "Fabienne.Cornut@hotmail.fr",
+    "first_name": "Fabienne",
+    "id": 131,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Cornut",
+    "password": "_Y7AeI|Z<;SCG-O:z`+>!jvdTG{@Bp_.",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Catherine.Jomini@hispeed.ch",
+    "first_name": "Catherine",
+    "id": 132,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Jomini",
+    "password": "%O2qa{T:^KyyC((#g0*gx`I^3epXxop|",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Danielle.Charpie@romandie.com",
+    "first_name": "Danielle",
+    "id": 133,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Charpi\u00e9",
+    "password": "*?<KOr=u1{eXmBn@l9)4:ZhrUMxaU@mj",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Manon.Galland@yahoo.fr",
+    "first_name": "Manon",
+    "id": 134,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Galland",
+    "password": "(2hsy^l<^:ngtHg6JxL4~kQMn(A3kl]l",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Sebastien.Bujard@yahoo.fr",
+    "first_name": "S\u00e9bastien",
+    "id": 135,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "last_name": "Bujard",
+    "password": "KD_~1GN^&(5_EaAV><t$o8{)>Kb)MmyQ",
+    "permissions": [
+      {
+        "code": "MANAGE_PRODUCERS"
+      }
+    ]
+  },
+  {
+    "email": "Andre.Comte@hispeed.ch",
+    "id": 136,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "password": "\\{`ZHHLgSxK5*GJEf&EN{N~c%38{F;<B",
+    "permissions": [
+      {
+        "code": "MANAGE_STAFF"
+      },
+      {
+        "code": "MANAGE_USERS"
+      },
+      {
+        "code": "MANAGE_PRODUCERS"
+      },
+      {
+        "code": "MANAGE_MANAGERS"
+      }
+    ]
+  },
+  {
+    "email": "Albert.Comte@hotmail.fr",
+    "id": 137,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": true,
+    "password": "OVv6nIsc]A1-kv5ah}bw|jZ;sc|#A(:*",
+    "permissions": []
+  }
+]
