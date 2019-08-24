@@ -21,7 +21,8 @@ def step_impl(context, is_active, has_password):
         'password': 'password' if has_password else '',
         'isActive': is_active,
         'isStaff': False,
-        'isSuperUser': False
+        'isSuperUser': False,
+        'id': 1000
     }
     create_database_user(user_data)
     context.user = user_data

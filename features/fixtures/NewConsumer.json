@@ -1,5 +1,6 @@
 {
   "email": "new_consumer@shopozor.ch",
+  "id": 101,
   "isActive": false,
   "isStaff": false,
   "isSuperUser": false

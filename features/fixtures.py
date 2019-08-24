@@ -21,7 +21,7 @@ def permissions(context):
 @fixture
 def unknown(context):
     user_data = json.load(
-        os.path.join('features', 'fixtures', 'Users', 'NewConsumer.json'))
+        os.path.join(settings.FIXTURE_DIRS[0], 'NewConsumer.json'))
     set_password(user_data)
     context.unknown = user_data
     return user_data
@@ -30,7 +30,7 @@ def unknown(context):
 @fixture
 def consumer(context):
     user_data = json.load(
-        os.path.join('features', 'fixtures', 'Users', 'Consommateurs.json'))[0]
+        os.path.join(settings.FIXTURE_DIRS[0], 'small', 'Users', 'Consommateurs.json'))[0]
     create_database_user(user_data)
     context.consumer = user_data
     return user_data
@@ -39,7 +39,7 @@ def consumer(context):
 @fixture
 def inactive_customer(context):
     user_data = json.load(
-        os.path.join('features', 'fixtures', 'Users', 'InactiveConsumer.json'))
+        os.path.join(settings.FIXTURE_DIRS[0], 'InactiveConsumer.json'))
     create_database_user(user_data)
     context.inactive_customer = user_data
     return user_data
@@ -48,7 +48,7 @@ def inactive_customer(context):
 @fixture
 def producer(context):
     user_data = json.load(
-        os.path.join('features', 'fixtures', 'Users', 'Producteurs.json'))[0]
+        os.path.join(settings.FIXTURE_DIRS[0], 'small', 'Users', 'Producteurs.json'))[0]
     create_database_user(user_data)
     context.producer = user_data
     return user_data
@@ -57,7 +57,7 @@ def producer(context):
 @fixture
 def manager(context):
     user_data = json.load(
-        os.path.join('features', 'fixtures', 'Users', 'Responsables.json'))[0]
+        os.path.join(settings.FIXTURE_DIRS[0], 'small', 'Users', 'Responsables.json'))[0]
     create_database_user(user_data)
     context.manager = user_data
     return user_data
@@ -66,7 +66,7 @@ def manager(context):
 @fixture
 def rex(context):
     user_data = json.load(
-        os.path.join('features', 'fixtures', 'Users', 'Rex.json'))
+        os.path.join(settings.FIXTURE_DIRS[0], 'small', 'Users', 'Rex.json'))[0]
     create_database_user(user_data)
     context.rex = user_data
     return user_data
@@ -75,7 +75,7 @@ def rex(context):
 @fixture
 def softozor(context):
     user_data = json.load(
-        os.path.join('features', 'fixtures', 'Users', 'Softozor.json'))
+        os.path.join(settings.FIXTURE_DIRS[0], 'small', 'Users', 'Softozor.json'))[0]
     create_database_user(user_data)
     context.softozor = user_data
     return user_data

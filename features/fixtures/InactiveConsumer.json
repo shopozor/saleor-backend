@@ -1,5 +1,6 @@
 {
   "email": "inactive_consumer@budzons.ch",
+  "id": 100,
   "isActive": false,
   "isStaff": false,
   "isSuperUser": false
