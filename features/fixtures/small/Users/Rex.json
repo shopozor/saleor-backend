@@ -1,0 +1,23 @@
+[
+  {
+    "email": "Julie.Montandon@sunrise.ch",
+    "id": 18,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "permissions": [
+      {
+        "code": "MANAGE_STAFF"
+      },
+      {
+        "code": "MANAGE_USERS"
+      },
+      {
+        "code": "MANAGE_PRODUCERS"
+      },
+      {
+        "code": "MANAGE_MANAGERS"
+      }
+    ]
+  }
+]

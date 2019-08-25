@@ -1,0 +1,23 @@
+[
+  {
+    "email": "Sara.Besencon@yahoo.fr",
+    "id": 1171,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": false,
+    "permissions": [
+      {
+        "code": "MANAGE_STAFF"
+      },
+      {
+        "code": "MANAGE_USERS"
+      },
+      {
+        "code": "MANAGE_PRODUCERS"
+      },
+      {
+        "code": "MANAGE_MANAGERS"
+      }
+    ]
+  }
+]

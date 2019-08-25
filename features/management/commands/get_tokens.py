@@ -2,7 +2,7 @@ import os
 
 from django.contrib.auth.models import AnonymousUser
 from django.core.management.base import BaseCommand
-from features.utils.fixtures.loader import get_data_from_json_fixture
+from features.utils.fixtures import json
 from features.utils.graphql.loader import get_query_from_file
 from tests.api.conftest import ApiClient
 from tests.api.utils import get_graphql_content
@@ -18,7 +18,7 @@ def get_user_tokens():
     client = ApiClient(user=AnonymousUser())
     result = {}
     for persona in 'Consommateurs', 'Producteurs', 'Responsables', 'Rex', 'Softozor':
-        user_data = get_data_from_json_fixture(os.path.join(
+        user_data = json.load(os.path.join(
             'Authentication', 'Credentials', persona + '.json'))
         if isinstance(user_data, list):
             user = user_data[0]

@@ -1,0 +1,10 @@
+[
+  {
+    "email": "Andre.Carraux@sunrise.ch",
+    "id": 1172,
+    "isActive": true,
+    "isStaff": true,
+    "isSuperUser": true,
+    "permissions": []
+  }
+]
