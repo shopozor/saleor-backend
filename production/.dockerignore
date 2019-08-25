@@ -1,0 +1,14 @@
+.*
+**/*.pyc
+**/*.sqlite
+**/media
+**/static
+/features/
+/future_features/
+/production/
+/e2e/
+/specification/
+/test_utils/
+/unit_tests/
+/venv/
+dev.env

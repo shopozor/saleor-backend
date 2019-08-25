@@ -45,3 +45,5 @@ PASSWORD_HASHERS = [
 
 DEFAULT_COUNTRY = os.environ.get("DEFAULT_COUNTRY", "CH")
 DEFAULT_CURRENCY = os.environ.get("DEFAULT_CURRENCY", "CHF")
+
+WSGI_APPLICATION = "shopozor.wsgi.application"
