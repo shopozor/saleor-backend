@@ -35,14 +35,17 @@ pipeline {
         SECRET_KEY = 'theSecretKey'
       }
       steps {
-        sh ". $VENV/bin/activate && python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags=\"~wip\""
+        sh ". $VENV/bin/activate && python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags ~wip"
       }
     }
   }
   post {
     always {
       script {
-         junit "**/$REPORTS_FOLDER/*.xml"
+        junit "**/$REPORTS_FOLDER/*.xml"
+        if(GIT_BRANCH == 'origin/dev' || GIT_BRANCH == 'origin/master') {
+          build job: 'backend-spec', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: GIT_BRANCH]]
+        }
       }
     }
   }
