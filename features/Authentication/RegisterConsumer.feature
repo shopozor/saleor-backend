@@ -113,6 +113,9 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     qu'un e-mail existant mais avec une casse différente, alors l'utilisateur doit se voir
     refuser la création de son compte pour cause d'identifiant déjà existant.
 
+    Aucun message d'erreur ne doit être retourné car cela donnerait de l'information sur les
+    comptes existants dans le Shopozor.
+
     Etant donné l'e-mail d'un compte actif dont la casse est modifiée
     Lorsqu'un utilisateur fait une demande d'enregistrement avec cet e-mail et un mot de passe conforme
     Alors il n'obtient aucun message d'erreur
