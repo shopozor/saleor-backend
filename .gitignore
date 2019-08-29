@@ -21,6 +21,9 @@ dev.env
 
 # generated user data with password
 /features/fixtures/**/Users.json
+/features/fixtures/small/
+/features/fixtures/medium/
+/features/fixtures/large/
 
 # local environment settings
 *.local

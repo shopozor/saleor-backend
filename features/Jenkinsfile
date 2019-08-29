@@ -5,6 +5,8 @@ pipeline {
     }
   }
   environment {
+    DJANGO_SETTINGS_MODULE = 'features.settings'
+    PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
     REPORTS_FOLDER = 'junit-reports'
     VENV = 'venv'
   }
@@ -23,15 +25,18 @@ pipeline {
         }
       }
     }
+    stage('Generating fixtures') {
+      steps {
+        sh ". $VENV/bin/activate && python manage.py generate_django_fixtures && python manage.py generate_graphql_responses"
+      }
+    }
     stage('Performing acceptance tests') {
       environment {
         DATABASE_URL = credentials('postgres-credentials')
-        DJANGO_SETTINGS_MODULE = 'features.settings'
-        PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
+        JWT_ALGORITHM = 'HS256'
         JWT_EXPIRATION_DELTA_IN_DAYS = 30
         JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS = 360
         JWT_SECRET_KEY = 'test_key'
-        JWT_ALGORITHM = 'HS256'
         SECRET_KEY = 'theSecretKey'
       }
       steps {
