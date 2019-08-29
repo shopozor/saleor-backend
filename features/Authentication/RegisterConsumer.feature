@@ -106,6 +106,19 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et l'incident est enregistré dans un journal
     Et son mot de passe n'est pas sauvegardé
 
+  @HackerAbuse @fixture.user-accounts
+  Scénario: L'e-mail est insensible à la casse
+
+    Si un utilisateur essaie de s'enregistrer avec un e-mail comprenant les mêmes symboles
+    qu'un e-mail existant mais avec une casse différente, alors l'utilisateur doit se voir
+    refuser la création de son compte pour cause d'identifiant déjà existant.
+
+    Etant donné l'e-mail d'un compte actif dont la casse est modifiée
+    Lorsqu'un utilisateur fait une demande d'enregistrement avec cet e-mail et un mot de passe conforme
+    Alors il n'obtient aucun message d'erreur
+    Et son compte n'est pas créé
+    Et son mot de passe n'est pas sauvegardé dans le compte existant
+    Et il ne reçoit pas d'e-mail d'activation de compte
 
   Scénario: Le nouveau Consommateur active son compte dans les temps
 

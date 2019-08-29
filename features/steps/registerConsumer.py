@@ -47,6 +47,15 @@ def step_impl(context):
         context.response['data'], context.successful_account_confirmation['data'])
 
 
+@given(u'l\'e-mail d\'un compte actif dont la casse est modifiée')
+def step_impl(context):
+    context.current_user = deepcopy(context.consumer)
+    context.current_user['email'] = context.current_user['email'].title()
+    context.existing_user = deepcopy(context.consumer)
+    context.existing_encrypted_password = get_current_encrypted_password(
+        context.consumer['email'])
+
+
 @when(u'un Consommateur inconnu fait une demande d\'enregistrement avec un mot de passe conforme')
 def step_impl(context):
     context.current_user = deepcopy(context.unknown)
@@ -91,6 +100,13 @@ def step_impl(context):
     context.current_user = deepcopy(context.consumer)
     context.current_encrypted_password = get_current_encrypted_password(
         context.current_user['email'])
+    assertPasswordIsCompliant(context.current_user['password'])
+    test_client = context.test.client
+    context.response = signup(test_client, **context.current_user)
+
+
+@when(u'un utilisateur fait une demande d\'enregistrement avec cet e-mail et un mot de passe conforme')
+def step_impl(context):
     assertPasswordIsCompliant(context.current_user['password'])
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
@@ -209,3 +225,10 @@ def step_impl(context):
     response = activate_account(test_client, **context.credentials)
     context.test.assertEqual(
         context.expired_link, response['data']['consumerActivate'])
+
+
+@then(u'son mot de passe n\'est pas sauvegardé dans le compte existant')
+def step_impl(context):
+    test_client = context.test.client
+    context.test.assertEqual(context.existing_encrypted_password, get_current_encrypted_password(
+        context.existing_user['email']))
