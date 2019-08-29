@@ -70,12 +70,22 @@ def get_pricing(variant_fields, product_fields):
     return pricing
 
 
+def get_users_fixture(fixture_variant):
+    users_fixture = json.load(os.path.join(
+        settings.FIXTURE_DIRS[0], fixture_variant, 'Users', 'Producteurs.json'))
+    users_fixture.extend(json.load(os.path.join(
+        settings.FIXTURE_DIRS[0], fixture_variant, 'Users', 'Responsables.json')))
+    users_fixture.extend(json.load(os.path.join(
+        settings.FIXTURE_DIRS[0], fixture_variant, 'Users', 'Rex.json')))
+    users_fixture.extend(json.load(os.path.join(
+        settings.FIXTURE_DIRS[0], fixture_variant, 'Users', 'Softozor.json')))
+    return users_fixture
+
+
 def generate_shop_catalogues(fixture_variant):
     shops_fixture = json.load(os.path.join(
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
-    users_fixture = json.load(os.path.join(
-        settings.FIXTURE_DIRS[0], fixture_variant, 'Users.json'))
-
+    users_fixture = get_users_fixture(fixture_variant)
     expected_catalogues = dict()
     for shop in [shop for shop in shops_fixture if shop['model'] == 'shopozor.shop']:
         expected_catalogues[shop['pk']] = {
