@@ -115,8 +115,8 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
 
     Aucun message d'erreur ne doit être retourné car cela donnerait de l'information sur les
     comptes existants dans le Shopozor. Ce scénario est pratiquement équivalent au scénario
-    précédent en termes de comportement. Il assure en plus l'unicitié d'un compte quelle que
-    soit la casse de l'e-mail.
+    précédent en termes de comportement. Il assure en plus l'unicitié d'un compte quelle que soit
+    la casse de l'e-mail.
 
     Etant donné l'e-mail d'un compte actif dont la casse est modifiée
     Lorsqu'un utilisateur fait une demande d'enregistrement avec cet e-mail et un mot de passe conforme
