@@ -31,7 +31,7 @@ class FakeDataFactory:
 
     def create_email(self, first_name, last_name):
         domain_name = self.__fake.free_email_domain()
-        return unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name))
+        return unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name)).lower()
 
     def __create_consumer(self, id):
         return {

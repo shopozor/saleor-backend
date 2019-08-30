@@ -108,6 +108,7 @@ class ConsumerCreate(ModelMutation):
     @classmethod
     def perform_mutation(cls, _root, info, **data):
         try:
+            data['input']['email'] = data['input']['email'].lower()
             return super().perform_mutation(_root, info, **data)
         except HackerAbuseException as error:
             cls.report_hacker_abuse(error.user)

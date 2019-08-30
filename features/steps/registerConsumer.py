@@ -5,6 +5,7 @@ from django.core import mail
 from features.utils.auth.account_handling import get_current_encrypted_password, account_exists, is_active_account
 from features.utils.auth.credentials_checks import check_compulsory_login_credential_arguments, assertPasswordIsCompliant, assertPasswordIsNotCompliant
 from features.utils.auth.mail_confirmation import gather_email_activation_data, check_that_email_was_sent_to_user, check_that_email_is_received_soon_enough, check_compulsory_account_activation_credential_arguments
+from features.utils.auth.password_generation import RandomCompliantPasswordGenerator
 from features.utils.graphql.loader import get_query_from_file
 from freezegun import freeze_time
 from saleor.account.models import User
@@ -45,6 +46,15 @@ def step_impl(context):
     context.response = activate_account(test_client, **context.credentials)
     context.test.assertEqual(
         context.response['data'], context.successful_account_confirmation['data'])
+
+
+@given(u'l\'e-mail d\'un compte actif dont la casse est modifiée')
+def step_impl(context):
+    context.current_user = deepcopy(context.consumer)
+    context.current_user['email'] = context.current_user['email'].title()
+    context.existing_user = deepcopy(context.consumer)
+    context.current_encrypted_password = get_current_encrypted_password(
+        context.consumer['email'])
 
 
 @when(u'un Consommateur inconnu fait une demande d\'enregistrement avec un mot de passe conforme')
@@ -91,6 +101,15 @@ def step_impl(context):
     context.current_user = deepcopy(context.consumer)
     context.current_encrypted_password = get_current_encrypted_password(
         context.current_user['email'])
+    assertPasswordIsCompliant(context.current_user['password'])
+    test_client = context.test.client
+    context.response = signup(test_client, **context.current_user)
+
+
+@when(u'un utilisateur fait une demande d\'enregistrement avec cet e-mail et un mot de passe conforme')
+def step_impl(context):
+    password_generator = RandomCompliantPasswordGenerator()
+    context.current_user['password'] = password_generator.get_compliant_password()
     assertPasswordIsCompliant(context.current_user['password'])
     test_client = context.test.client
     context.response = signup(test_client, **context.current_user)
@@ -151,6 +170,11 @@ def step_impl(context):
     context.test.assertFalse(account_exists(context.current_user['email']))
 
 
+@then(u'aucun compte n\'est créé avec cet e-mail')
+def step_impl(context):
+    context.test.assertFalse(account_exists(context.current_user['email']))
+
+
 @then(u'son compte reste inactif')
 def step_impl(context):
     context.test.assertFalse(is_active_account(context.current_user['email']))
@@ -175,7 +199,8 @@ def step_impl(context):
 @then(u'l\'incident est enregistré dans un journal')
 def step_impl(context):
     entry = HackerAbuseEvents.objects.latest('timestamp')
-    context.test.assertEqual(context.current_user['email'], entry.user.email)
+    context.test.assertEqual(
+        context.current_user['email'].lower(), entry.user.email)
 
 
 @then(u'son compte est activé')
@@ -194,7 +219,7 @@ def step_impl(context):
 @then(u'son mot de passe n\'est pas sauvegardé')
 def step_impl(context):
     context.test.assertEqual(get_current_encrypted_password(
-        context.current_user['email']), context.current_encrypted_password)
+        context.current_user['email'].lower()), context.current_encrypted_password)
 
 
 @then(u'il n\'est pas identifié')
