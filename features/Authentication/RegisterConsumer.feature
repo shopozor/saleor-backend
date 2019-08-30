@@ -114,14 +114,17 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     refuser la création de son compte pour cause d'identifiant déjà existant.
 
     Aucun message d'erreur ne doit être retourné car cela donnerait de l'information sur les
-    comptes existants dans le Shopozor.
+    comptes existants dans le Shopozor. Ce scénario est pratiquement équivalent au scénario
+    précédent en termes de comportement. Il assure en plus l'unicitié d'un compte quelle que
+    soit la casse de l'e-mail.
 
     Etant donné l'e-mail d'un compte actif dont la casse est modifiée
     Lorsqu'un utilisateur fait une demande d'enregistrement avec cet e-mail et un mot de passe conforme
     Alors il n'obtient aucun message d'erreur
-    Et son compte n'est pas créé
-    Et son mot de passe n'est pas sauvegardé dans le compte existant
-    Et il ne reçoit pas d'e-mail d'activation de compte
+    Et un message d'avertissement est envoyé à cet e-mail
+    Et l'incident est enregistré dans un journal
+    Et son mot de passe n'est pas sauvegardé
+    Et aucun compte n'est créé avec cet e-mail
 
   Scénario: Le nouveau Consommateur active son compte dans les temps
 

@@ -9,7 +9,7 @@ import re
 def check_that_email_was_sent_to_user(test, user_email):
     test.assertEqual(len(mail.outbox), 1)
     sent_email = mail.outbox[0]
-    test.assertTrue(user_email in sent_email.recipients())
+    test.assertTrue(user_email.lower() in sent_email.recipients())
 
 
 def check_that_email_is_received_soon_enough(context, expiration_delta_in_seconds):
