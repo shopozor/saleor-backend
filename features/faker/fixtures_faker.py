@@ -21,13 +21,14 @@ class FakeDataFactory:
         'Nettoyages': ('Savon', 'Liquide vaisselle', 'Pastilles lave-vaisselle', 'Linge', 'Détergent')
     }
 
-    def __init__(self, max_nb_products_per_producer=10, max_nb_producers_per_shop=10):
+    def __init__(self, max_nb_products_per_producer=10, max_nb_producers_per_shop=10, max_nb_images_per_product=10):
         self.__fake = Faker('fr_CH')
         self.__fake.seed('features')
         self.__fake.add_provider(ShopozorGeoProvider)
         self.__fake.add_provider(ProductProvider)
         self.__MAX_NB_PRODUCERS_PER_SHOP = max_nb_producers_per_shop
         self.__MAX_NB_PRODUCTS_PER_PRODUCER = max_nb_products_per_producer
+        self.__MAX_NB_IMAGES_PER_PRODUCT = max_nb_images_per_product
 
     def create_email(self, first_name, last_name):
         domain_name = self.__fake.free_email_domain()
@@ -199,8 +200,7 @@ class FakeDataFactory:
     def __category(self, pk, name):
         return {
             'fields': {
-                # TODO: generate random image
-                'background_image': 'category-backgrounds/accessories.jpg',
+                'background_image': self.__fake.category_image_url(),
                 'background_image_alt': '',
                 'description': '',
                 'description_json': {
@@ -347,4 +347,28 @@ class FakeDataFactory:
         for pk in range(1, list_size + 1):
             product_id = self.__fake.random_element(product_ids)
             result.append(self.__productvariant(pk, product_id))
+        return result
+
+    def __productimage(self, pk, product_id):
+        return {
+            'model': 'product.productimage',
+            'pk': pk,
+            'fields': {
+                'sort_order': 0,
+                'product': product_id,
+                'image': self.__fake.product_image_url(),
+                'ppoi': '0.5x0.5',
+                'alt': ''
+            }
+        }
+
+    def create_productimages(self, product_ids):
+        result = []
+        pk = 1
+        for product_id in product_ids:
+            nb_imgs = self.__fake.random.randint(
+                0, self.__MAX_NB_IMAGES_PER_PRODUCT)
+            for _ in range(0, nb_imgs):
+                result.append(self.__productimage(pk, product_id))
+                pk += 1
         return result

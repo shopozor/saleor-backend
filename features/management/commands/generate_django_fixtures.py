@@ -106,6 +106,9 @@ def generate_variant(variant_name, output_folder):
         product_ids, variant['#productvariants'])
     shopozor.extend(product_variants)
 
+    product_images = factory.create_productimages(product_ids)
+    shopozor.extend(product_images)
+
     staff = factory.create_staff(producers)
     shopozor.extend(staff)
 
