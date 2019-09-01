@@ -138,8 +138,6 @@ def generate_shop_catalogues(fixture_variant):
                         'images': [{
                             'id': fixture['pk'],
                             'alt': fixture['fields']['alt'],
-                            # TODO: url needs to be of the form http://localhost:8000/media/products/saleordemoproduct_fd_juice_06_JwLMquZ.png, so we need
-                            # to figure out where the http://localhost:8000/media/ is coming from
                             'url': fixture['fields']['image'],
                         } for fixture in shops_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']],
                         'category': {
