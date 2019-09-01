@@ -199,8 +199,7 @@ class FakeDataFactory:
     def __category(self, pk, name):
         return {
             'fields': {
-                # TODO: generate random image
-                'background_image': 'category-backgrounds/accessories.jpg',
+                'background_image': self.__fake.category_image_url(),
                 'background_image_alt': '',
                 'description': '',
                 'description_json': {

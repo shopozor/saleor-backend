@@ -19,8 +19,11 @@ dev.env
 # generated specification
 /specification/
 
-# generated user data with password
+# generated fixtures
 /features/fixtures/**/Users.json
+/features/fixtures/small/
+/features/fixtures/medium/
+/features/fixtures/large/
 
 # local environment settings
 *.local
