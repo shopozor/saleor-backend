@@ -91,7 +91,7 @@ pipeline {
     }
     stage('Check production environment') {
       steps {
-        build job: 'backend-security', parameters: [[$class: 'StringParameterValue', name: 'HIDORA_DOMAIN', value: PRODUCTION_ENV_NAME]]
+        build job: 'security', parameters: [[$class: 'StringParameterValue', name: 'HIDORA_DOMAIN', value: PRODUCTION_ENV_NAME]]
       }
     }
   }
