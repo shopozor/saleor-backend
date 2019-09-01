@@ -1,6 +1,8 @@
 from django.conf import settings
 from faker.providers.lorem.la import Provider as LoremProvider
 
+import os
+
 
 class Provider(LoremProvider):
 
@@ -15,7 +17,7 @@ class Provider(LoremProvider):
         return bool(self.generator.random.getrandbits(1))
 
     def category_image_url(self):
-        return '%s/%s.png' % ('category-backgrounds', ''.join(self.random_letters()))
+        return os.path.join('categories', 'images', '%s.png' % ''.join(self.random_letters()))
 
     def description(self):
         return self.text(max_nb_chars=200)
@@ -35,6 +37,9 @@ class Provider(LoremProvider):
 
     def price_override(self):
         return self.money_amount() if self.__random_bool() else None
+
+    def product_image_url(self):
+        return os.path.join('products', 'images', '%s.png' % ''.join(self.random_letters()))
 
     def product_name(self):
         return self.sentence(nb_words=3, variable_nb_words=True)
