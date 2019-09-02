@@ -21,6 +21,11 @@ class FakeDataFactory:
         'Nettoyages': ('Savon', 'Liquide vaisselle', 'Pastilles lave-vaisselle', 'Linge', 'Détergent')
     }
 
+    attributes = {
+        'Mode de conservation': ('au frigo', 'à la cave', 'au soleil', 'au congélateur', 'à température ambiante', 'dans du papier d\'alu', 'à l\'abri de la lumière'),
+        'Durée de conservation': ('1 jour', '2 jours', '1 semaine', '2 semaines', '1 mois', '2 mois', '1 année')
+    }
+
     def __init__(self, max_nb_products_per_producer=10, max_nb_producers_per_shop=10, max_nb_images_per_product=10):
         self.__fake = Faker('fr_CH')
         self.__fake.seed('features')
@@ -262,6 +267,52 @@ class FakeDataFactory:
             self.category_types.values()))
         start_pk = 1
         return [self.__producttype(pk, type) for pk, type in enumerate(producttypes, start_pk)]
+
+    def __attribute(self, pk, name):
+        return {
+            'model': 'product.attribute',
+            'pk': pk,
+            'fields': {
+                'slug': self.__fake.slug(),
+                'name': name,
+                'product_type': None,
+                'product_variant_type': None
+            }
+        }
+
+    def __attributes(self):
+        start_pk = 1
+        return [self.__attribute(pk, attribute) for pk, attribute in enumerate(self.attributes, start_pk)]
+
+    def __attribute_value(self, pk, attribute_id, value):
+        return {
+            'model': 'product.attributevalue',
+            'pk': pk,
+            'fields': {
+                'sort_order': 0,
+                'name': value,
+                'value': '',
+                'slug': self.__fake.slug(),
+                'attribute': attribute_id
+            }
+        }
+
+    def __attribute_values(self, attribute_fixtures):
+        attribute_values = []
+        start_pk = 1
+        for attribute in self.attributes:
+            values = self.attributes[attribute]
+            attribute_id = [
+                item['pk'] for item in attribute_fixtures if item['fields']['name'] == attribute][0]
+            attribute_values.extend([self.__attribute_value(
+                pk, attribute_id, value) for pk, value in enumerate(values, start_pk)])
+            start_pk += len(values)
+        return attribute_values
+
+    def create_attributes(self):
+        attribute_fixtures = self.__attributes()
+        attribute_fixtures.extend(self.__attribute_values(attribute_fixtures))
+        return attribute_fixtures
 
     def __product(self, pk, category_id, producttype_id):
         description = self.__fake.description()

@@ -10,14 +10,6 @@ class Provider(LoremProvider):
         '1l', '2l', '2.5l', '5l', '250ml', '500ml', '45cm x 45cm', '55cm x 55cm', 'XS', 'S', 'M', 'L', 'XL', '100g', '200g', '250g', '500g', '1kg'
     )
 
-    conservation_modes = (
-        'au frigo', 'à la cave', 'au soleil', 'au congélateur', 'à température ambiante', 'dans du papier d\'alu', 'à l\'abri de la lumière',
-    )
-
-    conservation_durations = (
-        '1 jour', '2 jours', '1 semaine', '2 semaines', '1 mois', '2 mois', '1 année'
-    )
-
     def __random_float(self, min, max, nb_digits):
         return round(self.generator.random.uniform(min, max), nb_digits)
 
@@ -26,12 +18,6 @@ class Provider(LoremProvider):
 
     def category_image_url(self):
         return os.path.join('categories', 'images', '%s.png' % ''.join(self.random_letters()))
-
-    def conservation_duration(self):
-        return self.random_element(elements=self.conservation_durations)
-
-    def conservation_mode(self):
-        return self.random_element(elements=self.conservation_modes)
 
     def description(self):
         return self.text(max_nb_chars=200)

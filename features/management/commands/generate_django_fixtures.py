@@ -97,6 +97,9 @@ def generate_variant(variant_name, output_folder):
     producttypes = factory.create_producttypes()
     shopozor.extend(producttypes)
 
+    attributes = factory.create_attributes()
+    shopozor.extend(attributes)
+
     products = factory.create_products(
         categories, producttypes, variant['#products'])
     shopozor.extend(products)
