@@ -45,14 +45,31 @@ Fonctionnalité: Un Incognito visite un Shop
     Alors il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale
 
   @fixture.small-shops
-  Scénario: Incognito visite un Shop
+  Plan du Scénario: Incognito visite un Shop
 
     Incognito peut entrer dans un Shop pour y consulter son catalogue de Produits. Celui-ci
     exhibe les Produits avec leurs Producteurs et montre sous quels Formats chaque Produit
-    est disponible avec leurs prix.
+    est disponible avec leurs prix. Pour éviter de noyer Incognito dans trop d'information,
+    les catalogues présentent les Produits par Catégorie. Il ne lui est par exemple pas possible
+    de se procurer le catalogue complet du Shop d'un seul coup. Au lieu de cela, il peut en obtenir
+    le catalogue de la boulangerie, de la fromagerie, de la boucherie, etc.
 
-    Lorsqu'Incognito visite un Shop
+    Etant donné qu'Incognito est entré dans un Shop
+    Lorsqu'il en visite le stand <catégorie>
     Alors il obtient la liste de tous les Produits qui y sont publiés
+
+    Exemples:
+      | catégorie       |
+      | Boissons        |
+      | Boucherie       |
+      | Boulangerie     |
+      | Epicerie        |
+      | Fruits          |
+      | Laiterie        |
+      | Légumes         |
+      | Nettoyages      |
+      | Soins corporels |
+      | Traiteur        |
 
   @fixture.small-shops
   Scénario: Chaque Produit est détaillé
@@ -64,3 +81,5 @@ Fonctionnalité: Un Incognito visite un Shop
     Etant donné qu'il est entré dans un Shop
     Lorsqu'Incognito y inspecte un Produit
     Alors il en obtient la description détaillée
+
+# TODO: pour des raisons purement visuelles, il est nécessaire de pouvoir obtenir la liste des catégories et des types de produits (description, image)

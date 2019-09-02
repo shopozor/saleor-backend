@@ -3,6 +3,7 @@ from django.core.management.base import BaseCommand
 from features.utils.fixtures import json
 
 import os
+import unidecode
 
 
 def generate_shop_list(fixture_variant):
@@ -88,68 +89,70 @@ def generate_shop_catalogues(fixture_variant):
     users_fixture = get_users_fixture(fixture_variant)
     expected_catalogues = dict()
     for shop in [shop for shop in shops_fixture if shop['model'] == 'shopozor.shop']:
-        expected_catalogues[shop['pk']] = {
-            'data': {
-                'shopCatalogue': {
-                    'products': {
-                        'edges': []
+        expected_catalogues[shop['pk']] = {}
+        for category in [item for item in shops_fixture if item['model'] == 'product.category']:
+            expected_catalogues[shop['pk']][category['fields']['name']] = {
+                'data': {
+                    'shopCatalogue': {
+                        'products': {
+                            'edges': []
+                        }
                     }
                 }
             }
-        }
-        edges = expected_catalogues[shop['pk']
-                                    ]['data']['shopCatalogue']['products']['edges']
-        for variant_id in shop['fields']['product_variants']:
-            variant = [entry for entry in shops_fixture if entry['model']
-                       == 'product.productvariant' and entry['pk'] == variant_id][0]
-            product = [entry for entry in shops_fixture if entry['model'] ==
-                       'product.product' and entry['pk'] == variant['fields']['product']][0]
-            is_published = product['fields']['is_published']
-            if not is_published:
-                continue
-            edges_with_product_id = [
-                edge for edge in edges if edge['node']['id'] == product['pk']]
+            edges = expected_catalogues[shop['pk']
+                                        ][category['fields']['name']]['data']['shopCatalogue']['products']['edges']
+            for variant_id in shop['fields']['product_variants']:
+                variant = [entry for entry in shops_fixture if entry['model']
+                           == 'product.productvariant' and entry['pk'] == variant_id][0]
+                product_in_category = [entry for entry in shops_fixture if entry['model'] ==
+                                       'product.product' and entry['pk'] == variant['fields']['product'] and entry['fields']['category'] == category['pk']]
+                if len(product_in_category) == 0:
+                    continue
+                product = product_in_category[0]
+                is_published = product['fields']['is_published']
+                if not is_published:
+                    continue
+                edges_with_product_id = [
+                    edge for edge in edges if edge['node']['id'] == product['pk']]
 
-            new_variant = {
-                'id': variant_id,
-                'name': variant['fields']['name'],
-                'isAvailable': product['fields']['is_published'],
-                'stockQuantity': max(variant['fields']['quantity'] - variant['fields']['quantity_allocated'], 0),
-                'pricing': get_pricing(variant['fields'], product['fields'])
-            }
-            if edges_with_product_id:
-                edge = edges_with_product_id[0]
-                edge['node']['variants'].append(new_variant)
-            else:
-                staff_ids = [entry['fields']['staff_id'] for entry in shops_fixture if entry['model']
-                             == 'shopozor.productstaff' and entry['fields']['product_id'] == product['pk']]
-                associated_producer = {}
-                if len(staff_ids) > 0:
-                    staff_id = staff_ids[0]
-                    associated_producer = [{
-                        'firstName': user['first_name'],
-                        'lastName': user['last_name']
-                    } for user in users_fixture if user['id'] == staff_id]
-                node = {
-                    'node': {
-                        'id': product['pk'],
-                        'name': product['fields']['name'],
-                        'variants': [new_variant],
-                        'images': [{
-                            'id': fixture['pk'],
-                            'alt': fixture['fields']['alt'],
-                            'url': fixture['fields']['image'],
-                        } for fixture in shops_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']],
-                        'category': {
-                            'id': product['fields']['category']
-                        },
-                        'productType': {
-                            'id': product['fields']['product_type']
-                        },
-                        'producer': associated_producer
-                    }
+                new_variant = {
+                    'id': variant_id,
+                    'name': variant['fields']['name'],
+                    'isAvailable': product['fields']['is_published'],
+                    'stockQuantity': max(variant['fields']['quantity'] - variant['fields']['quantity_allocated'], 0),
+                    'pricing': get_pricing(variant['fields'], product['fields'])
                 }
-                edges.append(node)
+                if edges_with_product_id:
+                    edge = edges_with_product_id[0]
+                    edge['node']['variants'].append(new_variant)
+                else:
+                    staff_ids = [entry['fields']['staff_id'] for entry in shops_fixture if entry['model']
+                                 == 'shopozor.productstaff' and entry['fields']['product_id'] == product['pk']]
+                    associated_producer = {}
+                    if len(staff_ids) > 0:
+                        staff_id = staff_ids[0]
+                        associated_producer = [{
+                            'firstName': user['first_name'],
+                            'lastName': user['last_name']
+                        } for user in users_fixture if user['id'] == staff_id]
+                    node = {
+                        'node': {
+                            'id': product['pk'],
+                            'name': product['fields']['name'],
+                            'variants': [new_variant],
+                            'images': [{
+                                'id': fixture['pk'],
+                                'alt': fixture['fields']['alt'],
+                                'url': fixture['fields']['image'],
+                            } for fixture in shops_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']],
+                            'productType': {
+                                'id': product['fields']['product_type']
+                            },
+                            'producer': associated_producer
+                        }
+                    }
+                    edges.append(node)
 
     postprocess_is_available_flag(edges)
 
@@ -174,8 +177,9 @@ def output_shop_catalogues(output_dir, variant):
         output_dir, variant, 'Consumer', 'Catalogues')
     shop_catalogues = generate_shop_catalogues(variant)
     for catalogue in shop_catalogues:
-        output_object_to_json(
-            shop_catalogues[catalogue], catalogues_output_dir, 'Shop-{id}.json'.format(id=catalogue))
+        for category in shop_catalogues[catalogue]:
+            output_object_to_json(
+                shop_catalogues[catalogue][category], os.path.join(catalogues_output_dir, 'Shop-%d' % catalogue), '%s.json' % unidecode.unidecode(category).lower().title().replace(' ', ''))
 
 
 class Command(BaseCommand):

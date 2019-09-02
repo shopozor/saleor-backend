@@ -19,6 +19,7 @@ class FakeDataFactory:
         'Boissons': ('Bière', 'Sirop', 'Limonade', 'Thé', 'Soda', 'Vin', 'Eau'),
         'Traiteur': ('Burgers', 'Sushis', 'Fondue', 'Fondue chinoise', 'Kebabs'),
         'Nettoyages': ('Savon', 'Liquide vaisselle', 'Pastilles lave-vaisselle', 'Linge', 'Détergent')
+        # TODO: add "Soins corporels"
     }
 
     attributes = {
@@ -37,6 +38,7 @@ class FakeDataFactory:
 
     def create_email(self, first_name, last_name):
         domain_name = self.__fake.free_email_domain()
+        # get rid of any potential French accent from the first and last name
         return unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name)).lower()
 
     def __create_consumer(self, id):
@@ -57,7 +59,6 @@ class FakeDataFactory:
         last_name = self.__fake.last_name()
         return {
             'id': id,
-            # get rid of any potential French accent from the first and last name
             'email': self.create_email(first_name, last_name),
             'isActive': True,
             'isStaff': True,
@@ -75,7 +76,6 @@ class FakeDataFactory:
         last_name = self.__fake.last_name()
         return {
             'id': id,
-            # get rid of any potential French accent from the first and last name
             'email': self.create_email(first_name, last_name),
             'isActive': True,
             'isStaff': True,
