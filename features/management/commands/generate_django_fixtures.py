@@ -100,8 +100,13 @@ def generate_variant(variant_name, output_folder):
     attributes = factory.create_attributes()
     shopozor.extend(attributes)
 
+    attribute_ids = [item['pk']
+                     for item in attributes if item['model'] == 'product.attribute']
+    attribute_value_fixtures = [
+        item for item in attributes if item['model'] == 'product.attributevalue']
+
     products = factory.create_products(
-        categories, producttypes, variant['#products'])
+        categories, producttypes, attribute_ids, attribute_value_fixtures, variant['#products'])
     shopozor.extend(products)
 
     product_ids = [product['pk'] for product in products]

@@ -314,13 +314,11 @@ class FakeDataFactory:
         attribute_fixtures.extend(self.__attribute_values(attribute_fixtures))
         return attribute_fixtures
 
-    def __product(self, pk, category_id, producttype_id):
+    def __product(self, pk, category_id, producttype_id, attributes):
         description = self.__fake.description()
         return {
             'fields': {
-                # TODO: generate the attributes!
-                # 'attributes': '{"15": "46", "21": "68"}',
-                'attributes': '{}',
+                'attributes': attributes,
                 'category': category_id,
                 'charge_taxes': True,
                 'description': description,
@@ -359,7 +357,7 @@ class FakeDataFactory:
             'pk': pk
         }
 
-    def create_products(self, categories, producttypes, list_size=1):
+    def create_products(self, categories, producttypes, attribute_ids, attribute_value_fixtures, list_size=1):
         result = []
         for pk in range(1, list_size + 1):
             category_name = self.__fake.random_element(
@@ -370,14 +368,16 @@ class FakeDataFactory:
                 elements=self.category_types[category_name])
             producttype_id = [
                 type['pk'] for type in producttypes if type['fields']['name'] == producttype_name][0]
-            result.append(self.__product(pk, category_id, producttype_id))
+            attr = self.__fake.product_attributes(
+                attribute_ids, attribute_value_fixtures)
+            result.append(self.__product(
+                pk, category_id, producttype_id, attr))
         return result
 
     def __productvariant(self, pk, product_id):
         quantity = self.__fake.quantity()
         return {
             'fields': {
-                # TODO: generate attributes
                 'attributes': '{}',
                 'cost_price': self.__fake.money_amount(),
                 'name': self.__fake.variant_name(),

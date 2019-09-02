@@ -38,6 +38,19 @@ class Provider(LoremProvider):
     def price_override(self):
         return self.money_amount() if self.__random_bool() else None
 
+    def product_attributes(self, attribute_ids, attribute_value_fixtures):
+        nb_attrs = self.generator.random.randint(0, len(attribute_ids))
+        selected_attribute_ids = self.random_sample(
+            elements=attribute_ids, length=nb_attrs)
+        result = []
+        for attr_id in selected_attribute_ids:
+            applicable_value_ids = [
+                value['pk'] for value in attribute_value_fixtures if value['fields']['attribute'] == attr_id]
+            selected_value_id = self.random_element(
+                elements=applicable_value_ids)
+            result.append('"%d": "%d"' % (attr_id, selected_value_id))
+        return '{' + ','.join(result) + '}'
+
     def product_image_url(self):
         return os.path.join('products', 'images', '%s.png' % ''.join(self.random_letters()))
 
