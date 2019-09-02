@@ -90,23 +90,21 @@ def generate_shop_catalogues(fixture_variant):
     expected_catalogues = dict()
     for shop in [shop for shop in shops_fixture if shop['model'] == 'shopozor.shop']:
         expected_catalogues[shop['pk']] = {}
-        for category in [item for item in shops_fixture if item['model'] == 'product.category']:
-            expected_catalogues[shop['pk']][category['fields']['name']] = {
+        for category in [item['pk'] for item in shops_fixture if item['model'] == 'product.category']:
+            expected_catalogues[shop['pk']][category] = {
                 'data': {
-                    'shopCatalogue': {
-                        'products': {
-                            'edges': []
-                        }
+                    'products': {
+                        'edges': []
                     }
                 }
             }
             edges = expected_catalogues[shop['pk']
-                                        ][category['fields']['name']]['data']['shopCatalogue']['products']['edges']
+                                        ][category]['data']['products']['edges']
             for variant_id in shop['fields']['product_variants']:
                 variant = [entry for entry in shops_fixture if entry['model']
                            == 'product.productvariant' and entry['pk'] == variant_id][0]
                 product_in_category = [entry for entry in shops_fixture if entry['model'] ==
-                                       'product.product' and entry['pk'] == variant['fields']['product'] and entry['fields']['category'] == category['pk']]
+                                       'product.product' and entry['pk'] == variant['fields']['product'] and entry['fields']['category'] == category]
                 if len(product_in_category) == 0:
                     continue
                 product = product_in_category[0]
@@ -179,7 +177,7 @@ def output_shop_catalogues(output_dir, variant):
     for catalogue in shop_catalogues:
         for category in shop_catalogues[catalogue]:
             output_object_to_json(
-                shop_catalogues[catalogue][category], os.path.join(catalogues_output_dir, 'Shop-%d' % catalogue), '%s.json' % unidecode.unidecode(category).lower().title().replace(' ', ''))
+                shop_catalogues[catalogue][category], os.path.join(catalogues_output_dir, 'Shop-%d' % catalogue), 'Category-%d.json' % category)
 
 
 class Command(BaseCommand):

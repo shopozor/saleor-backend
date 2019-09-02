@@ -233,13 +233,19 @@ def expected_small_shop_list(context):
 def expected_small_shop_catalogues(context):
     catalogues_folder = os.path.join(
         settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Catalogues')
-    catalogues = [os.path.splitext(f)[0] for f in os.listdir(
-        catalogues_folder) if os.path.isfile(os.path.join(catalogues_folder, f))]
+    shops = [shop for shop in os.listdir(catalogues_folder) if os.path.isdir(
+        os.path.join(catalogues_folder, shop))]
     shop_catalogues = {}
-    for catalogue in catalogues:
-        shop_id = catalogue.split('-')[1]
-        shop_catalogues[shop_id] = json.load(os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'small',
-                                                          'Consumer', 'Catalogues', '{name}.json'.format(name=catalogue)))
+    for shop in shops:
+        shop_id = shop.split('-')[1]
+        shop_dir = os.path.join(catalogues_folder, shop)
+        categories = [category for category in os.listdir(
+            shop_dir) if os.path.isfile(os.path.join(shop_dir, category))]
+        shop_catalogues[shop_id] = {}
+        for category in categories:
+            category_id = category.split('.')[0].split('-')[1]
+            shop_catalogues[shop_id][category_id] = json.load(os.path.join(
+                settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Catalogues', shop, category))
     context.expected_shop_catalogues = shop_catalogues
     return shop_catalogues
 

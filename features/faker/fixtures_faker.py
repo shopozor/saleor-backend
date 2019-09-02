@@ -18,8 +18,9 @@ class FakeDataFactory:
         'Boulangerie': ('Pain', 'Croissant', 'Demi-lune', 'Petit pain', 'Pain au chocolat', 'Gâteau', 'Sandwich', 'Canapé', 'Cuchaule', 'Sablé', 'Baguette', 'Bricelet', 'Macaron', 'Croquet', 'Pain d\'anis', 'Brioche', 'Tresse'),
         'Boissons': ('Bière', 'Sirop', 'Limonade', 'Thé', 'Soda', 'Vin', 'Eau'),
         'Traiteur': ('Burgers', 'Sushis', 'Fondue', 'Fondue chinoise', 'Kebabs'),
-        'Nettoyages': ('Savon', 'Liquide vaisselle', 'Pastilles lave-vaisselle', 'Linge', 'Détergent')
-        # TODO: add "Soins corporels"
+        'Nettoyages': ('Savon', 'Liquide vaisselle', 'Pastilles lave-vaisselle', 'Linge', 'Détergent'),
+        'Soins corporels': ('Lait pour le corps', 'Savon solide', 'Crème hydratante', 'Déodorant', 'Mascara', 'Shampooing'),
+        'Objets pour la maison': ('Meuble', 'Table', 'Chaise', 'Horloge')
     }
 
     attributes = {
