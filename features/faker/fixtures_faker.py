@@ -28,7 +28,7 @@ class FakeDataFactory:
         'Durée de conservation': ('1 jour', '2 jours', '1 semaine', '2 semaines', '1 mois', '2 mois', '1 année')
     }
 
-    def __init__(self, max_nb_products_per_producer=10, max_nb_producers_per_shop=10, max_nb_images_per_product=10):
+    def __init__(self, max_nb_products_per_producer=10, max_nb_producers_per_shop=10, max_nb_variants_per_product=10, max_nb_images_per_product=10):
         self.__fake = Faker('fr_CH')
         self.__fake.seed('features')
         self.__fake.add_provider(ShopozorGeoProvider)
@@ -36,6 +36,7 @@ class FakeDataFactory:
         self.__MAX_NB_PRODUCERS_PER_SHOP = max_nb_producers_per_shop
         self.__MAX_NB_PRODUCTS_PER_PRODUCER = max_nb_products_per_producer
         self.__MAX_NB_IMAGES_PER_PRODUCT = max_nb_images_per_product
+        self.__MAX_NB_VARIANTS_PER_PRODUCT = max_nb_variants_per_product
 
     def create_email(self, first_name, last_name):
         domain_name = self.__fake.free_email_domain()
@@ -394,11 +395,16 @@ class FakeDataFactory:
             'pk': pk
         }
 
-    def create_productvariants(self, product_ids, list_size=1):
+    def create_productvariants(self, product_ids):
         result = []
-        for pk in range(1, list_size + 1):
-            product_id = self.__fake.random_element(product_ids)
-            result.append(self.__productvariant(pk, product_id))
+        pk = 1
+        for product_id in product_ids:
+            # a product with 0 variant might not be something we want --> needs to be tested
+            nb_variants = self.__fake.random.randint(
+                0, self.__MAX_NB_VARIANTS_PER_PRODUCT)
+            for _ in range(0, nb_variants):
+                result.append(self.__productvariant(pk, product_id))
+                pk += 1
         return result
 
     def __productimage(self, pk, product_id):

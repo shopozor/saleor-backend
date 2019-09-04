@@ -9,15 +9,15 @@ import os
 
 variants = {
     'small': {
-        '#consumers': 10,
-        '#producers': 5,
+        '#consumers': 50,
+        '#producers': 16,
         '#managers': 2,
         '#rex': 1,
         '#softozor': 1,
-        '#products': 50,
-        '#productvariants': 200,
+        '#products': 160,
         '#shops': 2,
-        '#max(producers/shop)': 2,
+        '#max(variants/product)': 5,
+        '#max(producers/shop)': 8,
         '#max(products/producer)': 10
     },
     'medium': {
@@ -27,8 +27,8 @@ variants = {
         '#rex': 1,
         '#softozor': 1,
         '#products': 300,
-        '#productvariants': 500,
         '#shops': 5,
+        '#max(variants/product)': 7,
         '#max(producers/shop)': 6,
         '#max(products/producer)': 10
     },
@@ -39,8 +39,8 @@ variants = {
         '#rex': 1,
         '#softozor': 1,
         '#products': 5000,
-        '#productvariants': 50000,
         '#shops': 20,
+        '#max(variants/product)': 10,
         '#max(producers/shop)': 7,
         '#max(products/producer)': 25
     }
@@ -55,7 +55,7 @@ def generate_variant(variant_name, output_folder):
                              variant_name, 'Users'), exist_ok=True)
 
     factory = FakeDataFactory(
-        variant['#max(products/producer)'], variant['#max(producers/shop)'])
+        variant['#max(products/producer)'], variant['#max(producers/shop)'], variant['#max(variants/product)'])
 
     nb_of_consumers = variant['#consumers']
     start_index = 1
@@ -110,8 +110,7 @@ def generate_variant(variant_name, output_folder):
     shopozor.extend(products)
 
     product_ids = [product['pk'] for product in products]
-    product_variants = factory.create_productvariants(
-        product_ids, variant['#productvariants'])
+    product_variants = factory.create_productvariants(product_ids)
     shopozor.extend(product_variants)
 
     product_images = factory.create_productimages(product_ids)
