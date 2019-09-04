@@ -237,13 +237,13 @@ def expected_small_shop_catalogues(context):
         os.path.join(catalogues_folder, shop))]
     shop_catalogues = {}
     for shop in shops:
-        shop_id = shop.split('-')[1]
+        shop_id = int(shop.split('-')[1])
         shop_dir = os.path.join(catalogues_folder, shop)
         categories = [category for category in os.listdir(
             shop_dir) if os.path.isfile(os.path.join(shop_dir, category))]
         shop_catalogues[shop_id] = {}
         for category in categories:
-            category_id = category.split('.')[0].split('-')[1]
+            category_id = int(category.split('.')[0].split('-')[1])
             shop_catalogues[shop_id][category_id] = json.load(os.path.join(
                 settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Catalogues', shop, category))
     context.expected_shop_catalogues = shop_catalogues

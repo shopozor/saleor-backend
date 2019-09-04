@@ -35,6 +35,7 @@ Fonctionnalité: Un Incognito visite un Shop
 
     Etant donné un utilisateur non identifié sur le Shopozor
 
+  @shops.graphql
   @fixture.small-shops
   Scénario: Incognito obtient la liste des Shops
 
@@ -44,17 +45,19 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito demande quels Shops il peut visiter
     Alors il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale
 
-  # @fixture.small-shops
-  # Scénario: Incognito visite un Shop
-
-  #   La visite d'un Shop se fait au travers des différents stands qu'il propose. Chaque Shop a les mêmes stands
-  #   mais remplis avec des Produits différents réalisés par des Producteurs différents.
-
-  #   # TODO: get the Shop's categories here!, maybe with the amount of Products for each category --> the client app
-  #   # TODO: might want to hide empty categories
-
+  @categories.graphql
   @fixture.small-shops
-  Plan du Scénario: Incognito visite un stand
+  Scénario: Incognito obtient la liste des Rayons
+
+    La visite d'un Shop se fait au travers des différents Rayons qu'il propose. Chaque Shop propose
+    les mêmes Rayons mais les remplit avec des Produits différents réalisés par des Producteurs différents.
+
+    Lorsqu'Incognito se renseigne sur les différents Rayons disponibles dans le Shopozor
+    Alors il en obtient la liste
+
+  @shopCategories.graphql
+  @fixture.small-shops
+  Scénario: Incognito se balade dans les Rayons d'un Shop
 
     Incognito peut entrer dans un Shop pour y consulter son catalogue de Produits. Celui-ci
     exhibe les Produits avec leurs Producteurs et montre sous quels Formats chaque Produit
@@ -63,24 +66,11 @@ Fonctionnalité: Un Incognito visite un Shop
     de se procurer le catalogue complet du Shop d'un seul coup. Au lieu de cela, il peut en obtenir
     le catalogue de la boulangerie, de la fromagerie, de la boucherie, etc.
 
-    Etant donné le Shop le plus proche de chez lui
-    Lorsqu'Incognito en visite le stand <catégorie>
+    Etant donné le Shop de son choix
+    Lorsqu'Incognito en visite les stands
     Alors il obtient la liste de tous les Produits qui y sont publiés
 
-    Exemples:
-      | catégorie             |
-      | Boissons              |
-      | Boucherie             |
-      | Boulangerie           |
-      | Epicerie              |
-      | Fruits                |
-      | Laiterie              |
-      | Légumes               |
-      | Nettoyages            |
-      | Objets pour la maison |
-      | Soins corporels       |
-      | Traiteur              |
-
+  @productDetails.graphql
   @fixture.small-shops
   Scénario: Chaque Produit est détaillé
 
@@ -88,6 +78,6 @@ Fonctionnalité: Un Incognito visite un Shop
     au catalogue du Shop qu'il visite, comme e.g. une description, la durée
     de conservation, le mode de conservation, etc.
 
-    Etant donné qu'il est entré dans un Shop
+    Etant donné le Shop de son choix
     Lorsqu'Incognito y inspecte un Produit
     Alors il en obtient la description détaillée

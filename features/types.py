@@ -1,6 +1,5 @@
 from behave import register_type
 from datetime import timedelta
-from saleor.product.models import Category
 
 import parse
 
@@ -70,16 +69,3 @@ def parse_duration_unit(unit):
 
 
 register_type(DurationInSecondsType=parse_duration_unit)
-
-
-def category_name_to_id(name):
-    category = Category.objects.get(name=name)
-    return category.id
-
-
-@parse.with_pattern(r'Boissons|Boucherie|Boulangerie|Epicerie|Fruits|Laiterie|Légumes|Nettoyages|Objets pour la maison|Soins corporels|Traiteur')
-def parse_category_id(category_name):
-    return category_name_to_id(category_name)
-
-
-register_type(ProductCategoryType=parse_category_id)

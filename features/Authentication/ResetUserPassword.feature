@@ -12,6 +12,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
 
   ![Processus de réinitialisation du mot de passe](ResetUserPassword-fr.png)
 
+  @passwordReset.graphql
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur fait une demande de réinitialisation de mot de passe
 
@@ -29,6 +30,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
       | Rex          |
       | Softozor     |
 
+  @passwordReset.graphql
   @HackerAbuse
   Scénario: Un utilisateur inconnu fait une demande de réinitialisation de mot de passe
 
@@ -40,6 +42,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
     Alors il ne reçoit pas d'e-mail de réinitialisation de compte
     Mais il n'obtient aucun message d'erreur
 
+  @setPassword.graphql
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur définit un mot de passe conforme dans les temps
 
@@ -60,6 +63,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
       | Rex          |
       | Softozor     |
 
+  @setPassword.graphql
   @fixture.user-accounts @HackerAbuse
   Plan du Scénario: L'utilisateur définit un mot de passe non conforme dans les temps
 
@@ -80,6 +84,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
       | Rex          |
       | Softozor     |
 
+  @setPassword.graphql
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur définit son mot de passe une deuxième fois avec le même lien
 
@@ -99,6 +104,7 @@ Fonctionnalité: L'utilisateur réinitialise son mot de passe
       | Rex          |
       | Softozor     |
 
+  @setPassword.graphql
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur définit son mot de passe trop tard
 
