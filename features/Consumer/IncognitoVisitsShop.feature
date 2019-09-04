@@ -66,8 +66,10 @@ Fonctionnalité: Un Incognito visite un Shop
     de se procurer le catalogue complet du Shop d'un seul coup. Au lieu de cela, il peut en obtenir
     le catalogue de la boulangerie, de la fromagerie, de la boucherie, etc.
 
+    # categories query already exists in saleor
+
     Etant donné le Shop de son choix
-    Lorsqu'Incognito en visite les stands
+    Lorsqu'Incognito en visite les Rayons
     Alors il obtient la liste de tous les Produits qui y sont publiés
 
   @productDetails.graphql
@@ -77,6 +79,8 @@ Fonctionnalité: Un Incognito visite un Shop
     Incognito peut obtenir tous les détails de chacun des Produits appartenant
     au catalogue du Shop qu'il visite, comme e.g. une description, la durée
     de conservation, le mode de conservation, etc.
+
+    # product query already exists in saleor
 
     Etant donné le Shop de son choix
     Lorsqu'Incognito y inspecte un Produit

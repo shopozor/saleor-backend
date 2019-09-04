@@ -23,7 +23,7 @@ def query_shop_catalogue(client, shop_id, category_id):
 
 
 def query_categories(client):
-    query = get_query_from_file('categories.graphql')
+    query = get_query_from_file('shopCategories.graphql')
     variables = {
         'first': Category.objects.count()
     }
@@ -57,7 +57,7 @@ def step_impl(context):
     context.response = query_categories(test_client)
 
 
-@when(u'Incognito en visite les stands')
+@when(u'Incognito en visite les Rayons')
 def step_impl(context):
     test_client = context.test.client
     for category in Category.objects.all():
@@ -81,11 +81,13 @@ def step_impl(context):
 
 @then(u'il en obtient la liste')
 def step_impl(context):
+    # the pagination info is irrelevant in our comparison
     raise NotImplementedError()
 
 
 @then(u'il obtient la liste de tous les Produits qui y sont publiés')
 def step_impl(context):
+    # the pagination info is irrelevant in our comparison
     context.expected_shop_catalogues[context.shop_id].pop('pageInfo', None)
     context.response.pop('pageInfo', None)
     context.test.assertEqual(
