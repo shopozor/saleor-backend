@@ -3,6 +3,8 @@ from django.core.management.base import BaseCommand
 from features.utils.fixtures import json
 
 import os
+import random
+import string
 import unidecode
 
 
@@ -94,10 +96,16 @@ def generate_shop_catalogues(fixture_variant):
             expected_catalogues[shop['pk']][category] = {
                 'data': {
                     'products': {
-                        'edges': []
+                        'totalCount': 0,
+                        'edges': [],
+                        'pageInfo': {
+                            'startCursor': ''.join(random.choices(string.ascii_uppercase + string.digits, k=10)),
+                            'endCursor': ''.join(random.choices(string.ascii_uppercase + string.digits, k=10))
+                        }
                     }
                 }
             }
+            totalCount = 0
             edges = expected_catalogues[shop['pk']
                                         ][category]['data']['products']['edges']
             for variant_id in shop['fields']['product_variants']:
@@ -151,6 +159,10 @@ def generate_shop_catalogues(fixture_variant):
                         }
                     }
                     edges.append(node)
+                    totalCount += 1
+
+            expected_catalogues[shop['pk']
+                                ][category]['data']['products']['totalCount'] = totalCount
 
     postprocess_is_available_flag(edges)
 
