@@ -29,7 +29,8 @@ def query_shop_catalogue(client, shop_id, category_id):
 def query_categories(client):
     query = get_query_from_file('shopCategories.graphql')
     variables = {
-        'first': Category.objects.count()
+        'first': Category.objects.count(),
+        'thumbnailSize': settings.CATEGORY_THUMBNAIL_SIZE
     }
     response = client.post_graphql(query, variables)
     return get_graphql_content(response)
