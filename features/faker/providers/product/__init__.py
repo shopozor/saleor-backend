@@ -52,7 +52,7 @@ class Provider(LoremProvider):
         return '{' + ','.join(result) + '}'
 
     def product_image_url(self):
-        return os.path.join('products', 'images', '%s.png' % ''.join(self.random_letters()))
+        return os.path.join('products', '%s.png' % ''.join(self.random_letters()))
 
     def product_name(self):
         return self.sentence(nb_words=3, variable_nb_words=True)

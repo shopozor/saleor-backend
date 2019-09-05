@@ -5,6 +5,7 @@ from features.utils.fixtures import json
 import graphene
 import os
 import unidecode
+import urllib.parse
 
 
 def generate_shop_list(fixture_variant):
@@ -144,16 +145,26 @@ def generate_shop_catalogues(fixture_variant):
                             'firstName': user['first_name'],
                             'lastName': user['last_name']
                         } for user in users_fixture if user['id'] == staff_id]
+                    associated_images = [{
+                        'alt': fixture['fields']['alt'],
+                        'url': fixture['fields']['image'],
+                    } for fixture in shops_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']]
+                    if len(associated_images) == 0:
+                        thumbnail = {
+                            'alt': None,
+                            'url': urllib.parse.urljoin(settings.STATIC_URL, 'images/placeholder%dx%d.png' % (settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE))
+                        }
+                    else:
+                        thumbnail = {
+                            'alt': associated_images[0]['alt'],
+                            'url': urllib.parse.urljoin(settings.MEDIA_URL, '%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
+                        }
                     node = {
                         'node': {
                             'id': product['pk'],
                             'name': product['fields']['name'],
                             'variants': [new_variant],
-                            'images': [{
-                                'id': fixture['pk'],
-                                'alt': fixture['fields']['alt'],
-                                'url': fixture['fields']['image'],
-                            } for fixture in shops_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']],
+                            'thumbnail': thumbnail,
                             'productType': {
                                 'id': product['fields']['product_type']
                             },

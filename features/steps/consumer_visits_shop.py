@@ -1,4 +1,5 @@
 from behave import given, then, when
+from django.conf import settings
 from features.utils.graphql.loader import get_query_from_file
 from saleor.product.models import Category, Product
 from shopozor.models import Shop
@@ -18,7 +19,8 @@ def query_shop_catalogue(client, shop_id, category_id):
     variables = {
         'shopId': graphene.Node.to_global_id("Shop", shop_id),
         'categoryId': graphene.Node.to_global_id("Category", category_id),
-        'first': Product.objects.count()
+        'first': Product.objects.count(),
+        'thumbnailSize': settings.PRODUCT_THUMBNAIL_SIZE
     }
     response = client.post_graphql(query, variables)
     return get_graphql_content(response)
