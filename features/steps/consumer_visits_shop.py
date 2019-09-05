@@ -85,7 +85,7 @@ def step_impl(context):
 
 @then(u'il en obtient la liste')
 def step_impl(context):
-    raise NotImplementedError()
+    context.test.assertEqual(context.expected_categories, context.response)
 
 
 @then(u'il obtient la liste de tous les Produits qui y sont publiés')
@@ -96,4 +96,5 @@ def step_impl(context):
 
 @then(u'il en obtient la description détaillée')
 def step_impl(context):
+    # TODO: add product details graphql responses to the context!
     raise NotImplementedError()

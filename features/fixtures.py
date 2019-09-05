@@ -251,5 +251,21 @@ def expected_small_shop_catalogues(context):
 
 
 @fixture
+def expected_small_shop_categories(context):
+    categories = json.load(os.path.join(
+        settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Categories.json'))
+    context.expected_categories = categories
+    return categories
+
+
+@fixture
 def small_shops_fixtures(context):
-    return use_composite_fixture_with(context, [fixture_call_params(permissions), fixture_call_params(small_users_list), fixture_call_params(small_shops), fixture_call_params(expected_small_shop_list), fixture_call_params(expected_small_shop_catalogues)])
+    return use_composite_fixture_with(context,
+                                      [fixture_call_params(permissions),
+                                       fixture_call_params(small_users_list),
+                                          fixture_call_params(small_shops),
+                                          fixture_call_params(
+                                              expected_small_shop_list),
+                                          fixture_call_params(
+                                              expected_small_shop_catalogues),
+                                          fixture_call_params(expected_small_shop_categories)])
