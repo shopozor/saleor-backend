@@ -17,7 +17,7 @@ class Provider(LoremProvider):
         return bool(self.generator.random.getrandbits(1))
 
     def category_image_url(self):
-        return os.path.join('categories', 'images', '%s.png' % ''.join(self.random_letters()))
+        return os.path.join('category-backgrounds', '%s.png' % ''.join(self.random_letters()))
 
     def description(self):
         return self.text(max_nb_chars=200)

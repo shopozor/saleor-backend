@@ -73,9 +73,9 @@ def get_pricing(variant_fields, product_fields):
     return pricing
 
 
-def set_page_info(products, totalCount):
-    products['totalCount'] = totalCount
-    products['pageInfo'] = {
+def set_page_info(query, totalCount):
+    query['totalCount'] = totalCount
+    query['pageInfo'] = {
         'startCursor': graphene.Node.to_global_id('arrayconnection', 0),
         'endCursor': graphene.Node.to_global_id('arrayconnection', totalCount - 1)
     }
@@ -157,7 +157,7 @@ def generate_shop_catalogues(fixture_variant):
                     else:
                         thumbnail = {
                             'alt': associated_images[0]['alt'],
-                            'url': urllib.parse.urljoin(settings.MEDIA_URL, '%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
+                            'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
                         }
                     node = {
                         'node': {
@@ -180,6 +180,36 @@ def generate_shop_catalogues(fixture_variant):
     postprocess_is_available_flag(edges)
 
     return expected_catalogues
+
+
+def generate_shop_categories(fixture_variant):
+    shops_fixture = json.load(os.path.join(
+        settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
+    expected_categories = {
+        'data': {
+            'categories': {
+                'edges': [],
+            }
+        }
+    }
+    totalCount = 0
+    edges = expected_categories['data']['categories']['edges']
+    for category in [item for item in shops_fixture if item['model'] == 'product.category']:
+        node = {
+            'node': {
+                'id': category['pk'],
+                'name': category['fields']['name'],
+                'description': category['fields']['description'],
+                'backgroundImage': {
+                    'alt': category['fields']['background_image_alt'],
+                    'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d-70.%s' % (category['fields']['background_image'].split('.')[0], settings.CATEGORY_THUMBNAIL_SIZE, settings.CATEGORY_THUMBNAIL_SIZE, category['fields']['background_image'].split('.')[1]))
+                }
+            }
+        }
+        edges.append(node)
+        totalCount += 1
+    set_page_info(expected_categories['data']['categories'], totalCount)
+    return expected_categories
 
 
 def output_object_to_json(object, output_dir, output_filename):
@@ -205,6 +235,15 @@ def output_shop_catalogues(output_dir, variant):
                 shop_catalogues[catalogue][category], os.path.join(catalogues_output_dir, 'Shop-%d' % catalogue), 'Category-%d.json' % category)
 
 
+def output_shop_categories(output_dir, variant):
+    os.makedirs(os.path.join(output_dir, variant), exist_ok=True)
+    categories_output_dir = os.path.join(
+        output_dir, variant, 'Consumer'
+    )
+    output_object_to_json(generate_shop_categories(
+        variant), categories_output_dir, 'Categories.json')
+
+
 class Command(BaseCommand):
     help = 'Generate the JSON expected responses to the GraphQL queries tested in the acceptance tests.'
 
@@ -218,3 +257,4 @@ class Command(BaseCommand):
         for variant in 'small', 'medium', 'large':
             output_shop_list(output_folder, variant)
             output_shop_catalogues(output_folder, variant)
+            output_shop_categories(output_folder, variant)
