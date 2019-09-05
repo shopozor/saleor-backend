@@ -4,6 +4,8 @@ from saleor.product.models import Category, Product
 from shopozor.models import Shop
 from tests.api.utils import get_graphql_content
 
+import graphene
+
 
 def query_shops(client):
     query = get_query_from_file('shops.graphql')
@@ -14,8 +16,8 @@ def query_shops(client):
 def query_shop_catalogue(client, shop_id, category_id):
     query = get_query_from_file('shopCatalogue.graphql')
     variables = {
-        'shopId': shop_id,
-        'categoryId': category_id,
+        'shopId': graphene.Node.to_global_id("Shop", shop_id),
+        'categoryId': graphene.Node.to_global_id("Category", category_id),
         'first': Product.objects.count()
     }
     response = client.post_graphql(query, variables)
@@ -34,7 +36,7 @@ def query_categories(client):
 def query_product_details(client, product_id):
     query = get_query_from_file('productDetails.graphql')
     variables = {
-        'productId': product_id
+        'productId': graphene.Node.to_global_id("Product", product_id)
     }
     response = client.post_graphql(query, variables)
     return get_graphql_content(response)
@@ -81,15 +83,11 @@ def step_impl(context):
 
 @then(u'il en obtient la liste')
 def step_impl(context):
-    # the pagination info is irrelevant in our comparison
     raise NotImplementedError()
 
 
 @then(u'il obtient la liste de tous les Produits qui y sont publiés')
 def step_impl(context):
-    # the pagination info is irrelevant in our comparison
-    context.expected_shop_catalogues[context.shop_id].pop('pageInfo', None)
-    context.response.pop('pageInfo', None)
     context.test.assertEqual(
         context.expected_shop_catalogues[context.shop_id], context.response)
 
