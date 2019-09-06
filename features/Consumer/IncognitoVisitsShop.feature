@@ -45,7 +45,7 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito demande quels Shops il peut visiter
     Alors il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale
 
-  @categories.graphql
+  @shopCategories.graphql
   @fixture.small-shops
   Scénario: Incognito obtient la liste des Rayons
 
