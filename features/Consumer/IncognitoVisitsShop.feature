@@ -85,3 +85,4 @@ Fonctionnalité: Un Incognito visite un Shop
     Etant donné le Shop de son choix
     Lorsqu'Incognito y inspecte un Produit
     Alors il en obtient la description détaillée
+    Et une indication claire de la marge que s'en fait la plateforme

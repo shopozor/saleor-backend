@@ -99,3 +99,8 @@ def step_impl(context):
 def step_impl(context):
     # TODO: add product details graphql responses to the context!
     raise NotImplementedError()
+
+
+@then(u'une indication claire de la marge que s\'en fait la plateforme')
+def step_impl(context):
+    raise NotImplementedError()

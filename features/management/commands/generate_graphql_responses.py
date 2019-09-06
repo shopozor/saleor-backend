@@ -93,6 +93,34 @@ def get_users_fixture(fixture_variant):
     return users_fixture
 
 
+def update_product_price_range(product, variant, node):
+    variant_pricing = get_pricing(variant['fields'], product['fields'])
+    variant_price = variant_pricing['price']
+    current_start = node['pricing']['priceRange']['start']
+    current_stop = node['pricing']['priceRange']['stop']
+    if variant_price['gross']['amount'] < current_start['gross']['amount']:
+        return {
+            'priceRange': {
+                'start': variant_price,
+                'stop': current_stop
+            }
+        }
+    elif variant_price['gross']['amount'] > current_stop['gross']['amount']:
+        return {
+            'priceRange': {
+                'start': current_start,
+                'stop': variant_price
+            }
+        }
+    else:
+        return {
+            'priceRange': {
+                'start': current_start,
+                'stop': current_stop
+            }
+        }
+
+
 def generate_shop_catalogues(fixture_variant):
     shops_fixture = json.load(os.path.join(
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
@@ -129,12 +157,13 @@ def generate_shop_catalogues(fixture_variant):
                     'id': variant_id,
                     'name': variant['fields']['name'],
                     'isAvailable': product['fields']['is_published'],
-                    'stockQuantity': max(variant['fields']['quantity'] - variant['fields']['quantity_allocated'], 0),
-                    'pricing': get_pricing(variant['fields'], product['fields'])
+                    'stockQuantity': max(variant['fields']['quantity'] - variant['fields']['quantity_allocated'], 0)
                 }
                 if edges_with_product_id:
                     edge = edges_with_product_id[0]
                     edge['node']['variants'].append(new_variant)
+                    edge['node']['pricing'] = update_product_price_range(
+                        product, variant, edge['node'])
                 else:
                     staff_ids = [entry['fields']['staff_id'] for entry in shops_fixture if entry['model']
                                  == 'shopozor.productstaff' and entry['fields']['product_id'] == product['pk']]
@@ -159,6 +188,9 @@ def generate_shop_catalogues(fixture_variant):
                             'alt': associated_images[0]['alt'],
                             'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
                         }
+                    initial_pricing = get_pricing(
+                        variant['fields'], product['fields'])
+                    initial_gross = initial_pricing['price']['gross']
                     node = {
                         'node': {
                             'id': product['pk'],
@@ -168,7 +200,17 @@ def generate_shop_catalogues(fixture_variant):
                             'productType': {
                                 'id': product['fields']['product_type']
                             },
-                            'producer': associated_producer
+                            'producer': associated_producer,
+                            'pricing': {
+                                'priceRange': {
+                                    'start': {
+                                        'gross': initial_gross
+                                    },
+                                    'stop': {
+                                        'gross': initial_gross
+                                    }
+                                }
+                            }
                         }
                     }
                     edges.append(node)
