@@ -23,7 +23,7 @@ def generate_shop_list(fixture_variant):
         fields = shop_fixture['fields']
         node = {
             'node': {
-                'id': shop_fixture['pk'],
+                'id': graphene.Node.to_global_id('Shop', shop_fixture['pk']),
                 'name': fields['name'],
                 'description': fields['description'],
                 'geocoordinates': {
@@ -47,6 +47,13 @@ def postprocess_is_available_flag(edges):
             variant['isAvailable'] = variant['isAvailable'] and has_stock
 
 
+def money_amount(price_fields):
+    return {
+        'amount': price_fields['amount'],
+        'currency': price_fields['currency']
+    }
+
+
 def get_pricing(variant_fields, product_fields):
     # This method is perfectly fine as long as we don't incorporate taxes
     # When we take taxes into account, we'll need to adapt this method
@@ -55,19 +62,13 @@ def get_pricing(variant_fields, product_fields):
     if 'price_override' in variant_fields and variant_fields['price_override'] is not None:
         pricing = {
             'price': {
-                'gross': {
-                    'currency': variant_fields['price_override']['currency'],
-                    'amount': variant_fields['price_override']['amount'],
-                }
+                'gross': money_amount(variant_fields['price_override'])
             }
         }
     else:
         pricing = {
             'price': {
-                'gross': {
-                    'currency': product_fields['price']['currency'],
-                    'amount': product_fields['price']['amount'],
-                }
+                'gross': money_amount(product_fields['price'])
             }
         }
     return pricing
@@ -154,7 +155,7 @@ def generate_shop_catalogues(fixture_variant):
                     edge for edge in edges if edge['node']['id'] == product['pk']]
 
                 new_variant = {
-                    'id': variant_id,
+                    'id': graphene.Node.to_global_id('ProductVariant', variant_id),
                     'name': variant['fields']['name'],
                     'isAvailable': product['fields']['is_published'],
                     'stockQuantity': max(variant['fields']['quantity'] - variant['fields']['quantity_allocated'], 0)
@@ -193,12 +194,12 @@ def generate_shop_catalogues(fixture_variant):
                     initial_gross = initial_pricing['price']['gross']
                     node = {
                         'node': {
-                            'id': product['pk'],
+                            'id': graphene.Node.to_global_id('Product', product['pk']),
                             'name': product['fields']['name'],
                             'variants': [new_variant],
                             'thumbnail': thumbnail,
                             'productType': {
-                                'id': product['fields']['product_type']
+                                'id': graphene.Node.to_global_id('ProductType', product['fields']['product_type'])
                             },
                             'producer': associated_producer,
                             'pricing': {
@@ -239,7 +240,7 @@ def generate_shop_categories(fixture_variant):
     for category in [item for item in shops_fixture if item['model'] == 'product.category']:
         node = {
             'node': {
-                'id': category['pk'],
+                'id': graphene.Node.to_global_id('Category', category['pk']),
                 'name': category['fields']['name'],
                 'description': category['fields']['description'],
                 'backgroundImage': {
@@ -253,6 +254,67 @@ def generate_shop_categories(fixture_variant):
     set_page_info(expected_categories['data']['categories'], totalCount)
     return expected_categories
 
+
+# def generate_product_details(fixture_variant):
+#     # TODO: generate conservation { mode, duration }
+#     # TODO: don't forget to encode the ids!
+#     # TODO: we need to optimize the access to the images and the variants (--> optimize also the catalogue generation)
+#     # TODO: to do so, we might need to create a copy of the shops_fixture because we will progressively delete items from it
+#     shops_fixture = json.load(os.path.join(
+#         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
+#     products = [item for item in shops_fixture if item['model'] == 'product.product']
+#     expected_products = {}
+#     for product in products:
+#         expected_products[product['pk']] = {
+#             # TODO: for this, we need to fetch the only shopozor_product instance and get the mode and duration from it
+#             'conservation': {
+#                 'mode': '',
+#                 'duration': ''
+#             },
+#             'description': product['fields']['description'],
+#             # TODO: iterate over all product_images to get the ones corresponding to this product
+#             'images': [{
+#                 'alt': '',
+#                 'url': ''
+#             }],
+#             'name': product['fields']['name'],
+#             # TODO: this is the kind of things that was already computed in the catalogue
+#             'pricing': {
+#                 'priceRange': {
+#                     'start': {
+#                         'gross': money_amount(),
+#                         'net': money_amount(),
+#                         'tax': money_amount(),
+#                     },
+#                     'stop': {
+#                         'gross': money_amount(),
+#                         'net': money_amount(),
+#                         'tax': money_amount()
+#                     }
+#                 }
+#             },
+#             'purchaseCost': {
+#                 'start': money_amount(),
+#                 'stop': money_amount()
+#             },
+#             'variants': [{
+#                 'costPrice': money_amount(),
+#                 'id': '',
+#                 'isAvailable': 0,
+#                 'name': '',
+#                 'pricing': {
+#                     'price': {
+#                         'gross': money_amount(),
+#                         'net': money_amount(),
+#                         'tax': money_amount()
+#                     }
+#                 },
+#                 'sku': '',
+#                 'stockQuantity': 0
+#             }]
+#         }
+
+#     return expected_products
 
 def output_object_to_json(object, output_dir, output_filename):
     os.makedirs(output_dir, exist_ok=True)
