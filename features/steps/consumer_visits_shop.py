@@ -101,6 +101,6 @@ def step_impl(context):
     raise NotImplementedError()
 
 
-@then(u'une indication claire de la marge que s\'en fait la plateforme')
+@then(u'une indication claire de la marge que s\'en fait le Shopozor')
 def step_impl(context):
     raise NotImplementedError()
