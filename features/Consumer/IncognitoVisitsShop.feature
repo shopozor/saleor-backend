@@ -74,8 +74,6 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito en visite les Rayons
     Alors il obtient la liste de tous les Produits qui y sont publiés
 
-    # TODO: comment allons-nous gérer les modifications en live du stock des variantes de produits?
-
   @productDetails.graphql
   @fixture.small-shops
   Scénario: Chaque Produit est détaillé
