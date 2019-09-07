@@ -49,14 +49,14 @@ def postprocess_is_available_flag(edges):
             variant['isAvailable'] = variant['isAvailable'] and has_stock
 
 
-def money_amount(price_fields):
+def money_amount(price_fields, amount=None):
     return {
-        'amount': price_fields['amount'],
+        'amount': amount if amount is not None else price_fields['amount'],
         'currency': price_fields['currency']
     }
 
 
-def get_pricing(variant_fields, product_fields):
+def get_gross_pricing(variant_fields, product_fields):
     # This method is perfectly fine as long as we don't incorporate taxes
     # When we take taxes into account, we'll need to adapt this method
     # This will document how the taxes are taken into account
@@ -97,7 +97,7 @@ def get_users_fixture(fixture_variant):
 
 
 def update_product_price_range(product, variant, node):
-    variant_pricing = get_pricing(variant['fields'], product['fields'])
+    variant_pricing = get_gross_pricing(variant['fields'], product['fields'])
     variant_price = variant_pricing['price']
     current_start = node['pricing']['priceRange']['start']
     current_stop = node['pricing']['priceRange']['stop']
@@ -124,7 +124,53 @@ def update_product_price_range(product, variant, node):
         }
 
 
+def update_product_details(product_details, product_fields, images):
+    product_details['description'] = product_fields['description']
+    product_details['images'] = images
+#             'conservation': {
+#                 'mode': '',
+#                 'duration': ''
+#             },
+#             'pricing': {
+#                 'priceRange': {
+#                     'start': {
+#                         'gross': money_amount(),
+#                         'net': money_amount(),
+#                         'tax': money_amount(),
+#                     },
+#                     'stop': {
+#                         'gross': money_amount(),
+#                         'net': money_amount(),
+#                         'tax': money_amount()
+#                     }
+#                 }
+#             },
+#             'purchaseCost': {
+#                 'start': money_amount(),
+#                 'stop': money_amount()
+#             },
+#             'variants': [{
+#                 'costPrice': money_amount(),
+#                 'id': '',
+#                 'isAvailable': 0,
+#                 'name': '',
+#                 'pricing': {
+#                     'price': {
+#                         'gross': money_amount(),
+#                         'net': money_amount(),
+#                         'tax': money_amount()
+#                     }
+#                 },
+#                 'sku': '',
+#                 'stockQuantity': 0
+#             }]
+
+
 def generate_shop_catalogues(fixture_variant):
+    # TODO: generate conservation { mode, duration }
+    # TODO: don't forget to encode the ids!
+    # TODO: we need to optimize the access to the images and the variants (--> optimize also the catalogue generation)
+    # TODO: to do so, we might need to create a copy of the shops_fixture because we will progressively delete items from it
     shops_fixture = json.load(os.path.join(
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
     users_fixture = get_users_fixture(fixture_variant)
@@ -194,7 +240,7 @@ def generate_shop_catalogues(fixture_variant):
                             'alt': associated_images[0]['alt'],
                             'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
                         }
-                    initial_pricing = get_pricing(
+                    initial_pricing = get_gross_pricing(
                         variant['fields'], product['fields'])
                     initial_gross = initial_pricing['price']['gross']
                     node = {
@@ -220,15 +266,17 @@ def generate_shop_catalogues(fixture_variant):
                         }
                     }
                     catalogue_edges.append(node)
-                    expected_product_details[product['pk']] = deepcopy(
-                        node['node'])
+                    product_details = deepcopy(node['node'])
+                    update_product_details(
+                        product_details, product['fields'], associated_images)
+                    expected_product_details[product['pk']] = product_details
                     totalCount += 1
 
             set_page_info(
                 expected_catalogues[shop['pk']][category]['data']['products'], totalCount)
 
     postprocess_is_available_flag(catalogue_edges)
-
+    # TODO: rather update the expected_catalogues than the expected_product_details; it is easier to get rid of the undesired properties from the product details than adding details to the expected_catalogues
     return expected_catalogues, expected_product_details
 
 
@@ -262,67 +310,6 @@ def generate_shop_categories(fixture_variant):
     return expected_categories
 
 
-# def generate_product_details(fixture_variant):
-#     # TODO: generate conservation { mode, duration }
-#     # TODO: don't forget to encode the ids!
-#     # TODO: we need to optimize the access to the images and the variants (--> optimize also the catalogue generation)
-#     # TODO: to do so, we might need to create a copy of the shops_fixture because we will progressively delete items from it
-#     shops_fixture = json.load(os.path.join(
-#         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
-#     products = [item for item in shops_fixture if item['model'] == 'product.product']
-#     expected_products = {}
-#     for product in products:
-#         expected_products[product['pk']] = {
-#             # TODO: for this, we need to fetch the only shopozor_product instance and get the mode and duration from it
-#             'conservation': {
-#                 'mode': '',
-#                 'duration': ''
-#             },
-#             'description': product['fields']['description'],
-#             # TODO: iterate over all product_images to get the ones corresponding to this product
-#             'images': [{
-#                 'alt': '',
-#                 'url': ''
-#             }],
-#             'name': product['fields']['name'],
-#             # TODO: this is the kind of things that was already computed in the catalogue
-#             'pricing': {
-#                 'priceRange': {
-#                     'start': {
-#                         'gross': money_amount(),
-#                         'net': money_amount(),
-#                         'tax': money_amount(),
-#                     },
-#                     'stop': {
-#                         'gross': money_amount(),
-#                         'net': money_amount(),
-#                         'tax': money_amount()
-#                     }
-#                 }
-#             },
-#             'purchaseCost': {
-#                 'start': money_amount(),
-#                 'stop': money_amount()
-#             },
-#             'variants': [{
-#                 'costPrice': money_amount(),
-#                 'id': '',
-#                 'isAvailable': 0,
-#                 'name': '',
-#                 'pricing': {
-#                     'price': {
-#                         'gross': money_amount(),
-#                         'net': money_amount(),
-#                         'tax': money_amount()
-#                     }
-#                 },
-#                 'sku': '',
-#                 'stockQuantity': 0
-#             }]
-#         }
-
-#     return expected_products
-
 def output_object_to_json(object, output_dir, output_filename):
     os.makedirs(output_dir, exist_ok=True)
     json.dump(object, os.path.join(output_dir, output_filename))
@@ -341,6 +328,14 @@ def output_shop_catalogues(shop_catalogues, output_dir, variant):
         for category in shop_catalogues[catalogue]:
             output_object_to_json(
                 shop_catalogues[catalogue][category], os.path.join(catalogues_output_dir, 'Shop-%d' % catalogue), 'Category-%d.json' % category)
+
+
+def output_product_details(product_details, output_dir, variant):
+    products_output_dir = os.path.join(
+        output_dir, variant, 'Consumer', 'Products')
+    for detail in product_details:
+        output_object_to_json(
+            product_details[detail], products_output_dir, 'Product-%d.json' % detail)
 
 
 def output_shop_categories(output_dir, variant):
@@ -368,4 +363,5 @@ class Command(BaseCommand):
             shop_catalogues, product_details = generate_shop_catalogues(
                 variant)
             output_shop_catalogues(shop_catalogues, output_folder, variant)
+            output_product_details(product_details, output_folder, variant)
             output_shop_categories(output_folder, variant)
