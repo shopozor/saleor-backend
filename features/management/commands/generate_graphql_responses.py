@@ -2,6 +2,8 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from features.utils.fixtures import json
 
+from copy import deepcopy
+
 import graphene
 import os
 import unidecode
@@ -126,7 +128,8 @@ def generate_shop_catalogues(fixture_variant):
     shops_fixture = json.load(os.path.join(
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
     users_fixture = get_users_fixture(fixture_variant)
-    expected_catalogues = dict()
+    expected_catalogues = {}
+    expected_product_details = {}
     for shop in [shop for shop in shops_fixture if shop['model'] == 'shopozor.shop']:
         expected_catalogues[shop['pk']] = {}
         for category in [item['pk'] for item in shops_fixture if item['model'] == 'product.category']:
@@ -138,8 +141,8 @@ def generate_shop_catalogues(fixture_variant):
                 }
             }
             totalCount = 0
-            edges = expected_catalogues[shop['pk']
-                                        ][category]['data']['products']['edges']
+            catalogue_edges = expected_catalogues[shop['pk']
+                                                  ][category]['data']['products']['edges']
             for variant_id in shop['fields']['product_variants']:
                 variant = [entry for entry in shops_fixture if entry['model']
                            == 'product.productvariant' and entry['pk'] == variant_id][0]
@@ -152,7 +155,7 @@ def generate_shop_catalogues(fixture_variant):
                 if not is_published:
                     continue
                 edges_with_product_id = [
-                    edge for edge in edges if edge['node']['id'] == product['pk']]
+                    edge for edge in catalogue_edges if edge['node']['id'] == product['pk']]
 
                 new_variant = {
                     'id': graphene.Node.to_global_id('ProductVariant', variant_id),
@@ -161,11 +164,13 @@ def generate_shop_catalogues(fixture_variant):
                     'stockQuantity': max(variant['fields']['quantity'] - variant['fields']['quantity_allocated'], 0)
                 }
                 if edges_with_product_id:
+                    # append variant to existing product
                     edge = edges_with_product_id[0]
                     edge['node']['variants'].append(new_variant)
                     edge['node']['pricing'] = update_product_price_range(
                         product, variant, edge['node'])
                 else:
+                    # create new product with variant
                     staff_ids = [entry['fields']['staff_id'] for entry in shops_fixture if entry['model']
                                  == 'shopozor.productstaff' and entry['fields']['product_id'] == product['pk']]
                     associated_producer = {}
@@ -214,15 +219,17 @@ def generate_shop_catalogues(fixture_variant):
                             }
                         }
                     }
-                    edges.append(node)
+                    catalogue_edges.append(node)
+                    expected_product_details[product['pk']] = deepcopy(
+                        node['node'])
                     totalCount += 1
 
             set_page_info(
                 expected_catalogues[shop['pk']][category]['data']['products'], totalCount)
 
-    postprocess_is_available_flag(edges)
+    postprocess_is_available_flag(catalogue_edges)
 
-    return expected_catalogues
+    return expected_catalogues, expected_product_details
 
 
 def generate_shop_categories(fixture_variant):
@@ -322,17 +329,14 @@ def output_object_to_json(object, output_dir, output_filename):
 
 
 def output_shop_list(output_dir, variant):
-    os.makedirs(os.path.join(output_dir, variant), exist_ok=True)
     consumer_output_dir = os.path.join(output_dir, variant, 'Consumer')
     output_object_to_json(generate_shop_list(variant),
                           consumer_output_dir, 'Shops.json')
 
 
-def output_shop_catalogues(output_dir, variant):
-    os.makedirs(os.path.join(output_dir, variant), exist_ok=True)
+def output_shop_catalogues(shop_catalogues, output_dir, variant):
     catalogues_output_dir = os.path.join(
         output_dir, variant, 'Consumer', 'Catalogues')
-    shop_catalogues = generate_shop_catalogues(variant)
     for catalogue in shop_catalogues:
         for category in shop_catalogues[catalogue]:
             output_object_to_json(
@@ -359,6 +363,9 @@ class Command(BaseCommand):
         output_folder = options['output_folder']
         os.makedirs(output_folder, exist_ok=True)
         for variant in 'small', 'medium', 'large':
+            os.makedirs(os.path.join(output_folder, variant), exist_ok=True)
             output_shop_list(output_folder, variant)
-            output_shop_catalogues(output_folder, variant)
+            shop_catalogues, product_details = generate_shop_catalogues(
+                variant)
+            output_shop_catalogues(shop_catalogues, output_folder, variant)
             output_shop_categories(output_folder, variant)
