@@ -173,6 +173,8 @@ def extract_products_from_catalogues(catalogues):
                 product_already_exists = [
                     product for product in result if product['id'] == product_id]
                 if not product_already_exists:
+                    # TODO: get rid of the unwanted data
+                    node.pop('thumbnail', None)
                     result.append(node)
     return result
 
@@ -296,7 +298,7 @@ def generate_shop_catalogues(fixture_variant):
 
     postprocess_is_available_flag(catalogue_edges)
     expected_product_details = extract_products_from_catalogues(
-        product_catalogues)
+        deepcopy(product_catalogues))
     expected_catalogues = extract_catalogues(deepcopy(product_catalogues))
     return expected_catalogues, expected_product_details
 
