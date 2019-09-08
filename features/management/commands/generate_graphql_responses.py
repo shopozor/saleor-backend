@@ -125,7 +125,6 @@ def update_product_price_range(product, variant, node):
 
 
 # def update_product_details(product_details, product_fields, images):
-#     product_details['description'] = product_fields['description']
 #     product_details['images'] = images
 #             'conservation': {
 #                 'mode': '',
@@ -181,6 +180,11 @@ def extract_products_from_catalogues(catalogues):
 
 def extract_catalogues(catalogues):
     # TODO: get rid of the unwanted data
+    for shop in catalogues:
+        for category in catalogues[shop]:
+            for edge in catalogues[shop][category]['data']['products']['edges']:
+                node = edge['node']
+                node.pop('description', None)
     return catalogues
 
 
@@ -264,6 +268,7 @@ def generate_shop_catalogues(fixture_variant):
                         'node': {
                             'id': graphene.Node.to_global_id('Product', product['pk']),
                             'name': product['fields']['name'],
+                            'description': product['fields']['description'],
                             'variants': [new_variant],
                             'thumbnail': thumbnail,
                             'productType': {
