@@ -56,7 +56,7 @@ def money_amount(price_fields, amount=None):
     }
 
 
-def get_gross_pricing(variant_fields, product_fields):
+def get_pricing(variant_fields, product_fields):
     # This method is perfectly fine as long as we don't incorporate taxes
     # When we take taxes into account, we'll need to adapt this method
     # This will document how the taxes are taken into account
@@ -97,7 +97,7 @@ def get_users_fixture(fixture_variant):
 
 
 def update_product_price_range(product, variant, node):
-    variant_pricing = get_gross_pricing(variant['fields'], product['fields'])
+    variant_pricing = get_pricing(variant['fields'], product['fields'])
     variant_price = variant_pricing['price']
     current_start = node['pricing']['priceRange']['start']
     current_stop = node['pricing']['priceRange']['stop']
@@ -124,9 +124,9 @@ def update_product_price_range(product, variant, node):
         }
 
 
-def update_product_details(product_details, product_fields, images):
-    product_details['description'] = product_fields['description']
-    product_details['images'] = images
+# def update_product_details(product_details, product_fields, images):
+#     product_details['description'] = product_fields['description']
+#     product_details['images'] = images
 #             'conservation': {
 #                 'mode': '',
 #                 'duration': ''
@@ -165,6 +165,24 @@ def update_product_details(product_details, product_fields, images):
 #                 'stockQuantity': 0
 #             }]
 
+def extract_products_from_catalogues(catalogues):
+    result = []
+    for shop in catalogues:
+        for category in catalogues[shop]:
+            for edge in catalogues[shop][category]['data']['products']['edges']:
+                node = edge['node']
+                product_id = node['id']
+                product_already_exists = [
+                    product for product in result if product['id'] == product_id]
+                if not product_already_exists:
+                    result.append(node)
+    return result
+
+
+def extract_catalogues(catalogues):
+    # TODO: get rid of the unwanted data
+    return catalogues
+
 
 def generate_shop_catalogues(fixture_variant):
     # TODO: generate conservation { mode, duration }
@@ -174,12 +192,11 @@ def generate_shop_catalogues(fixture_variant):
     shops_fixture = json.load(os.path.join(
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
     users_fixture = get_users_fixture(fixture_variant)
-    expected_catalogues = {}
-    expected_product_details = {}
+    product_catalogues = {}
     for shop in [shop for shop in shops_fixture if shop['model'] == 'shopozor.shop']:
-        expected_catalogues[shop['pk']] = {}
+        product_catalogues[shop['pk']] = {}
         for category in [item['pk'] for item in shops_fixture if item['model'] == 'product.category']:
-            expected_catalogues[shop['pk']][category] = {
+            product_catalogues[shop['pk']][category] = {
                 'data': {
                     'products': {
                         'edges': [],
@@ -187,8 +204,8 @@ def generate_shop_catalogues(fixture_variant):
                 }
             }
             totalCount = 0
-            catalogue_edges = expected_catalogues[shop['pk']
-                                                  ][category]['data']['products']['edges']
+            catalogue_edges = product_catalogues[shop['pk']
+                                                 ][category]['data']['products']['edges']
             for variant_id in shop['fields']['product_variants']:
                 variant = [entry for entry in shops_fixture if entry['model']
                            == 'product.productvariant' and entry['pk'] == variant_id][0]
@@ -240,9 +257,9 @@ def generate_shop_catalogues(fixture_variant):
                             'alt': associated_images[0]['alt'],
                             'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
                         }
-                    initial_pricing = get_gross_pricing(
+                    initial_pricing = get_pricing(
                         variant['fields'], product['fields'])
-                    initial_gross = initial_pricing['price']['gross']
+                    initial_price_range = initial_pricing['price']['gross']
                     node = {
                         'node': {
                             'id': graphene.Node.to_global_id('Product', product['pk']),
@@ -256,27 +273,25 @@ def generate_shop_catalogues(fixture_variant):
                             'pricing': {
                                 'priceRange': {
                                     'start': {
-                                        'gross': initial_gross
+                                        'gross': initial_price_range
                                     },
                                     'stop': {
-                                        'gross': initial_gross
+                                        'gross': initial_price_range
                                     }
                                 }
                             }
                         }
                     }
                     catalogue_edges.append(node)
-                    product_details = deepcopy(node['node'])
-                    update_product_details(
-                        product_details, product['fields'], associated_images)
-                    expected_product_details[product['pk']] = product_details
                     totalCount += 1
 
             set_page_info(
-                expected_catalogues[shop['pk']][category]['data']['products'], totalCount)
+                product_catalogues[shop['pk']][category]['data']['products'], totalCount)
 
     postprocess_is_available_flag(catalogue_edges)
-    # TODO: rather update the expected_catalogues than the expected_product_details; it is easier to get rid of the undesired properties from the product details than adding details to the expected_catalogues
+    expected_product_details = extract_products_from_catalogues(
+        product_catalogues)
+    expected_catalogues = extract_catalogues(deepcopy(product_catalogues))
     return expected_catalogues, expected_product_details
 
 
@@ -335,7 +350,7 @@ def output_product_details(product_details, output_dir, variant):
         output_dir, variant, 'Consumer', 'Products')
     for detail in product_details:
         output_object_to_json(
-            product_details[detail], products_output_dir, 'Product-%d.json' % detail)
+            detail, products_output_dir, 'Product-%d.json' % int(graphene.Node.from_global_id(detail['id'])[1]))
 
 
 def output_shop_categories(output_dir, variant):
@@ -357,11 +372,19 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         output_folder = options['output_folder']
         os.makedirs(output_folder, exist_ok=True)
-        for variant in 'small', 'medium', 'large':
-            os.makedirs(os.path.join(output_folder, variant), exist_ok=True)
-            output_shop_list(output_folder, variant)
-            shop_catalogues, product_details = generate_shop_catalogues(
-                variant)
-            output_shop_catalogues(shop_catalogues, output_folder, variant)
-            output_product_details(product_details, output_folder, variant)
-            output_shop_categories(output_folder, variant)
+        # for variant in 'small', 'medium', 'large':
+        #     os.makedirs(os.path.join(output_folder, variant), exist_ok=True)
+        #     output_shop_list(output_folder, variant)
+        #     shop_catalogues, product_details = generate_shop_catalogues(
+        #         variant)
+        #     output_shop_catalogues(shop_catalogues, output_folder, variant)
+        #     output_product_details(product_details, output_folder, variant)
+        #     output_shop_categories(output_folder, variant)
+        variant = 'small'
+        os.makedirs(os.path.join(output_folder, variant), exist_ok=True)
+        output_shop_list(output_folder, variant)
+        shop_catalogues, product_details = generate_shop_catalogues(
+            variant)
+        output_shop_catalogues(shop_catalogues, output_folder, variant)
+        output_product_details(product_details, output_folder, variant)
+        output_shop_categories(output_folder, variant)
