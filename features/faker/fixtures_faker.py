@@ -340,17 +340,17 @@ class FakeDataFactory:
         start_pk = 1
         return [self.__shopozor_product(pk, product['pk'], dateutil.parser.parse(product['fields']['publication_date'])) for pk, product in enumerate(products, start_pk)]
 
-    def __productvariant(self, pk, product_id):
+    def __productvariant(self, pk, product):
         quantity = self.__fake.quantity()
+        price_override = self.__fake.price_override()
+        variant_price = product['fields']['price']['amount'] if price_override is None else price_override['amount']
         return {
             'fields': {
                 'attributes': '{}',
-                # TODO: make sure that cost_price <= price_override!
-                # TODO: if there is no price_override, make sure that the product's price >= cost_price!
-                'cost_price': self.__fake.money_amount(),
+                'cost_price': self.__fake.variant_cost_price(max_amount=float(variant_price)),
                 'name': self.__fake.variant_name(),
-                'price_override': self.__fake.price_override(),
-                'product': product_id,
+                'price_override': price_override,
+                'product': product['pk'],
                 'quantity': quantity,
                 'quantity_allocated': self.__fake.quantity_allocated(quantity),
                 'sku': self.__fake.sku(),
@@ -361,15 +361,15 @@ class FakeDataFactory:
             'pk': pk
         }
 
-    def create_productvariants(self, product_ids):
+    def create_productvariants(self, products):
         result = []
         pk = 1
-        for product_id in product_ids:
+        for product in products:
             # a product with 0 variant might not be something we want --> needs to be tested
             nb_variants = self.__fake.random.randint(
                 0, self.__MAX_NB_VARIANTS_PER_PRODUCT)
             for _ in range(0, nb_variants):
-                result.append(self.__productvariant(pk, product_id))
+                result.append(self.__productvariant(pk, product))
                 pk += 1
         return result
 

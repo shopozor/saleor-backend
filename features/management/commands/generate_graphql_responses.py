@@ -181,8 +181,6 @@ def extract_catalogues(catalogues):
 
 
 def generate_shop_catalogues(fixture_variant):
-    # TODO: we need to optimize the access to the images and the variants (--> optimize also the catalogue generation)
-    # TODO: to do so, we might need to create a copy of the shops_fixture because we will progressively delete items from it
     shops_fixture = json.load(os.path.join(
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
     users_fixture = get_users_fixture(fixture_variant)
@@ -203,6 +201,7 @@ def generate_shop_catalogues(fixture_variant):
             for variant_id in shop['fields']['product_variants']:
                 variant = [entry for entry in shops_fixture if entry['model']
                            == 'product.productvariant' and entry['pk'] == variant_id][0]
+                # TODO: why isn't this working: shops_fixture.remove(variant)?
                 product_in_category = [entry for entry in shops_fixture if entry['model'] ==
                                        'product.product' and entry['pk'] == variant['fields']['product'] and entry['fields']['category'] == category]
                 if len(product_in_category) == 0:
@@ -252,6 +251,7 @@ def generate_shop_catalogues(fixture_variant):
                         'alt': fixture['fields']['alt'],
                         'url': fixture['fields']['image'],
                     } for fixture in shops_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']]
+                    # TODO: delete those images from the shops_fixture
                     if len(associated_images) == 0:
                         thumbnail = {
                             'alt': None,
@@ -289,8 +289,8 @@ def generate_shop_catalogues(fixture_variant):
                                 }
                             },
                             'purchaseCost': {
-                                'start': initial_price['net'],
-                                'stop': initial_price['net']
+                                'start': variant['fields']['cost_price'],
+                                'stop': variant['fields']['cost_price']
                             }
                         }
                     }

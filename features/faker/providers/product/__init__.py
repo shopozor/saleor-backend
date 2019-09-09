@@ -34,10 +34,10 @@ class Provider(LoremProvider):
     def is_published(self):
         return self.__random_bool()
 
-    def money_amount(self):
+    def money_amount(self, max_amount=100):
         return {
             '_type': 'Money',
-            'amount': str(self.__random_float(0, 100, 2)),
+            'amount': str(self.__random_float(0, max_amount, 2)),
             'currency': settings.DEFAULT_CURRENCY
         }
 
@@ -84,6 +84,9 @@ class Provider(LoremProvider):
 
     def sku(self):
         return str(self.random_number(digits=9, fix_len=True))
+
+    def variant_cost_price(self, max_amount=100):
+        return self.money_amount(max_amount)
 
     def variant_name(self):
         return self.word(ext_word_list=self.variant_names)

@@ -41,6 +41,5 @@ class Product(models.Model):
     product = models.OneToOneField(
         SaleorProduct, on_delete=models.CASCADE, primary_key=True
     )
-    # TODO: rather link with a conservation_mode table!
     conservation_mode = models.CharField(max_length=256, blank=True)
     conservation_until = models.DateField()
