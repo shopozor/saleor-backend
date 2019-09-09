@@ -187,7 +187,6 @@ def extract_catalogues(catalogues):
 
 def generate_shop_catalogues(fixture_variant):
     # TODO: generate conservation { mode, duration }
-    # TODO: don't forget to encode the ids!
     # TODO: we need to optimize the access to the images and the variants (--> optimize also the catalogue generation)
     # TODO: to do so, we might need to create a copy of the shops_fixture because we will progressively delete items from it
     shops_fixture = json.load(os.path.join(
