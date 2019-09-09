@@ -189,6 +189,8 @@ def extract_catalogues(catalogues):
                 node['pricing']['priceRange']['stop'].pop('net', None)
                 node['pricing']['priceRange']['stop'].pop('tax', None)
                 node.pop('purchaseCost', None)
+                for variant in node['variants']:
+                    variant.pop('costPrice', None)
     return catalogues
 
 
