@@ -63,11 +63,15 @@ def get_price(variant_fields, product_fields):
     price = {}
     if 'price_override' in variant_fields and variant_fields['price_override'] is not None:
         price = {
-            'gross': money_amount(variant_fields['price_override'])
+            'gross': money_amount(variant_fields['price_override']),
+            'net': money_amount(variant_fields['price_override']),
+            'tax': money_amount(variant_fields['price_override'], amount=0)
         }
     else:
         price = {
-            'gross': money_amount(product_fields['price'])
+            'gross': money_amount(product_fields['price']),
+            'net': money_amount(product_fields['price']),
+            'tax': money_amount(product_fields['price'], amount=0)
         }
     return price
 
