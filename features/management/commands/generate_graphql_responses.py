@@ -143,12 +143,6 @@ def update_product_purchase_cost(variant, node):
             'stop': current_stop
         }
 
-# def update_product_details(product_details, product_fields, images):
-#             'conservation': {
-#                 'mode': '',
-#                 'duration': ''
-#             },
-
 
 def extract_products_from_catalogues(catalogues):
     result = []
@@ -171,6 +165,7 @@ def extract_catalogues(catalogues):
         for category in catalogues[shop]:
             for edge in catalogues[shop][category]['data']['products']['edges']:
                 node = edge['node']
+                node.pop('conservation', None)
                 node.pop('description', None)
                 node.pop('images', None)
                 node['pricing']['priceRange']['start'].pop('net', None)
@@ -186,7 +181,6 @@ def extract_catalogues(catalogues):
 
 
 def generate_shop_catalogues(fixture_variant):
-    # TODO: generate conservation { mode, duration }
     # TODO: we need to optimize the access to the images and the variants (--> optimize also the catalogue generation)
     # TODO: to do so, we might need to create a copy of the shops_fixture because we will progressively delete items from it
     shops_fixture = json.load(os.path.join(
@@ -271,9 +265,14 @@ def generate_shop_catalogues(fixture_variant):
                     # TODO: double-check how a product's price is currently determined by saleor
                     initial_price = get_price(
                         variant['fields'], product['fields'])
+                    conservation = [{
+                        'mode': item['fields']['conservation_mode'],
+                        'until': item['fields']['conservation_until']
+                    } for item in shops_fixture if item['model'] == 'shopozor.product' and item['fields']['product_id'] == product['pk']]
                     node = {
                         'node': {
                             'id': graphene.Node.to_global_id('Product', product['pk']),
+                            'conservation': conservation[0],
                             'name': product['fields']['name'],
                             'description': product['fields']['description'],
                             'variants': [new_variant],

@@ -376,6 +376,22 @@ class FakeDataFactory:
                 pk, category_id, producttype_id, attr))
         return result
 
+    def __shopozor_product(self, pk, product_id):
+        return {
+            'fields': {
+                # TODO: fill fields in
+                'product_id': product_id,
+                'conservation_mode': '',
+                'conservation_until': ''
+            },
+            'model': 'shopozor.product',
+            'pk': pk
+        }
+
+    def create_shopozor_products(self, product_ids):
+        start_pk = 1
+        return [self.__shopozor_product(pk, product_id) for pk, product_id in enumerate(product_ids, start_pk)]
+
     def __productvariant(self, pk, product_id):
         quantity = self.__fake.quantity()
         return {

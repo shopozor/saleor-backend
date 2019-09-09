@@ -110,6 +110,9 @@ def generate_variant(variant_name, output_folder):
     shopozor.extend(products)
 
     product_ids = [product['pk'] for product in products]
+    shopozor_products = factory.create_shopozor_products(product_ids)
+    shopozor.extend(shopozor_products)
+
     product_variants = factory.create_productvariants(product_ids)
     shopozor.extend(product_variants)
 
