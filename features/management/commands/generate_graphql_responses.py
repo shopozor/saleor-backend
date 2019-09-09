@@ -128,24 +128,6 @@ def update_product_price_range(product, variant, node):
 #                 'mode': '',
 #                 'duration': ''
 #             },
-#             'pricing': {
-#                 'priceRange': {
-#                     'start': {
-#                         'gross': money_amount(),
-#                         'net': money_amount(),
-#                         'tax': money_amount(),
-#                     },
-#                     'stop': {
-#                         'gross': money_amount(),
-#                         'net': money_amount(),
-#                         'tax': money_amount()
-#                     }
-#                 }
-#             },
-#             'purchaseCost': {
-#                 'start': money_amount(),
-#                 'stop': money_amount()
-#             },
 #             'variants': [{
 #                 'costPrice': money_amount(),
 #                 'id': '',
@@ -190,6 +172,7 @@ def extract_catalogues(catalogues):
                 node['pricing']['priceRange']['start'].pop('tax', None)
                 node['pricing']['priceRange']['stop'].pop('net', None)
                 node['pricing']['priceRange']['stop'].pop('tax', None)
+                node.pop('purchaseCost', None)
     return catalogues
 
 
@@ -241,6 +224,7 @@ def generate_shop_catalogues(fixture_variant):
                     edge['node']['variants'].append(new_variant)
                     edge['node']['pricing'] = update_product_price_range(
                         product, variant, edge['node'])
+                    # TODO: update purchaseCost based on variant's costPrice
                 else:
                     # create new product with variant
                     staff_ids = [entry['fields']['staff_id'] for entry in shops_fixture if entry['model']
@@ -285,6 +269,10 @@ def generate_shop_catalogues(fixture_variant):
                                     'start': initial_price,
                                     'stop': initial_price
                                 }
+                            },
+                            'purchaseCost': {
+                                'start': initial_price['net'],
+                                'stop': initial_price['net']
                             }
                         }
                     }
