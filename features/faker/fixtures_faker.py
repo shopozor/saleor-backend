@@ -381,6 +381,8 @@ class FakeDataFactory:
         return {
             'fields': {
                 'attributes': '{}',
+                # TODO: make sure that cost_price <= price_override!
+                # TODO: if there is no price_override, make sure that the product's price >= cost_price!
                 'cost_price': self.__fake.money_amount(),
                 'name': self.__fake.variant_name(),
                 'price_override': self.__fake.price_override(),
