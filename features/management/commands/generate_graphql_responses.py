@@ -56,24 +56,20 @@ def money_amount(price_fields, amount=None):
     }
 
 
-def get_pricing(variant_fields, product_fields):
+def get_price(variant_fields, product_fields):
     # This method is perfectly fine as long as we don't incorporate taxes
     # When we take taxes into account, we'll need to adapt this method
     # This will document how the taxes are taken into account
-    pricing = {}
+    price = {}
     if 'price_override' in variant_fields and variant_fields['price_override'] is not None:
-        pricing = {
-            'price': {
-                'gross': money_amount(variant_fields['price_override'])
-            }
+        price = {
+            'gross': money_amount(variant_fields['price_override'])
         }
     else:
-        pricing = {
-            'price': {
-                'gross': money_amount(product_fields['price'])
-            }
+        price = {
+            'gross': money_amount(product_fields['price'])
         }
-    return pricing
+    return price
 
 
 def set_page_info(query, totalCount):
@@ -97,8 +93,7 @@ def get_users_fixture(fixture_variant):
 
 
 def update_product_price_range(product, variant, node):
-    variant_pricing = get_pricing(variant['fields'], product['fields'])
-    variant_price = variant_pricing['price']
+    variant_price = get_price(variant['fields'], product['fields'])
     current_start = node['pricing']['priceRange']['start']
     current_stop = node['pricing']['priceRange']['stop']
     if variant_price['gross']['amount'] < current_start['gross']['amount']:
@@ -187,6 +182,10 @@ def extract_catalogues(catalogues):
                 node = edge['node']
                 node.pop('description', None)
                 node.pop('images', None)
+                node['pricing']['priceRange']['start'].pop('net', None)
+                node['pricing']['priceRange']['start'].pop('tax', None)
+                node['pricing']['priceRange']['stop'].pop('net', None)
+                node['pricing']['priceRange']['stop'].pop('tax', None)
     return catalogues
 
 
@@ -263,9 +262,8 @@ def generate_shop_catalogues(fixture_variant):
                             'alt': associated_images[0]['alt'],
                             'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
                         }
-                    initial_pricing = get_pricing(
+                    initial_price = get_price(
                         variant['fields'], product['fields'])
-                    initial_price_range = initial_pricing['price']['gross']
                     node = {
                         'node': {
                             'id': graphene.Node.to_global_id('Product', product['pk']),
@@ -280,12 +278,8 @@ def generate_shop_catalogues(fixture_variant):
                             'producer': associated_producer,
                             'pricing': {
                                 'priceRange': {
-                                    'start': {
-                                        'gross': initial_price_range
-                                    },
-                                    'stop': {
-                                        'gross': initial_price_range
-                                    }
+                                    'start': initial_price,
+                                    'stop': initial_price
                                 }
                             }
                         }
