@@ -1,7 +1,9 @@
 from faker import Faker
 from features.faker.providers.geo import Provider as ShopozorGeoProvider
 from features.faker.providers.product import Provider as ProductProvider
+from features.faker.providers.time import Provider as DateTimeProvider
 
+import dateutil.parser
 import itertools
 import os
 import unidecode
@@ -23,16 +25,12 @@ class FakeDataFactory:
         'Objets pour la maison': ('Meuble', 'Table', 'Chaise', 'Horloge')
     }
 
-    attributes = {
-        'Mode de conservation': ('au frigo', 'à la cave', 'au soleil', 'au congélateur', 'à température ambiante', 'dans du papier d\'alu', 'à l\'abri de la lumière'),
-        'Durée de conservation': ('1 jour', '2 jours', '1 semaine', '2 semaines', '1 mois', '2 mois', '1 année')
-    }
-
     def __init__(self, max_nb_products_per_producer=10, max_nb_producers_per_shop=10, max_nb_variants_per_product=10, max_nb_images_per_product=10):
         self.__fake = Faker('fr_CH')
         self.__fake.seed('features')
         self.__fake.add_provider(ShopozorGeoProvider)
         self.__fake.add_provider(ProductProvider)
+        self.__fake.add_provider(DateTimeProvider)
         self.__MAX_NB_PRODUCERS_PER_SHOP = max_nb_producers_per_shop
         self.__MAX_NB_PRODUCTS_PER_PRODUCER = max_nb_products_per_producer
         self.__MAX_NB_IMAGES_PER_PRODUCT = max_nb_images_per_product
@@ -270,57 +268,10 @@ class FakeDataFactory:
         start_pk = 1
         return [self.__producttype(pk, type) for pk, type in enumerate(producttypes, start_pk)]
 
-    def __attribute(self, pk, name):
-        return {
-            'model': 'product.attribute',
-            'pk': pk,
-            'fields': {
-                'slug': self.__fake.slug(),
-                'name': name,
-                'product_type': None,
-                'product_variant_type': None
-            }
-        }
-
-    def __attributes(self):
-        start_pk = 1
-        return [self.__attribute(pk, attribute) for pk, attribute in enumerate(self.attributes, start_pk)]
-
-    def __attribute_value(self, pk, attribute_id, value):
-        return {
-            'model': 'product.attributevalue',
-            'pk': pk,
-            'fields': {
-                'sort_order': 0,
-                'name': value,
-                'value': '',
-                'slug': self.__fake.slug(),
-                'attribute': attribute_id
-            }
-        }
-
-    def __attribute_values(self, attribute_fixtures):
-        attribute_values = []
-        start_pk = 1
-        for attribute in self.attributes:
-            values = self.attributes[attribute]
-            attribute_id = [
-                item['pk'] for item in attribute_fixtures if item['fields']['name'] == attribute][0]
-            attribute_values.extend([self.__attribute_value(
-                pk, attribute_id, value) for pk, value in enumerate(values, start_pk)])
-            start_pk += len(values)
-        return attribute_values
-
-    def create_attributes(self):
-        attribute_fixtures = self.__attributes()
-        attribute_fixtures.extend(self.__attribute_values(attribute_fixtures))
-        return attribute_fixtures
-
-    def __product(self, pk, category_id, producttype_id, attributes):
+    def __product(self, pk, category_id, producttype_id):
         description = self.__fake.description()
         return {
             'fields': {
-                'attributes': attributes,
                 'category': category_id,
                 'charge_taxes': True,
                 'description': description,
@@ -350,7 +301,7 @@ class FakeDataFactory:
                 'name': self.__fake.product_name(),
                 'price': self.__fake.money_amount(),
                 'product_type': producttype_id,
-                'publication_date': None,
+                'publication_date': self.__fake.publication_date(),
                 'seo_description': description,
                 'seo_title': '',
                 'weight': self.__fake.weight()
@@ -359,7 +310,7 @@ class FakeDataFactory:
             'pk': pk
         }
 
-    def create_products(self, categories, producttypes, attribute_ids, attribute_value_fixtures, list_size=1):
+    def create_products(self, categories, producttypes, list_size=1):
         result = []
         for pk in range(1, list_size + 1):
             category_name = self.__fake.random_element(
@@ -370,27 +321,24 @@ class FakeDataFactory:
                 elements=self.category_types[category_name])
             producttype_id = [
                 type['pk'] for type in producttypes if type['fields']['name'] == producttype_name][0]
-            attr = self.__fake.product_attributes(
-                attribute_ids, attribute_value_fixtures)
             result.append(self.__product(
-                pk, category_id, producttype_id, attr))
+                pk, category_id, producttype_id))
         return result
 
-    def __shopozor_product(self, pk, product_id):
+    def __shopozor_product(self, pk, product_id, publication_date):
         return {
             'fields': {
-                # TODO: fill fields in
                 'product_id': product_id,
-                'conservation_mode': '',
-                'conservation_until': ''
+                'conservation_mode': self.__fake.conservation_mode(),
+                'conservation_until': self.__fake.conservation_until(start_date=publication_date)
             },
             'model': 'shopozor.product',
             'pk': pk
         }
 
-    def create_shopozor_products(self, product_ids):
+    def create_shopozor_products(self, products):
         start_pk = 1
-        return [self.__shopozor_product(pk, product_id) for pk, product_id in enumerate(product_ids, start_pk)]
+        return [self.__shopozor_product(pk, product['pk'], dateutil.parser.parse(product['fields']['publication_date'])) for pk, product in enumerate(products, start_pk)]
 
     def __productvariant(self, pk, product_id):
         quantity = self.__fake.quantity()

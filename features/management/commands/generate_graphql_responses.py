@@ -384,19 +384,11 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         output_folder = options['output_folder']
         os.makedirs(output_folder, exist_ok=True)
-        # for variant in 'small', 'medium', 'large':
-        #     os.makedirs(os.path.join(output_folder, variant), exist_ok=True)
-        #     output_shop_list(output_folder, variant)
-        #     shop_catalogues, product_details = generate_shop_catalogues(
-        #         variant)
-        #     output_shop_catalogues(shop_catalogues, output_folder, variant)
-        #     output_product_details(product_details, output_folder, variant)
-        #     output_shop_categories(output_folder, variant)
-        variant = 'small'
-        os.makedirs(os.path.join(output_folder, variant), exist_ok=True)
-        output_shop_list(output_folder, variant)
-        shop_catalogues, product_details = generate_shop_catalogues(
-            variant)
-        output_shop_catalogues(shop_catalogues, output_folder, variant)
-        output_product_details(product_details, output_folder, variant)
-        output_shop_categories(output_folder, variant)
+        for variant in 'small', 'medium', 'large':
+            os.makedirs(os.path.join(output_folder, variant), exist_ok=True)
+            output_shop_list(output_folder, variant)
+            shop_catalogues, product_details = generate_shop_catalogues(
+                variant)
+            output_shop_catalogues(shop_catalogues, output_folder, variant)
+            output_product_details(product_details, output_folder, variant)
+            output_shop_categories(output_folder, variant)
