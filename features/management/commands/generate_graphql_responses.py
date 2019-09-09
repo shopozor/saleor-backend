@@ -123,16 +123,32 @@ def update_product_price_range(product, variant, node):
         }
 
 
+def update_product_purchase_cost(variant, node):
+    variant_cost = money_amount(variant['fields']['cost_price'])
+    current_start = node['purchaseCost']['start']
+    current_stop = node['purchaseCost']['stop']
+    if variant_cost['amount'] < current_start['amount']:
+        return {
+            'start': variant_cost,
+            'stop': current_stop
+        }
+    elif variant_cost['amount'] > current_stop['amount']:
+        return {
+            'start': current_start,
+            'stop': variant_cost
+        }
+    else:
+        return {
+            'start': current_start,
+            'stop': current_stop
+        }
+
 # def update_product_details(product_details, product_fields, images):
 #             'conservation': {
 #                 'mode': '',
 #                 'duration': ''
 #             },
 #             'variants': [{
-#                 'costPrice': money_amount(),
-#                 'id': '',
-#                 'isAvailable': 0,
-#                 'name': '',
 #                 'pricing': {
 #                     'price': {
 #                         'gross': money_amount(),
@@ -141,8 +157,8 @@ def update_product_price_range(product, variant, node):
 #                     }
 #                 },
 #                 'sku': '',
-#                 'stockQuantity': 0
 #             }]
+
 
 def extract_products_from_catalogues(catalogues):
     result = []
@@ -216,7 +232,11 @@ def generate_shop_catalogues(fixture_variant):
                     'id': graphene.Node.to_global_id('ProductVariant', variant_id),
                     'name': variant['fields']['name'],
                     'isAvailable': product['fields']['is_published'],
-                    'stockQuantity': max(variant['fields']['quantity'] - variant['fields']['quantity_allocated'], 0)
+                    'stockQuantity': max(variant['fields']['quantity'] - variant['fields']['quantity_allocated'], 0),
+                    'costPrice': {
+                        'amount': variant['fields']['cost_price']['amount'],
+                        'currency': variant['fields']['cost_price']['currency']
+                    }
                 }
                 if edges_with_product_id:
                     # append variant to existing product
@@ -224,7 +244,8 @@ def generate_shop_catalogues(fixture_variant):
                     edge['node']['variants'].append(new_variant)
                     edge['node']['pricing'] = update_product_price_range(
                         product, variant, edge['node'])
-                    # TODO: update purchaseCost based on variant's costPrice
+                    edge['node']['purchaseCost'] = update_product_purchase_cost(
+                        variant, edge['node'])
                 else:
                     # create new product with variant
                     staff_ids = [entry['fields']['staff_id'] for entry in shops_fixture if entry['model']
