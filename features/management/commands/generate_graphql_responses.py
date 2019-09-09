@@ -160,6 +160,7 @@ def extract_products_from_catalogues(catalogues):
                 product_already_exists = [
                     product for product in result if product['id'] == product_id]
                 if not product_already_exists:
+                    node.pop('productType', None)
                     node.pop('thumbnail', None)
                     result.append(node)
     return result
@@ -253,7 +254,7 @@ def generate_shop_catalogues(fixture_variant):
                         associated_producer = [{
                             'firstName': user['first_name'],
                             'lastName': user['last_name']
-                        } for user in users_fixture if user['id'] == staff_id]
+                        } for user in users_fixture if user['id'] == staff_id][0]
                     associated_images = [{
                         'alt': fixture['fields']['alt'],
                         'url': fixture['fields']['image'],
