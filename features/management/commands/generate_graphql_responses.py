@@ -191,6 +191,7 @@ def extract_catalogues(catalogues):
                 node.pop('purchaseCost', None)
                 for variant in node['variants']:
                     variant.pop('costPrice', None)
+                    variant.pop('sku', None)
     return catalogues
 
 
@@ -238,7 +239,8 @@ def generate_shop_catalogues(fixture_variant):
                     'costPrice': {
                         'amount': variant['fields']['cost_price']['amount'],
                         'currency': variant['fields']['cost_price']['currency']
-                    }
+                    },
+                    'sku': variant['fields']['sku']
                 }
                 if edges_with_product_id:
                     # append variant to existing product
