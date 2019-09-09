@@ -148,16 +148,6 @@ def update_product_purchase_cost(variant, node):
 #                 'mode': '',
 #                 'duration': ''
 #             },
-#             'variants': [{
-#                 'pricing': {
-#                     'price': {
-#                         'gross': money_amount(),
-#                         'net': money_amount(),
-#                         'tax': money_amount()
-#                     }
-#                 },
-#                 'sku': '',
-#             }]
 
 
 def extract_products_from_catalogues(catalogues):
@@ -170,14 +160,12 @@ def extract_products_from_catalogues(catalogues):
                 product_already_exists = [
                     product for product in result if product['id'] == product_id]
                 if not product_already_exists:
-                    # TODO: get rid of the unwanted data
                     node.pop('thumbnail', None)
                     result.append(node)
     return result
 
 
 def extract_catalogues(catalogues):
-    # TODO: get rid of the unwanted data
     for shop in catalogues:
         for category in catalogues[shop]:
             for edge in catalogues[shop][category]['data']['products']['edges']:
@@ -192,6 +180,7 @@ def extract_catalogues(catalogues):
                 for variant in node['variants']:
                     variant.pop('costPrice', None)
                     variant.pop('sku', None)
+                    variant.pop('pricing', None)
     return catalogues
 
 
@@ -240,7 +229,11 @@ def generate_shop_catalogues(fixture_variant):
                         'amount': variant['fields']['cost_price']['amount'],
                         'currency': variant['fields']['cost_price']['currency']
                     },
-                    'sku': variant['fields']['sku']
+                    'sku': variant['fields']['sku'],
+                    'pricing': {
+                        # TODO: double-check that the variant pricing really is computed like this by saleor
+                        'price': get_price(variant['fields'], product['fields'])
+                    }
                 }
                 if edges_with_product_id:
                     # append variant to existing product
@@ -275,6 +268,7 @@ def generate_shop_catalogues(fixture_variant):
                             'alt': associated_images[0]['alt'],
                             'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
                         }
+                    # TODO: double-check how a product's price is currently determined by saleor
                     initial_price = get_price(
                         variant['fields'], product['fields'])
                     node = {
