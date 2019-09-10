@@ -1,7 +1,7 @@
 from behave import given, then, when
 from django.conf import settings
 from features.utils.graphql.loader import get_query_from_file
-from saleor.product.models import Category, Product
+from saleor.product.models import Category, Product, Shop
 from shopozor.models import Shop
 from tests.api.utils import get_graphql_content
 
@@ -10,7 +10,10 @@ import graphene
 
 def query_shops(client):
     query = get_query_from_file('shops.graphql')
-    response = client.post_graphql(query)
+    variables = {
+        'first': Shop.objects.count(),
+    }
+    response = client.post_graphql(query, variables)
     return get_graphql_content(response)
 
 

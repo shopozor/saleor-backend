@@ -175,7 +175,6 @@ def extract_catalogues(catalogues):
                 node.pop('purchaseCost', None)
                 for variant in node['variants']:
                     variant.pop('costPrice', None)
-                    variant.pop('sku', None)
                     variant.pop('pricing', None)
     return catalogues
 
@@ -222,7 +221,6 @@ def generate_shop_catalogues(fixture_variant):
                         'amount': variant['fields']['cost_price']['amount'],
                         'currency': variant['fields']['cost_price']['currency']
                     },
-                    'sku': variant['fields']['sku'],
                     'pricing': {
                         # TODO: double-check that the variant pricing really is computed like this by saleor
                         'price': get_price(variant['fields'], product['fields'])
@@ -244,6 +242,7 @@ def generate_shop_catalogues(fixture_variant):
                     if len(staff_ids) > 0:
                         staff_id = staff_ids[0]
                         associated_producer = [{
+                            'id': user['id'],
                             'firstName': user['first_name'],
                             'lastName': user['last_name']
                         } for user in users_fixture if user['id'] == staff_id][0]
