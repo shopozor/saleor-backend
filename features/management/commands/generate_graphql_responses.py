@@ -149,14 +149,20 @@ def extract_products_from_catalogues(catalogues):
     for shop in catalogues:
         for category in catalogues[shop]:
             for edge in catalogues[shop][category]['data']['products']['edges']:
+                product = {
+                    'data': {
+                        'product': {}
+                    }
+                }
                 node = edge['node']
                 product_id = node['id']
                 product_already_exists = [
-                    product for product in result if product['id'] == product_id]
+                    item for item in result if item['data']['product']['id'] == product_id]
                 if not product_already_exists:
                     node.pop('productType', None)
                     node.pop('thumbnail', None)
-                    result.append(node)
+                    product['data']['product'] = node
+                    result.append(product)
     return result
 
 
@@ -242,7 +248,7 @@ def generate_shop_catalogues(fixture_variant):
                     if len(staff_ids) > 0:
                         staff_id = staff_ids[0]
                         associated_producer = [{
-                            'id': user['id'],
+                            'id': graphene.Node.to_global_id('User', user['id']),
                             'firstName': user['first_name'],
                             'lastName': user['last_name']
                         } for user in users_fixture if user['id'] == staff_id][0]
@@ -277,9 +283,6 @@ def generate_shop_catalogues(fixture_variant):
                             'variants': [new_variant],
                             'images': associated_images,
                             'thumbnail': thumbnail,
-                            'productType': {
-                                'id': graphene.Node.to_global_id('ProductType', product['fields']['product_type'])
-                            },
                             'producer': associated_producer,
                             'pricing': {
                                 'priceRange': {
@@ -361,7 +364,7 @@ def output_product_details(product_details, output_dir, variant):
         output_dir, variant, 'Consumer', 'Products')
     for detail in product_details:
         output_object_to_json(
-            detail, products_output_dir, 'Product-%d.json' % int(graphene.Node.from_global_id(detail['id'])[1]))
+            detail, products_output_dir, 'Product-%d.json' % int(graphene.Node.from_global_id(detail['data']['product']['id'])[1]))
 
 
 def output_shop_categories(output_dir, variant):
