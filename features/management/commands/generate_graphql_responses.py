@@ -201,6 +201,77 @@ def create_new_variant(variant_id, variant_fields, product_fields):
         }
     }
 
+def append_variant_to_existing_product(node, new_variant, variant, product):
+    node['variants'].append(new_variant)
+    node['pricing'] = update_product_price_range(
+        product, variant, node)
+    node['purchaseCost'] = update_product_purchase_cost(
+        variant, node)
+
+def create_new_product_with_variant(product, variant, new_variant, users_fixture, shops_fixture):
+    staff_ids = [entry['fields']['staff_id'] for entry in shops_fixture if entry['model']
+                    == 'shopozor.productstaff' and entry['fields']['product_id'] == product['pk']]
+    associated_producer = {}
+    if len(staff_ids) > 0:
+        staff_id = staff_ids[0]
+        producer_descr = [item['fields']['description'] for item in shops_fixture if item['model'] == 'shopozor.staff' and item['fields']['user_id'] == staff_id][0]
+        associated_producer = [{
+            'id': graphene.Node.to_global_id('User', user['id']),
+            'description': producer_descr,
+            'firstName': user['firstName'],
+            'lastName': user['lastName'],
+            'address': {
+                'streetAddress1': user['address']['streetAddress'],
+                'city': user['address']['city'],
+                'postalCode': user['address']['postalCode'],
+                'country': user['address']['country']
+            }
+        } for user in users_fixture if user['id'] == staff_id][0]
+    associated_images = [{
+        'alt': fixture['fields']['alt'],
+        'url': urllib.parse.urljoin(settings.MEDIA_URL, fixture['fields']['image']),
+    } for fixture in shops_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']]
+    # TODO: delete those images from the shops_fixture
+    if len(associated_images) == 0:
+        thumbnail = {
+            'alt': None,
+            'url': urllib.parse.urljoin(settings.STATIC_URL, 'images/placeholder%dx%d.png' % (settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE))
+        }
+    else:
+        thumbnail = {
+            'alt': associated_images[0]['alt'],
+            'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
+        }
+    initial_price = get_price(
+        variant['fields'], product['fields'])
+    conservation = [{
+        'mode': item['fields']['conservation_mode'],
+        'until': item['fields']['conservation_until']
+    } for item in shops_fixture if item['model'] == 'shopozor.product' and item['fields']['product_id'] == product['pk']]
+    node = {
+        'node': {
+            'id': graphene.Node.to_global_id('Product', product['pk']),
+            'conservation': conservation[0],
+            'name': product['fields']['name'],
+            'description': product['fields']['description'],
+            'variants': [new_variant],
+            'images': associated_images,
+            'thumbnail': thumbnail,
+            'producer': associated_producer,
+            'pricing': {
+                'priceRange': {
+                    'start': initial_price,
+                    'stop': initial_price
+                }
+            },
+            'purchaseCost': {
+                'start': variant['fields']['cost_price'],
+                'stop': variant['fields']['cost_price']
+            }
+        }
+    }
+    return node
+
 def generate_shop_catalogues(fixture_variant):
     shops_fixture = json.load(os.path.join(
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
@@ -235,78 +306,12 @@ def generate_shop_catalogues(fixture_variant):
                     edge for edge in catalogue_edges if edge['node']['id'] == product['pk']]
 
                 new_variant = create_new_variant(variant_id, variant['fields'], product['fields'])
-                
+
                 if edges_with_product_id:
-                    # append variant to existing product
                     edge = edges_with_product_id[0]
-                    edge['node']['variants'].append(new_variant)
-                    edge['node']['pricing'] = update_product_price_range(
-                        product, variant, edge['node'])
-                    edge['node']['purchaseCost'] = update_product_purchase_cost(
-                        variant, edge['node'])
+                    append_variant_to_existing_product(edge['node'], new_variant, variant, product)
                 else:
-                    # create new product with variant
-                    staff_ids = [entry['fields']['staff_id'] for entry in shops_fixture if entry['model']
-                                 == 'shopozor.productstaff' and entry['fields']['product_id'] == product['pk']]
-                    associated_producer = {}
-                    if len(staff_ids) > 0:
-                        staff_id = staff_ids[0]
-                        producer_descr = [item['fields']['description'] for item in shops_fixture if item['model'] == 'shopozor.staff' and item['fields']['user_id'] == staff_id][0]
-                        associated_producer = [{
-                            'id': graphene.Node.to_global_id('User', user['id']),
-                            'description': producer_descr,
-                            'firstName': user['firstName'],
-                            'lastName': user['lastName'],
-                            'address': {
-                                'streetAddress1': user['address']['streetAddress'],
-                                'city': user['address']['city'],
-                                'postalCode': user['address']['postalCode'],
-                                'country': user['address']['country']
-                            }
-                        } for user in users_fixture if user['id'] == staff_id][0]
-                    associated_images = [{
-                        'alt': fixture['fields']['alt'],
-                        'url': urllib.parse.urljoin(settings.MEDIA_URL, fixture['fields']['image']),
-                    } for fixture in shops_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']]
-                    # TODO: delete those images from the shops_fixture
-                    if len(associated_images) == 0:
-                        thumbnail = {
-                            'alt': None,
-                            'url': urllib.parse.urljoin(settings.STATIC_URL, 'images/placeholder%dx%d.png' % (settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE))
-                        }
-                    else:
-                        thumbnail = {
-                            'alt': associated_images[0]['alt'],
-                            'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
-                        }
-                    initial_price = get_price(
-                        variant['fields'], product['fields'])
-                    conservation = [{
-                        'mode': item['fields']['conservation_mode'],
-                        'until': item['fields']['conservation_until']
-                    } for item in shops_fixture if item['model'] == 'shopozor.product' and item['fields']['product_id'] == product['pk']]
-                    node = {
-                        'node': {
-                            'id': graphene.Node.to_global_id('Product', product['pk']),
-                            'conservation': conservation[0],
-                            'name': product['fields']['name'],
-                            'description': product['fields']['description'],
-                            'variants': [new_variant],
-                            'images': associated_images,
-                            'thumbnail': thumbnail,
-                            'producer': associated_producer,
-                            'pricing': {
-                                'priceRange': {
-                                    'start': initial_price,
-                                    'stop': initial_price
-                                }
-                            },
-                            'purchaseCost': {
-                                'start': variant['fields']['cost_price'],
-                                'stop': variant['fields']['cost_price']
-                            }
-                        }
-                    }
+                    node = create_new_product_with_variant(product, variant, new_variant, users_fixture, shops_fixture)
                     catalogue_edges.append(node)
                     totalCount += 1
 
