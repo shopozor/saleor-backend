@@ -211,6 +211,45 @@ def append_variant_to_existing_product(node, new_variant, variant, product):
         variant, node)
 
 
+def create_placeholder_product_thumbnail():
+    return {
+        'alt': None,
+        'url': urllib.parse.urljoin(settings.STATIC_URL, 'images/placeholder%dx%d.png' % (settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE))
+    }
+
+
+def create_product_thumbnail(associated_images):
+    return {
+        'alt': associated_images[0]['alt'],
+        'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
+    }
+
+
+def create_product(product, variant, new_variant, associated_images, associated_producer, conservation, initial_price, thumbnail):
+    return {
+        'node': {
+            'id': graphene.Node.to_global_id('Product', product['pk']),
+            'conservation': conservation[0],
+            'name': product['fields']['name'],
+            'description': product['fields']['description'],
+            'variants': [new_variant],
+            'images': associated_images,
+            'thumbnail': thumbnail,
+            'producer': associated_producer,
+            'pricing': {
+                'priceRange': {
+                    'start': initial_price,
+                    'stop': initial_price
+                }
+            },
+            'purchaseCost': {
+                'start': variant['fields']['cost_price'],
+                'stop': variant['fields']['cost_price']
+            }
+        }
+    }
+
+
 def create_new_product_with_variant(product, variant, new_variant, users_fixture, shops_fixture):
     staff_ids = [entry['fields']['staff_id'] for entry in shops_fixture if entry['model']
                  == 'shopozor.productstaff' and entry['fields']['product_id'] == product['pk']]
@@ -236,45 +275,15 @@ def create_new_product_with_variant(product, variant, new_variant, users_fixture
         'url': urllib.parse.urljoin(settings.MEDIA_URL, fixture['fields']['image']),
     } for fixture in shops_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']]
     # TODO: delete those images from the shops_fixture
-    if len(associated_images) == 0:
-        thumbnail = {
-            'alt': None,
-            'url': urllib.parse.urljoin(settings.STATIC_URL, 'images/placeholder%dx%d.png' % (settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE))
-        }
-    else:
-        thumbnail = {
-            'alt': associated_images[0]['alt'],
-            'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
-        }
+    thumbnail = create_product_thumbnail(
+        associated_images) if associated_images else create_placeholder_product_thumbnail()
     initial_price = get_price(
         variant['fields'], product['fields'])
     conservation = [{
         'mode': item['fields']['conservation_mode'],
         'until': item['fields']['conservation_until']
     } for item in shops_fixture if item['model'] == 'shopozor.product' and item['fields']['product_id'] == product['pk']]
-    node = {
-        'node': {
-            'id': graphene.Node.to_global_id('Product', product['pk']),
-            'conservation': conservation[0],
-            'name': product['fields']['name'],
-            'description': product['fields']['description'],
-            'variants': [new_variant],
-            'images': associated_images,
-            'thumbnail': thumbnail,
-            'producer': associated_producer,
-            'pricing': {
-                'priceRange': {
-                    'start': initial_price,
-                    'stop': initial_price
-                }
-            },
-            'purchaseCost': {
-                'start': variant['fields']['cost_price'],
-                'stop': variant['fields']['cost_price']
-            }
-        }
-    }
-    return node
+    return create_product(product, variant, new_variant, associated_images, associated_producer, conservation, initial_price, thumbnail)
 
 
 def generate_shop_catalogues(fixture_variant):
