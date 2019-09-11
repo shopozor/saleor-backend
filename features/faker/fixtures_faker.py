@@ -65,7 +65,6 @@ class FakeDataFactory:
     def __create_producer(self, id):
         first_name = self.__fake.first_name()
         last_name = self.__fake.last_name()
-        # TODO: we don't want to mix camel-case with underscored-case
         return {
             'id': id,
             'email': self.create_email(first_name, last_name),
