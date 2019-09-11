@@ -7,8 +7,6 @@ from tests.api.utils import get_graphql_content
 
 import graphene
 
-# TODO: is it possible to get the query file from the scenario's / feature's tags?
-
 def query_shops(client):
     query = get_query_from_file('shops.graphql')
     variables = {
