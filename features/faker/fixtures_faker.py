@@ -54,18 +54,28 @@ class FakeDataFactory:
     def create_consumers(self, start_index, list_size=1):
         return [self.__create_consumer(start_index + id) for id in range(0, list_size)]
 
+    def __address(self):
+        return {
+            'streetAddress': self.__fake.street_address(),
+            'city': self.__fake.city(),
+            'postalCode': self.__fake.postcode(),
+            'country': 'CH'
+        }
+
     def __create_producer(self, id):
         first_name = self.__fake.first_name()
         last_name = self.__fake.last_name()
+        # TODO: we don't want to mix camel-case with underscored-case
         return {
             'id': id,
             'email': self.create_email(first_name, last_name),
             'isActive': True,
             'isStaff': True,
             'isSuperUser': False,
-            'first_name': first_name,
-            'last_name': last_name,
-            'permissions': []
+            'firstName': first_name,
+            'lastName': last_name,
+            'permissions': [],
+            'address': self.__address()
         }
 
     def create_producers(self, start_index, list_size=1):
@@ -80,11 +90,12 @@ class FakeDataFactory:
             'isActive': True,
             'isStaff': True,
             'isSuperUser': False,
-            'first_name': first_name,
-            'last_name': last_name,
+            'firstName': first_name,
+            'lastName': last_name,
             'permissions': [{
                 'code': 'MANAGE_PRODUCERS'
-            }]
+            }],
+            'address': self.__address()
         }
 
     def create_managers(self, start_index, list_size=1):
@@ -112,7 +123,8 @@ class FakeDataFactory:
                 {
                     'code': 'MANAGE_MANAGERS'
                 }
-            ]
+            ],
+            'address': self.__address()
         }
 
     def create_reges(self, start_index, list_size=1):

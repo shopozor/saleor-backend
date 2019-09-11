@@ -180,6 +180,7 @@ def extract_catalogues(catalogues):
                 node['pricing']['priceRange']['stop'].pop('tax', None)
                 node.pop('purchaseCost', None)
                 node['producer'].pop('description', None)
+                node['producer'].pop('address', None)
                 for variant in node['variants']:
                     variant.pop('costPrice', None)
                     variant.pop('pricing', None)
@@ -252,8 +253,14 @@ def generate_shop_catalogues(fixture_variant):
                         associated_producer = [{
                             'id': graphene.Node.to_global_id('User', user['id']),
                             'description': producer_descr,
-                            'firstName': user['first_name'],
-                            'lastName': user['last_name']
+                            'firstName': user['firstName'],
+                            'lastName': user['lastName'],
+                            'address': {
+                                'streetAddress1': user['address']['streetAddress'],
+                                'city': user['address']['city'],
+                                'postalCode': user['address']['postalCode'],
+                                'country': user['address']['country']
+                            }
                         } for user in users_fixture if user['id'] == staff_id][0]
                     associated_images = [{
                         'alt': fixture['fields']['alt'],

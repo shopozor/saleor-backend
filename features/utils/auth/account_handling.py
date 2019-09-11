@@ -1,6 +1,6 @@
 from django.contrib.auth.models import Permission
 from features.utils.auth.password_generation import set_password
-from saleor.account.models import User
+from saleor.account.models import User, Address
 
 
 def create_database_user(user_data):
@@ -17,9 +17,15 @@ def create_database_user(user_data):
     if 'password' not in user_data:
         set_password(user_data)
 
-    if all(key in user_data for key in ('last_name', 'first_name')):
-        user.first_name = user_data['first_name']
-        user.last_name = user_data['last_name']
+    if all(key in user_data for key in ('lastName', 'firstName')):
+        user.first_name = user_data['firstName']
+        user.last_name = user_data['lastName']
+
+    if 'address' in user_data:
+        user_address = user_data['address']
+        street_address = user_address.get('streetAddress', '')
+        address = Address.objects.create(city=user_address['city'], street_address_1=street_address, postal_code=user_address['postalCode'], country=user_address['country'])
+        user.addresses.add(address)
 
     user.set_password(user_data['password'])
 
