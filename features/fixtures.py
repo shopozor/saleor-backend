@@ -257,7 +257,8 @@ def expected_small_shop_categories(context):
     context.expected_categories = categories
     return categories
 
-@fixture 
+
+@fixture
 def expected_small_product_details(context):
     products_folder = os.path.join(
         settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Products')
@@ -271,6 +272,7 @@ def expected_small_product_details(context):
     context.expected_product_details = product_details
     return product_details
 
+
 @fixture
 def small_shops_fixtures(context):
     return use_composite_fixture_with(context,
@@ -281,5 +283,6 @@ def small_shops_fixtures(context):
                                               expected_small_shop_list),
                                           fixture_call_params(
                                               expected_small_shop_catalogues),
-                                          fixture_call_params(expected_small_shop_categories),
+                                          fixture_call_params(
+                                              expected_small_shop_categories),
                                           fixture_call_params(expected_small_product_details)])

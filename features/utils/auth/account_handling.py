@@ -24,7 +24,8 @@ def create_database_user(user_data):
     if 'address' in user_data:
         user_address = user_data['address']
         street_address = user_address.get('streetAddress', '')
-        address = Address.objects.create(city=user_address['city'], street_address_1=street_address, postal_code=user_address['postalCode'], country=user_address['country'])
+        address = Address.objects.create(
+            city=user_address['city'], street_address_1=street_address, postal_code=user_address['postalCode'], country=user_address['country'])
         user.addresses.add(address)
 
     user.set_password(user_data['password'])

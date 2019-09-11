@@ -186,6 +186,7 @@ def extract_catalogues(catalogues):
                     variant.pop('pricing', None)
     return catalogues
 
+
 def create_new_variant(variant_id, variant_fields, product_fields):
     return {
         'id': graphene.Node.to_global_id('ProductVariant', variant_id),
@@ -201,6 +202,7 @@ def create_new_variant(variant_id, variant_fields, product_fields):
         }
     }
 
+
 def append_variant_to_existing_product(node, new_variant, variant, product):
     node['variants'].append(new_variant)
     node['pricing'] = update_product_price_range(
@@ -208,13 +210,15 @@ def append_variant_to_existing_product(node, new_variant, variant, product):
     node['purchaseCost'] = update_product_purchase_cost(
         variant, node)
 
+
 def create_new_product_with_variant(product, variant, new_variant, users_fixture, shops_fixture):
     staff_ids = [entry['fields']['staff_id'] for entry in shops_fixture if entry['model']
-                    == 'shopozor.productstaff' and entry['fields']['product_id'] == product['pk']]
+                 == 'shopozor.productstaff' and entry['fields']['product_id'] == product['pk']]
     associated_producer = {}
     if len(staff_ids) > 0:
         staff_id = staff_ids[0]
-        producer_descr = [item['fields']['description'] for item in shops_fixture if item['model'] == 'shopozor.staff' and item['fields']['user_id'] == staff_id][0]
+        producer_descr = [item['fields']['description'] for item in shops_fixture if item['model']
+                          == 'shopozor.staff' and item['fields']['user_id'] == staff_id][0]
         associated_producer = [{
             'id': graphene.Node.to_global_id('User', user['id']),
             'description': producer_descr,
@@ -272,6 +276,7 @@ def create_new_product_with_variant(product, variant, new_variant, users_fixture
     }
     return node
 
+
 def generate_shop_catalogues(fixture_variant):
     shops_fixture = json.load(os.path.join(
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
@@ -305,13 +310,16 @@ def generate_shop_catalogues(fixture_variant):
                 edges_with_product_id = [
                     edge for edge in catalogue_edges if edge['node']['id'] == product['pk']]
 
-                new_variant = create_new_variant(variant_id, variant['fields'], product['fields'])
+                new_variant = create_new_variant(
+                    variant_id, variant['fields'], product['fields'])
 
                 if edges_with_product_id:
                     edge = edges_with_product_id[0]
-                    append_variant_to_existing_product(edge['node'], new_variant, variant, product)
+                    append_variant_to_existing_product(
+                        edge['node'], new_variant, variant, product)
                 else:
-                    node = create_new_product_with_variant(product, variant, new_variant, users_fixture, shops_fixture)
+                    node = create_new_product_with_variant(
+                        product, variant, new_variant, users_fixture, shops_fixture)
                     catalogue_edges.append(node)
                     totalCount += 1
 
@@ -323,6 +331,20 @@ def generate_shop_catalogues(fixture_variant):
         deepcopy(product_catalogues))
     expected_catalogues = extract_catalogues(deepcopy(product_catalogues))
     return expected_catalogues, expected_product_details
+
+
+def create_new_category(category_fixture):
+    return {
+        'node': {
+            'id': graphene.Node.to_global_id('Category', category_fixture['pk']),
+            'name': category_fixture['fields']['name'],
+            'description': category_fixture['fields']['description'],
+            'backgroundImage': {
+                'alt': category_fixture['fields']['background_image_alt'],
+                'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d-70.%s' % (category_fixture['fields']['background_image'].split('.')[0], settings.CATEGORY_THUMBNAIL_SIZE, settings.CATEGORY_THUMBNAIL_SIZE, category_fixture['fields']['background_image'].split('.')[1]))
+            }
+        }
+    }
 
 
 def generate_shop_categories(fixture_variant):
@@ -338,17 +360,7 @@ def generate_shop_categories(fixture_variant):
     totalCount = 0
     edges = expected_categories['data']['categories']['edges']
     for category in [item for item in shops_fixture if item['model'] == 'product.category']:
-        node = {
-            'node': {
-                'id': graphene.Node.to_global_id('Category', category['pk']),
-                'name': category['fields']['name'],
-                'description': category['fields']['description'],
-                'backgroundImage': {
-                    'alt': category['fields']['background_image_alt'],
-                    'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d-70.%s' % (category['fields']['background_image'].split('.')[0], settings.CATEGORY_THUMBNAIL_SIZE, settings.CATEGORY_THUMBNAIL_SIZE, category['fields']['background_image'].split('.')[1]))
-                }
-            }
-        }
+        node = create_new_category(category)
         edges.append(node)
         totalCount += 1
     set_page_info(expected_categories['data']['categories'], totalCount)
@@ -408,7 +420,8 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('-o', '--output-folder', type=str, default=settings.GRAPHQL_RESPONSES_FOLDER,
                             help='Folder where to output the JSON files')
-        parser.add_argument('--fixture-variant', type=str, default='all', help='Fixture variant: small, medium, large, or all')
+        parser.add_argument('--fixture-variant', type=str, default='all',
+                            help='Fixture variant: small, medium, large, or all')
 
     def handle(self, *args, **options):
         output_folder = options['output_folder']
