@@ -54,3 +54,6 @@ LOGGING = {
 }
 
 FIXTURE_DIRS = [os.path.join('features', 'fixtures')]
+
+PRODUCT_THUMBNAIL_SIZE = 500
+CATEGORY_THUMBNAIL_SIZE = 250

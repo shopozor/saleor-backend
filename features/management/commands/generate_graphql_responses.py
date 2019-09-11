@@ -254,7 +254,7 @@ def generate_shop_catalogues(fixture_variant):
                         } for user in users_fixture if user['id'] == staff_id][0]
                     associated_images = [{
                         'alt': fixture['fields']['alt'],
-                        'url': fixture['fields']['image'],
+                        'url': urllib.parse.urljoin(settings.MEDIA_URL, fixture['fields']['image']),
                     } for fixture in shops_fixture if fixture['model'] == 'product.productimage' and fixture['fields']['product'] == product['pk']]
                     # TODO: delete those images from the shops_fixture
                     if len(associated_images) == 0:
