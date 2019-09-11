@@ -32,7 +32,7 @@ pipeline {
     }
     stage('Generating fixtures') {
       steps {
-        sh ". $VENV/bin/activate && python manage.py generate_django_fixtures && python manage.py generate_graphql_responses"
+        sh ". $VENV/bin/activate && python manage.py generate_django_fixtures"
       }
     }
     stage('Performing acceptance tests') {
