@@ -96,31 +96,25 @@ def get_users_fixture(fixture_variant):
     return users_fixture
 
 
+def price_range(start, stop):
+    return {
+        'priceRange': {
+            'start': start,
+            'stop': stop
+        }
+    }
+
+
 def update_product_price_range(product, variant, node):
     variant_price = get_price(variant['fields'], product['fields'])
     current_start = node['pricing']['priceRange']['start']
     current_stop = node['pricing']['priceRange']['stop']
     if variant_price['gross']['amount'] < current_start['gross']['amount']:
-        return {
-            'priceRange': {
-                'start': variant_price,
-                'stop': current_stop
-            }
-        }
+        return price_range(variant_price, current_stop)
     elif variant_price['gross']['amount'] > current_stop['gross']['amount']:
-        return {
-            'priceRange': {
-                'start': current_start,
-                'stop': variant_price
-            }
-        }
+        return price_range(current_start, variant_price)
     else:
-        return {
-            'priceRange': {
-                'start': current_start,
-                'stop': current_stop
-            }
-        }
+        return price_range(current_start, current_stop)
 
 
 def update_product_purchase_cost(variant, node):
