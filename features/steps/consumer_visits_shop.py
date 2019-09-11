@@ -7,6 +7,7 @@ from tests.api.utils import get_graphql_content
 
 import graphene
 
+
 def query_shops(client):
     query = get_query_from_file('shops.graphql')
     variables = {
@@ -101,17 +102,22 @@ def step_impl(context):
     expected_details = context.expected_product_details[context.product_id]
     context.test.assertEqual(expected_details, context.response)
 
+
 def details_show_product_purchase_cost(product_details):
     return 'purchaseCost' in product_details
+
 
 def details_show_margin_on_product(product_details):
     return all(price_type in product_details['pricing']['priceRange'][price_range] for price_range in ('start', 'stop') for price_type in ('gross', 'net', 'tax'))
 
+
 def details_show_variants_cost_prices(product_details):
     return all('costPrice' in variant for variant in product_details['variants'])
 
+
 def details_show_margin_on_variants(product_details):
     return all(price_type in variant['pricing']['price'] for variant in product_details['variants'] for price_type in ('gross', 'net', 'tax'))
+
 
 @then(u'une indication claire de la marge que s\'en fait le Shopozor')
 def step_impl(context):
