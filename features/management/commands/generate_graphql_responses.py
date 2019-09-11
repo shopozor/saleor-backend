@@ -186,6 +186,20 @@ def extract_catalogues(catalogues):
                     variant.pop('pricing', None)
     return catalogues
 
+def create_new_variant(variant_id, variant_fields, product_fields):
+    return {
+        'id': graphene.Node.to_global_id('ProductVariant', variant_id),
+        'name': variant_fields['name'],
+        'isAvailable': product_fields['is_published'],
+        'stockQuantity': max(variant_fields['quantity'] - variant_fields['quantity_allocated'], 0),
+        'costPrice': {
+            'amount': variant_fields['cost_price']['amount'],
+            'currency': variant_fields['cost_price']['currency']
+        },
+        'pricing': {
+            'price': get_price(variant_fields, product_fields)
+        }
+    }
 
 def generate_shop_catalogues(fixture_variant):
     shops_fixture = json.load(os.path.join(
@@ -198,7 +212,7 @@ def generate_shop_catalogues(fixture_variant):
             product_catalogues[shop['pk']][category] = {
                 'data': {
                     'products': {
-                        'edges': [],
+                        'edges': []
                     }
                 }
             }
@@ -220,19 +234,8 @@ def generate_shop_catalogues(fixture_variant):
                 edges_with_product_id = [
                     edge for edge in catalogue_edges if edge['node']['id'] == product['pk']]
 
-                new_variant = {
-                    'id': graphene.Node.to_global_id('ProductVariant', variant_id),
-                    'name': variant['fields']['name'],
-                    'isAvailable': product['fields']['is_published'],
-                    'stockQuantity': max(variant['fields']['quantity'] - variant['fields']['quantity_allocated'], 0),
-                    'costPrice': {
-                        'amount': variant['fields']['cost_price']['amount'],
-                        'currency': variant['fields']['cost_price']['currency']
-                    },
-                    'pricing': {
-                        'price': get_price(variant['fields'], product['fields'])
-                    }
-                }
+                new_variant = create_new_variant(variant_id, variant['fields'], product['fields'])
+                
                 if edges_with_product_id:
                     # append variant to existing product
                     edge = edges_with_product_id[0]
