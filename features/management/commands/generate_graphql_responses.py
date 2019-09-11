@@ -230,7 +230,6 @@ def generate_shop_catalogues(fixture_variant):
                         'currency': variant['fields']['cost_price']['currency']
                     },
                     'pricing': {
-                        # TODO: double-check that the variant pricing really is computed like this by saleor
                         'price': get_price(variant['fields'], product['fields'])
                     }
                 }
@@ -277,7 +276,6 @@ def generate_shop_catalogues(fixture_variant):
                             'alt': associated_images[0]['alt'],
                             'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
                         }
-                    # TODO: double-check how a product's price is currently determined by saleor
                     initial_price = get_price(
                         variant['fields'], product['fields'])
                     conservation = [{
@@ -385,6 +383,7 @@ def output_shop_categories(output_dir, variant):
     output_object_to_json(generate_shop_categories(
         variant), categories_output_dir, 'Categories.json')
 
+
 def generate_responses_for_variant(output_folder, variant):
     os.makedirs(os.path.join(output_folder, variant), exist_ok=True)
     output_shop_list(output_folder, variant)
@@ -393,6 +392,7 @@ def generate_responses_for_variant(output_folder, variant):
     output_shop_catalogues(shop_catalogues, output_folder, variant)
     output_product_details(product_details, output_folder, variant)
     output_shop_categories(output_folder, variant)
+
 
 class Command(BaseCommand):
     help = 'Generate the JSON expected responses to the GraphQL queries tested in the acceptance tests.'
