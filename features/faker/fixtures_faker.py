@@ -136,7 +136,8 @@ class FakeDataFactory:
     def __staff(self, pk, user_id):
         return {
             'fields': {
-                'user_id': user_id
+                'user_id': user_id,
+                'description': self.__fake.description()
             },
             'model': 'shopozor.staff',
             'pk': pk

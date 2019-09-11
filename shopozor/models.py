@@ -29,6 +29,7 @@ class Shop(models.Model):
 class Staff(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True)
+    description = models.TextField(blank=True)
 
 
 class ProductStaff(models.Model):

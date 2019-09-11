@@ -179,6 +179,7 @@ def extract_catalogues(catalogues):
                 node['pricing']['priceRange']['stop'].pop('net', None)
                 node['pricing']['priceRange']['stop'].pop('tax', None)
                 node.pop('purchaseCost', None)
+                node['producer'].pop('description', None)
                 for variant in node['variants']:
                     variant.pop('costPrice', None)
                     variant.pop('pricing', None)
@@ -247,8 +248,10 @@ def generate_shop_catalogues(fixture_variant):
                     associated_producer = {}
                     if len(staff_ids) > 0:
                         staff_id = staff_ids[0]
+                        producer_descr = [item['fields']['description'] for item in shops_fixture if item['model'] == 'shopozor.staff' and item['fields']['user_id'] == staff_id][0]
                         associated_producer = [{
                             'id': graphene.Node.to_global_id('User', user['id']),
+                            'description': producer_descr,
                             'firstName': user['first_name'],
                             'lastName': user['last_name']
                         } for user in users_fixture if user['id'] == staff_id][0]
@@ -375,6 +378,14 @@ def output_shop_categories(output_dir, variant):
     output_object_to_json(generate_shop_categories(
         variant), categories_output_dir, 'Categories.json')
 
+def generate_responses_for_variant(output_folder, variant):
+    os.makedirs(os.path.join(output_folder, variant), exist_ok=True)
+    output_shop_list(output_folder, variant)
+    shop_catalogues, product_details = generate_shop_catalogues(
+        variant)
+    output_shop_catalogues(shop_catalogues, output_folder, variant)
+    output_product_details(product_details, output_folder, variant)
+    output_shop_categories(output_folder, variant)
 
 class Command(BaseCommand):
     help = 'Generate the JSON expected responses to the GraphQL queries tested in the acceptance tests.'
@@ -382,15 +393,15 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('-o', '--output-folder', type=str, default=settings.GRAPHQL_RESPONSES_FOLDER,
                             help='Folder where to output the JSON files')
+        parser.add_argument('--fixture-variant', type=str, default='all', help='Fixture variant: small, medium, large, or all')
 
     def handle(self, *args, **options):
         output_folder = options['output_folder']
+        fixture_variant = options['fixture_variant']
         os.makedirs(output_folder, exist_ok=True)
-        for variant in 'small', 'medium', 'large':
-            os.makedirs(os.path.join(output_folder, variant), exist_ok=True)
-            output_shop_list(output_folder, variant)
-            shop_catalogues, product_details = generate_shop_catalogues(
-                variant)
-            output_shop_catalogues(shop_catalogues, output_folder, variant)
-            output_product_details(product_details, output_folder, variant)
-            output_shop_categories(output_folder, variant)
+
+        if fixture_variant == 'all':
+            for variant in 'small', 'medium', 'large':
+                generate_responses_for_variant(output_folder, variant)
+        else:
+            generate_responses_for_variant(output_folder, fixture_variant)
