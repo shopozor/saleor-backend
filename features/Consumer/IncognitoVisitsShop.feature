@@ -52,8 +52,6 @@ Fonctionnalité: Un Incognito visite un Shop
     La visite d'un Shop se fait au travers des différents Rayons qu'il propose. Chaque Shop propose
     les mêmes Rayons mais les remplit avec des Produits différents réalisés par des Producteurs différents.
 
-    # categories query already exists in saleor
-
     Lorsqu'Incognito se renseigne sur les différents Rayons disponibles dans le Shopozor
     Alors il en obtient la liste
 
@@ -68,8 +66,6 @@ Fonctionnalité: Un Incognito visite un Shop
     de se procurer le catalogue complet du Shop d'un seul coup. Au lieu de cela, il peut en obtenir
     le catalogue de la boulangerie, de la fromagerie, de la boucherie, etc.
 
-    # products query already exists in saleor
-
     Etant donné le Shop de son choix
     Lorsqu'Incognito en visite les Rayons
     Alors il obtient la liste de tous les Produits qui y sont publiés
@@ -81,8 +77,6 @@ Fonctionnalité: Un Incognito visite un Shop
     Incognito peut obtenir tous les détails de chacun des Produits appartenant
     au catalogue du Shop qu'il visite, comme e.g. une description, la durée
     de conservation, le mode de conservation, etc.
-
-    # product query already exists in saleor
 
     Etant donné le Shop de son choix
     Lorsqu'Incognito y inspecte un Produit
