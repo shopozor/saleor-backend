@@ -245,7 +245,7 @@ def expected_small_shop_catalogues(context):
         for category in categories:
             category_id = int(category.split('.')[0].split('-')[1])
             shop_catalogues[shop_id][category_id] = json.load(os.path.join(
-                settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Catalogues', shop, category))
+                catalogues_folder, shop, category))
     context.expected_shop_catalogues = shop_catalogues
     return shop_catalogues
 
@@ -257,6 +257,19 @@ def expected_small_shop_categories(context):
     context.expected_categories = categories
     return categories
 
+@fixture 
+def expected_small_product_details(context):
+    products_folder = os.path.join(
+        settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Products')
+    product_details_filenames = [item for item in os.listdir(products_folder) if os.path.isfile(
+        os.path.join(products_folder, item))]
+    product_details = {}
+    for filename in product_details_filenames:
+        product_id = int(filename.split('.')[0].split('-')[1])
+        product_details[product_id] = json.load(os.path.join(
+            products_folder, filename))
+    context.expected_product_details = product_details
+    return product_details
 
 @fixture
 def small_shops_fixtures(context):
@@ -268,4 +281,5 @@ def small_shops_fixtures(context):
                                               expected_small_shop_list),
                                           fixture_call_params(
                                               expected_small_shop_catalogues),
-                                          fixture_call_params(expected_small_shop_categories)])
+                                          fixture_call_params(expected_small_shop_categories),
+                                          fixture_call_params(expected_small_product_details)])
