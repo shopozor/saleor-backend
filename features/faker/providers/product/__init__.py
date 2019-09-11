@@ -6,6 +6,9 @@ import os
 
 class Provider(LoremProvider):
 
+    conservation_modes = ('au frigo', 'à la cave', 'au soleil', 'au congélateur',
+                          'à température ambiante', 'dans du papier d\'alu', 'à l\'abri de la lumière')
+
     variant_names = (
         '1l', '2l', '2.5l', '5l', '250ml', '500ml', '45cm x 45cm', '55cm x 55cm', 'XS', 'S', 'M', 'L', 'XL', '100g', '200g', '250g', '500g', '1kg'
     )
@@ -17,7 +20,10 @@ class Provider(LoremProvider):
         return bool(self.generator.random.getrandbits(1))
 
     def category_image_url(self):
-        return os.path.join('categories', 'images', '%s.png' % ''.join(self.random_letters()))
+        return os.path.join('category-backgrounds', '%s.png' % ''.join(self.random_letters()))
+
+    def conservation_mode(self):
+        return self.word(ext_word_list=self.conservation_modes)
 
     def description(self):
         return self.text(max_nb_chars=200)
@@ -28,10 +34,10 @@ class Provider(LoremProvider):
     def is_published(self):
         return self.__random_bool()
 
-    def money_amount(self):
+    def money_amount(self, max_amount=100):
         return {
             '_type': 'Money',
-            'amount': str(self.__random_float(0, 100, 2)),
+            'amount': str(self.__random_float(0, max_amount, 2)),
             'currency': settings.DEFAULT_CURRENCY
         }
 
@@ -39,7 +45,7 @@ class Provider(LoremProvider):
         return self.money_amount() if self.__random_bool() else None
 
     def product_image_url(self):
-        return os.path.join('products', 'images', '%s.png' % ''.join(self.random_letters()))
+        return os.path.join('products', '%s.png' % ''.join(self.random_letters()))
 
     def product_name(self):
         return self.sentence(nb_words=3, variable_nb_words=True)
@@ -65,6 +71,9 @@ class Provider(LoremProvider):
 
     def sku(self):
         return str(self.random_number(digits=9, fix_len=True))
+
+    def variant_cost_price(self, max_amount=100):
+        return self.money_amount(max_amount)
 
     def variant_name(self):
         return self.word(ext_word_list=self.variant_names)

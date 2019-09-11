@@ -1,6 +1,7 @@
 # language: fr
 
 @initial-release @auth
+@login.graphql
 @fixture.login
 Fonctionnalité: Identifier un utilisateur
 

@@ -1,7 +1,9 @@
 from faker import Faker
 from features.faker.providers.geo import Provider as ShopozorGeoProvider
 from features.faker.providers.product import Provider as ProductProvider
+from features.faker.providers.time import Provider as DateTimeProvider
 
+import dateutil.parser
 import itertools
 import os
 import unidecode
@@ -10,28 +12,33 @@ import unidecode
 class FakeDataFactory:
 
     category_types = {
-        'Fruits': ('Pomme', 'Ananas', 'Poire', 'Mangue', 'Orange', 'Raisin', 'Abricot', 'Prune', 'Pêche', 'Exotique', 'Raisinet', 'Groseille', 'Rhubarbe', 'Cerise', 'Framboise'),
-        'Légumes': ('Carotte', 'Haricot', 'Salade', 'Tomate', 'Choux-fleur', 'Brocoli', 'Chou', 'Courgette', 'Aubergine', 'Poivron', 'Petit pois', 'Radis', 'Oignon', 'Betterave', 'Céleri', 'Concombre', 'Côte de bette', 'Echalotte', 'Epinard', 'Fenouil', 'Laitue', 'Navet'),
-        'Boucherie': ('Salami', 'Charcuterie', 'Saucisse', 'Saucisson', 'Ragoût de boeuf', 'Escalope de poulet', 'Steak haché', 'Cordon bleu', 'Brochette', 'Cervelas', 'Fondue chinoise'),
-        'Epicerie': ('Truffes', 'Pâtes', 'Lentilles', 'Huile', 'Farine', 'Panier garni', 'Confiture', 'Foie gras', 'Beans', 'Cornichons', 'Moutarde', 'Epices', 'Oeufs'),
-        'Laiterie': ('Lait', 'Beurre', 'Crème double', 'Fondue', 'Fromage'),
-        'Boulangerie': ('Pain', 'Croissant', 'Demi-lune', 'Petit pain', 'Pain au chocolat', 'Gâteau', 'Sandwich', 'Canapé', 'Cuchaule', 'Sablé', 'Baguette', 'Bricelet', 'Macaron', 'Croquet', 'Pain d\'anis', 'Brioche', 'Tresse'),
-        'Boissons': ('Bière', 'Sirop', 'Limonade', 'Thé', 'Soda', 'Vin', 'Eau'),
-        'Traiteur': ('Burgers', 'Sushis', 'Fondue', 'Fondue chinoise', 'Kebabs'),
-        'Nettoyages': ('Savon', 'Liquide vaisselle', 'Pastilles lave-vaisselle', 'Linge', 'Détergent')
+        'Fruits': ('Fruit'),
+        'Légumes': ('Légume'),
+        'Boucherie': ('Boucherie'),
+        'Epicerie': ('Epicerie'),
+        'Laiterie': ('Laiterie'),
+        'Boulangerie': ('Boulangerie'),
+        'Boissons': ('Boisson'),
+        'Traiteur': ('Traiteur'),
+        'Nettoyages': ('Nettoyage'),
+        'Soins corporels': ('Soin corporel'),
+        'Objets pour la maison': ('Objet pour la maison')
     }
 
-    def __init__(self, max_nb_products_per_producer=10, max_nb_producers_per_shop=10, max_nb_images_per_product=10):
+    def __init__(self, max_nb_products_per_producer=10, max_nb_producers_per_shop=10, max_nb_variants_per_product=10, max_nb_images_per_product=10):
         self.__fake = Faker('fr_CH')
         self.__fake.seed('features')
         self.__fake.add_provider(ShopozorGeoProvider)
         self.__fake.add_provider(ProductProvider)
+        self.__fake.add_provider(DateTimeProvider)
         self.__MAX_NB_PRODUCERS_PER_SHOP = max_nb_producers_per_shop
         self.__MAX_NB_PRODUCTS_PER_PRODUCER = max_nb_products_per_producer
         self.__MAX_NB_IMAGES_PER_PRODUCT = max_nb_images_per_product
+        self.__MAX_NB_VARIANTS_PER_PRODUCT = max_nb_variants_per_product
 
     def create_email(self, first_name, last_name):
         domain_name = self.__fake.free_email_domain()
+        # get rid of any potential French accent from the first and last name
         return unidecode.unidecode('%s.%s@%s' % (first_name, last_name, domain_name)).lower()
 
     def __create_consumer(self, id):
@@ -47,19 +54,27 @@ class FakeDataFactory:
     def create_consumers(self, start_index, list_size=1):
         return [self.__create_consumer(start_index + id) for id in range(0, list_size)]
 
+    def __address(self):
+        return {
+            'streetAddress': self.__fake.street_address(),
+            'city': self.__fake.city(),
+            'postalCode': self.__fake.postcode(),
+            'country': 'CH'
+        }
+
     def __create_producer(self, id):
         first_name = self.__fake.first_name()
         last_name = self.__fake.last_name()
         return {
             'id': id,
-            # get rid of any potential French accent from the first and last name
             'email': self.create_email(first_name, last_name),
             'isActive': True,
             'isStaff': True,
             'isSuperUser': False,
-            'first_name': first_name,
-            'last_name': last_name,
-            'permissions': []
+            'firstName': first_name,
+            'lastName': last_name,
+            'permissions': [],
+            'address': self.__address()
         }
 
     def create_producers(self, start_index, list_size=1):
@@ -70,16 +85,16 @@ class FakeDataFactory:
         last_name = self.__fake.last_name()
         return {
             'id': id,
-            # get rid of any potential French accent from the first and last name
             'email': self.create_email(first_name, last_name),
             'isActive': True,
             'isStaff': True,
             'isSuperUser': False,
-            'first_name': first_name,
-            'last_name': last_name,
+            'firstName': first_name,
+            'lastName': last_name,
             'permissions': [{
                 'code': 'MANAGE_PRODUCERS'
-            }]
+            }],
+            'address': self.__address()
         }
 
     def create_managers(self, start_index, list_size=1):
@@ -107,7 +122,8 @@ class FakeDataFactory:
                 {
                     'code': 'MANAGE_MANAGERS'
                 }
-            ]
+            ],
+            'address': self.__address()
         }
 
     def create_reges(self, start_index, list_size=1):
@@ -131,7 +147,8 @@ class FakeDataFactory:
     def __staff(self, pk, user_id):
         return {
             'fields': {
-                'user_id': user_id
+                'user_id': user_id,
+                'description': self.__fake.description()
             },
             'model': 'shopozor.staff',
             'pk': pk
@@ -267,9 +284,6 @@ class FakeDataFactory:
         description = self.__fake.description()
         return {
             'fields': {
-                # TODO: generate the attributes!
-                # 'attributes': '{"15": "46", "21": "68"}',
-                'attributes': '{}',
                 'category': category_id,
                 'charge_taxes': True,
                 'description': description,
@@ -299,7 +313,7 @@ class FakeDataFactory:
                 'name': self.__fake.product_name(),
                 'price': self.__fake.money_amount(),
                 'product_type': producttype_id,
-                'publication_date': None,
+                'publication_date': self.__fake.publication_date(),
                 'seo_description': description,
                 'seo_title': '',
                 'weight': self.__fake.weight()
@@ -319,19 +333,36 @@ class FakeDataFactory:
                 elements=self.category_types[category_name])
             producttype_id = [
                 type['pk'] for type in producttypes if type['fields']['name'] == producttype_name][0]
-            result.append(self.__product(pk, category_id, producttype_id))
+            result.append(self.__product(
+                pk, category_id, producttype_id))
         return result
 
-    def __productvariant(self, pk, product_id):
-        quantity = self.__fake.quantity()
+    def __shopozor_product(self, pk, product_id, publication_date):
         return {
             'fields': {
-                # TODO: generate attributes
+                'product_id': product_id,
+                'conservation_mode': self.__fake.conservation_mode(),
+                'conservation_until': self.__fake.conservation_until(start_date=publication_date)
+            },
+            'model': 'shopozor.product',
+            'pk': pk
+        }
+
+    def create_shopozor_products(self, products):
+        start_pk = 1
+        return [self.__shopozor_product(pk, product['pk'], dateutil.parser.parse(product['fields']['publication_date'])) for pk, product in enumerate(products, start_pk)]
+
+    def __productvariant(self, pk, product):
+        quantity = self.__fake.quantity()
+        price_override = self.__fake.price_override()
+        variant_price = product['fields']['price']['amount'] if price_override is None else price_override['amount']
+        return {
+            'fields': {
                 'attributes': '{}',
-                'cost_price': self.__fake.money_amount(),
+                'cost_price': self.__fake.variant_cost_price(max_amount=float(variant_price)),
                 'name': self.__fake.variant_name(),
-                'price_override': self.__fake.price_override(),
-                'product': product_id,
+                'price_override': price_override,
+                'product': product['pk'],
                 'quantity': quantity,
                 'quantity_allocated': self.__fake.quantity_allocated(quantity),
                 'sku': self.__fake.sku(),
@@ -342,11 +373,16 @@ class FakeDataFactory:
             'pk': pk
         }
 
-    def create_productvariants(self, product_ids, list_size=1):
+    def create_productvariants(self, products):
         result = []
-        for pk in range(1, list_size + 1):
-            product_id = self.__fake.random_element(product_ids)
-            result.append(self.__productvariant(pk, product_id))
+        pk = 1
+        for product in products:
+            # a product with 0 variant might not be something we want --> needs to be tested
+            nb_variants = self.__fake.random.randint(
+                0, self.__MAX_NB_VARIANTS_PER_PRODUCT)
+            for _ in range(0, nb_variants):
+                result.append(self.__productvariant(pk, product))
+                pk += 1
         return result
 
     def __productimage(self, pk, product_id):

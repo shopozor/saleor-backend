@@ -39,6 +39,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
   # de la méthode setPassword de l'API qu'il est plus judicieux de tester en tant que fonctionnalité en tant que telle
   # sans qu'elle ne soit couplée à quoi que ce soit d'autre.
 
+  @signup.graphql
   Scénario: Un nouveau Consommateur s'enregistre avec un mot de passe conforme
 
     Le Consommateur potentiel commence par donner un e-mail et un mot de passe. Il devra ensuite
@@ -55,6 +56,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et son mot de passe est sauvegardé
     Mais son compte est inactif
 
+  @signup.graphql
   Scénario: Un nouveau Consommateur s'enregistre avec un mot de passe non conforme
 
     Lorsqu'un Consommateur inconnu fait une demande d'enregistrement avec un mot de passe non conforme
@@ -62,6 +64,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et son compte n'est pas créé
     Et il ne reçoit pas d'e-mail d'activation de compte
 
+  @signup.graphql
   @fixture.user-accounts  
   Scénario: Le Consommateur a déjà un compte inactif et propose un mot de passe conforme
 
@@ -75,6 +78,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et son mot de passe est sauvegardé
     Et son compte reste inactif
 
+  @signup.graphql
   @fixture.user-accounts
   Scénario: Le Consommateur a déjà un compte inactif et propose un mot de passe non conforme
 
@@ -88,6 +92,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et son compte reste inactif  
     Et il ne reçoit pas d'e-mail d'activation de compte
 
+  @signup.graphql
   @HackerAbuse @fixture.user-accounts
   Scénario: Un utilisateur s'enregistre avec l'e-mail d'un compte actif
 
@@ -106,6 +111,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et l'incident est enregistré dans un journal
     Et son mot de passe n'est pas sauvegardé
 
+  @signup.graphql
   @HackerAbuse @fixture.user-accounts
   Scénario: L'e-mail est insensible à la casse
 
@@ -126,6 +132,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et son mot de passe n'est pas sauvegardé
     Et aucun compte n'est créé avec cet e-mail
 
+  @activateConsumer.graphql
   Scénario: Le nouveau Consommateur active son compte dans les temps
 
     Au moment où l'utilisateur suit son lien d'activation, il s'invalide et son compte
@@ -137,7 +144,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Et son lien d'activation est invalidé
     Mais il n'est pas identifié
 
-
+  @activateConsumer.graphql
   Scénario: Le nouveau Consommateur active son compte une deuxième fois
 
     Le lien d'activation de compte ne peut être utilisé qu'une seule fois,
@@ -148,7 +155,7 @@ Fonctionnalité: Enregistrer un nouveau Consommateur
     Lorsqu'il l'active pour la deuxième fois avant l'expiration du lien
     Alors il obtient un message d'erreur stipulant que le lien a expiré
 
-
+  @activateConsumer.graphql
   Scénario: Le nouveau Consommateur active son compte trop tard
 
     En plus de n'être utilisable qu'une seule fois, le lien expire après un certain temps.

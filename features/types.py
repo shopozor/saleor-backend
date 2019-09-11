@@ -1,6 +1,7 @@
 from behave import register_type
-import parse
 from datetime import timedelta
+
+import parse
 
 
 @parse.with_pattern(r'client|administrateur')

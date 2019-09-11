@@ -1,6 +1,7 @@
 from django.db import models
 from saleor.account.models import User
-from saleor.product.models import Product, ProductVariant
+from saleor.product.models import Product as SaleorProduct
+from saleor.product.models import ProductVariant
 from saleor.core.permissions import MODELS_PERMISSIONS
 
 MODELS_PERMISSIONS.append('account.manage_producers')
@@ -28,9 +29,18 @@ class Shop(models.Model):
 class Staff(models.Model):
     user = models.OneToOneField(
         User, on_delete=models.CASCADE, primary_key=True)
+    description = models.TextField(blank=True)
 
 
 class ProductStaff(models.Model):
     product = models.OneToOneField(
-        Product, on_delete=models.CASCADE, primary_key=True)
+        SaleorProduct, on_delete=models.CASCADE, primary_key=True)
     staff = models.ForeignKey(Staff, on_delete=models.CASCADE)
+
+
+class Product(models.Model):
+    product = models.OneToOneField(
+        SaleorProduct, on_delete=models.CASCADE, primary_key=True
+    )
+    conservation_mode = models.CharField(max_length=256, blank=True)
+    conservation_until = models.DateField()

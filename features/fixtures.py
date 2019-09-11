@@ -233,17 +233,53 @@ def expected_small_shop_list(context):
 def expected_small_shop_catalogues(context):
     catalogues_folder = os.path.join(
         settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Catalogues')
-    catalogues = [os.path.splitext(f)[0] for f in os.listdir(
-        catalogues_folder) if os.path.isfile(os.path.join(catalogues_folder, f))]
+    shops = [shop for shop in os.listdir(catalogues_folder) if os.path.isdir(
+        os.path.join(catalogues_folder, shop))]
     shop_catalogues = {}
-    for catalogue in catalogues:
-        shop_id = catalogue.split('-')[1]
-        shop_catalogues[shop_id] = json.load(os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'small',
-                                                          'Consumer', 'Catalogues', '{name}.json'.format(name=catalogue)))
+    for shop in shops:
+        shop_id = int(shop.split('-')[1])
+        shop_dir = os.path.join(catalogues_folder, shop)
+        categories = [category for category in os.listdir(
+            shop_dir) if os.path.isfile(os.path.join(shop_dir, category))]
+        shop_catalogues[shop_id] = {}
+        for category in categories:
+            category_id = int(category.split('.')[0].split('-')[1])
+            shop_catalogues[shop_id][category_id] = json.load(os.path.join(
+                catalogues_folder, shop, category))
     context.expected_shop_catalogues = shop_catalogues
     return shop_catalogues
 
 
 @fixture
+def expected_small_shop_categories(context):
+    categories = json.load(os.path.join(
+        settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Categories.json'))
+    context.expected_categories = categories
+    return categories
+
+@fixture 
+def expected_small_product_details(context):
+    products_folder = os.path.join(
+        settings.GRAPHQL_RESPONSES_FOLDER, 'small', 'Consumer', 'Products')
+    product_details_filenames = [item for item in os.listdir(products_folder) if os.path.isfile(
+        os.path.join(products_folder, item))]
+    product_details = {}
+    for filename in product_details_filenames:
+        product_id = int(filename.split('.')[0].split('-')[1])
+        product_details[product_id] = json.load(os.path.join(
+            products_folder, filename))
+    context.expected_product_details = product_details
+    return product_details
+
+@fixture
 def small_shops_fixtures(context):
-    return use_composite_fixture_with(context, [fixture_call_params(permissions), fixture_call_params(small_users_list), fixture_call_params(small_shops), fixture_call_params(expected_small_shop_list), fixture_call_params(expected_small_shop_catalogues)])
+    return use_composite_fixture_with(context,
+                                      [fixture_call_params(permissions),
+                                       fixture_call_params(small_users_list),
+                                          fixture_call_params(small_shops),
+                                          fixture_call_params(
+                                              expected_small_shop_list),
+                                          fixture_call_params(
+                                              expected_small_shop_catalogues),
+                                          fixture_call_params(expected_small_shop_categories),
+                                          fixture_call_params(expected_small_product_details)])
