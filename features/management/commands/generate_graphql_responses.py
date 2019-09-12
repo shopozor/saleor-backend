@@ -4,6 +4,7 @@ from features.utils.graphql.responses_generator import ShopCategoriesGenerator, 
 
 
 def generate_responses_for_variant(output_folder, variant):
+
     generator = ShopListsGenerator(output_folder, variant)
     generator.generate()
 
