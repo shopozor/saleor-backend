@@ -49,6 +49,9 @@ variants = {
 
 def generate_variant(variant_name, output_folder):
 
+    print('#############################################')
+    print('Generating data for %s variant' % variant_name)
+
     variant = variants[variant_name]
     os.makedirs(os.path.join(output_folder, variant_name), exist_ok=True)
     os.makedirs(os.path.join(output_folder,
@@ -124,6 +127,8 @@ def generate_variant(variant_name, output_folder):
     json.dump(shopozor, os.path.join(
         output_folder, variant_name, 'Shopozor.json'))
 
+    print('#############################################')
+
 
 class Command(BaseCommand):
     help = 'Generates the relevant django fixtures for the sake of acceptance testing.'
@@ -131,9 +136,15 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('-o', '--output-folder', type=str, default=settings.FIXTURE_DIRS[0],
                             help='Folder where to output the JSON files containing the users and passwords')
+        parser.add_argument('--fixture-variant', type=str, default='all',
+                            help='Fixture variant: small, medium, large, or all')
 
     def handle(self, *args, **options):
         output_folder = options['output_folder']
+        fixture_variant = options['fixture_variant']
 
-        for variant in variants:
-            generate_variant(variant, output_folder)
+        if fixture_variant == 'all':
+            for variant in 'small', 'medium', 'large':
+                generate_variant(variant, output_folder)
+        else:
+            generate_variant(fixture_variant, output_folder)

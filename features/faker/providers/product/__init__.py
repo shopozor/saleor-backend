@@ -32,7 +32,7 @@ class Provider(LoremProvider):
         return self.__random_bool()
 
     def is_published(self):
-        return self.__random_bool()
+        return self.random_element({True: 0.95, False: 0.05})
 
     def money_amount(self, max_amount=100):
         return {

@@ -176,9 +176,10 @@ class FakeDataFactory:
         product_ids = [product['pk'] for product in products]
         result = []
         productstaff_pk = 1
+        total_nb_products = 0
         for producer in producers:
             nb_products = self.__fake.random.randint(
-                0, self.__MAX_NB_PRODUCTS_PER_PRODUCER)
+                1, self.__MAX_NB_PRODUCTS_PER_PRODUCER)
             producer_product_ids = self.__get_random_elements(
                 product_ids, nb_products)
             for producer_product_id in producer_product_ids:
@@ -187,6 +188,9 @@ class FakeDataFactory:
                 productstaff_pk += 1
             product_ids = [
                 id for id in product_ids if id not in producer_product_ids]
+            total_nb_products += nb_products
+        print('#products assigned to producers: %d out of %d' %
+              (total_nb_products, len(products)))
         return result
 
     def __shop(self, pk, variant_ids):
@@ -199,9 +203,10 @@ class FakeDataFactory:
 
         producer_ids = [producer['id'] for producer in producers]
 
+        total_nb_producers = 0
         for shop_id in range(0, list_size):
             nb_producers = self.__fake.random.randint(
-                0, self.__MAX_NB_PRODUCERS_PER_SHOP)
+                1, self.__MAX_NB_PRODUCERS_PER_SHOP)
             shop_producer_ids = self.__get_random_elements(
                 producer_ids, nb_producers)
             shop_product_ids = [item['fields']['product_id'] for item in productstaff if item['model']
@@ -211,7 +216,9 @@ class FakeDataFactory:
             producer_ids = [
                 id for id in producer_ids if id not in shop_producer_ids]
             result.append(self.__shop(shop_id + 1, variant_ids))
-
+            total_nb_producers += nb_producers
+        print('#producers assigned to shops: %d out of %d' %
+              (total_nb_producers, len(producers)))
         return result
 
     def __category(self, pk, name):
@@ -324,6 +331,7 @@ class FakeDataFactory:
 
     def create_products(self, categories, producttypes, list_size=1):
         result = []
+        nb_published_products = 0
         for pk in range(1, list_size + 1):
             category_name = self.__fake.random_element(
                 elements=self.category_types.keys())
@@ -333,8 +341,11 @@ class FakeDataFactory:
                 elements=self.category_types[category_name])
             producttype_id = [
                 type['pk'] for type in producttypes if type['fields']['name'] == producttype_name][0]
-            result.append(self.__product(
-                pk, category_id, producttype_id))
+            product = self.__product(pk, category_id, producttype_id)
+            result.append(product)
+            nb_published_products += int(product['fields']['is_published'])
+        print('#published products: %d out of %d' %
+              (nb_published_products, len(result)))
         return result
 
     def __shopozor_product(self, pk, product_id, publication_date):
@@ -379,7 +390,7 @@ class FakeDataFactory:
         for product in products:
             # a product with 0 variant might not be something we want --> needs to be tested
             nb_variants = self.__fake.random.randint(
-                0, self.__MAX_NB_VARIANTS_PER_PRODUCT)
+                1, self.__MAX_NB_VARIANTS_PER_PRODUCT)
             for _ in range(0, nb_variants):
                 result.append(self.__productvariant(pk, product))
                 pk += 1
