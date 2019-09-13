@@ -11,6 +11,8 @@ Fonctionnalité: Un Incognito visite un Shop
   Les prix des Produits sont montrés de façon transparente: les catalogues montrent clairement les prix brut et net
   de chaque Produit et de chaque Format de Produit, ainsi que les taxes y correspondant.
 
+  Cf. [issue "Take Swiss VAT into account"](https://github.com/shopozor/backend/issues/95) pour plus de détails sur comment toutes ces données sont calculées.
+
   # Il y a essentiellement deux possibilités pour récupérer le catalogue des Produits du serveur:
   # 1. Eager mode: aller chercher toutes les données disponibles. La réponse à la requête est dans ce cas assez grosse, mais
   #    il n'y a qu'une seule requête. Au chargement de l'interface du Consommateur, cette requête serait donc
