@@ -1,6 +1,11 @@
 # language: fr
 
-# TODO: pour publier un Produit, le Producteur doit avoir le droit de publier dans une liste de Shops définie par le Rex
+# TODO: 1. pour publier un Produit, le Producteur doit avoir le droit de publier dans une liste de Shops définie par le Rex
+# TODO: 2. le Producteur peut indiquer soit le prix de revient (cost_price) soit le prix qu'il veut voir affiché sur la plateforme (net price)
+# TODO: --> ajouter les scénarios y relatifs et corriger l'API si nécessaire
+# TODO: 3. lorsque le Producteur a ajouté un nouveau Produit dans son inventaire, il doit être possible de vérifier que les marges
+# TODO:    cost price, price, taxes sont calculées correctement (voir IncognitoVisitsShop.feature pour plus de détails).
+# TODO: 4. le Producteur doit définir sa propre TVA: aucune TVA, TVA par défaut, TVA custom
 
 @initial-release @producer @wip @in-preparation
 Fonctionnalité: Le Producteur ajoute un Produit à son inventaire
