@@ -310,6 +310,10 @@ class FakeDataFactory:
                 },
                 'is_published': self.__fake.is_published(),
                 'meta': {
+                    # TODO: we need to find out what incidence these taxes data
+                    # TODO: have on the price computations
+                    # TODO: it might that that we need to switch this off for some of the
+                    # TODO: Producers (those who have no obligation to pay the VAT)
                     'taxes': {
                         'vatlayer': {
                             'code': 'standard',
@@ -318,7 +322,7 @@ class FakeDataFactory:
                     }
                 },
                 'name': self.__fake.product_name(),
-                'price': self.__fake.money_amount(),
+                'price': None,
                 'product_type': producttype_id,
                 'publication_date': self.__fake.publication_date(),
                 'seo_description': description,
@@ -365,14 +369,13 @@ class FakeDataFactory:
 
     def __productvariant(self, pk, product):
         quantity = self.__fake.quantity()
-        price_override = self.__fake.price_override()
-        variant_price = product['fields']['price']['amount'] if price_override is None else price_override['amount']
+        cost_price = self.__fake.variant_cost_price()
         return {
             'fields': {
                 'attributes': '{}',
-                'cost_price': self.__fake.variant_cost_price(max_amount=float(variant_price)),
+                'cost_price': cost_price,
                 'name': self.__fake.variant_name(),
-                'price_override': price_override,
+                'price_override': self.__fake.price_override(cost_price),
                 'product': product['pk'],
                 'quantity': quantity,
                 'quantity_allocated': self.__fake.quantity_allocated(quantity),
@@ -388,7 +391,7 @@ class FakeDataFactory:
         result = []
         pk = 1
         for product in products:
-            # a product with 0 variant might not be something we want --> needs to be tested
+            # any product has at least one variant
             nb_variants = self.__fake.random.randint(
                 1, self.__MAX_NB_VARIANTS_PER_PRODUCT)
             for _ in range(0, nb_variants):

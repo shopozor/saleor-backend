@@ -57,3 +57,8 @@ FIXTURE_DIRS = [os.path.join('features', 'fixtures')]
 
 PRODUCT_THUMBNAIL_SIZE = 500
 CATEGORY_THUMBNAIL_SIZE = 250
+
+# TODO: these values need to be stored in a model
+# TODO: 1. generate_django_fixtures needs to generate the model values based on these values
+# TODO: 2. the acceptance tests use the values provided by the model
+SHOPOZOR_MARGIN = 0.15

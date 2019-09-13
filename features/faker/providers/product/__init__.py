@@ -41,8 +41,12 @@ class Provider(LoremProvider):
             'currency': settings.DEFAULT_CURRENCY
         }
 
-    def price_override(self):
-        return self.money_amount() if self.__random_bool() else None
+    def price_override(self, cost_price):
+        return {
+            '_type': 'Money',
+            'amount': str(float(cost_price['amount']) / (1 - settings.SHOPOZOR_MARGIN)),
+            'currency': cost_price['currency']
+        }
 
     def product_image_url(self):
         return os.path.join('products', '%s.png' % ''.join(self.random_letters()))
