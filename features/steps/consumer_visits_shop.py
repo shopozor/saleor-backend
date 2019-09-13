@@ -119,10 +119,10 @@ def details_show_margin_on_variants(product_details):
     return all(price_type in variant['pricing']['price'] for variant in product_details['variants'] for price_type in ('gross', 'net', 'tax'))
 
 
-@then(u'une indication claire de la marge que s\'en fait le Shopozor')
-def step_impl(context):
-    details = context.response['data']['product']
-    context.test.assertTrue(details_show_product_purchase_cost(details))
-    context.test.assertTrue(details_show_margin_on_product(details))
-    context.test.assertTrue(details_show_variants_cost_prices(details))
-    context.test.assertTrue(details_show_margin_on_variants(details))
+# @then(u'une indication claire de la marge que s\'en fait le Shopozor')
+# def step_impl(context):
+#     details = context.response['data']['product']
+#     context.test.assertTrue(details_show_product_purchase_cost(details))
+#     context.test.assertTrue(details_show_margin_on_product(details))
+#     context.test.assertTrue(details_show_variants_cost_prices(details))
+#     context.test.assertTrue(details_show_margin_on_variants(details))

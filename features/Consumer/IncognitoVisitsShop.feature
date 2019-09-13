@@ -8,6 +8,8 @@ Fonctionnalité: Un Incognito visite un Shop
   pour voir quels Produits il propose et faire connaissance avec ses Producteurs.**  
 
   Entrer dans un Shop ne nécessite pas de compte. Un compte rend juste l'utilisation du Shopozor plus confortable.
+  Les prix des Produits sont montrés de façon transparente: les catalogues montrent clairement les prix brut et net
+  de chaque Produit et de chaque Format de Produit, ainsi que les taxes y correspondant.
 
   # Il y a essentiellement deux possibilités pour récupérer le catalogue des Produits du serveur:
   # 1. Eager mode: aller chercher toutes les données disponibles. La réponse à la requête est dans ce cas assez grosse, mais
@@ -70,6 +72,7 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito en visite les Rayons
     Alors il obtient la liste de tous les Produits qui y sont publiés
 
+  # TODO: we should run this scenario on a reduced set of fixtures
   @productDetails.graphql
   @fixture.small-shops
   Scénario: Chaque Produit est détaillé
@@ -81,4 +84,54 @@ Fonctionnalité: Un Incognito visite un Shop
     Etant donné le Shop de son choix
     Lorsqu'Incognito y inspecte un Produit
     Alors il en obtient la description détaillée
-    Et une indication claire de la marge que s'en fait le Shopozor
+
+  # TODO: fix the acceptance test fixtures so that they have the correct amounts!
+  @productDetails.graphql
+  # TODO: we probably want a smaller fixture set here with only 1-2 products
+  # @fixture.small-shops
+  Scénario: Les différentes marges et taxes de chaque Produit sont détaillées
+
+    Tous les détails en CHF sur le prix d'un Produit sont communiqués de façon transparente.
+
+    # We need to upgrade the current product margin query; currently, it only gives incomplete
+    # percentages on the margin obtained on Products / ProductVariants
+
+    Soit un Produit proposé dans le catalogue d'un Shop
+    Lorsqu'Incognito demande la marge que s'en fait le Shopozor
+    # check the following assertions on both product and product variant levels
+    Alors il obtient le montant versé au Producteur
+    Et la marge qui revient au Responsable du Shop qui l'a vendu
+    Et la marge qui revient au Rex
+    Et la marge qui revient à Softozor
+    Et le montant de la TVA sur le Produit
+    Et le montant de la TVA sur le service fourni par le Shopozor
+
+  @productDetails.graphql
+  # TODO: we probably want a smaller fixture set here with only 1-2 products
+  # @fixture.small-shops
+  Scénario: Incognito obtient le prix net d'un Produit
+
+    Soit un Produit proposé dans le catalogue d'un Shop
+    Lorsqu'Incognito en demande le prix net
+    # check the following assertions on both product and product variant levels
+    Alors il obtient le montant versé au Producteur + la marge du Shopozor
+
+  @productDetails.graphql
+  # TODO: we probably want a smaller fixture set here with only 1-2 products
+  # @fixture.small-shops
+  Scénario: Incognito obtient le prix brut d'un Produit
+
+    Soit un Produit proposé dans le catalogue d'un Shop
+    Lorsqu'Incognito en demande le prix brut
+    # check the following assertions on both product and product variant levels
+    Alors il obtient le prix net + la TVA sur le service du Shopozor
+
+  @productDetails.graphql
+  # TODO: we probably want a smaller fixture set here with only 1-2 products
+  # @fixture.small-shops
+  Scénario: Incognito obtient les taxes appliquées à un Produit
+
+    Soit un Produit proposé dans le catalogue d'un Shop
+    Lorsqu'Incognito en demande les taxes auxquelles il est soumis
+    # check the following assertions on both product and product variant levels
+    Alors il obtient la TVA sur le Produit + la TVA sur le service du Shopozor
