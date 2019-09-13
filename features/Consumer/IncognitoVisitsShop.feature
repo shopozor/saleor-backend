@@ -9,9 +9,8 @@ Fonctionnalité: Un Incognito visite un Shop
 
   Entrer dans un Shop ne nécessite pas de compte. Un compte rend juste l'utilisation du Shopozor plus confortable.
   Les prix des Produits sont montrés de façon transparente: les catalogues montrent clairement les prix brut et net
-  de chaque Produit et de chaque Format de Produit, ainsi que les taxes y correspondant.
-
-  Cf. [issue "Take Swiss VAT into account"](https://github.com/shopozor/backend/issues/95) pour plus de détails sur comment toutes ces données sont calculées.
+  de chaque Produit et de chaque Format de Produit, ainsi que les taxes y correspondant. Voir [issue "Take Swiss VAT into account"](https://github.com/shopozor/backend/issues/95)
+  pour plus de détails sur comment toutes ces données sont calculées.
 
   # Il y a essentiellement deux possibilités pour récupérer le catalogue des Produits du serveur:
   # 1. Eager mode: aller chercher toutes les données disponibles. La réponse à la requête est dans ce cas assez grosse, mais
