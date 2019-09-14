@@ -115,7 +115,7 @@ Fonctionnalité: Un Incognito visite un Shop
     Soit un Produit proposé dans le catalogue d'un Shop
     Lorsqu'Incognito en demande le prix net
     # check the following assertions on both product and product variant levels
-    Alors il obtient le montant versé au Producteur + la marge du Shopozor
+    Alors il obtient le montant net versé au Producteur + la marge nette du Shopozor
 
   @productDetails.graphql
   # TODO: we probably want a smaller fixture set here with only 1-2 products
@@ -125,7 +125,7 @@ Fonctionnalité: Un Incognito visite un Shop
     Soit un Produit proposé dans le catalogue d'un Shop
     Lorsqu'Incognito en demande le prix brut
     # check the following assertions on both product and product variant levels
-    Alors il obtient le prix net + la TVA sur le service du Shopozor
+    Alors il obtient le prix net + la TVA sur le service du Shopozor + la TVA sur le Produit
 
   @productDetails.graphql
   # TODO: we probably want a smaller fixture set here with only 1-2 products

@@ -61,31 +61,56 @@ def get_shopozor_fixture(fixture_variant):
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
 
 
-def money_amount(price_fields, amount=None):
-    return {
-        'amount': amount if amount is not None else price_fields['amount'],
-        'currency': price_fields['currency']
-    }
+def money_amount(price_fields=None, amount=None, currency=None):
+    if price_fields is not None:
+        return {
+            'amount': price_fields['amount'],
+            'currency': price_fields['currency']
+        }
+    if amount is not None and currency is not None:
+        return {
+            'amount': amount,
+            'currency': currency
+        }
+    raise NotImplementedError('Unable to construct a money_amount')
+
+
+# TODO: adapt the following methods to the new "more honest" model
+def get_product_tax_from_gross_price(gross_price, vat_rate):
+    tax = vat_rate / (1 + vat_rate) * gross_price['amount']
+    return money_amount(amount=tax, currency=gross_price['currency'])
+
+
+def get_service_tax(price_override, cost_price, vat_rate):
+    price_override_amount = price_override['amount']
+    cost_price_amount = cost_price['amount']
+    result_amount = vat_rate * (price_override_amount - cost_price_amount)
+    return money_amount(amount=result_amount, currency=price_override['currency'])
+
+
+def get_displayed_net_price(price_override, cost_price, vat_rate):
+    price_override_amount = price_override['amount']
+    cost_price_amount = cost_price['amount']
+    result_amount = price_override_amount - \
+        vat_rate / (1 + vat_rate) * cost_price_amount
+    return money_amount(amount=result_amount, currency=price_override['currency'])
+
+
+def get_displayed_gross_price(price_override, cost_price, vat_rate):
+    price_override_amount = price_override['amount']
+    cost_price_amount = cost_price['amount']
+    result_amount = price_override_amount * \
+        (1 + vat_rate) - vat_rate * cost_price_amount
+    return money_amount(amount=result_amount, currency=price_override['currency'])
 
 
 def get_price(variant_fields, product_fields):
-    # This method is perfectly fine as long as we don't incorporate taxes
-    # When we take taxes into account, we'll need to adapt this method
-    # This will document how the taxes are taken into account
-    price = {}
-    if 'price_override' in variant_fields and variant_fields['price_override'] is not None:
-        price = {
-            'gross': money_amount(variant_fields['price_override']),
-            'net': money_amount(variant_fields['price_override']),
-            'tax': money_amount(variant_fields['price_override'], amount=0)
-        }
-    else:
-        price = {
-            'gross': money_amount(product_fields['price']),
-            'net': money_amount(product_fields['price']),
-            'tax': money_amount(product_fields['price'], amount=0)
-        }
-    return price
+    return {
+        'gross': get_displayed_gross_price(variant_fields['price_override'], variant_fields['cost_price'], settings.VAT_SERVICES),
+        'net': get_displayed_net_price(variant_fields['price_override'], variant_fields['cost_price'], settings.VAT_PRODUCTS),
+        'productTax': get_product_tax_from_gross_price(variant_fields['cost_price'], settings.VAT_PRODUCTS),
+        'serviceTax': get_service_tax(variant_fields['price_override'], variant_fields['cost_price'], settings.VAT_SERVICES)
+    }
 
 
 def variant_node(variant_id, variant_fields, product_fields):
@@ -93,6 +118,8 @@ def variant_node(variant_id, variant_fields, product_fields):
         'id': graphene.Node.to_global_id('ProductVariant', variant_id),
         'name': variant_fields['name'],
         'isAvailable': product_fields['is_published'],
+        # TODO: get the margins
+        'margin': {},
         'stockQuantity': max(variant_fields['quantity'] - variant_fields['quantity_allocated'], 0),
         'costPrice': {
             'amount': variant_fields['cost_price']['amount'],

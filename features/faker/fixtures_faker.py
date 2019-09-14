@@ -375,6 +375,7 @@ class FakeDataFactory:
                 'attributes': '{}',
                 'cost_price': cost_price,
                 'name': self.__fake.variant_name(),
+                # TODO: this value is not really faked; it should not be part of the faker provider
                 'price_override': self.__fake.price_override(cost_price),
                 'product': product['pk'],
                 'quantity': quantity,
