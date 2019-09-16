@@ -61,39 +61,43 @@ def get_shopozor_fixture(fixture_variant):
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
 
 
+def round_money_amount(amount):
+    return round(amount * 2, 1) / 2
+
+
 def money_amount(price_fields=None, amount=None, currency=None):
     if price_fields is not None:
         return {
-            'amount': price_fields['amount'],
+            'amount': round_money_amount(price_fields['amount']),
             'currency': price_fields['currency']
         }
     if amount is not None and currency is not None:
         return {
-            'amount': amount,
+            'amount': round_money_amount(amount),
             'currency': currency
         }
     raise NotImplementedError('Unable to construct a money_amount')
 
 
 def get_product_tax(cost_price, vat_rate):
-    tax = cost_price['amount'] * vat_rate / (1 + vat_rate)
+    tax = float(cost_price['amount']) * vat_rate / (1 + vat_rate)
     return money_amount(amount=tax, currency=cost_price['currency'])
 
 
 def get_service_tax(cost_price, vat_rate):
-    tax = cost_price['amount'] * vat_rate / \
+    tax = float(cost_price['amount']) * vat_rate / \
         (1 + vat_rate) * settings.SHOPOZOR_MARGIN / (1 - settings.SHOPOZOR_MARGIN)
     return money_amount(amount=tax, currency=cost_price['currency'])
 
 
 def get_net_price(cost_price, product_vat_rate, service_vat_rate):
-    result_amount = cost_price['amount'] * ((1 + product_vat_rate) * settings.SHOPOZOR_MARGIN + (1 - settings.SHOPOZOR_MARGIN) * (
+    result_amount = float(cost_price['amount']) * ((1 + product_vat_rate) * settings.SHOPOZOR_MARGIN + (1 - settings.SHOPOZOR_MARGIN) * (
         1 + service_vat_rate)) / ((1 - settings.SHOPOZOR_MARGIN) * (1 + service_vat_rate) * (1 + product_vat_rate))
     return money_amount(amount=result_amount, currency=cost_price['currency'])
 
 
 def get_gross_price(cost_price, vat_rate):
-    result_amount = cost_price['amount'] / 0.85
+    result_amount = float(cost_price['amount']) / 0.85
     return money_amount(amount=result_amount, currency=cost_price['currency'])
 
 
@@ -108,11 +112,11 @@ def get_price(variant_fields, product_fields):
 
 def get_margin(cost_price, margin_rate, service_vat_rate):
     total_gross_margin = settings.SHOPOZOR_MARGIN / \
-        (1 - settings.SHOPOZOR_MARGIN) * cost_price['amount']
+        (1 - settings.SHOPOZOR_MARGIN) * float(cost_price['amount'])
     total_net_margin = total_gross_margin / (1 + service_vat_rate)
     return {
-        'gross': money_amount(amount=total_gross_margin * margin_rate, currency=cost_price['currency']),
-        'net': money_amount(amount=total_net_margin * margin_rate, currency=cost_price['currency']),
+        'gross': money_amount(amount=total_gross_margin * margin_rate / settings.SHOPOZOR_MARGIN, currency=cost_price['currency']),
+        'net': money_amount(amount=total_net_margin * margin_rate / settings.SHOPOZOR_MARGIN, currency=cost_price['currency']),
         'tax': money_amount(amount=(total_gross_margin - total_net_margin) * margin_rate / settings.SHOPOZOR_MARGIN, currency=cost_price['currency'])
     }
 
@@ -307,14 +311,18 @@ def extract_catalogues(catalogues):
                 node.pop('conservation', None)
                 node.pop('description', None)
                 node.pop('images', None)
+                node.pop('margin', None)
                 node['pricing']['priceRange']['start'].pop('net', None)
-                node['pricing']['priceRange']['start'].pop('tax', None)
+                node['pricing']['priceRange']['start'].pop('productTax', None)
+                node['pricing']['priceRange']['start'].pop('serviceTax', None)
                 node['pricing']['priceRange']['stop'].pop('net', None)
-                node['pricing']['priceRange']['stop'].pop('tax', None)
+                node['pricing']['priceRange']['stop'].pop('productTax', None)
+                node['pricing']['priceRange']['stop'].pop('serviceTax', None)
                 node.pop('purchaseCost', None)
                 node['producer'].pop('description', None)
                 node['producer'].pop('address', None)
                 for variant in node['variants']:
                     variant.pop('costPrice', None)
                     variant.pop('pricing', None)
+                    variant.pop('margin', None)
     return my_catalogues
