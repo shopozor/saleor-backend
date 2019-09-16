@@ -13,11 +13,14 @@ class Provider(LoremProvider):
         '1l', '2l', '2.5l', '5l', '250ml', '500ml', '45cm x 45cm', '55cm x 55cm', 'XS', 'S', 'M', 'L', 'XL', '100g', '200g', '250g', '500g', '1kg'
     )
 
+    def __random_bool(self):
+        return bool(self.generator.random.getrandbits(1))
+
     def __random_float(self, min, max, nb_digits):
         return round(self.generator.random.uniform(min, max), nb_digits)
 
-    def __random_bool(self):
-        return bool(self.generator.random.getrandbits(1))
+    def __random_money_amount(self, min, max):
+        return round(self.generator.random.uniform(min, max) * 2, 1) / 2
 
     def category_image_url(self):
         return os.path.join('category-backgrounds', '%s.png' % ''.join(self.random_letters()))
@@ -37,7 +40,7 @@ class Provider(LoremProvider):
     def money_amount(self, max_amount=100):
         return {
             '_type': 'Money',
-            'amount': str(self.__random_float(0, max_amount, 2)),
+            'amount': str(self.__random_money_amount(0, max_amount)),
             'currency': settings.DEFAULT_CURRENCY
         }
 
