@@ -75,41 +75,45 @@ def money_amount(price_fields=None, amount=None, currency=None):
     raise NotImplementedError('Unable to construct a money_amount')
 
 
-# TODO: adapt the following methods to the new "more honest" model
-def get_product_tax_from_gross_price(gross_price, vat_rate):
-    tax = vat_rate / (1 + vat_rate) * gross_price['amount']
-    return money_amount(amount=tax, currency=gross_price['currency'])
+def get_product_tax(cost_price, vat_rate):
+    tax = cost_price['amount'] * vat_rate / (1 + vat_rate)
+    return money_amount(amount=tax, currency=cost_price['currency'])
 
 
-def get_service_tax(price_override, cost_price, vat_rate):
-    price_override_amount = price_override['amount']
-    cost_price_amount = cost_price['amount']
-    result_amount = vat_rate * (price_override_amount - cost_price_amount)
-    return money_amount(amount=result_amount, currency=price_override['currency'])
+def get_service_tax(cost_price, vat_rate):
+    tax = cost_price['amount'] * vat_rate / \
+        (1 + vat_rate) * settings.SHOPOZOR_MARGIN / (1 - settings.SHOPOZOR_MARGIN)
+    return money_amount(amount=tax, currency=cost_price['currency'])
 
 
-def get_displayed_net_price(price_override, cost_price, vat_rate):
-    price_override_amount = price_override['amount']
-    cost_price_amount = cost_price['amount']
-    result_amount = price_override_amount - \
-        vat_rate / (1 + vat_rate) * cost_price_amount
-    return money_amount(amount=result_amount, currency=price_override['currency'])
+def get_net_price(cost_price, product_vat_rate, service_vat_rate):
+    result_amount = cost_price['amount'] * ((1 + product_vat_rate) * settings.SHOPOZOR_MARGIN + (1 - settings.SHOPOZOR_MARGIN) * (
+        1 + service_vat_rate)) / ((1 - settings.SHOPOZOR_MARGIN) * (1 + service_vat_rate) * (1 + product_vat_rate))
+    return money_amount(amount=result_amount, currency=cost_price['currency'])
 
 
-def get_displayed_gross_price(price_override, cost_price, vat_rate):
-    price_override_amount = price_override['amount']
-    cost_price_amount = cost_price['amount']
-    result_amount = price_override_amount * \
-        (1 + vat_rate) - vat_rate * cost_price_amount
-    return money_amount(amount=result_amount, currency=price_override['currency'])
+def get_gross_price(cost_price, vat_rate):
+    result_amount = cost_price['amount'] / 0.85
+    return money_amount(amount=result_amount, currency=cost_price['currency'])
 
 
 def get_price(variant_fields, product_fields):
     return {
-        'gross': get_displayed_gross_price(variant_fields['price_override'], variant_fields['cost_price'], settings.VAT_SERVICES),
-        'net': get_displayed_net_price(variant_fields['price_override'], variant_fields['cost_price'], settings.VAT_PRODUCTS),
-        'productTax': get_product_tax_from_gross_price(variant_fields['cost_price'], settings.VAT_PRODUCTS),
-        'serviceTax': get_service_tax(variant_fields['price_override'], variant_fields['cost_price'], settings.VAT_SERVICES)
+        'gross': get_gross_price(variant_fields['cost_price'], settings.VAT_SERVICES),
+        'net': get_net_price(variant_fields['cost_price'], settings.VAT_PRODUCTS, settings.VAT_SERVICES),
+        'productTax': get_product_tax(variant_fields['cost_price'], settings.VAT_PRODUCTS),
+        'serviceTax': get_service_tax(variant_fields['cost_price'], settings.VAT_SERVICES)
+    }
+
+
+def get_margin(cost_price, margin_rate, service_vat_rate):
+    total_gross_margin = settings.SHOPOZOR_MARGIN / \
+        (1 - settings.SHOPOZOR_MARGIN) * cost_price['amount']
+    total_net_margin = total_gross_margin / (1 + service_vat_rate)
+    return {
+        'gross': money_amount(amount=total_gross_margin * margin_rate, currency=cost_price['currency']),
+        'net': money_amount(amount=total_net_margin * margin_rate, currency=cost_price['currency']),
+        'tax': money_amount(amount=(total_gross_margin - total_net_margin) * margin_rate / settings.SHOPOZOR_MARGIN, currency=cost_price['currency'])
     }
 
 
@@ -118,8 +122,11 @@ def variant_node(variant_id, variant_fields, product_fields):
         'id': graphene.Node.to_global_id('ProductVariant', variant_id),
         'name': variant_fields['name'],
         'isAvailable': product_fields['is_published'],
-        # TODO: get the margins
-        'margin': {},
+        'margin': {
+            'manager': get_margin(variant_fields['cost_price'], settings.MANAGER_MARGIN, settings.VAT_SERVICES),
+            'rex': get_margin(variant_fields['cost_price'], settings.REX_MARGIN, settings.VAT_SERVICES),
+            'softozor': get_margin(variant_fields['cost_price'], settings.SOFTOZOR_MARGIN, settings.VAT_SERVICES)
+        },
         'stockQuantity': max(variant_fields['quantity'] - variant_fields['quantity_allocated'], 0),
         'costPrice': {
             'amount': variant_fields['cost_price']['amount'],
