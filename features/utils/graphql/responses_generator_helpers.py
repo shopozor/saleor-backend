@@ -117,6 +117,7 @@ def get_margin(cost_price, margin_rate, service_vat_rate):
     return {
         'gross': money_amount(amount=total_gross_margin * margin_rate / settings.SHOPOZOR_MARGIN, currency=cost_price['currency']),
         'net': money_amount(amount=total_net_margin * margin_rate / settings.SHOPOZOR_MARGIN, currency=cost_price['currency']),
+        # TODO: this amount is wrong; it must be precisely the above gross - the above net otherwise we get wrong tax because of rounding errors
         'tax': money_amount(amount=(total_gross_margin - total_net_margin) * margin_rate / settings.SHOPOZOR_MARGIN, currency=cost_price['currency'])
     }
 
@@ -211,22 +212,22 @@ def product_node(product, variant, new_variant, associated_images, associated_pr
         'node': {
             'id': graphene.Node.to_global_id('Product', product['pk']),
             'conservation': conservation[0],
-            'name': product['fields']['name'],
             'description': product['fields']['description'],
-            'variants': [new_variant],
             'images': associated_images,
-            'thumbnail': thumbnail,
-            'producer': associated_producer,
+            'name': product['fields']['name'],
             'pricing': {
                 'priceRange': {
                     'start': initial_price,
                     'stop': initial_price
                 }
             },
+            'producer': associated_producer,
             'purchaseCost': {
                 'start': variant['fields']['cost_price'],
                 'stop': variant['fields']['cost_price']
-            }
+            },
+            'thumbnail': thumbnail,
+            'variants': [new_variant]
         }
     }
 
@@ -276,6 +277,30 @@ def postprocess_is_available_flag(edges):
             # a variant is available <==> product is visible and has stock
             # a product has stock <==> any of its variant has stock
             variant['isAvailable'] = variant['isAvailable'] and has_stock
+
+
+def get_price_margins(purchase_cost):
+    return {
+        'manager': {
+            'start': get_margin(purchase_cost['start'], settings.MANAGER_MARGIN, settings.VAT_SERVICES),
+            'stop': get_margin(purchase_cost['stop'], settings.MANAGER_MARGIN, settings.VAT_SERVICES)
+        },
+        'rex': {
+            'start': get_margin(purchase_cost['start'], settings.REX_MARGIN, settings.VAT_SERVICES),
+            'stop': get_margin(purchase_cost['stop'], settings.REX_MARGIN, settings.VAT_SERVICES)
+        },
+        'softozor': {
+            'start': get_margin(purchase_cost['start'], settings.SOFTOZOR_MARGIN, settings.VAT_SERVICES),
+            'stop': get_margin(purchase_cost['stop'], settings.SOFTOZOR_MARGIN, settings.VAT_SERVICES)
+        }
+    }
+
+
+def postprocess_margins(edges):
+    for edge in edges:
+        purchase_cost = edge['node']['purchaseCost']
+        margins = get_price_margins(purchase_cost)
+        edge['node']['margin'] = margins
 
 
 def extract_products_from_catalogues(catalogues):

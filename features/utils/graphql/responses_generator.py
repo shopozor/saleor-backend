@@ -121,7 +121,8 @@ class ProductListsGenerator(ResponsesGenerator):
                 helpers.set_page_info(
                     product_catalogues[shop['pk']][category]['data']['products'], totalCount)
 
-        helpers.postprocess_is_available_flag(catalogue_edges)
+                helpers.postprocess_is_available_flag(catalogue_edges)
+                helpers.postprocess_margins(catalogue_edges)
         return product_catalogues
 
     def __output_catalogues(self, shop_catalogues):
