@@ -3,6 +3,7 @@ from django.conf import settings
 from features.utils.fixtures import json
 
 import graphene
+import math
 import os
 import urllib.parse
 
@@ -62,46 +63,55 @@ def get_shopozor_fixture(fixture_variant):
 
 
 def round_money_amount(amount):
+    return math.ceil(amount * 20) / 20
+
+
+# TODO: fix this
+def round_to_nearest_half(amount):
     return round(amount * 2, 1) / 2
 
 
 def money_amount(price_fields=None, amount=None, currency=None):
     if price_fields is not None:
         return {
-            'amount': round_money_amount(price_fields['amount']),
+            'amount': price_fields['amount'],
             'currency': price_fields['currency']
         }
     if amount is not None and currency is not None:
         return {
-            'amount': round_money_amount(amount),
+            'amount': amount,
             'currency': currency
         }
     raise NotImplementedError('Unable to construct a money_amount')
 
 
 def get_product_tax(cost_price, vat_rate):
+    # we keep taxes at its most precise amount without rounding for the sake of transparency
+    # the gross price takes rounding into account
     tax = float(cost_price['amount']) * vat_rate / (1 + vat_rate)
-    return money_amount(amount=tax, currency=cost_price['currency'])
+    return money_amount(amount=round_to_nearest_half(tax), currency=cost_price['currency'])
 
 
 def get_service_tax(cost_price, vat_rate):
+    # we keep taxes at its most precise amount without rounding for the sake of transparency
+    # the gross price takes rounding into account
     tax = float(cost_price['amount']) * vat_rate / \
         (1 + vat_rate) * settings.SHOPOZOR_MARGIN / (1 - settings.SHOPOZOR_MARGIN)
-    return money_amount(amount=tax, currency=cost_price['currency'])
+    return money_amount(amount=round_to_nearest_half(tax), currency=cost_price['currency'])
+
+
+def get_gross_price(cost_price, vat_rate):
+    result_amount = float(cost_price['amount']) / 0.85
+    return money_amount(amount=round_money_amount(result_amount), currency=cost_price['currency'])
 
 
 def get_net_price(cost_price, product_vat_rate, service_vat_rate):
     result_amount = float(cost_price['amount']) * ((1 + product_vat_rate) * settings.SHOPOZOR_MARGIN + (1 - settings.SHOPOZOR_MARGIN) * (
         1 + service_vat_rate)) / ((1 - settings.SHOPOZOR_MARGIN) * (1 + service_vat_rate) * (1 + product_vat_rate))
-    return money_amount(amount=result_amount, currency=cost_price['currency'])
+    return money_amount(amount=round_money_amount(result_amount), currency=cost_price['currency'])
 
 
-def get_gross_price(cost_price, vat_rate):
-    result_amount = float(cost_price['amount']) / 0.85
-    return money_amount(amount=result_amount, currency=cost_price['currency'])
-
-
-def get_price(variant_fields, product_fields):
+def get_price(variant_fields):
     return {
         'gross': get_gross_price(variant_fields['cost_price'], settings.VAT_SERVICES),
         'net': get_net_price(variant_fields['cost_price'], settings.VAT_PRODUCTS, settings.VAT_SERVICES),
@@ -115,10 +125,10 @@ def get_margin(cost_price, margin_rate, service_vat_rate):
         (1 - settings.SHOPOZOR_MARGIN) * float(cost_price['amount'])
     total_net_margin = total_gross_margin / (1 + service_vat_rate)
     return {
-        'gross': money_amount(amount=total_gross_margin * margin_rate / settings.SHOPOZOR_MARGIN, currency=cost_price['currency']),
-        'net': money_amount(amount=total_net_margin * margin_rate / settings.SHOPOZOR_MARGIN, currency=cost_price['currency']),
-        # TODO: this amount is wrong; it must be precisely the above gross - the above net otherwise we get wrong tax because of rounding errors
-        'tax': money_amount(amount=(total_gross_margin - total_net_margin) * margin_rate / settings.SHOPOZOR_MARGIN, currency=cost_price['currency'])
+        'gross': money_amount(amount=round_money_amount(total_gross_margin * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency']),
+        'net': money_amount(amount=round_money_amount(total_net_margin * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency']),
+        # we keep taxes as precise as possible; the gross price takes rounding into account
+        'tax': money_amount(amount=round_to_nearest_half((total_gross_margin - total_net_margin) * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency'])
     }
 
 
@@ -138,7 +148,7 @@ def variant_node(variant_id, variant_fields, product_fields):
             'currency': variant_fields['cost_price']['currency']
         },
         'pricing': {
-            'price': get_price(variant_fields, product_fields)
+            'price': get_price(variant_fields)
         }
     }
 
@@ -152,8 +162,8 @@ def price_range(start, stop):
     }
 
 
-def update_product_price_range(product, variant, node):
-    variant_price = get_price(variant['fields'], product['fields'])
+def update_product_price_range(variant, node):
+    variant_price = get_price(variant['fields'])
     current_start = node['pricing']['priceRange']['start']
     current_stop = node['pricing']['priceRange']['stop']
     if variant_price['gross']['amount'] < current_start['gross']['amount']:
@@ -187,8 +197,7 @@ def update_product_purchase_cost(variant, node):
 
 def append_variant_to_existing_product(node, new_variant, variant, product):
     node['variants'].append(new_variant)
-    node['pricing'] = update_product_price_range(
-        product, variant, node)
+    node['pricing'] = update_product_price_range(variant, node)
     node['purchaseCost'] = update_product_purchase_cost(
         variant, node)
 
@@ -259,8 +268,7 @@ def create_new_product_with_variant(product, variant, new_variant, users_fixture
     # TODO: delete those images from the shops_fixture
     thumbnail = product_thumbnail(
         associated_images) if associated_images else placeholder_product_thumbnail()
-    initial_price = get_price(
-        variant['fields'], product['fields'])
+    initial_price = get_price(variant['fields'])
     conservation = [{
         'mode': item['fields']['conservation_mode'],
         'until': item['fields']['conservation_until']

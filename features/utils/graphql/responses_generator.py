@@ -104,7 +104,7 @@ class ProductListsGenerator(ResponsesGenerator):
                     if not is_published:
                         continue
                     edges_with_product_id = [
-                        edge for edge in catalogue_edges if edge['node']['id'] == product['pk']]
+                        edge for edge in catalogue_edges if int(graphene.Node.from_global_id(edge['node']['id'])[1]) == product['pk']]
 
                     new_variant = helpers.variant_node(
                         variant_id, variant['fields'], product['fields'])
