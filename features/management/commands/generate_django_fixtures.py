@@ -16,7 +16,7 @@ variants = {
         '#softozor': 1,
         '#products': 160,
         '#shops': 2,
-        '#max(variants/product)': 25,
+        '#max(variants/product)': 5,
         '#max(producers/shop)': 8,
         '#max(products/producer)': 10
     },
@@ -28,7 +28,7 @@ variants = {
         '#softozor': 1,
         '#products': 300,
         '#shops': 5,
-        '#max(variants/product)': 25,
+        '#max(variants/product)': 5,
         '#max(producers/shop)': 6,
         '#max(products/producer)': 10
     },
@@ -40,7 +40,7 @@ variants = {
         '#softozor': 1,
         '#products': 5000,
         '#shops': 20,
-        '#max(variants/product)': 25,
+        '#max(variants/product)': 7,
         '#max(producers/shop)': 7,
         '#max(products/producer)': 25
     }

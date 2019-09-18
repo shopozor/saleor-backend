@@ -322,7 +322,7 @@ class FakeDataFactory:
                     }
                 },
                 'name': self.__fake.product_name(),
-                'price': None,
+                'price': self.__fake.money_amount(max_amount=0),
                 'product_type': producttype_id,
                 'publication_date': self.__fake.publication_date(),
                 'seo_description': description,
