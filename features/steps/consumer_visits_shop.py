@@ -194,19 +194,58 @@ def step_impl(context):
         details_show_tax_on_variants('serviceTax', details))
 
 
+def get_shopozor_margin_on_product(details, price_range, price_type):
+    margin = 0
+    for persona in ('manager', 'rex', 'softozor'):
+        margin += details['margin'][persona][price_range][price_type]['amount']
+    return margin
+
+
+def get_shopozor_margin_on_variant(variant, price_type):
+    margin = 0
+    for persona in ('manager', 'rex', 'softozor'):
+        margin += variant['margin'][persona][price_type]['amount']
+    return margin
+
+
 @then(u'il obtient que le prix net correspond au montant net versé au Producteur + la marge nette du Shopozor')
 def step_impl(context):
-    raise NotImplementedError(
-        u'STEP: Then il obtient le montant net versé au Producteur + la marge nette du Shopozor')
+    details = context.response['data']['product']
+    for price_range in ('start', 'stop'):
+        net_price = details['pricing']['priceRange'][price_range]['net']['amount']
+        gross_cost_price = details['purchaseCost'][price_range]['amount']
+        # TODO: get this net_cost_price from the vat_rate stored in the shopozor_product table
+        net_cost_price = gross_cost_price / settings.VAT_PRODUCTS
+        net_shopozor_margin = get_shopozor_margin_on_product(
+            details, price_range, 'net')
+        context.test.assertAlmostEqual(
+            net_price, net_cost_price + net_shopozor_margin, delta=0.5)
+
+    for variant in details['variants']:
+        net_price = variant['pricing']['price']['net']['amount']
+        gross_cost_price = variant['cost_price']['amount']
+        # TODO: get this net_cost_price from the vat_rate stored in the shopozor_product table
+        net_cost_price = gross_cost_price / settings.VAT_PRODUCTS
+        net_shopozor_margin = get_shopozor_margin_on_variant(variant, 'net')
+        context.test.assertAlmostEqual(
+            net_price, net_cost_price + net_shopozor_margin, delta=0.5)
 
 
 @then(u'que le prix brut correspond au prix net + la TVA sur le service du Shopozor + la TVA sur le Produit')
 def step_impl(context):
-    raise NotImplementedError(
-        u'STEP: Then il obtient le prix net + la TVA sur le service du Shopozor + la TVA sur le Produit')
+    details = context.response['data']['product']
+    for price_range in ('start', 'stop'):
+        gross_price = details['pricing']['priceRange'][price_range]['gross']['amount']
+        net_price = details['pricing']['priceRange'][price_range]['net']['amount']
+        service_tax_price = details['pricing']['priceRange'][price_range]['serviceTax']['amount']
+        product_tax_price = details['pricing']['priceRange'][price_range]['productTax']['amount']
+        context.test.assertAlmostEqual(
+            gross_price, net_price + service_tax_price + product_tax_price, delta=0.5)
 
-
-@then(u'que les taxes auxquelles il est soumis sont la TVA sur le Produit + la TVA sur le service du Shopozor')
-def step_impl(context):
-    raise NotImplementedError(
-        u'STEP: Then il obtient la TVA sur le Produit + la TVA sur le service du Shopozor')
+    for variant in details['variants']:
+        gross_price = variant['pricing']['price']['gross']['amount']
+        net_price = variant['pricing']['price']['net']['amount']
+        service_tax_price = variant['pricing']['price']['serviceTax']['amount']
+        product_tax_price = variant['pricing']['price']['productTax']['amount']
+        context.test.assertAlmostEqual(
+            gross_price, net_price + service_tax_price + product_tax_price, delta=0.5)
