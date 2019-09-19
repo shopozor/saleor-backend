@@ -106,13 +106,16 @@ class ProductListsGenerator(ResponsesGenerator):
                     edges_with_product_id = [
                         edge for edge in catalogue_edges if int(graphene.Node.from_global_id(edge['node']['id'])[1]) == product['pk']]
 
+                    shopozor_product = [item['fields'] for item in self.__SHOPS_FIXTURE if item['model']
+                                        == 'shopozor.product' and item['fields']['product_id'] == product['pk']][0]
+
                     new_variant = helpers.variant_node(
-                        variant_id, variant['fields'], product['fields'])
+                        variant_id, variant['fields'], product['fields'], shopozor_product)
 
                     if edges_with_product_id:
                         edge = edges_with_product_id[0]
                         helpers.append_variant_to_existing_product(
-                            edge['node'], new_variant, variant, product)
+                            edge['node'], new_variant, variant, product, shopozor_product)
                     else:
                         node = helpers.create_new_product_with_variant(
                             product, variant, new_variant, self.__USERS_FIXTURE, self.__SHOPS_FIXTURE)

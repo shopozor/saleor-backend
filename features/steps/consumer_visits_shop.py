@@ -213,8 +213,9 @@ def step_impl(context):
     for price_range in ('start', 'stop'):
         net_price = details['pricing']['priceRange'][price_range]['net']['amount']
         gross_cost_price = details['purchaseCost'][price_range]['amount']
-        # TODO: get this net_cost_price from the vat_rate stored in the shopozor_product table
-        net_cost_price = gross_cost_price / settings.VAT_PRODUCTS
+        product_vat_rate = details['vatRate']
+        net_cost_price = gross_cost_price / \
+            product_vat_rate if product_vat_rate > 0 else gross_cost_price
         net_shopozor_margin = get_shopozor_margin_on_product(
             details, price_range, 'net')
         context.test.assertAlmostEqual(
@@ -223,8 +224,9 @@ def step_impl(context):
     for variant in details['variants']:
         net_price = variant['pricing']['price']['net']['amount']
         gross_cost_price = variant['cost_price']['amount']
-        # TODO: get this net_cost_price from the vat_rate stored in the shopozor_product table
-        net_cost_price = gross_cost_price / settings.VAT_PRODUCTS
+        product_vat_rate = details['vatRate']
+        net_cost_price = gross_cost_price / \
+            product_vat_rate if product_vat_rate > 0 else gross_cost_price
         net_shopozor_margin = get_shopozor_margin_on_variant(variant, 'net')
         context.test.assertAlmostEqual(
             net_price, net_cost_price + net_shopozor_margin, delta=0.5)

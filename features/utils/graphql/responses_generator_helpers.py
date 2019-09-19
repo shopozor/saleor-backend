@@ -111,11 +111,11 @@ def get_net_price(cost_price, product_vat_rate, service_vat_rate):
     return money_amount(amount=round_to_nearest_half(result_amount), currency=cost_price['currency'])
 
 
-def get_price(variant_fields):
+def get_price(variant_fields, product_vat_rate):
     return {
         'gross': get_gross_price(variant_fields['cost_price'], settings.VAT_SERVICES),
-        'net': get_net_price(variant_fields['cost_price'], settings.VAT_PRODUCTS, settings.VAT_SERVICES),
-        'productTax': get_product_tax(variant_fields['cost_price'], settings.VAT_PRODUCTS),
+        'net': get_net_price(variant_fields['cost_price'], product_vat_rate, settings.VAT_SERVICES),
+        'productTax': get_product_tax(variant_fields['cost_price'], product_vat_rate),
         'serviceTax': get_service_tax(variant_fields['cost_price'], settings.VAT_SERVICES)
     }
 
@@ -132,7 +132,7 @@ def get_margin(cost_price, margin_rate, service_vat_rate):
     }
 
 
-def variant_node(variant_id, variant_fields, product_fields):
+def variant_node(variant_id, variant_fields, product_fields, shopozor_product_fields):
     return {
         'id': graphene.Node.to_global_id('ProductVariant', variant_id),
         'name': variant_fields['name'],
@@ -148,7 +148,7 @@ def variant_node(variant_id, variant_fields, product_fields):
             'currency': variant_fields['cost_price']['currency']
         },
         'pricing': {
-            'price': get_price(variant_fields)
+            'price': get_price(variant_fields, shopozor_product_fields['vat_rate'])
         }
     }
 
@@ -162,8 +162,9 @@ def price_range(start, stop):
     }
 
 
-def update_product_price_range(variant, node):
-    variant_price = get_price(variant['fields'])
+def update_product_price_range(variant, node, shopozor_product_fields):
+    variant_price = get_price(
+        variant['fields'], shopozor_product_fields['vat_rate'])
     current_start = node['pricing']['priceRange']['start']
     current_stop = node['pricing']['priceRange']['stop']
     if variant_price['gross']['amount'] < current_start['gross']['amount']:
@@ -195,9 +196,10 @@ def update_product_purchase_cost(variant, node):
         }
 
 
-def append_variant_to_existing_product(node, new_variant, variant, product):
+def append_variant_to_existing_product(node, new_variant, variant, product, shopozor_product_fields):
     node['variants'].append(new_variant)
-    node['pricing'] = update_product_price_range(variant, node)
+    node['pricing'] = update_product_price_range(
+        variant, node, shopozor_product_fields)
     node['purchaseCost'] = update_product_purchase_cost(
         variant, node)
 
@@ -216,11 +218,14 @@ def product_thumbnail(associated_images):
     }
 
 
-def product_node(product, variant, new_variant, associated_images, associated_producer, conservation, initial_price, thumbnail):
+def product_node(product, variant, new_variant, associated_images, associated_producer, shopozor_product, initial_price, thumbnail):
     return {
         'node': {
             'id': graphene.Node.to_global_id('Product', product['pk']),
-            'conservation': conservation[0],
+            'conservation': {
+                'mode': shopozor_product['conservation_mode'],
+                'until': shopozor_product['conservation_until']
+            },
             'description': product['fields']['description'],
             'images': associated_images,
             'name': product['fields']['name'],
@@ -236,7 +241,8 @@ def product_node(product, variant, new_variant, associated_images, associated_pr
                 'stop': variant['fields']['cost_price']
             },
             'thumbnail': thumbnail,
-            'variants': [new_variant]
+            'variants': [new_variant],
+            'vatRate': shopozor_product['vat_rate']
         }
     }
 
@@ -268,12 +274,10 @@ def create_new_product_with_variant(product, variant, new_variant, users_fixture
     # TODO: delete those images from the shops_fixture
     thumbnail = product_thumbnail(
         associated_images) if associated_images else placeholder_product_thumbnail()
-    initial_price = get_price(variant['fields'])
-    conservation = [{
-        'mode': item['fields']['conservation_mode'],
-        'until': item['fields']['conservation_until']
-    } for item in shops_fixture if item['model'] == 'shopozor.product' and item['fields']['product_id'] == product['pk']]
-    return product_node(product, variant, new_variant, associated_images, associated_producer, conservation, initial_price, thumbnail)
+    shopozor_product = [item['fields'] for item in shops_fixture if item['model']
+                        == 'shopozor.product' and item['fields']['product_id'] == product['pk']][0]
+    initial_price = get_price(variant['fields'], shopozor_product['vat_rate'])
+    return product_node(product, variant, new_variant, associated_images, associated_producer, shopozor_product, initial_price, thumbnail)
 
 
 def postprocess_is_available_flag(edges):
@@ -358,4 +362,5 @@ def extract_catalogues(catalogues):
                     variant.pop('costPrice', None)
                     variant.pop('pricing', None)
                     variant.pop('margin', None)
+                node.pop('vatRate', None)
     return my_catalogues
