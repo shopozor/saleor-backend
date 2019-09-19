@@ -53,7 +53,6 @@ def step_impl(context):
     context.shop_id = 1
 
 
-# TODO: generate detailed_product fixture
 @given(u'un Produit proposé dans le catalogue d\'un Shop')
 def step_impl(context):
     context.current_product_id = 1

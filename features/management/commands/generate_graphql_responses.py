@@ -22,14 +22,14 @@ class Command(BaseCommand):
         parser.add_argument('-o', '--output-folder', type=str, default=settings.GRAPHQL_RESPONSES_FOLDER,
                             help='Folder where to output the JSON files')
         parser.add_argument('--fixture-variant', type=str, default='all',
-                            help='Fixture variant: small, medium, large, or all')
+                            help='Fixture variant: tiny, small, medium, large, or all')
 
     def handle(self, *args, **options):
         output_folder = options['output_folder']
         fixture_variant = options['fixture_variant']
 
         if fixture_variant == 'all':
-            for variant in 'small', 'medium', 'large':
+            for variant in 'tiny', 'small', 'medium', 'large':
                 generate_responses_for_variant(output_folder, variant)
         else:
             generate_responses_for_variant(output_folder, fixture_variant)

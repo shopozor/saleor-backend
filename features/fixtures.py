@@ -286,3 +286,82 @@ def small_shops_fixtures(context):
                                           fixture_call_params(
                                               expected_small_shop_categories),
                                           fixture_call_params(expected_small_product_details)])
+
+
+@fixture
+def tiny_users_list(context):
+    users = database_loader.load_users_in_database('tiny')
+    context.users = users
+    return users
+
+
+@fixture
+def tiny_shops(context):
+    context.fixtures = [os.path.join('tiny', 'Shopozor.json')]
+
+
+@fixture
+def expected_tiny_shop_list(context):
+    shop_list = json.load(
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'tiny', 'Consumer', 'Shops.json'))
+    context.expected_shop_list = shop_list
+    return shop_list
+
+
+@fixture
+def expected_tiny_shop_catalogues(context):
+    catalogues_folder = os.path.join(
+        settings.GRAPHQL_RESPONSES_FOLDER, 'tiny', 'Consumer', 'Catalogues')
+    shops = [shop for shop in os.listdir(catalogues_folder) if os.path.isdir(
+        os.path.join(catalogues_folder, shop))]
+    shop_catalogues = {}
+    for shop in shops:
+        shop_id = int(shop.split('-')[1])
+        shop_dir = os.path.join(catalogues_folder, shop)
+        categories = [category for category in os.listdir(
+            shop_dir) if os.path.isfile(os.path.join(shop_dir, category))]
+        shop_catalogues[shop_id] = {}
+        for category in categories:
+            category_id = int(category.split('.')[0].split('-')[1])
+            shop_catalogues[shop_id][category_id] = json.load(os.path.join(
+                catalogues_folder, shop, category))
+    context.expected_shop_catalogues = shop_catalogues
+    return shop_catalogues
+
+
+@fixture
+def expected_tiny_shop_categories(context):
+    categories = json.load(os.path.join(
+        settings.GRAPHQL_RESPONSES_FOLDER, 'tiny', 'Consumer', 'Categories.json'))
+    context.expected_categories = categories
+    return categories
+
+
+@fixture
+def expected_tiny_product_details(context):
+    products_folder = os.path.join(
+        settings.GRAPHQL_RESPONSES_FOLDER, 'tiny', 'Consumer', 'Products')
+    product_details_filenames = [item for item in os.listdir(products_folder) if os.path.isfile(
+        os.path.join(products_folder, item))]
+    product_details = {}
+    for filename in product_details_filenames:
+        product_id = int(filename.split('.')[0].split('-')[1])
+        product_details[product_id] = json.load(os.path.join(
+            products_folder, filename))
+    context.expected_product_details = product_details
+    return product_details
+
+
+@fixture
+def tiny_shops_fixtures(context):
+    return use_composite_fixture_with(context,
+                                      [fixture_call_params(permissions),
+                                       fixture_call_params(tiny_users_list),
+                                          fixture_call_params(tiny_shops),
+                                          fixture_call_params(
+                                              expected_tiny_shop_list),
+                                          fixture_call_params(
+                                              expected_tiny_shop_catalogues),
+                                          fixture_call_params(
+                                              expected_tiny_shop_categories),
+                                          fixture_call_params(expected_tiny_product_details)])

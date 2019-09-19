@@ -1,6 +1,6 @@
 # language: fr
 
-@initial-release @consumer @wip
+@initial-release @consumer
 Fonctionnalité: Un Incognito visite un Shop
 
   **En tant qu'Incognito,  
@@ -38,6 +38,7 @@ Fonctionnalité: Un Incognito visite un Shop
 
     Etant donné un utilisateur non identifié sur le Shopozor
 
+  @wip
   @shops.graphql
   @fixture.small-shops
   Scénario: Incognito obtient la liste des Shops
@@ -48,6 +49,7 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito demande quels Shops il peut visiter
     Alors il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale
 
+  @wip
   @shopCategories.graphql
   @fixture.small-shops
   Scénario: Incognito obtient la liste des Rayons
@@ -58,6 +60,7 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito se renseigne sur les différents Rayons disponibles dans le Shopozor
     Alors il en obtient la liste
 
+  @wip
   @shopCatalogue.graphql
   @fixture.small-shops
   Scénario: Incognito se balade dans les Rayons d'un Shop
@@ -73,9 +76,9 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito en visite les Rayons
     Alors il obtient la liste de tous les Produits qui y sont publiés
 
-  # TODO: we should run this scenario on a reduced set of fixtures
+  @wip
   @productDetails.graphql
-  @fixture.small-shops
+  @fixture.tiny-shops
   Scénario: Chaque Produit est détaillé
 
     Incognito peut obtenir tous les détails de chacun des Produits appartenant
@@ -86,9 +89,9 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito y inspecte un Produit
     Alors il en obtient la description détaillée
 
+  @wip
   @productDetails.graphql
-  # TODO: we probably want a smaller fixture set here with only 1-2 products
-  @fixture.small-shops
+  @fixture.tiny-shops
   Scénario: Les différentes marges et taxes de chaque Produit sont détaillées
 
     Tous les détails en CHF sur le prix d'un Produit sont communiqués de façon transparente.
@@ -105,9 +108,9 @@ Fonctionnalité: Un Incognito visite un Shop
     Et le montant de la TVA sur le Produit
     Et le montant de la TVA sur le service fourni par le Shopozor
 
+  @wip
   @productDetails.graphql
-  # TODO: we probably want a smaller fixture set here with only 1-2 products
-  @fixture.small-shops
+  @fixture.tiny-shops
   Scénario: Incognito obtient les détails sur le prix d'un Produit
 
     Soit un Produit proposé dans le catalogue d'un Shop

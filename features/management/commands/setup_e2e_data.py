@@ -14,7 +14,7 @@ class Command(BaseCommand):
         parser.add_argument('-o', '--user-output-folder', type=str, default=settings.FIXTURE_DIRS[0],
                             help='Folder where to output the JSON files containing the users and passwords')
         parser.add_argument('--fixture-variant', type=str, default='large',
-                            help='Fixture variant: small, medium, or large')
+                            help='Fixture variant: tiny, small, medium, or large')
 
     def handle(self, *args, **options):
         output_folder = options['user_output_folder']
