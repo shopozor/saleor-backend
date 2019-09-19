@@ -71,3 +71,4 @@ SHOPOZOR_MARGIN = REX_MARGIN + SOFTOZOR_MARGIN + MANAGER_MARGIN
 # TODO: 2. the acceptance tests use the values provided by the model
 VAT_PRODUCTS = 0.025
 VAT_SERVICES = 0.077
+VAT_SPECIAL = 0.037

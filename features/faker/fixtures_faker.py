@@ -1,3 +1,4 @@
+from django.conf import settings
 from faker import Faker
 from features.faker.providers.geo import Provider as ShopozorGeoProvider
 from features.faker.providers.product import Provider as ProductProvider
@@ -337,7 +338,8 @@ class FakeDataFactory:
             'fields': {
                 'product_id': product_id,
                 'conservation_mode': self.__fake.conservation_mode(),
-                'conservation_until': self.__fake.conservation_until(start_date=publication_date)
+                'conservation_until': self.__fake.conservation_until(start_date=publication_date),
+                'vat_rate': self.__fake.vat_rate()
             },
             'model': 'shopozor.product',
             'pk': pk
@@ -410,7 +412,8 @@ class FakeDataFactory:
             "pk": 1,
             "fields": {
                 "country_code": "CH",
-                "data": "{\"country_name\":\"Switzerland\",\"standard_rate\":7.7,\"reduced_rates\":{\"reduced\":2.5,\"special\":3.7}}"
+                "data": "{\"country_name\":\"Switzerland\",\"standard_rate\":%f,\"reduced_rates\":{\"reduced\":%f,\"special\":%f}}"
+                % (settings.VAT_SERVICES * 100, settings.VAT_PRODUCTS * 100, settings.VAT_SPECIAL * 100)
             }
         }
 

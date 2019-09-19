@@ -85,5 +85,11 @@ class Provider(LoremProvider):
     def variant_name(self):
         return self.word(ext_word_list=self.variant_names)
 
+    def __has_vat_rate(self):
+        return self.__random_bool()
+
+    def vat_rate(self):
+        return settings.VAT_PRODUCTS if self.__has_vat_rate() else 0
+
     def weight(self):
         return self.__random_float(0, 100, 2)
