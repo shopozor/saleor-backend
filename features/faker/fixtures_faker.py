@@ -266,14 +266,6 @@ class FakeDataFactory:
                 # but not now
                 'has_variants': True,
                 'is_shipping_required': False,
-                'meta': {
-                    'taxes': {
-                        'vatlayer': {
-                            'code': 'standard',
-                            'description': ''
-                        }
-                    }
-                },
                 'name': name,
                 'weight': self.__fake.weight()
             },
@@ -309,18 +301,6 @@ class FakeDataFactory:
                     'entityMap': {}
                 },
                 'is_published': self.__fake.is_published(),
-                'meta': {
-                    # TODO: we need to find out what incidence these taxes data
-                    # TODO: have on the price computations
-                    # TODO: it might that that we need to switch this off for some of the
-                    # TODO: Producers (those who have no obligation to pay the VAT)
-                    'taxes': {
-                        'vatlayer': {
-                            'code': 'standard',
-                            'description': ''
-                        }
-                    }
-                },
                 'name': self.__fake.product_name(),
                 'price': self.__fake.money_amount(max_amount=0),
                 'product_type': producttype_id,
