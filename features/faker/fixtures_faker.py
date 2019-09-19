@@ -403,3 +403,25 @@ class FakeDataFactory:
                 result.append(self.__productimage(pk, product_id))
                 pk += 1
         return result
+
+    def __vat(self):
+        return {
+            "model": "django_prices_vatlayer.vat",
+            "pk": 1,
+            "fields": {
+                "country_code": "CH",
+                "data": "{\"country_name\":\"Switzerland\",\"standard_rate\":7.7,\"reduced_rates\":{\"reduced\":2.5,\"special\":3.7}}"
+            }
+        }
+
+    def __ratetypes(self):
+        return {
+            "model": "django_prices_vatlayer.ratetypes",
+            "pk": 1,
+            "fields": {
+                "types": "[\"reduced\",\"special\"]"
+            }
+        }
+
+    def create_vat_layer(self):
+        return [self.__vat(), self.__ratetypes()]

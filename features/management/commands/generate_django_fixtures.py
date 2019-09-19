@@ -136,6 +136,9 @@ def generate_variant(variant_name, output_folder):
         producers, productstaff, product_variants, variant['#shops'])
     shopozor.extend(shops)
 
+    vat_layer = factory.create_vat_layer()
+    shopozor.extend(vat_layer)
+
     json.dump(shopozor, os.path.join(
         output_folder, variant_name, 'Shopozor.json'))
 
