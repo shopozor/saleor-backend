@@ -1,5 +1,7 @@
 # language: fr
 
+# TODO: un Produit sans cost_price ou sans price est invalide <-- ceci est défini au moment de créer les Formats de Produit!
+# TODO: attention! le cost_price dans notre db est le gross_cost_price!
 # TODO: pour publier un Produit, le Producteur doit avoir le droit de publier dans une liste de Shops définie par le Rex
 
 @initial-release @producer @wip @in-preparation

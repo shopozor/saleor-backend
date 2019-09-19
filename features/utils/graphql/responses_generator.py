@@ -104,7 +104,7 @@ class ProductListsGenerator(ResponsesGenerator):
                     if not is_published:
                         continue
                     edges_with_product_id = [
-                        edge for edge in catalogue_edges if edge['node']['id'] == product['pk']]
+                        edge for edge in catalogue_edges if int(graphene.Node.from_global_id(edge['node']['id'])[1]) == product['pk']]
 
                     new_variant = helpers.variant_node(
                         variant_id, variant['fields'], product['fields'])
@@ -121,7 +121,8 @@ class ProductListsGenerator(ResponsesGenerator):
                 helpers.set_page_info(
                     product_catalogues[shop['pk']][category]['data']['products'], totalCount)
 
-        helpers.postprocess_is_available_flag(catalogue_edges)
+                helpers.postprocess_is_available_flag(catalogue_edges)
+                helpers.postprocess_margins(catalogue_edges)
         return product_catalogues
 
     def __output_catalogues(self, shop_catalogues):

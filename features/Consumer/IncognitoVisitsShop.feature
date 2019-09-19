@@ -86,10 +86,9 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito y inspecte un Produit
     Alors il en obtient la description détaillée
 
-  # TODO: fix the acceptance test fixtures so that they have the correct amounts!
   @productDetails.graphql
   # TODO: we probably want a smaller fixture set here with only 1-2 products
-  # @fixture.small-shops
+  @fixture.small-shops
   Scénario: Les différentes marges et taxes de chaque Produit sont détaillées
 
     Tous les détails en CHF sur le prix d'un Produit sont communiqués de façon transparente.
@@ -99,7 +98,6 @@ Fonctionnalité: Un Incognito visite un Shop
 
     Soit un Produit proposé dans le catalogue d'un Shop
     Lorsqu'Incognito demande la marge que s'en fait le Shopozor
-    # check the following assertions on both product and product variant levels
     Alors il obtient le montant versé au Producteur
     Et la marge qui revient au Responsable du Shop qui l'a vendu
     Et la marge qui revient au Rex
@@ -109,30 +107,10 @@ Fonctionnalité: Un Incognito visite un Shop
 
   @productDetails.graphql
   # TODO: we probably want a smaller fixture set here with only 1-2 products
-  # @fixture.small-shops
-  Scénario: Incognito obtient le prix net d'un Produit
+  @fixture.small-shops
+  Scénario: Incognito obtient les détails sur le prix d'un Produit
 
     Soit un Produit proposé dans le catalogue d'un Shop
-    Lorsqu'Incognito en demande le prix net
-    # check the following assertions on both product and product variant levels
-    Alors il obtient le montant versé au Producteur + la marge du Shopozor
-
-  @productDetails.graphql
-  # TODO: we probably want a smaller fixture set here with only 1-2 products
-  # @fixture.small-shops
-  Scénario: Incognito obtient le prix brut d'un Produit
-
-    Soit un Produit proposé dans le catalogue d'un Shop
-    Lorsqu'Incognito en demande le prix brut
-    # check the following assertions on both product and product variant levels
-    Alors il obtient le prix net + la TVA sur le service du Shopozor
-
-  @productDetails.graphql
-  # TODO: we probably want a smaller fixture set here with only 1-2 products
-  # @fixture.small-shops
-  Scénario: Incognito obtient les taxes appliquées à un Produit
-
-    Soit un Produit proposé dans le catalogue d'un Shop
-    Lorsqu'Incognito en demande les taxes auxquelles il est soumis
-    # check the following assertions on both product and product variant levels
-    Alors il obtient la TVA sur le Produit + la TVA sur le service du Shopozor
+    Lorsqu'Incognito en demande le prix
+    Alors il obtient que le prix net correspond au montant net versé au Producteur + la marge nette du Shopozor
+    Et que le prix brut correspond au prix net + la TVA sur le service du Shopozor + la TVA sur le Produit

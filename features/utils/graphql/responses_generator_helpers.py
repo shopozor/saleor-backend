@@ -3,6 +3,7 @@ from django.conf import settings
 from features.utils.fixtures import json
 
 import graphene
+import math
 import os
 import urllib.parse
 
@@ -61,31 +62,74 @@ def get_shopozor_fixture(fixture_variant):
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
 
 
-def money_amount(price_fields, amount=None):
+def round_money_amount(amount):
+    return math.ceil(amount * 20) / 20
+
+
+# TODO: fix this
+def round_to_nearest_half(amount):
+    return round(amount * 2, 1) / 2
+
+
+def money_amount(price_fields=None, amount=None, currency=None):
+    if price_fields is not None:
+        return {
+            'amount': price_fields['amount'],
+            'currency': price_fields['currency']
+        }
+    if amount is not None and currency is not None:
+        return {
+            'amount': amount,
+            'currency': currency
+        }
+    raise NotImplementedError('Unable to construct a money_amount')
+
+
+def get_product_tax(cost_price, vat_rate):
+    # we keep taxes at its most precise amount without rounding for the sake of transparency
+    # the gross price takes rounding into account
+    tax = float(cost_price['amount']) * vat_rate / (1 + vat_rate)
+    return money_amount(amount=round_to_nearest_half(tax), currency=cost_price['currency'])
+
+
+def get_service_tax(cost_price, vat_rate):
+    # we keep taxes at its most precise amount without rounding for the sake of transparency
+    # the gross price takes rounding into account
+    tax = float(cost_price['amount']) * vat_rate / \
+        (1 + vat_rate) * settings.SHOPOZOR_MARGIN / (1 - settings.SHOPOZOR_MARGIN)
+    return money_amount(amount=round_to_nearest_half(tax), currency=cost_price['currency'])
+
+
+def get_gross_price(cost_price, vat_rate):
+    result_amount = float(cost_price['amount']) / 0.85
+    return money_amount(amount=round_money_amount(result_amount), currency=cost_price['currency'])
+
+
+def get_net_price(cost_price, product_vat_rate, service_vat_rate):
+    result_amount = float(cost_price['amount']) * ((1 + product_vat_rate) * settings.SHOPOZOR_MARGIN + (1 - settings.SHOPOZOR_MARGIN) * (
+        1 + service_vat_rate)) / ((1 - settings.SHOPOZOR_MARGIN) * (1 + service_vat_rate) * (1 + product_vat_rate))
+    return money_amount(amount=round_to_nearest_half(result_amount), currency=cost_price['currency'])
+
+
+def get_price(variant_fields):
     return {
-        'amount': amount if amount is not None else price_fields['amount'],
-        'currency': price_fields['currency']
+        'gross': get_gross_price(variant_fields['cost_price'], settings.VAT_SERVICES),
+        'net': get_net_price(variant_fields['cost_price'], settings.VAT_PRODUCTS, settings.VAT_SERVICES),
+        'productTax': get_product_tax(variant_fields['cost_price'], settings.VAT_PRODUCTS),
+        'serviceTax': get_service_tax(variant_fields['cost_price'], settings.VAT_SERVICES)
     }
 
 
-def get_price(variant_fields, product_fields):
-    # This method is perfectly fine as long as we don't incorporate taxes
-    # When we take taxes into account, we'll need to adapt this method
-    # This will document how the taxes are taken into account
-    price = {}
-    if 'price_override' in variant_fields and variant_fields['price_override'] is not None:
-        price = {
-            'gross': money_amount(variant_fields['price_override']),
-            'net': money_amount(variant_fields['price_override']),
-            'tax': money_amount(variant_fields['price_override'], amount=0)
-        }
-    else:
-        price = {
-            'gross': money_amount(product_fields['price']),
-            'net': money_amount(product_fields['price']),
-            'tax': money_amount(product_fields['price'], amount=0)
-        }
-    return price
+def get_margin(cost_price, margin_rate, service_vat_rate):
+    total_gross_margin = settings.SHOPOZOR_MARGIN / \
+        (1 - settings.SHOPOZOR_MARGIN) * float(cost_price['amount'])
+    total_net_margin = total_gross_margin / (1 + service_vat_rate)
+    return {
+        'gross': money_amount(amount=round_money_amount(total_gross_margin * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency']),
+        'net': money_amount(amount=round_to_nearest_half(total_net_margin * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency']),
+        # we keep taxes as precise as possible; the gross price takes rounding into account
+        'tax': money_amount(amount=round_to_nearest_half((total_gross_margin - total_net_margin) * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency'])
+    }
 
 
 def variant_node(variant_id, variant_fields, product_fields):
@@ -93,13 +137,18 @@ def variant_node(variant_id, variant_fields, product_fields):
         'id': graphene.Node.to_global_id('ProductVariant', variant_id),
         'name': variant_fields['name'],
         'isAvailable': product_fields['is_published'],
+        'margin': {
+            'manager': get_margin(variant_fields['cost_price'], settings.MANAGER_MARGIN, settings.VAT_SERVICES),
+            'rex': get_margin(variant_fields['cost_price'], settings.REX_MARGIN, settings.VAT_SERVICES),
+            'softozor': get_margin(variant_fields['cost_price'], settings.SOFTOZOR_MARGIN, settings.VAT_SERVICES)
+        },
         'stockQuantity': max(variant_fields['quantity'] - variant_fields['quantity_allocated'], 0),
         'costPrice': {
             'amount': variant_fields['cost_price']['amount'],
             'currency': variant_fields['cost_price']['currency']
         },
         'pricing': {
-            'price': get_price(variant_fields, product_fields)
+            'price': get_price(variant_fields)
         }
     }
 
@@ -113,8 +162,8 @@ def price_range(start, stop):
     }
 
 
-def update_product_price_range(product, variant, node):
-    variant_price = get_price(variant['fields'], product['fields'])
+def update_product_price_range(variant, node):
+    variant_price = get_price(variant['fields'])
     current_start = node['pricing']['priceRange']['start']
     current_stop = node['pricing']['priceRange']['stop']
     if variant_price['gross']['amount'] < current_start['gross']['amount']:
@@ -148,8 +197,7 @@ def update_product_purchase_cost(variant, node):
 
 def append_variant_to_existing_product(node, new_variant, variant, product):
     node['variants'].append(new_variant)
-    node['pricing'] = update_product_price_range(
-        product, variant, node)
+    node['pricing'] = update_product_price_range(variant, node)
     node['purchaseCost'] = update_product_purchase_cost(
         variant, node)
 
@@ -173,22 +221,22 @@ def product_node(product, variant, new_variant, associated_images, associated_pr
         'node': {
             'id': graphene.Node.to_global_id('Product', product['pk']),
             'conservation': conservation[0],
-            'name': product['fields']['name'],
             'description': product['fields']['description'],
-            'variants': [new_variant],
             'images': associated_images,
-            'thumbnail': thumbnail,
-            'producer': associated_producer,
+            'name': product['fields']['name'],
             'pricing': {
                 'priceRange': {
                     'start': initial_price,
                     'stop': initial_price
                 }
             },
+            'producer': associated_producer,
             'purchaseCost': {
                 'start': variant['fields']['cost_price'],
                 'stop': variant['fields']['cost_price']
-            }
+            },
+            'thumbnail': thumbnail,
+            'variants': [new_variant]
         }
     }
 
@@ -220,8 +268,7 @@ def create_new_product_with_variant(product, variant, new_variant, users_fixture
     # TODO: delete those images from the shops_fixture
     thumbnail = product_thumbnail(
         associated_images) if associated_images else placeholder_product_thumbnail()
-    initial_price = get_price(
-        variant['fields'], product['fields'])
+    initial_price = get_price(variant['fields'])
     conservation = [{
         'mode': item['fields']['conservation_mode'],
         'until': item['fields']['conservation_until']
@@ -238,6 +285,30 @@ def postprocess_is_available_flag(edges):
             # a variant is available <==> product is visible and has stock
             # a product has stock <==> any of its variant has stock
             variant['isAvailable'] = variant['isAvailable'] and has_stock
+
+
+def get_price_margins(purchase_cost):
+    return {
+        'manager': {
+            'start': get_margin(purchase_cost['start'], settings.MANAGER_MARGIN, settings.VAT_SERVICES),
+            'stop': get_margin(purchase_cost['stop'], settings.MANAGER_MARGIN, settings.VAT_SERVICES)
+        },
+        'rex': {
+            'start': get_margin(purchase_cost['start'], settings.REX_MARGIN, settings.VAT_SERVICES),
+            'stop': get_margin(purchase_cost['stop'], settings.REX_MARGIN, settings.VAT_SERVICES)
+        },
+        'softozor': {
+            'start': get_margin(purchase_cost['start'], settings.SOFTOZOR_MARGIN, settings.VAT_SERVICES),
+            'stop': get_margin(purchase_cost['stop'], settings.SOFTOZOR_MARGIN, settings.VAT_SERVICES)
+        }
+    }
+
+
+def postprocess_margins(edges):
+    for edge in edges:
+        purchase_cost = edge['node']['purchaseCost']
+        margins = get_price_margins(purchase_cost)
+        edge['node']['margin'] = margins
 
 
 def extract_products_from_catalogues(catalogues):
@@ -273,14 +344,18 @@ def extract_catalogues(catalogues):
                 node.pop('conservation', None)
                 node.pop('description', None)
                 node.pop('images', None)
+                node.pop('margin', None)
                 node['pricing']['priceRange']['start'].pop('net', None)
-                node['pricing']['priceRange']['start'].pop('tax', None)
+                node['pricing']['priceRange']['start'].pop('productTax', None)
+                node['pricing']['priceRange']['start'].pop('serviceTax', None)
                 node['pricing']['priceRange']['stop'].pop('net', None)
-                node['pricing']['priceRange']['stop'].pop('tax', None)
+                node['pricing']['priceRange']['stop'].pop('productTax', None)
+                node['pricing']['priceRange']['stop'].pop('serviceTax', None)
                 node.pop('purchaseCost', None)
                 node['producer'].pop('description', None)
                 node['producer'].pop('address', None)
                 for variant in node['variants']:
                     variant.pop('costPrice', None)
                     variant.pop('pricing', None)
+                    variant.pop('margin', None)
     return my_catalogues
