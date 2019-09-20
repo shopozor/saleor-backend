@@ -12,9 +12,12 @@ def add_initial_margin_defns(apps, schema_editor):
         return
 
     margindefns_model = apps.get_model('shopozor', 'MarginDefinitions')
-    margindefns_model.create(role='manager', margin=settings.MANAGER_MARGIN)
-    margindefns_model.create(role='rex', margin=settings.REX_MARGIN)
-    margindefns_model.create(role='softozor', margin=settings.SOFTOZOR_MARGIN)
+    margindefns_model.objects.create(
+        role='manager', margin=settings.MANAGER_MARGIN * 100)
+    margindefns_model.objects.create(
+        role='rex', margin=settings.REX_MARGIN * 100)
+    margindefns_model.objects.create(
+        role='softozor', margin=settings.SOFTOZOR_MARGIN * 100)
 
 
 class Migration(migrations.Migration):
