@@ -139,6 +139,9 @@ def generate_variant(variant_name, output_folder):
     vat_layer = factory.create_vat_layer()
     shopozor.extend(vat_layer)
 
+    margin_defns = factory.create_margindefns()
+    shopozor.extend(margin_defns)
+
     json.dump(shopozor, os.path.join(
         output_folder, variant_name, 'Shopozor.json'))
 

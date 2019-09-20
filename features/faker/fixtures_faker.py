@@ -406,25 +406,44 @@ class FakeDataFactory:
                 pk += 1
         return result
 
-    def __vat(self):
+    def __vat(self, pk):
         return {
-            "model": "django_prices_vatlayer.vat",
-            "pk": 1,
-            "fields": {
-                "country_code": "CH",
-                "data": "{\"country_name\":\"Switzerland\",\"standard_rate\":%f,\"reduced_rates\":{\"reduced\":%f,\"special\":%f}}"
+            'model': 'django_prices_vatlayer.vat',
+            'pk': pk,
+            'fields': {
+                'country_code': 'CH',
+                'data': '{"country_name":"Switzerland","standard_rate":%f,"reduced_rates":{"reduced":%f,"special":%f}}'
                 % (settings.VAT_SERVICES * 100, settings.VAT_PRODUCTS * 100, settings.VAT_SPECIAL * 100)
             }
         }
 
-    def __ratetypes(self):
+    def __ratetypes(self, pk):
         return {
-            "model": "django_prices_vatlayer.ratetypes",
-            "pk": 1,
-            "fields": {
-                "types": "[\"reduced\",\"special\"]"
+            'model': 'django_prices_vatlayer.ratetypes',
+            'pk': pk,
+            'fields': {
+                'types': '["reduced","special"]'
             }
         }
 
     def create_vat_layer(self):
-        return [self.__vat(), self.__ratetypes()]
+        return [self.__vat(1), self.__ratetypes(1)]
+
+    def __margindefinition(self, pk, role, margin):
+        return {
+            'model': 'shopozor.margindefinitions',
+            'pk': pk,
+            'fields': {
+                'role': role,
+                'margin': margin
+            }
+        }
+
+    def create_margindefns(self):
+        return [
+            self.__margindefinition(
+                1, 'manager', settings.MANAGER_MARGIN * 100),
+            self.__margindefinition(2, 'rex', settings.REX_MARGIN * 100),
+            self.__margindefinition(
+                3, 'softozor', settings.SOFTOZOR_MARGIN * 100)
+        ]
