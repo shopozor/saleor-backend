@@ -1,24 +1,19 @@
 pipeline {
   agent any
   environment {
-    DOCKER_CREDENTIALS = credentials('docker-credentials')
-    // TODO: in production, we would like to get rid of the dev tools
-    ENABLE_DEV_TOOLS = 1
     JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
     JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
-    PRODUCTION_DOCKER_REPO = "softozor/shopozor-backend:$TAG"
     PRODUCTION_ENV_NAME = "shopozor-backend"
-    STAGING_DOCKER_REPO = "softozor/shopozor-backend:$STAGING_BRANCH"
     STAGING_ENV_NAME = "shopozor-backend-staging"
   }
   stages {
     stage('Publish staging docker container') {
       steps {
-        script {
-            sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
-            sh "docker build --build-arg ENABLE_DEV_TOOLS=$ENABLE_DEV_TOOLS --network=host -t $STAGING_DOCKER_REPO ."
-            sh "docker push $STAGING_DOCKER_REPO"
-        }
+        build job: 'publish-docker-image', parameters: [
+          booleanParam(name: 'ENABLE_DEV_TOOLS', value: true),
+          string(name: 'BRANCH', value: $STAGING_BRANCH)
+          string(name: 'REPO', value: 'backend')
+        ]
       }
     }
     stage('Deploy staging environment') {
@@ -69,11 +64,11 @@ pipeline {
     }
     stage('Publish production docker container') {
       steps {
-        script {
-            sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
-            sh "docker build --build-arg ENABLE_DEV_TOOLS=$ENABLE_DEV_TOOLS --network=host -t $PRODUCTION_DOCKER_REPO ."
-            sh "docker push $PRODUCTION_DOCKER_REPO"
-        }
+        build job: 'publish-docker-image', parameters: [
+          booleanParam(name: 'ENABLE_DEV_TOOLS', value: false),
+          string(name: 'BRANCH', value: $TAG)
+          string(name: 'REPO', value: 'backend')
+        ]
       }
     }
     stage('Deploy production environment') {
