@@ -11,7 +11,7 @@ application:
     PATH_TO_CONTEXT: ${globals.HOME}/${globals.CONTEXT}
     PYTHON_VIRTUAL_ENV: env
     PATH_TO_VIRTUAL_ENV: ${globals.HOME}/${globals.PYTHON_VIRTUAL_ENV}
-    PG_PASSWORD: AdminPassword
+    PG_PASSWORD: ${fn.password(10)}
 
   onInstall:
     - clearDatabase

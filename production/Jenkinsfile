@@ -2,10 +2,11 @@ pipeline {
   agent any
   environment {
     DOCKER_CREDENTIALS = credentials('docker-credentials')
+    // TODO: in production, we would like to get rid of the dev tools
+    ENABLE_DEV_TOOLS = 1
     JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
     JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
     PRODUCTION_DOCKER_REPO = "softozor/shopozor-backend:$TAG"
-    PATH_TO_JPS = "./production/manifest.jps"
     PRODUCTION_ENV_NAME = "shopozor-backend"
     STAGING_DOCKER_REPO = "softozor/shopozor-backend:$STAGING_BRANCH"
     STAGING_ENV_NAME = "shopozor-backend-staging"
@@ -14,9 +15,8 @@ pipeline {
     stage('Publish staging docker container') {
       steps {
         script {
-            sh "cp production/Dockerfile production/.dockerignore ."
             sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
-            sh "docker build --network=host -t $STAGING_DOCKER_REPO ."
+            sh "docker build --build-arg ENABLE_DEV_TOOLS=$ENABLE_DEV_TOOLS --network=host -t $STAGING_DOCKER_REPO ."
             sh "docker push $STAGING_DOCKER_REPO"
         }
       }
@@ -24,7 +24,7 @@ pipeline {
     stage('Deploy staging environment') {
       steps {
         script {
-          sh "cp $PATH_TO_JPS manifest.jps"
+          sh "sed -i \"s/DEPLOY_MODE/production/g\" manifest.jps"
           sh "sed -i \"s/DOCKER_TAG/$STAGING_BRANCH/g\" manifest.jps"
           SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
           sh "chmod u+x $SCRIPT_TO_RUN"
@@ -70,9 +70,8 @@ pipeline {
     stage('Publish production docker container') {
       steps {
         script {
-            sh "cp production/Dockerfile production/.dockerignore ."
             sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
-            sh "docker build --network=host -t $PRODUCTION_DOCKER_REPO ."
+            sh "docker build --build-arg ENABLE_DEV_TOOLS=$ENABLE_DEV_TOOLS --network=host -t $PRODUCTION_DOCKER_REPO ."
             sh "docker push $PRODUCTION_DOCKER_REPO"
         }
       }
@@ -80,7 +79,7 @@ pipeline {
     stage('Deploy production environment') {
       steps {
         script {
-          sh "cp $PATH_TO_JPS manifest.jps"
+          sh "sed -i \"s/DEPLOY_MODE/production/g\" manifest.jps"
           sh "sed -i \"s/DOCKER_TAG/$TAG/g\" manifest.jps"
           SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
           sh "chmod u+x $SCRIPT_TO_RUN"

@@ -8,6 +8,8 @@ application:
   globals:
     SECRET_KEY: ${fn.uuid}
     PG_USER_PASSWORD: ${fn.password(10)}
+    # TODO: fix these two names for production!
+    # TODO: but then how do I get those names in the e2e manifest?
     PG_DB_USERNAME: saleor
     PG_DB_NAME: saleor
     PG_PASSWORD: ${fn.password(10)}
@@ -87,12 +89,21 @@ application:
     prepareDatabase:
       - createDatabase
     createDatabase:
-      cmd[sqldb]:
-        - jem passwd set -p ${globals.PG_PASSWORD}
-        - export PGPASSWORD='${globals.PG_PASSWORD}'
-        - psql -U webadmin -d postgres -c "CREATE ROLE ${globals.PG_DB_USERNAME} PASSWORD '${globals.PG_USER_PASSWORD}' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"
-        - psql -U webadmin -d postgres -c "CREATE DATABASE ${globals.PG_DB_NAME} OWNER ${globals.PG_DB_USERNAME} ENCODING 'utf-8' TEMPLATE template0;"
-      user: root
+      - cmd[sqldb]:
+         - jem passwd set -p ${globals.PG_PASSWORD}
+         - export PGPASSWORD='${globals.PG_PASSWORD}'
+         - psql -U webadmin -d postgres -c "CREATE ROLE ${globals.PG_DB_USERNAME} PASSWORD '${globals.PG_USER_PASSWORD}' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"
+         - psql -U webadmin -d postgres -c "CREATE DATABASE ${globals.PG_DB_NAME} OWNER ${globals.PG_DB_USERNAME} ENCODING 'utf-8' TEMPLATE template0;"
+        user: root
+      - if ("DEPLOY_MODE" == "e2e"):
+        - api:
+          - method: jelastic.environment.control.AddContainerEnvVars
+            params:
+              nodeGroup: sqldb
+              vars:
+                PG_DB_NAME: ${globals.PG_DB_NAME}
+                PG_DB_USERNAME: ${globals.PG_DB_USERNAME}
+                PG_USER_PASSWORD: ${globals.PG_USER_PASSWORD}
     restorePermissions:
       - cmd [sqldb]:
           - export PGPASSWORD='${globals.PG_PASSWORD}'

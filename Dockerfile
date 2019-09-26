@@ -1,5 +1,7 @@
 FROM ubuntu:18.04
 
+ARG ENABLE_DEV_TOOLS=1
+
 ENV LC_ALL C.UTF-8
 ENV LANG C.UTF-8
 
@@ -15,8 +17,7 @@ WORKDIR /app
 RUN chmod u+x ./scripts/install/*.sh \
   && ./scripts/install/install.sh
 
-# TODO: the installation of the dev dependencies needs to be removed
-RUN ./scripts/install/install-dev.sh
+RUN if [ "$ENABLE_DEV_TOOLS" -eq "1" ]; then ./scripts/install/install-dev.sh; fi
 
 RUN groupadd -r saleor && useradd -r -g saleor saleor
 
