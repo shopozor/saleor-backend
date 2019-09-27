@@ -2,7 +2,7 @@ pipeline {
   agent any
   environment {
     DOCKER_CREDENTIALS = credentials('docker-credentials')
-    DOCKER_REPO = "softozor/shopozor-backend:$BRANCH"
+    DOCKER_REPO = "softozor/shopozor-backend:$IMAGE_TYPE-$BRANCH"
   }
   stages {
     stage('Build docker image') {

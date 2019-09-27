@@ -2,7 +2,7 @@ jpsVersion: 1.3
 jpsType: install
 application:
   id: APP_NAME
-  name: APP_NAME
+  name: APP_NAME-IMAGE_TYPE
   version: 0.0
 
   globals:
@@ -29,7 +29,7 @@ application:
             DOCKER_EXPOSED_PORT: 22,80,443
         - image: softozor/APP_NAME
           nodeGroup: cp
-          tag: DOCKER_TAG
+          tag: IMAGE_TYPE-BRANCH
           displayName: Application servers
           count: 1
           fixedCloudlets: 4
@@ -95,7 +95,7 @@ application:
          - psql -U webadmin -d postgres -c "CREATE ROLE ${globals.PG_DB_USERNAME} PASSWORD '${globals.PG_USER_PASSWORD}' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"
          - psql -U webadmin -d postgres -c "CREATE DATABASE ${globals.PG_DB_NAME} OWNER ${globals.PG_DB_USERNAME} ENCODING 'utf-8' TEMPLATE template0;"
         user: root
-      - if ("DEPLOY_MODE" == "e2e"):
+      - if ("IMAGE_TYPE" == "e2e"):
         - api:
           - method: jelastic.environment.control.AddContainerEnvVars
             params:

@@ -1,9 +1,11 @@
 pipeline {
   agent any
   environment {
+    APP_NAME = "shopozor-backend"
+    IMAGE_TYPE = "production"
     JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
     JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
-    PRODUCTION_ENV_NAME = "shopozor-backend"
+    PRODUCTION_ENV_NAME = APP_NAME
     STAGING_ENV_NAME = "shopozor-backend-staging"
   }
   stages {
@@ -11,16 +13,17 @@ pipeline {
       steps {
         build job: 'backend-publish-docker-image', parameters: [
           booleanParam(name: 'ENABLE_DEV_TOOLS', value: true),
-          string(name: 'BRANCH', value: "$STAGING_BRANCH")
+          string(name: 'BRANCH', value: STAGING_BRANCH),
+          string(name: 'IMAGE_TYPE', value: IMAGE_TYPE)
         ]
       }
     }
     stage('Deploy staging environment') {
       steps {
         script {
-          sh "sed -i \"s/APP_NAME/$STAGING_ENV_NAME/g\" manifest.jps"
-          sh "sed -i \"s/DEPLOY_MODE/production/g\" manifest.jps"
-          sh "sed -i \"s/DOCKER_TAG/$STAGING_BRANCH/g\" manifest.jps"
+          sh "sed -i \"s/APP_NAME/$APP_NAME/g\" manifest.jps"
+          sh "sed -i \"s/IMAGE_TYPE/$IMAGE_TYPE/g\" manifest.jps"
+          sh "sed -i \"s/BRANCH/$STAGING_BRANCH/g\" manifest.jps"
           SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
           sh "chmod u+x $SCRIPT_TO_RUN"
           sh "dos2unix $SCRIPT_TO_RUN"
@@ -66,16 +69,17 @@ pipeline {
       steps {
         build job: 'backend-publish-docker-image', parameters: [
           booleanParam(name: 'ENABLE_DEV_TOOLS', value: false),
-          string(name: 'BRANCH', value: "$TAG")
+          string(name: 'BRANCH', value: TAG),
+          string(name: 'IMAGE_TYPE', value: IMAGE_TYPE)
         ]
       }
     }
     stage('Deploy production environment') {
       steps {
         script {
-          sh "sed -i \"s/APP_NAME/$PRODUCTION_ENV_NAME/g\" manifest.jps"
-          sh "sed -i \"s/DEPLOY_MODE/production/g\" manifest.jps"
-          sh "sed -i \"s/DOCKER_TAG/$TAG/g\" manifest.jps"
+          sh "sed -i \"s/APP_NAME/$APP_NAME/g\" manifest.jps"
+          sh "sed -i \"s/IMAGE_TYPE/$IMAGE_TYPE/g\" manifest.jps"
+          sh "sed -i \"s/BRANCH/$TAG/g\" manifest.jps"
           SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
           sh "chmod u+x $SCRIPT_TO_RUN"
           sh "dos2unix $SCRIPT_TO_RUN"
