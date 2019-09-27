@@ -36,14 +36,12 @@ application:
       user: root
     migrateDB:
       cmd [cp]:
-        - cd ${globals.PATH_TO_CONTEXT}
-        - source ${globals.PATH_TO_VIRTUAL_ENV}/bin/activate
-        - python ./manage.py migrate
+        - cd /app
+        - python3 ./manage.py migrate
     fillDatabase:
       cmd [cp]:
-        - cd ${globals.PATH_TO_CONTEXT}
-        - source ${globals.PATH_TO_VIRTUAL_ENV}/bin/activate
-        - python ./manage.py setup_e2e_data
+        - cd /app
+        - python3 ./manage.py setup_e2e_data
     runServer:
       - restartService:
           nodeGroup: cp
