@@ -1,0 +1,150 @@
+def helpers = new ch.softozor.pipeline.Helpers()
+
+pipeline {
+  agent any
+  environment {
+    BACKEND_APP_NAME = 'shopozor-backend'
+    CONSUMER_BACKEND_NAME = credentials('consumer-backend-name-credentials') // contains envName + base jps url
+    CONSUMER_FRONTEND_APP_NAME = 'shopozor-consumer-frontend'
+    CONSUMER_FRONTEND_NAME = credentials('consumer-frontend-name-credentials') // contains envName
+    ENABLE_DEV_TOOLS = true
+    FRONTEND_BRANCH = 'dev'
+    IMAGE_TYPE = 'e2e'
+    JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
+    JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
+    MGMT_BACKEND_NAME = credentials('management-backend-name-credentials') // contains envName + base jps url
+    MGMT_FRONTEND_APP_NAME = 'shopozor-management-frontend'
+    MGMT_FRONTEND_NAME = credentials('management-frontend-name-credentials') // contains envName
+    // PATH_TO_TEST_RESULTS = '/home/node'
+    // SCREENSHOTS_FOLDER = 'screenshots'
+    // TEST_REPORTS_FOLDER = 'junit-reports'
+    // VIDEOS_FOLDER = 'videos'
+  }
+  stages {
+    stage('Publishing backend docker image') {
+      steps {
+        helpers.publishBackendDockerImage('shopozor-backend', GIT_COMMIT, ENABLE_DEV_TOOLS, IMAGE_TYPE)
+      }
+    }
+    stage('Starting up consumer backend environment') {
+      environment {
+        BACKEND_JPS = 'manifest.jps'
+        E2E_JPS = 'e2e/reset_database.jps'
+        GITHUB_CREDENTIALS = credentials('github-credentials')
+      }
+      steps {
+        script {
+          helpers.deploy(BACKEND_JPS, BACKEND_APP_NAME, CONSUMER_BACKEND_NAME_USR, GIT_COMMIT, IMAGE_TYPE)
+          helpers.resetDatabase(E2E_JPS, CONSUMER_BACKEND_NAME_USR, BACKEND_APP_NAME, IMAGE_TYPE)
+        }
+      }
+    }
+    stage('Starting up management backend environment') {
+      environment {
+        BACKEND_JPS = 'manifest.jps'
+        E2E_JPS = 'e2e/reset_database.jps'
+        GITHUB_CREDENTIALS = credentials('github-credentials')
+      }
+      steps {
+        script {
+          helpers.deploy(BACKEND_JPS, BACKEND_APP_NAME, MGMT_BACKEND_NAME_USR, GIT_COMMIT, IMAGE_TYPE)
+          helpers.resetDatabase(E2E_JPS, MGMT_BACKEND_NAME_USR, BACKEND_APP_NAME, IMAGE_TYPE)
+        }
+      }
+    }
+    stage('Publishing consumer frontend docker image') {
+      steps {
+        script {
+          build job: 'frontend-publish-docker-image', parameters: [
+            string(name: 'BRANCH', value: FRONTEND_BRANCH),
+            booleanParam(name: 'ENABLE_DEV_TOOLS', value: ENABLE_DEV_TOOLS),
+            string(name: 'GRAPHQL_API', value: "http://${CONSUMER_BACKEND_NAME_USR}.hidora.com/graphql/"),
+            string(name: 'IMAGE_TYPE', value: IMAGE_TYPE),
+            string(name: 'REPO', value: "consumer-frontend"),
+          ]
+        }
+      }
+    }
+    stage('Publishing management frontend docker image') {
+      steps {
+        script {
+          build job: 'frontend-publish-docker-image', parameters: [
+            string(name: 'BRANCH', value: FRONTEND_BRANCH),
+            booleanParam(name: 'ENABLE_DEV_TOOLS', value: ENABLE_DEV_TOOLS),
+            string(name: 'GRAPHQL_API', value: "http://${MANAGEMENT_BACKEND_NAME_USR}.hidora.com/graphql/"),
+            string(name: 'IMAGE_TYPE', value: IMAGE_TYPE),
+            string(name: 'REPO', value: "management-frontend"),
+          ]
+        }
+      }
+    }
+    stage('Starting up consumer frontend and performing end-to-end tests') {
+      environment {
+        DOCKER_CREDENTIALS = credentials('docker-credentials')
+      }
+      steps {
+        script {
+          // TODO: here we'd need to download those files from the frontend's repo
+          //       --> create a prepareFrontendConfigurationFromBackend?
+          E2E_JPS = './common/e2e/e2e.jps'
+          FRONTEND_JPS = './common/manifest.jps'
+          helpers.prepareFrontendConfiguration(FRONTEND_NAME, FRONTEND_JPS, E2E_JPS)
+          helpers.deploy(FRONTEND_JPS, CONSUMER_FRONTEND_APP_NAME, CONSUMER_FRONTEND_NAME, GIT_COMMIT, IMAGE_TYPE)
+          helpers.runE2eTests(E2E_JPS, CONSUMER_FRONTEND_NAME, CONSUMER_FRONTEND_APP_NAME, IMAGE_TYPE)
+        }
+      }
+    }
+    stage('Starting up management frontend and performing end-to-end tests') {
+      environment {
+        DOCKER_CREDENTIALS = credentials('docker-credentials')
+      }
+      steps {
+        script {
+          // TODO: here we'd need to download those files from the frontend's repo
+          //       --> create a prepareFrontendConfigurationFromBackend?
+          E2E_JPS = './common/e2e/e2e.jps'
+          FRONTEND_JPS = './common/manifest.jps'
+          helpers.prepareFrontendConfiguration(FRONTEND_NAME, FRONTEND_JPS, E2E_JPS)
+          helpers.deploy(FRONTEND_JPS, MGMT_FRONTEND_APP_NAME, MGMT_FRONTEND_NAME, GIT_COMMIT, IMAGE_TYPE)
+          helpers.runE2eTests(E2E_JPS, MGMT_FRONTEND_NAME, MGMT_FRONTEND_APP_NAME, IMAGE_TYPE)
+        }
+      }
+    }
+    // TODO: retrieve the test results from both frontend environments
+    stage('Retrieving test results from consumer frontend environment') {
+      steps {
+        script {
+          def targetNodeGroup = 'cp'
+          def targetPath = "/mnt/${CONSUMER_FRONTEND_NAME}"
+          def sourceNodeGroup = 'cp'
+          def jenkinsEnvName = JENKINS_URL.split('/')[2].split(':')[0].split('\\.')[0]
+          // TODO: this retrieve method should not delete the test reports, videos, and screenshots folder; that should be done separately
+          helpers.retrieveTestResults(jenkinsEnvName, targetNodeGroup, targetPath, CONSUMER_FRONTEND_NAME, sourceNodeGroup)
+        }
+      }
+    }
+    stage('Retrieving test results from management frontend environment') {
+      steps {
+        script {
+          def targetNodeGroup = 'cp'
+          def targetPath = "/mnt/${MGMT_FRONTEND_NAME}"
+          def sourceNodeGroup = 'cp'
+          def jenkinsEnvName = JENKINS_URL.split('/')[2].split(':')[0].split('\\.')[0]
+          // TODO: this retrieve method should not delete the test reports, videos, and screenshots folder; that should be done separately
+          helpers.retrieveTestResults(jenkinsEnvName, targetNodeGroup, targetPath, MGMT_FRONTEND_NAME, sourceNodeGroup)
+        }
+      }
+    }
+  }
+  post {
+    always {
+      script {
+        helpers.stopEnvironment(CONSUMER_BACKEND_NAME_USR)
+        helpers.stopEnvironment(MGMT_BACKEND_NAME_USR)
+        helpers.stopEnvironment(CONSUMER_FRONTEND_NAME)
+        helpers.stopEnvironment(MGMT_FRONTEND_NAME)
+        helpers.buildArtifacts()
+      }
+    }
+  }
+}
