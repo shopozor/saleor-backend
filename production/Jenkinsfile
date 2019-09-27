@@ -6,11 +6,14 @@ pipeline {
     JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
     JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
     PRODUCTION_ENV_NAME = APP_NAME
-    STAGING_ENV_NAME = "shopozor-backend-staging"
+    STAGING_ENV_NAME = "${APP_NAME}-staging"
   }
   stages {
     stage('Publish staging docker container') {
       steps {
+        // TODO: call the docker build here directly, without triggering this job
+        // TODO: this requires that the current helpers.publishDockerImage be split
+        // TODO: into a backend and a frontend version
         build job: 'backend-publish-docker-image', parameters: [
           booleanParam(name: 'ENABLE_DEV_TOOLS', value: true),
           string(name: 'BRANCH', value: STAGING_BRANCH),
@@ -21,6 +24,7 @@ pipeline {
     stage('Deploy staging environment') {
       steps {
         script {
+          // TODO: put that to the jenkins shared lib when all the scripts are in their own repo
           sh "sed -i \"s/APP_NAME/$APP_NAME/g\" manifest.jps"
           sh "sed -i \"s/IMAGE_TYPE/$IMAGE_TYPE/g\" manifest.jps"
           sh "sed -i \"s/BRANCH/$STAGING_BRANCH/g\" manifest.jps"
@@ -42,6 +46,7 @@ pipeline {
     stage('Stop staging environment') {
       steps {
         script {
+          // TODO: put that to the jenkins shared lib when all the scripts are in their own repo
           sh "dos2unix ./production/helpers.sh"
           SCRIPT_TO_RUN = './production/stop-jelastic-env.sh'
           sh "dos2unix $SCRIPT_TO_RUN"
@@ -56,6 +61,7 @@ pipeline {
       }
       steps {
         script {
+          // TODO: put that to the jenkins shared lib
           def originUrl = "https://$GITHUB_CREDENTIALS_USR:$GITHUB_CREDENTIALS_PSW@" + GIT_URL.drop(8)
           sh "git remote rm origin"
           sh "git remote add origin $originUrl"
@@ -67,8 +73,9 @@ pipeline {
     }
     stage('Publish production docker container') {
       steps {
+        // TODO: used jenkins shared lib publishDockerImage instead of this
         build job: 'backend-publish-docker-image', parameters: [
-          booleanParam(name: 'ENABLE_DEV_TOOLS', value: false),
+          booleanParam(name: 'ENABLE_DEV_TOOLS', value: true),
           string(name: 'BRANCH', value: TAG),
           string(name: 'IMAGE_TYPE', value: IMAGE_TYPE)
         ]
@@ -77,6 +84,7 @@ pipeline {
     stage('Deploy production environment') {
       steps {
         script {
+          // TODO: put that to the jenkins shared lib when all the scripts are in their own repo
           sh "sed -i \"s/APP_NAME/$APP_NAME/g\" manifest.jps"
           sh "sed -i \"s/IMAGE_TYPE/$IMAGE_TYPE/g\" manifest.jps"
           sh "sed -i \"s/BRANCH/$TAG/g\" manifest.jps"
@@ -89,7 +97,10 @@ pipeline {
     }
     stage('Check production environment') {
       steps {
-        build job: 'security', parameters: [[$class: 'StringParameterValue', name: 'HIDORA_DOMAIN', value: PRODUCTION_ENV_NAME]]
+        build job: 'security', parameters: [
+          string(name: 'HIDORA_DOMAIN', value: PRODUCTION_ENV_NAME),
+          string(name: 'APPLICATION_TYPE', value: 'backend')
+        ]
       }
     }
   }
