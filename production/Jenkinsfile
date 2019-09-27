@@ -18,6 +18,7 @@ pipeline {
     stage('Deploy staging environment') {
       steps {
         script {
+          sh "sed -i \"s/APP_NAME/$STAGING_ENV_NAME/g\" manifest.jps"
           sh "sed -i \"s/DEPLOY_MODE/production/g\" manifest.jps"
           sh "sed -i \"s/DOCKER_TAG/$STAGING_BRANCH/g\" manifest.jps"
           SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
@@ -72,6 +73,7 @@ pipeline {
     stage('Deploy production environment') {
       steps {
         script {
+          sh "sed -i \"s/APP_NAME/$PRODUCTION_ENV_NAME/g\" manifest.jps"
           sh "sed -i \"s/DEPLOY_MODE/production/g\" manifest.jps"
           sh "sed -i \"s/DOCKER_TAG/$TAG/g\" manifest.jps"
           SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
