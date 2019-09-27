@@ -9,7 +9,7 @@ pipeline {
   stages {
     stage('Publish staging docker container') {
       steps {
-        build job: 'publish-docker-image', parameters: [
+        build job: 'backend-publish-docker-image', parameters: [
           booleanParam(name: 'ENABLE_DEV_TOOLS', value: true),
           string(name: 'BRANCH', value: "$STAGING_BRANCH")
         ]
@@ -63,7 +63,7 @@ pipeline {
     }
     stage('Publish production docker container') {
       steps {
-        build job: 'publish-docker-image', parameters: [
+        build job: 'backend-publish-docker-image', parameters: [
           booleanParam(name: 'ENABLE_DEV_TOOLS', value: false),
           string(name: 'BRANCH', value: "$TAG")
         ]
