@@ -1,3 +1,5 @@
+def helpers = new ch.softozor.pipeline.Helpers()
+
 pipeline {
   agent any
   environment {
@@ -61,13 +63,7 @@ pipeline {
       }
       steps {
         script {
-          // TODO: put that to the jenkins shared lib
-          def originUrl = "https://$GITHUB_CREDENTIALS_USR:$GITHUB_CREDENTIALS_PSW@" + GIT_URL.drop(8)
-          sh "git remote rm origin"
-          sh "git remote add origin $originUrl"
-          sh "git tag $TAG -m \"$DESCRIPTION\""
-          sh "git push origin $TAG"
-          sh "git checkout $TAG"
+          helpers.tagAndPush(TAG, DESCRIPTION)
         }
       }
     }

@@ -1,23 +1,15 @@
+def helpers = new ch.softozor.pipeline.Helpers()
+
 pipeline {
   agent any
   environment {
+    REPO = 'shopozor-backend'
     DOCKER_CREDENTIALS = credentials('docker-credentials')
-    DOCKER_REPO = "softozor/shopozor-backend:$IMAGE_TYPE-$BRANCH"
   }
   stages {
-    stage('Build docker image') {
-      steps {
-        script {
-            sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
-            sh "docker build --build-arg ENABLE_DEV_TOOLS=$ENABLE_DEV_TOOLS --network=host -t $DOCKER_REPO ."
-        }
-      }
-    }
-    stage('Publish docker image') {
-      steps {
-        script {
-            sh "docker push $DOCKER_REPO"
-        }
+    stage('Build and publish docker image') {
+      script {
+        helpers.publishBackendDockerImage(REPO, BRANCH, ENABLE_DEV_TOOLS, IMAGE_TYPE)
       }
     }
   }
