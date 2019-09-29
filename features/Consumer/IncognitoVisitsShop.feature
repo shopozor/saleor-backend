@@ -38,7 +38,6 @@ Fonctionnalité: Un Incognito visite un Shop
 
     Etant donné un utilisateur non identifié sur le Shopozor
 
-  @wip
   @shops.graphql
   @fixture.small-shops
   Scénario: Incognito obtient la liste des Shops
