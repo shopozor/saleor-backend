@@ -1,17 +1,12 @@
 jpsVersion: 1.3
 jpsType: update
 application:
-  id: shopozor-backend-database-reset
-  name: Shopozor Backend Database Reset
+  id: APP_NAME
+  name: APP_NAME-IMAGE_TYPE
   version: 0.0
 
   globals:
-    HOME: /var/www/webroot
-    CONTEXT: ROOT
-    PATH_TO_CONTEXT: ${globals.HOME}/${globals.CONTEXT}
-    PYTHON_VIRTUAL_ENV: env
-    PATH_TO_VIRTUAL_ENV: ${globals.HOME}/${globals.PYTHON_VIRTUAL_ENV}
-    PG_PASSWORD: AdminPassword
+    PG_PASSWORD: ${fn.password(10)}
 
   onInstall:
     - clearDatabase
@@ -36,14 +31,12 @@ application:
       user: root
     migrateDB:
       cmd [cp]:
-        - cd ${globals.PATH_TO_CONTEXT}
-        - source ${globals.PATH_TO_VIRTUAL_ENV}/bin/activate
-        - python ./manage.py migrate
+        - cd /app
+        - python3 ./manage.py migrate
     fillDatabase:
       cmd [cp]:
-        - cd ${globals.PATH_TO_CONTEXT}
-        - source ${globals.PATH_TO_VIRTUAL_ENV}/bin/activate
-        - python ./manage.py setup_e2e_data
+        - cd /app
+        - python3 ./manage.py setup_e2e_data
     runServer:
       - restartService:
           nodeGroup: cp
