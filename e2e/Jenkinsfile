@@ -4,6 +4,7 @@ pipeline {
   agent any
   environment {
     BACKEND_APP_NAME = 'shopozor-backend'
+    COMMON_FRONTEND_BASEURL = credentials('common-frontend-baseurl-credentials') // contains base jps url
     CONSUMER_BACKEND_NAME = credentials('consumer-backend-name-credentials') // contains envName + base jps url
     CONSUMER_FRONTEND_APP_NAME = 'shopozor-consumer-frontend'
     CONSUMER_FRONTEND_NAME = credentials('consumer-frontend-name-credentials') // contains envName
@@ -15,10 +16,10 @@ pipeline {
     MGMT_BACKEND_NAME = credentials('management-backend-name-credentials') // contains envName + base jps url
     MGMT_FRONTEND_APP_NAME = 'shopozor-management-frontend'
     MGMT_FRONTEND_NAME = credentials('management-frontend-name-credentials') // contains envName
-    // PATH_TO_TEST_RESULTS = '/home/node'
-    // SCREENSHOTS_FOLDER = 'screenshots'
-    // TEST_REPORTS_FOLDER = 'junit-reports'
-    // VIDEOS_FOLDER = 'videos'
+    PATH_TO_TEST_RESULTS = '/home/node'
+    SCREENSHOTS_FOLDER = 'screenshots'
+    TEST_REPORTS_FOLDER = 'junit-reports'
+    VIDEOS_FOLDER = 'videos'
   }
   stages {
     stage('Publishing backend docker image') {
@@ -84,11 +85,9 @@ pipeline {
       }
       steps {
         script {
-          // TODO: here we'd need to download those files from the frontend's repo
-          //       --> create a prepareFrontendConfigurationFromBackend?
-          E2E_JPS = './common/e2e/e2e.jps'
-          FRONTEND_JPS = './common/manifest.jps'
-          helpers.prepareFrontendConfiguration(FRONTEND_NAME, FRONTEND_JPS, E2E_JPS)
+          E2E_JPS = 'e2e.jps'
+          FRONTEND_JPS = 'manifest.jps'
+          helpers.getManifests(FRONTEND_JPS, E2E_JPS, COMMON_FRONTEND_BASEURL)
           helpers.deploy(FRONTEND_JPS, CONSUMER_FRONTEND_APP_NAME, CONSUMER_FRONTEND_NAME, GIT_COMMIT, IMAGE_TYPE)
           helpers.runE2eTests(E2E_JPS, CONSUMER_FRONTEND_NAME, CONSUMER_FRONTEND_APP_NAME, IMAGE_TYPE)
         }
@@ -100,17 +99,14 @@ pipeline {
       }
       steps {
         script {
-          // TODO: here we'd need to download those files from the frontend's repo
-          //       --> create a prepareFrontendConfigurationFromBackend?
-          E2E_JPS = './common/e2e/e2e.jps'
-          FRONTEND_JPS = './common/manifest.jps'
-          helpers.prepareFrontendConfiguration(FRONTEND_NAME, FRONTEND_JPS, E2E_JPS)
+          E2E_JPS = 'e2e.jps'
+          FRONTEND_JPS = 'manifest.jps'
+          helpers.getManifests(FRONTEND_JPS, E2E_JPS, COMMON_FRONTEND_BASEURL)
           helpers.deploy(FRONTEND_JPS, MGMT_FRONTEND_APP_NAME, MGMT_FRONTEND_NAME, GIT_COMMIT, IMAGE_TYPE)
           helpers.runE2eTests(E2E_JPS, MGMT_FRONTEND_NAME, MGMT_FRONTEND_APP_NAME, IMAGE_TYPE)
         }
       }
     }
-    // TODO: retrieve the test results from both frontend environments
     stage('Retrieving test results from consumer frontend environment') {
       steps {
         script {
@@ -118,7 +114,6 @@ pipeline {
           def targetPath = "/mnt/${CONSUMER_FRONTEND_NAME}"
           def sourceNodeGroup = 'cp'
           def jenkinsEnvName = JENKINS_URL.split('/')[2].split(':')[0].split('\\.')[0]
-          // TODO: this retrieve method should not delete the test reports, videos, and screenshots folder; that should be done separately
           helpers.retrieveTestResults(jenkinsEnvName, targetNodeGroup, targetPath, CONSUMER_FRONTEND_NAME, sourceNodeGroup)
         }
       }
@@ -130,7 +125,6 @@ pipeline {
           def targetPath = "/mnt/${MGMT_FRONTEND_NAME}"
           def sourceNodeGroup = 'cp'
           def jenkinsEnvName = JENKINS_URL.split('/')[2].split(':')[0].split('\\.')[0]
-          // TODO: this retrieve method should not delete the test reports, videos, and screenshots folder; that should be done separately
           helpers.retrieveTestResults(jenkinsEnvName, targetNodeGroup, targetPath, MGMT_FRONTEND_NAME, sourceNodeGroup)
         }
       }
