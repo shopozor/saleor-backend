@@ -47,10 +47,10 @@ pipeline {
     }
   }
   post {
-    environment {
-      SOFTOZOR_CREDENTIALS = credentials('softozor-credentials')
-    }
     always {
+      environment {
+        SOFTOZOR_CREDENTIALS = credentials('softozor-credentials')
+      }
       script {
         junit "**/$REPORTS_FOLDER/*.xml"
         // TODO: call that in the merger job?
