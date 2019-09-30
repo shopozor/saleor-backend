@@ -1,3 +1,5 @@
+def helpers = new ch.softozor.pipeline.Helpers()
+
 pipeline {
   agent {
     docker {
@@ -45,11 +47,15 @@ pipeline {
     }
   }
   post {
+    environment {
+      SOFTOZOR_CREDENTIALS = credentials('softozor-credentials')
+    }
     always {
       script {
         junit "**/$REPORTS_FOLDER/*.xml"
+        // TODO: call that in the merger job?
         if(GIT_BRANCH == 'origin/dev' || GIT_BRANCH == 'origin/master') {
-          build job: 'backend-spec', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: GIT_BRANCH]]
+          helpers.generateSpecification("$WORKSPACE/features", 'backend', GIT_COMMIT)
         }
       }
     }
