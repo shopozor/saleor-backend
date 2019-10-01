@@ -8,7 +8,9 @@ pipeline {
         SOFTOZOR_CREDENTIALS = credentials('softozor-credentials')
       }
       steps {
-        helpers.generateSpecification("$WORKSPACE/features", 'backend', GIT_COMMIT)
+        script {
+          helpers.generateSpecification("$WORKSPACE/features", 'backend', GIT_COMMIT)
+        }
       }
     }
   }
