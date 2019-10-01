@@ -45,7 +45,6 @@ pipeline {
         sh ". $VENV/bin/activate && python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags ~wip"
       }
     }
-    // TODO: call that in the merger job?
     stage('Building specification') {
       environment {
         SOFTOZOR_CREDENTIALS = credentials('softozor-credentials')

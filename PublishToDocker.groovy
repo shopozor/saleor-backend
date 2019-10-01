@@ -8,7 +8,7 @@ pipeline {
   }
   stages {
     stage('Build and publish docker image') {
-      script {
+      steps {
         helpers.publishBackendDockerImage(REPO, BRANCH, ENABLE_DEV_TOOLS, IMAGE_TYPE)
       }
     }
