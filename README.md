@@ -5,6 +5,26 @@
 [![Acceptance Build Status](http://shopozor-ci.hidora.com/buildStatus/icon?job=shopozor-backend-acceptance&subject=acceptance%20tests)](http://shopozor-ci.hidora.com/job/shopozor-backend-acceptance/)
 [![Unit Build Status](http://shopozor-ci.hidora.com/buildStatus/icon?job=shopozor-backend-unit&subject=unit%20tests)](http://shopozor-ci.hidora.com/job/shopozor-backend-unit/)
 
+## Docker images
+
+### Development
+
+As a frontend developer, you might need to connect your application to the Shopozor's backend server. The development docker image is produced manually upon every PR merging into the `dev` branch. You can start the server like this:
+```
+docker run --env-file path-to-env-list/env.list -p 8000:8000 -it softozor/shopozor-backend:production-dev
+```
+where the file `env.list` can be e.g.
+```
+SECRET_KEY=MySecretKey
+PYTHONPATH=/app/saleor
+DJANGO_SETTINGS_MODULE=shopozor.settings
+JWT_EXPIRATION_DELTA_IN_DAYS=30
+JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS=360
+JWT_SECRET_KEY=MyOtherSecretKey
+JWT_ALGORITHM=HS256
+PORT=8000
+```
+
 ## Continuous integration
 
 We were not able to display the usual cucumber reports in Jenkins for this repository because the `behave` reports are not compatible with the `cucumber` reports (see e.g. [this reference](https://www.bountysource.com/issues/6638934-behave-json-reports-are-incompatible-with-cucumber-ones)). Therefore our `Jenkinsfile` makes use of the `junit` framework to output acceptance test results.
