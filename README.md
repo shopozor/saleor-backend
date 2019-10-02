@@ -20,6 +20,10 @@ docker-compose up
 ```
 docker exec -it backend_web_1 python3 manage.py migrate
 ```
+Once those steps have been performed, if you need to start the server again, you just run
+```
+docker-compose up
+```
 
 ## Continuous integration
 
