@@ -9,21 +9,19 @@
 
 ### Development
 
-As a frontend developer, you might need to connect your application to the Shopozor's backend server. The development docker image is produced manually upon every PR merging into the `dev` branch. The first time you run the server, 
+As a frontend developer, you might need to connect your application to the Shopozor's backend server. The development docker image is produced manually upon every PR merging into the `dev` branch. In order to run the server, 
 1. download the [docker-compose.yml](docker-compose.yml)
 2. download the [dev.env](dev.env)
 3. run
 ```
 docker-compose up
 ```
+in the folder where you downloaded the files of steps 1. and 2.
 4. setup the database with
 ```
 docker exec -it backend_web_1 python3 manage.py migrate
 ```
-Once those steps have been performed, if you need to start the server again, you just run
-```
-docker-compose up
-```
+in the folder where you downloaded the files of steps 1. and 2.
 
 ## Continuous integration
 
