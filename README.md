@@ -9,20 +9,16 @@
 
 ### Development
 
-As a frontend developer, you might need to connect your application to the Shopozor's backend server. The development docker image is produced manually upon every PR merging into the `dev` branch. You can start the server like this:
+As a frontend developer, you might need to connect your application to the Shopozor's backend server. The development docker image is produced manually upon every PR merging into the `dev` branch. The first time you run the server, 
+1. download the [docker-compose.yml](docker-compose.yml)
+2. download the [dev.env](dev.env)
+3. run
 ```
-docker run --env-file path-to-env-list/env.list -p 8000:8000 -it softozor/shopozor-backend:production-dev
+docker-compose up
 ```
-where the file `env.list` can be e.g.
+4. setup the database with
 ```
-SECRET_KEY=MySecretKey
-PYTHONPATH=/app/saleor
-DJANGO_SETTINGS_MODULE=shopozor.settings
-JWT_EXPIRATION_DELTA_IN_DAYS=30
-JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS=360
-JWT_SECRET_KEY=MyOtherSecretKey
-JWT_ALGORITHM=HS256
-PORT=8000
+docker exec -it backend_web_1 python3 manage.py migrate
 ```
 
 ## Continuous integration
