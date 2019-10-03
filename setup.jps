@@ -87,7 +87,7 @@ application:
          - psql -U webadmin -d postgres -c "CREATE ROLE ${globals.PG_DB_USERNAME} PASSWORD '${globals.PG_USER_PASSWORD}' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"
          - psql -U webadmin -d postgres -c "CREATE DATABASE ${globals.PG_DB_NAME} OWNER ${globals.PG_DB_USERNAME} ENCODING 'utf-8' TEMPLATE template0;"
         user: root
-      - if ("IMAGE_TYPE" == "e2e"):
+      - if ("${settings.imageType}" == "e2e"):
         - api:
           - method: jelastic.environment.control.AddContainerEnvVars
             params:
