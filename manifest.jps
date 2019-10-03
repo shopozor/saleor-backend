@@ -1,128 +1,36 @@
 jpsVersion: 1.3
 jpsType: install
 application:
-  id: APP_NAME
-  name: APP_NAME-IMAGE_TYPE
+  id: shopozor-backend-root
+  # name: shopozor-backend
   version: 0.0
 
-  globals:
-    SECRET_KEY: ${fn.uuid}
-    PG_USER_PASSWORD: ${fn.password(10)}
-    # TODO: fix these two names for production!
-    # TODO: but then how do I get those names in the e2e manifest?
-    PG_DB_USERNAME: saleor
-    PG_DB_NAME: saleor
-    PG_PASSWORD: ${fn.password(10)}
-    REDIS_PASSWORD: ${fn.password(10)}
-
-  env:
-    topology:
-      nodes:
-        - nodeGroup: bl
-          nodeType: nginx-dockerized
-          tag: 1.14.2
-          displayName: Node balancing
-          count: 1
-          fixedCloudlets: 1
-          cloudlets: 4
-          env:
-            DOCKER_EXPOSED_PORT: 22,80,443
-        - image: softozor/APP_NAME
-          nodeGroup: cp
-          tag: IMAGE_TYPE-BRANCH
-          displayName: Application servers
-          count: 1
-          fixedCloudlets: 4
-          cloudlets: 10
-          env:
-            SECRET_KEY: ${globals.SECRET_KEY}
-            PYTHONPATH: /app/saleor
-            DJANGO_SETTINGS_MODULE: shopozor.settings
-            JWT_EXPIRATION_DELTA_IN_DAYS: 30
-            JWT_REFRESH_EXPIRATION_DELTA_IN_DAYS: 360
-            JWT_SECRET_KEY: ${fn.uuid}
-            JWT_ALGORITHM: 'HS256'
-            PORT: 8000
-            PYTHONUNBUFFERED: 1
-            PROCESSES: 1
-            DEBUG: "False"
-        - nodeGroup: sqldb
-          nodeType: postgresql
-          tag: 11.2
-          displayName: PostgreSQL
-          fixedCloudlets: 1
-          cloudlets: 4
-        - nodeGroup: nosqldb
-          nodeType: redis
-          tag: 4.0.11
-          displayName: Redis cache
-          fixedCloudlets: 1
-          cloudlets: 4
+  # TODO: change branch to dev here!
+  baseurl: https://raw.githubusercontent.com/shopozor/backend/email-setup/
 
   onInstall:
-    - setPasswordOnRedisNode
-    - setEnvVars
-    - prepareDatabase
-    - migrateDB
-    - restorePermissions
-    - restartDockerNodes
-    - sendEmailWithPasswords
+    - installTopology
+    - setupEnv
+
   actions:
-    setPasswordOnRedisNode:
-      - replaceInFile:
-          path: /etc/redis.conf
-          replacements:
-            - pattern: requirepass\ .*
-              replacement: requirepass ${globals.REDIS_PASSWORD}
-          nodeType: redis
-      - restartService:
-          - nodeType: redis
-    setEnvVars:
-      - api:
-          - method: jelastic.environment.control.AddContainerEnvVars
-            params:
-              nodeGroup: cp
-              vars:
-                DATABASE_URL: postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
-                CACHE_URL: redis://:${globals.REDIS_PASSWORD}@${nodes.nosqldb.intIP}:6379/0
-                ALLOWED_HOSTS: ${env.envName}.hidora.com
-    prepareDatabase:
-      - createDatabase
-    createDatabase:
-      - cmd[sqldb]:
-         - jem passwd set -p ${globals.PG_PASSWORD}
-         - export PGPASSWORD='${globals.PG_PASSWORD}'
-         - psql -U webadmin -d postgres -c "CREATE ROLE ${globals.PG_DB_USERNAME} PASSWORD '${globals.PG_USER_PASSWORD}' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"
-         - psql -U webadmin -d postgres -c "CREATE DATABASE ${globals.PG_DB_NAME} OWNER ${globals.PG_DB_USERNAME} ENCODING 'utf-8' TEMPLATE template0;"
-        user: root
-      - if ("IMAGE_TYPE" == "e2e"):
-        - api:
-          - method: jelastic.environment.control.AddContainerEnvVars
-            params:
-              nodeGroup: sqldb
-              vars:
-                PG_DB_NAME: ${globals.PG_DB_NAME}
-                PG_DB_USERNAME: ${globals.PG_DB_USERNAME}
-                PG_USER_PASSWORD: ${globals.PG_USER_PASSWORD}
-    restorePermissions:
-      - cmd [sqldb]:
-          - export PGPASSWORD='${globals.PG_PASSWORD}'
-          - psql -U webadmin -d postgres -c "ALTER USER ${globals.PG_DB_USERNAME} WITH NOSUPERUSER;"
-        user: root
-    migrateDB:
-      cmd [cp]:
-        - cd /app
-        - python3 ./manage.py migrate
-    restartDockerNodes:
-      restartContainers:
-        - nodeGroup: cp
-    sendEmailWithPasswords:
-      return:
-        result: success
-        email: |
-          # PostgreSQL
-          **PostgreSQL URL**: postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
-          # PgAdmin
-          **webadmin**: ${globals.PG_PASSWORD}
-          # Redis
-          **admin**: ${globals.REDIS_PASSWORD}
+    installTopology:
+      install:
+        jps: IMAGE_TYPE/install.jps
+        envName: ${env.envName}.hidora.com
+        settings:
+          appName: APP_NAME
+          imageType: IMAGE_TYPE
+          branch: BRANCH
+    setupEnv:
+      install:
+        jps: setup.jps
+        envName: ${env.envName}.hidora.com
+        settings:
+          imageType: IMAGE_TYPE
+          # TODO: complete with protonmail's smtp credentials / coordinates
+          emailHost: EMAIL_HOST
+          emailPort: EMAIL_PORT
+          emailHostUser: EMAIL_HOST_USER
+          emailHostPassword: EMAIL_HOST_PASSWORD
+          emailUseTLS: EMAIL_USE_TLS
+          emailUseSSL: EMAIL_USE_SSL

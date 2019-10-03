@@ -1,0 +1,136 @@
+jpsVersion: 1.3
+jpsType: update
+application:
+  id: backend-setup
+  # name: APP_NAME-IMAGE_TYPE
+  version: 0.0
+
+  settings:
+    fields:
+      - name: imageType
+        caption: Image type
+        type: string
+        required: true
+      - name: emailHost
+        caption: Email host
+        type: string
+        required: true
+      - name: emailPort
+        caption: Email port
+        type: string
+        required: true
+      - name: emailHostUser
+        caption: Email host user
+        type: string
+        required: true
+      - name: emailHostPassword
+        caption: Email host password
+        type: string
+        required: true
+      - name: emailUseTLS
+        caption: Email use TLS
+        type: string
+        required: true
+      - name: emailUseSSL
+        caption: Email use SSL
+        type: string
+        required: true
+
+  globals:
+    PG_USER_PASSWORD: ${fn.password(10)}
+    # TODO: fix these two names for production!
+    # TODO: but then how do I get those names in the e2e manifest?
+    PG_DB_USERNAME: saleor
+    PG_DB_NAME: saleor
+    PG_PASSWORD: ${fn.password(10)}
+    REDIS_PASSWORD: ${fn.password(10)}
+
+  onInstall:
+    - setPasswordOnRedisNode
+    - setEnvVars
+    - prepareDatabase
+    - migrateDB
+    - restorePermissions
+    - restartDockerNodes
+    - sendEmailWithPasswords
+    # TODO: setup EMAIL_HOST and EMAIL_PORT when IMAGE_TYPE == e2e on the cp nodeGroup (get the mail-service node's ip)
+    # TODO: setup protonmail when IMAGE_TYPE == e2e on cp node
+  actions:
+    setPasswordOnRedisNode:
+      - replaceInFile:
+          path: /etc/redis.conf
+          replacements:
+            - pattern: requirepass\ .*
+              replacement: requirepass ${globals.REDIS_PASSWORD}
+          nodeType: redis
+      - restartService:
+          - nodeType: redis
+    setEnvVars:
+      - api:
+          - method: jelastic.environment.control.AddContainerEnvVars
+            params:
+              nodeGroup: cp
+              vars:
+                DATABASE_URL: postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
+                CACHE_URL: redis://:${globals.REDIS_PASSWORD}@${nodes.nosqldb.intIP}:6379/0
+                ALLOWED_HOSTS: ${env.envName}.hidora.com
+      - if ("${settings.imageType}" == "e2e"):
+        - api:
+            - method: jelastic.environment.control.AddContainerEnvVars
+              params:
+                nodeGroup: cp
+                vars:
+                  EMAIL_HOST: @${nodes.mail-service.intIP}
+                  EMAIL_PORT: 1025
+      - else:
+        - api:
+            - method: jelastic.environment.control.AddContainerEnvVars
+              params:
+                nodeGroup: cp
+                vars:
+                  EMAIL_HOST: ${settings.emailHost}
+                  EMAIL_PORT: ${settings.emailPort}
+                  EMAIL_HOST_USER: ${settings.emailHostUser}
+                  EMAIL_HOST_PASSWORD: ${settings.emailHostPassword}
+                  EMAIL_USE_TLS: ${settings.emailUseTLS}
+                  EMAIL_USE_SSL: ${settings.emailUseSSL}
+    prepareDatabase:
+      - createDatabase
+    createDatabase:
+      - cmd[sqldb]:
+         - jem passwd set -p ${globals.PG_PASSWORD}
+         - export PGPASSWORD='${globals.PG_PASSWORD}'
+         - psql -U webadmin -d postgres -c "CREATE ROLE ${globals.PG_DB_USERNAME} PASSWORD '${globals.PG_USER_PASSWORD}' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"
+         - psql -U webadmin -d postgres -c "CREATE DATABASE ${globals.PG_DB_NAME} OWNER ${globals.PG_DB_USERNAME} ENCODING 'utf-8' TEMPLATE template0;"
+        user: root
+      - if ("IMAGE_TYPE" == "e2e"):
+        - api:
+          - method: jelastic.environment.control.AddContainerEnvVars
+            params:
+              nodeGroup: sqldb
+              vars:
+                PG_DB_NAME: ${globals.PG_DB_NAME}
+                PG_DB_USERNAME: ${globals.PG_DB_USERNAME}
+                PG_USER_PASSWORD: ${globals.PG_USER_PASSWORD}
+    restorePermissions:
+      - cmd [sqldb]:
+          - export PGPASSWORD='${globals.PG_PASSWORD}'
+          - psql -U webadmin -d postgres -c "ALTER USER ${globals.PG_DB_USERNAME} WITH NOSUPERUSER;"
+        user: root
+    migrateDB:
+      cmd [cp]:
+        - cd /app
+        - python3 ./manage.py migrate
+    restartDockerNodes:
+      restartContainers:
+        - nodeGroup: cp
+    sendEmailWithPasswords:
+      return:
+        result: success
+        email: |
+          # PostgreSQL
+          **PostgreSQL URL**: postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
+          # PgAdmin
+          **webadmin**: ${globals.PG_PASSWORD}
+          # Redis
+          **admin**: ${globals.REDIS_PASSWORD}
