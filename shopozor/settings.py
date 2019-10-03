@@ -1,6 +1,5 @@
 from saleor.settings import *
 from datetime import timedelta
-import dj_email_url
 
 if DEBUG:
     CORS_ORIGIN_ALLOW_ALL = True
@@ -47,3 +46,9 @@ DEFAULT_COUNTRY = os.environ.get("DEFAULT_COUNTRY", "CH")
 DEFAULT_CURRENCY = os.environ.get("DEFAULT_CURRENCY", "CHF")
 
 WSGI_APPLICATION = "shopozor.wsgi.application"
+
+# TODO: this only holds for e2e, not for production!
+# TODO: the EMAIL_HOST needs to come from the environment variables as it will be different on the jelastic infrastructure as in the docker-compose
+EMAIL_HOST = 'smtp-server'
+EMAIL_PORT = 1025
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

@@ -2,7 +2,11 @@ version: '2'
 
 services:
   web:
-    image: softozor/shopozor-backend:production-dev
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        ENABLE_DEV_TOOLS: "true"
     restart: unless-stopped
     networks:
       - shopozor-backend-tier
@@ -11,6 +15,17 @@ services:
       - "8000:8000"
     depends_on:
       - db
+
+  smtp-server:
+    image: mailhog/mailhog
+    networks:
+      - shopozor-backend-tier
+    expose:
+      - 1025
+      - 8025
+    ports:
+      - '1025:1025'
+      - '8025:8025'
 
   db:
     image: postgres:11.2-alpine
