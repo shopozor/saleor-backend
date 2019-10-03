@@ -49,8 +49,11 @@ DEFAULT_CURRENCY = os.environ.get("DEFAULT_CURRENCY", "CHF")
 
 WSGI_APPLICATION = "shopozor.wsgi.application"
 
-# TODO: this only holds for e2e, not for production!
-# TODO: the EMAIL_HOST needs to come from the environment variables as it will be different on the jelastic infrastructure as in the docker-compose
-EMAIL_HOST = os.environ.get("EMAIL_HOST")
-EMAIL_PORT = 1025
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', False)
+EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', False)
+
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
