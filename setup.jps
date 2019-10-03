@@ -2,6 +2,7 @@ jpsVersion: 1.3
 jpsType: update
 application:
   id: backend-setup
+  name: backend-setup
   version: 0.0
 
   settings:
