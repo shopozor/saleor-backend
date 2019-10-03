@@ -5,6 +5,9 @@ application:
   name: backend-production-install
   version: 0.0
 
+  # TODO: change branch to dev here!
+  baseUrl: https://raw.githubusercontent.com/shopozor/backend/email-setup/
+
   settings:
     fields:
       - name: appName
@@ -70,7 +73,7 @@ application:
     setup:
       install:
         jps: setup.jps
-        envName: ${env.envName}.hidora.com
+        envName: ${env.envName}
         settings:
           imageType: IMAGE_TYPE
           # TODO: complete with protonmail's smtp credentials / coordinates

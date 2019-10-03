@@ -68,7 +68,7 @@ application:
     setup:
       install:
         jps: setup.jps
-        envName: ${env.envName}.hidora.com
+        envName: ${env.envName}
         settings:
           imageType: IMAGE_TYPE
           emailHost: ${nodes.mail-service.intIP}
