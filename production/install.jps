@@ -62,3 +62,21 @@ application:
           displayName: Redis cache
           fixedCloudlets: 1
           cloudlets: 4
+
+  onInstall:
+    - setup
+
+  actions:
+    setup:
+      install:
+        jps: setup.jps
+        envName: ${env.envName}.hidora.com
+        settings:
+          imageType: IMAGE_TYPE
+          # TODO: complete with protonmail's smtp credentials / coordinates
+          emailHost: EMAIL_HOST
+          emailPort: EMAIL_PORT
+          emailHostUser: EMAIL_HOST_USER
+          emailHostPassword: EMAIL_HOST_PASSWORD
+          emailUseTLS: EMAIL_USE_TLS
+          emailUseSSL: EMAIL_USE_SSL

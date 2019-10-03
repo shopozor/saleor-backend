@@ -1,24 +1,12 @@
 jpsVersion: 1.3
 jpsType: install
 application:
-  id: backend-e2e-install
-  name: backend-e2e-install
+  id: APP_NAME-IMAGE_TYPE
+  name: APP_NAME-IMAGE_TYPE-BRANCH
   version: 0.0
 
-  settings:
-    fields:
-      - name: appName
-        caption: Application name
-        type: string
-        required: true
-      - name: imageType
-        caption: Image type
-        type: string
-        required: true
-      - name: branch
-        caption: Branch
-        type: string
-        required: true
+  # TODO: change branch to dev here!
+  baseUrl: https://raw.githubusercontent.com/shopozor/backend/email-setup/
 
   env:
     topology:
@@ -32,7 +20,7 @@ application:
           cloudlets: 4
           env:
             DOCKER_EXPOSED_PORT: 22,80,443
-        - image: softozor/${settings.appName}:${settings.imageType}-${settings.branch}
+        - image: softozor/APP_NAME:IMAGE_TYPE-BRANCH
           nodeGroup: cp
           displayName: Application servers
           count: 1
@@ -72,3 +60,16 @@ application:
           displayName: Redis cache
           fixedCloudlets: 1
           cloudlets: 4
+
+  onInstall:
+    - setup
+
+  actions:
+    setup:
+      install:
+        jps: setup.jps
+        envName: ${env.envName}.hidora.com
+        settings:
+          imageType: IMAGE_TYPE
+          emailHost: ${nodes.mail-service.intIP}
+          emailPort: 1025
