@@ -47,7 +47,6 @@ application:
           cloudlets: 4
           env:
             DOCKER_EXPOSED_PORT: 1025,8025
-          # TODO: how to deal with ports '8025:8025'? <-- do we configure nginx to make it happen?
         - nodeGroup: sqldb
           nodeType: postgresql
           tag: 11.2
