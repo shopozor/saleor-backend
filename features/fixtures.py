@@ -161,11 +161,21 @@ def successful_set_password(context):
 
 
 @fixture
-def password_not_compliant(context):
+def signup_password_not_compliant(context):
     data = json.load(
-        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'PasswordNotCompliant.json'))
-    context.password_not_compliant = data
-    return data
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'SignupPasswordNotCompliant.json'))
+    password_not_compliant = data['data']['consumerCreate']['errors']
+    context.password_not_compliant = password_not_compliant
+    return password_not_compliant
+
+
+@fixture
+def password_reset_password_not_compliant(context):
+    data = json.load(
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'PasswordResetPasswordNotCompliant.json'))
+    password_not_compliant = data['data']['setPassword']['errors']
+    context.password_not_compliant = password_not_compliant
+    return password_not_compliant
 
 
 @fixture
@@ -204,7 +214,7 @@ def signup(context):
                                           signup_expired_link),
                                        fixture_call_params(
                                           successful_account_confirmation),
-                                       fixture_call_params(password_not_compliant)])
+                                       fixture_call_params(signup_password_not_compliant)])
 
 
 @fixture
@@ -213,7 +223,7 @@ def password_reset(context):
                                                 fixture_call_params(
                                                     successful_set_password),
                                                 fixture_call_params(
-                                                    password_not_compliant),
+                                                    password_reset_password_not_compliant),
                                                 fixture_call_params(
                                                     password_reset_expired_link),
                                                 fixture_call_params(successful_password_reset)])
