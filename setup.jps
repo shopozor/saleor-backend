@@ -44,8 +44,10 @@ application:
     PG_DB_NAME: saleor
     PG_PASSWORD: ${fn.password(10)}
     REDIS_PASSWORD: ${fn.password(10)}
+    MAILHOG_API_PORT: 1025
 
   onInstall:
+    - exposeMailhogAPI
     - setPasswordOnRedisNode
     - setEnvVars
     - prepareDatabase
@@ -54,6 +56,25 @@ application:
     - restartDockerNodes
     - sendEmailWithPasswords
   actions:
+    exposeMailhogAPI:
+      - upload:
+          - nodeType: nginx-dockerized
+            sourcePath: ${baseUrl}/e2e/config/mailhog-server.conf
+            destPath: /etc/nginx/conf.d/mailhog-server.conf
+      - replaceInFile:
+          path: /etc/nginx/conf.d/mailhog-server.conf
+          replacements:
+            - pattern: MAILHOG_API_PORT
+              replacement: ${globals.MAILHOG_API_PORT}
+        nodeType: nginx-dockerized
+      - replaceInFile:
+          path: /etc/nginx/nginx-jelastic.conf
+          replacements:
+            - pattern: \#\#\# UPSTREAMS LIST FOLLOWS HERE \#\#\#
+              replacement: "upstream mailhog_upstream {
+                server ${nodes.mail-service.intIP}:${globals.MAILHOG_API_PORT};
+              }"
+          nodeType: nginx-dockerized
     setPasswordOnRedisNode:
       - replaceInFile:
           path: /etc/redis.conf
