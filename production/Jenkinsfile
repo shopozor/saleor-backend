@@ -22,7 +22,7 @@ pipeline {
     stage('Deploy staging environment') {
       steps {
         script {
-          jps = "manifest.jps"
+          jps = "production/install.jps"
           helpers.deploy(jps, APP_NAME, STAGING_ENV_NAME, STAGING_BRANCH, IMAGE_TYPE)
         }
       }
@@ -62,7 +62,7 @@ pipeline {
     stage('Deploy production environment') {
       steps {
         script {
-          jps = "manifest.jps"
+          jps = "production/install.jps"
           helpers.deploy(jps, APP_NAME, PRODUCTION_ENV_NAME, TAG, IMAGE_TYPE)
         }
       }
