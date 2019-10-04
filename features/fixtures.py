@@ -165,7 +165,7 @@ def signup_password_not_compliant(context):
     data = json.load(
         os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'SignupPasswordNotCompliant.json'))
     password_not_compliant = data['data']['consumerCreate']['errors']
-    context.password_not_compliant = password_not_compliant
+    context.password_not_compliant = password_not_compliant[0]
     return password_not_compliant
 
 
@@ -173,7 +173,7 @@ def signup_password_not_compliant(context):
 def password_reset_password_not_compliant(context):
     data = json.load(
         os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'PasswordResetPasswordNotCompliant.json'))
-    password_not_compliant = data['data']['setPassword']['errors']
+    password_not_compliant = data['data']['setPassword']['errors'][0]
     context.password_not_compliant = password_not_compliant
     return password_not_compliant
 
