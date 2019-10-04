@@ -169,11 +169,21 @@ def password_not_compliant(context):
 
 
 @fixture
-def expired_link(context):
+def signup_expired_link(context):
     data = json.load(
-        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'ExpiredLink.json'))
-    context.expired_link = data
-    return data
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'SignupExpiredLink.json'))
+    expired_link = data['data']['consumerActivate']
+    context.expired_link = expired_link
+    return expired_link
+
+
+@fixture
+def password_reset_expired_link(context):
+    data = json.load(
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'PasswordResetExpiredLink.json'))
+    expired_link = data['data']['setPassword']
+    context.expired_link = expired_link
+    return expired_link
 
 
 @fixture
@@ -191,7 +201,7 @@ def signup(context):
                                       [fixture_call_params(unknown),
                                        fixture_call_params(successful_signup),
                                        fixture_call_params(
-                                          expired_link),
+                                          signup_expired_link),
                                        fixture_call_params(
                                           successful_account_confirmation),
                                        fixture_call_params(password_not_compliant)])
@@ -205,7 +215,7 @@ def password_reset(context):
                                                 fixture_call_params(
                                                     password_not_compliant),
                                                 fixture_call_params(
-                                                    expired_link),
+                                                    password_reset_expired_link),
                                                 fixture_call_params(successful_password_reset)])
 
 
