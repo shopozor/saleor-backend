@@ -52,7 +52,9 @@ pipeline {
       steps {
         script {
           if(GIT_BRANCH == 'origin/dev' || GIT_BRANCH == 'origin/master') {
-            helpers.generateSpecification("$WORKSPACE/features", 'backend', GIT_COMMIT)
+            build job: 'backend-spec', parameters: [
+              string(name: 'BRANCH', value: GIT_BRANCH.split('/')[1]),
+            ]
           }
         }
       }
