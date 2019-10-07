@@ -2,7 +2,11 @@ version: '2'
 
 services:
   web:
-    image: softozor/shopozor-backend:production-dev
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        ENABLE_DEV_TOOLS: "true"
     restart: unless-stopped
     networks:
       - shopozor-backend-tier

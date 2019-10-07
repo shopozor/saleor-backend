@@ -30,7 +30,7 @@ pipeline {
     stage('Starting up consumer backend environment') {
       environment {
         BACKEND_JPS = 'manifest.jps'
-        E2E_JPS = 'e2e/reset_database.jps'
+        E2E_JPS = 'e2e/e2e.jps'
         GITHUB_CREDENTIALS = credentials('github-credentials')
       }
       steps {
@@ -43,7 +43,7 @@ pipeline {
     stage('Starting up management backend environment') {
       environment {
         BACKEND_JPS = 'manifest.jps'
-        E2E_JPS = 'e2e/reset_database.jps'
+        E2E_JPS = 'e2e/e2e.jps'
         GITHUB_CREDENTIALS = credentials('github-credentials')
       }
       steps {
@@ -87,8 +87,9 @@ pipeline {
         script {
           E2E_JPS = 'e2e.jps'
           FRONTEND_JPS = 'manifest.jps'
-          helpers.getManifests(FRONTEND_JPS, E2E_JPS, COMMON_FRONTEND_BASEURL)
+          helpers.getFrontendE2eManifests(FRONTEND_JPS, E2E_JPS, COMMON_FRONTEND_BASEURL)
           helpers.deploy(FRONTEND_JPS, CONSUMER_FRONTEND_APP_NAME, CONSUMER_FRONTEND_NAME, GIT_COMMIT, IMAGE_TYPE)
+          helpers.mountRemoteFolder(CONSUMER_FRONTEND_NAME, 'cp', '/home/node/emails', CONSUMER_BACKEND_NAME_USR, 'cp', '/app/emails')
           helpers.runE2eTests(E2E_JPS, CONSUMER_FRONTEND_NAME, CONSUMER_FRONTEND_APP_NAME, IMAGE_TYPE)
         }
       }
@@ -101,8 +102,9 @@ pipeline {
         script {
           E2E_JPS = 'e2e.jps'
           FRONTEND_JPS = 'manifest.jps'
-          helpers.getManifests(FRONTEND_JPS, E2E_JPS, COMMON_FRONTEND_BASEURL)
+          helpers.getFrontendE2eManifests(FRONTEND_JPS, E2E_JPS, COMMON_FRONTEND_BASEURL)
           helpers.deploy(FRONTEND_JPS, MGMT_FRONTEND_APP_NAME, MGMT_FRONTEND_NAME, GIT_COMMIT, IMAGE_TYPE)
+          helpers.mountRemoteFolder(MGMT_FRONTEND_NAME, 'cp', '/home/node/emails', MGMT_BACKEND_NAME_USR, 'cp', '/app/emails')
           helpers.runE2eTests(E2E_JPS, MGMT_FRONTEND_NAME, MGMT_FRONTEND_APP_NAME, IMAGE_TYPE)
         }
       }
