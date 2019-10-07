@@ -53,7 +53,7 @@ pipeline {
         script {
           if(GIT_BRANCH == 'origin/dev' || GIT_BRANCH == 'origin/master') {
             build job: 'backend-spec', parameters: [
-              string(name: 'BRANCH', value: GIT_BRANCH.split('/')[1]),
+              string(name: 'BRANCH', value: GIT_BRANCH.split('/')[1])
             ]
           }
         }
