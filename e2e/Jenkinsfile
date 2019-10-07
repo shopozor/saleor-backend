@@ -29,7 +29,7 @@ pipeline {
     }
     stage('Starting up consumer backend environment') {
       environment {
-        BACKEND_JPS = 'e2e/install.jps'
+        BACKEND_JPS = 'manifest.jps'
         E2E_JPS = 'e2e/e2e.jps'
         GITHUB_CREDENTIALS = credentials('github-credentials')
       }
@@ -42,7 +42,7 @@ pipeline {
     }
     stage('Starting up management backend environment') {
       environment {
-        BACKEND_JPS = 'e2e/install.jps'
+        BACKEND_JPS = 'manifest.jps'
         E2E_JPS = 'e2e/e2e.jps'
         GITHUB_CREDENTIALS = credentials('github-credentials')
       }

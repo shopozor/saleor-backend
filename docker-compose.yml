@@ -16,17 +16,6 @@ services:
     depends_on:
       - db
 
-  smtp-server:
-    image: mailhog/mailhog
-    networks:
-      - shopozor-backend-tier
-    expose:
-      - 1025
-      - 8025
-    ports:
-      - '1025:1025'
-      - '8025:8025'
-
   db:
     image: postgres:11.2-alpine
     restart: unless-stopped
