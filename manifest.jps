@@ -5,8 +5,7 @@ application:
   name: APP_NAME-IMAGE_TYPE-BRANCH
   version: 0.0
 
-  # TODO: change branch to dev here!
-  baseUrl: https://raw.githubusercontent.com/shopozor/backend/email-setup/
+  baseUrl: https://raw.githubusercontent.com/shopozor/backend/dev/
 
   env:
     topology:
