@@ -59,7 +59,6 @@ application:
     PG_DB_NAME: saleor
     PG_PASSWORD: ${fn.password(10)}
     REDIS_PASSWORD: ${fn.password(10)}
-    MAILHOG_API_PORT: 1025
 
   onInstall:
     - setPasswordOnRedisNode
@@ -103,12 +102,6 @@ application:
               nodeGroup: cp
               vars:
                 EMAIL_BACKEND: django.core.mail.backends.smtp.EmailBackend
-                EMAIL_HOST: EMAIL_HOST_PLACEHOLDER
-                EMAIL_PORT: EMAIL_PORT_PLACEHOLDER
-                EMAIL_HOST_USER: EMAIL_HOST_USER_PLACEHOLDER
-                EMAIL_HOST_PASSWORD: EMAIL_HOST_PASSWORD_PLACEHOLDER
-                EMAIL_USE_TLS: EMAIL_USE_TLS_PLACEHOLDER
-                EMAIL_USE_SSL: EMAIL_USE_SSL_PLACEHOLDER
     prepareDatabase:
       - createDatabase
     createDatabase:
