@@ -89,6 +89,7 @@ pipeline {
           FRONTEND_JPS = 'manifest.jps'
           helpers.getFrontendE2eManifests(FRONTEND_JPS, E2E_JPS, COMMON_FRONTEND_BASEURL)
           helpers.deploy(FRONTEND_JPS, CONSUMER_FRONTEND_APP_NAME, CONSUMER_FRONTEND_NAME, GIT_COMMIT, IMAGE_TYPE)
+          helpers.mountRemoteFolder(CONSUMER_FRONTEND_NAME, 'cp', '/home/node/emails', CONSUMER_BACKEND_NAME_USR, 'cp', '/app/emails')
           helpers.runE2eTests(E2E_JPS, CONSUMER_FRONTEND_NAME, CONSUMER_FRONTEND_APP_NAME, IMAGE_TYPE)
         }
       }
@@ -103,6 +104,7 @@ pipeline {
           FRONTEND_JPS = 'manifest.jps'
           helpers.getFrontendE2eManifests(FRONTEND_JPS, E2E_JPS, COMMON_FRONTEND_BASEURL)
           helpers.deploy(FRONTEND_JPS, MGMT_FRONTEND_APP_NAME, MGMT_FRONTEND_NAME, GIT_COMMIT, IMAGE_TYPE)
+          helpers.mountRemoteFolder(MGMT_FRONTEND_NAME, 'cp', '/home/node/emails', MGMT_BACKEND_NAME_USR, 'cp', '/app/emails')
           helpers.runE2eTests(E2E_JPS, MGMT_FRONTEND_NAME, MGMT_FRONTEND_APP_NAME, IMAGE_TYPE)
         }
       }

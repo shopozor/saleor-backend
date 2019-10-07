@@ -44,16 +44,19 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
 
-DEFAULT_COUNTRY = os.environ.get("DEFAULT_COUNTRY", "CH")
-DEFAULT_CURRENCY = os.environ.get("DEFAULT_CURRENCY", "CHF")
+DEFAULT_COUNTRY = os.getenv("DEFAULT_COUNTRY", "CH")
+DEFAULT_CURRENCY = os.getenv("DEFAULT_CURRENCY", "CHF")
 
 WSGI_APPLICATION = "shopozor.wsgi.application"
 
-EMAIL_HOST = os.environ.get('EMAIL_HOST')
-EMAIL_PORT = os.environ.get('EMAIL_PORT')
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
-EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', False)
-EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', False)
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+if EMAIL_BACKEND == 'django.core.mail.backends.smtp.EmailBackend':
+    EMAIL_HOST = os.getenv('EMAIL_HOST')
+    EMAIL_PORT = os.getenv('EMAIL_PORT')
+    EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', '')
+    EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', '')
+    EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', False)
+    EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', False)
+elif EMAIL_BACKEND == 'django.core.mail.backends.filebased.EmailBackend':
+    EMAIL_FILE_PATH = os.getenv('EMAIL_FILE_PATH')
