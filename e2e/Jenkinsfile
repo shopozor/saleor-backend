@@ -27,32 +27,6 @@ pipeline {
         helpers.publishBackendDockerImage('shopozor-backend', GIT_COMMIT, ENABLE_DEV_TOOLS, IMAGE_TYPE)
       }
     }
-    stage('Starting up consumer backend environment') {
-      environment {
-        BACKEND_JPS = 'manifest.jps'
-        E2E_JPS = 'e2e/e2e.jps'
-        GITHUB_CREDENTIALS = credentials('github-credentials')
-      }
-      steps {
-        script {
-          helpers.deploy(BACKEND_JPS, BACKEND_APP_NAME, CONSUMER_BACKEND_NAME_USR, GIT_COMMIT, IMAGE_TYPE)
-          helpers.resetDatabase(E2E_JPS, CONSUMER_BACKEND_NAME_USR, BACKEND_APP_NAME, IMAGE_TYPE)
-        }
-      }
-    }
-    stage('Starting up management backend environment') {
-      environment {
-        BACKEND_JPS = 'manifest.jps'
-        E2E_JPS = 'e2e/e2e.jps'
-        GITHUB_CREDENTIALS = credentials('github-credentials')
-      }
-      steps {
-        script {
-          helpers.deploy(BACKEND_JPS, BACKEND_APP_NAME, MGMT_BACKEND_NAME_USR, GIT_COMMIT, IMAGE_TYPE)
-          helpers.resetDatabase(E2E_JPS, MGMT_BACKEND_NAME_USR, BACKEND_APP_NAME, IMAGE_TYPE)
-        }
-      }
-    }
     stage('Publishing consumer frontend docker image') {
       steps {
         script {
@@ -76,6 +50,32 @@ pipeline {
             string(name: 'IMAGE_TYPE', value: IMAGE_TYPE),
             string(name: 'REPO', value: "management-frontend"),
           ]
+        }
+      }
+    }
+    stage('Starting up consumer backend environment') {
+      environment {
+        BACKEND_JPS = 'manifest.jps'
+        E2E_JPS = 'e2e/e2e.jps'
+        GITHUB_CREDENTIALS = credentials('github-credentials')
+      }
+      steps {
+        script {
+          helpers.deploy(BACKEND_JPS, BACKEND_APP_NAME, CONSUMER_BACKEND_NAME_USR, GIT_COMMIT, IMAGE_TYPE)
+          helpers.resetDatabase(E2E_JPS, CONSUMER_BACKEND_NAME_USR, BACKEND_APP_NAME, IMAGE_TYPE)
+        }
+      }
+    }
+    stage('Starting up management backend environment') {
+      environment {
+        BACKEND_JPS = 'manifest.jps'
+        E2E_JPS = 'e2e/e2e.jps'
+        GITHUB_CREDENTIALS = credentials('github-credentials')
+      }
+      steps {
+        script {
+          helpers.deploy(BACKEND_JPS, BACKEND_APP_NAME, MGMT_BACKEND_NAME_USR, GIT_COMMIT, IMAGE_TYPE)
+          helpers.resetDatabase(E2E_JPS, MGMT_BACKEND_NAME_USR, BACKEND_APP_NAME, IMAGE_TYPE)
         }
       }
     }
