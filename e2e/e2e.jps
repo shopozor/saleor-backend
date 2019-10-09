@@ -36,7 +36,7 @@ application:
     fillDatabase:
       cmd [cp]:
         - cd /app
-        - python3 ./manage.py setup_e2e_data
+        - python3 ./manage.py setup_e2e_data --fixture-variant large --settings features.settings
     runServer:
       - restartService:
           nodeGroup: cp
