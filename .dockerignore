@@ -3,7 +3,6 @@
 **/*.sqlite
 **/media
 **/static
-/features/
 /future_features/
 /production/
 /e2e/
