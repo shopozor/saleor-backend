@@ -86,7 +86,7 @@ application:
                 DATABASE_URL: postgres://${globals.PG_DB_USERNAME}:${globals.PG_USER_PASSWORD}@${nodes.sqldb.intIP}:5432/${globals.PG_DB_NAME}
                 CACHE_URL: redis://:${globals.REDIS_PASSWORD}@${nodes.nosqldb.intIP}:6379/0
                 ALLOWED_HOSTS: ${env.envName}.hidora.com
-      - if ("${settings.imageType}" == "e2e"):
+      - if ("IMAGE_TYPE" == "e2e"):
         - api:
           - method: jelastic.environment.control.AddContainerEnvVars
             params:
@@ -110,7 +110,7 @@ application:
          - psql -U webadmin -d postgres -c "CREATE ROLE ${globals.PG_DB_USERNAME} PASSWORD '${globals.PG_USER_PASSWORD}' SUPERUSER CREATEDB CREATEROLE INHERIT LOGIN;"
          - psql -U webadmin -d postgres -c "CREATE DATABASE ${globals.PG_DB_NAME} OWNER ${globals.PG_DB_USERNAME} ENCODING 'utf-8' TEMPLATE template0;"
         user: root
-      - if ("${settings.imageType}" == "e2e"):
+      - if ("IMAGE_TYPE" == "e2e"):
         - api:
           - method: jelastic.environment.control.AddContainerEnvVars
             params:

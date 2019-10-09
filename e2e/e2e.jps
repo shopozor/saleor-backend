@@ -20,8 +20,8 @@ application:
       cmd[sqldb]:
         - jem passwd set -p ${globals.PG_PASSWORD}
         - export PGPASSWORD='${globals.PG_PASSWORD}'
-        - psql -U webadmin -d postgres -c "DROP DATABASE IF EXISTS $PG_DB_NAME"
-        - psql -U webadmin -d postgres -c "DROP ROLE IF EXISTS $PG_DB_USERNAME"
+        - psql -U webadmin -d postgres -c "DROP DATABASE IF EXISTS $PG_DB_NAME;"
+        - psql -U webadmin -d postgres -c "DROP ROLE IF EXISTS $PG_DB_USERNAME;"
       user: root
     createDatabase:
       cmd[sqldb]:
