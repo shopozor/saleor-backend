@@ -44,7 +44,7 @@ def add_initial_vat_rate_types(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('shopozor', '0009_staff_description'),
+        ('shopozor', '0012_auto_20191010_0336'),
     ]
 
     operations = [

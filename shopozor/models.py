@@ -44,9 +44,9 @@ class Product(models.Model):
     )
     conservation_mode = models.CharField(max_length=256, blank=True)
     conservation_until = models.DateField()
-    vat_rate = models.FloatField(default=0)
+    vat_rate = models.DecimalField(max_digits=5, decimal_places=4, default=0)
 
 
 class MarginDefinitions(models.Model):
     role = models.CharField(max_length=32, blank=True)
-    margin = models.FloatField(default=0)
+    margin = models.DecimalField(max_digits=6, decimal_places=2, default=0)

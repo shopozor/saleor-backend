@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('shopozor', '0011_product_vat_rate'),
+        ('shopozor', '0009_staff_description'),
     ]
 
     operations = [

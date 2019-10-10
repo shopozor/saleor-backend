@@ -23,7 +23,7 @@ def add_initial_margin_defns(apps, schema_editor):
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('shopozor', '0012_margindefinitions'),
+        ('shopozor', '0010_margindefinitions'),
     ]
 
     operations = [
