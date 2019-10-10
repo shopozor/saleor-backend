@@ -60,7 +60,8 @@ application:
     REDIS_PASSWORD: ${fn.password(10)}
 
   onInstall:
-    - installNfsCommon
+    - if ("IMAGE_TYPE" == "e2e"):
+      - installNfsCommon
     - setPasswordOnRedisNode
     - setEnvVars
     - prepareDatabase
@@ -70,7 +71,8 @@ application:
     - sendEmailWithPasswords
   actions:
     installNfsCommon:
-      cmd [cp]:
+      # this allows to mount remote folder for test purposes
+      - cmd [cp]:
         - apt install -y nfs-common
     setPasswordOnRedisNode:
       - replaceInFile:
