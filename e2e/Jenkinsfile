@@ -8,6 +8,7 @@ pipeline {
     CONSUMER_BACKEND_NAME = credentials('consumer-backend-name-credentials') // contains envName + base jps url
     CONSUMER_FRONTEND_APP_NAME = 'shopozor-consumer-frontend'
     CONSUMER_FRONTEND_NAME = credentials('consumer-frontend-name-credentials') // contains envName
+    DOCKER_CREDENTIALS = credentials('docker-credentials')
     ENABLE_DEV_TOOLS = true
     FRONTEND_BRANCH = 'dev'
     IMAGE_TYPE = 'e2e'
