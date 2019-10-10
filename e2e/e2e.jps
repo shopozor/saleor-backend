@@ -32,11 +32,12 @@ application:
     migrateDB:
       cmd [cp]:
         - cd /app
-        - python3 ./manage.py migrate
+        - python3 manage.py migrate
     fillDatabase:
       cmd [cp]:
         - cd /app
-        - python3 ./manage.py setup_e2e_data --fixture-variant large --settings features.settings
+        - python3 manage.py generate_django_fixtures --settings features.settings
+        - python3 manage.py setup_e2e_data --fixture-variant large --settings features.settings
     runServer:
       - restartService:
           nodeGroup: cp
