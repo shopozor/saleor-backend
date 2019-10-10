@@ -24,7 +24,9 @@ pipeline {
   stages {
     stage('Publishing backend docker image') {
       steps {
-        helpers.publishBackendDockerImage('shopozor-backend', GIT_COMMIT, ENABLE_DEV_TOOLS, IMAGE_TYPE)
+        script {
+          helpers.publishBackendDockerImage('shopozor-backend', GIT_COMMIT, ENABLE_DEV_TOOLS, IMAGE_TYPE)
+        }
       }
     }
     stage('Publishing consumer frontend docker image') {
