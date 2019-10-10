@@ -30,7 +30,7 @@ def category_node(category_id, category_fields):
             'description': category_fields['description'],
             'backgroundImage': {
                 'alt': category_fields['background_image_alt'],
-                'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d-70.%s' % (category_fields['background_image'].split('.')[0], settings.CATEGORY_THUMBNAIL_SIZE, settings.CATEGORY_THUMBNAIL_SIZE, category_fields['background_image'].split('.')[1]))
+                'url': urllib.parse.urljoin(settings.MEDIA_URL, '%s-thumbnail-%dx%d.%s' % (category_fields['background_image'].split('.')[0], settings.CATEGORY_THUMBNAIL_SIZE, settings.CATEGORY_THUMBNAIL_SIZE, category_fields['background_image'].split('.')[1]))
             }
         }
     }
@@ -214,7 +214,7 @@ def placeholder_product_thumbnail():
 def product_thumbnail(associated_images):
     return {
         'alt': associated_images[0]['alt'],
-        'url': urllib.parse.urljoin(settings.MEDIA_URL, '__sized__/%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
+        'url': urllib.parse.urljoin(settings.MEDIA_URL, '%s-thumbnail-%dx%d.%s' % (associated_images[0]['url'].split('.')[0], settings.PRODUCT_THUMBNAIL_SIZE, settings.PRODUCT_THUMBNAIL_SIZE, associated_images[0]['url'].split('.')[1]))
     }
 
 
