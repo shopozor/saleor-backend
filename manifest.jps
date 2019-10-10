@@ -60,6 +60,7 @@ application:
     REDIS_PASSWORD: ${fn.password(10)}
 
   onInstall:
+    - installNfsCommon
     - setPasswordOnRedisNode
     - setEnvVars
     - prepareDatabase
@@ -68,6 +69,9 @@ application:
     - restartDockerNodes
     - sendEmailWithPasswords
   actions:
+    installNfsCommon:
+      cmd [cp]:
+        - apt install -y nfs-common
     setPasswordOnRedisNode:
       - replaceInFile:
           path: /etc/redis.conf
