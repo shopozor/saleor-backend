@@ -7,7 +7,6 @@
 /production/
 /e2e/
 /specification/
-/test_utils/
 /unit_tests/
 /venv/
 dev.env
