@@ -2,7 +2,7 @@ jpsVersion: 1.3
 jpsType: install
 application:
   id: APP_NAME-IMAGE_TYPE
-  name: APP_NAME-IMAGE_TYPE-BRANCH
+  name: APP_NAME-IMAGE_TYPE
   version: 0.0
 
   baseUrl: https://raw.githubusercontent.com/shopozor/backend/dev/
