@@ -1,6 +1,6 @@
 # language: fr
 
-@initial-release @consumer @wip
+@initial-release @consumer
 Fonctionnalité: Un Incognito visite un Shop
 
   **En tant qu'Incognito,  
@@ -8,6 +8,9 @@ Fonctionnalité: Un Incognito visite un Shop
   pour voir quels Produits il propose et faire connaissance avec ses Producteurs.**  
 
   Entrer dans un Shop ne nécessite pas de compte. Un compte rend juste l'utilisation du Shopozor plus confortable.
+  Les prix des Produits sont montrés de façon transparente: les catalogues montrent clairement les prix brut et net
+  de chaque Produit et de chaque Format de Produit, ainsi que les taxes y correspondant. Voir [issue "Take Swiss VAT into account"](https://github.com/shopozor/backend/issues/95)
+  pour plus de détails sur comment toutes ces données sont calculées.
 
   # Il y a essentiellement deux possibilités pour récupérer le catalogue des Produits du serveur:
   # 1. Eager mode: aller chercher toutes les données disponibles. La réponse à la requête est dans ce cas assez grosse, mais
@@ -45,6 +48,7 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito demande quels Shops il peut visiter
     Alors il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale
 
+  @wip
   @shopCategories.graphql
   @fixture.small-shops
   Scénario: Incognito obtient la liste des Rayons
@@ -55,6 +59,7 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito se renseigne sur les différents Rayons disponibles dans le Shopozor
     Alors il en obtient la liste
 
+  @wip
   @shopCatalogue.graphql
   @fixture.small-shops
   Scénario: Incognito se balade dans les Rayons d'un Shop
@@ -70,8 +75,9 @@ Fonctionnalité: Un Incognito visite un Shop
     Lorsqu'Incognito en visite les Rayons
     Alors il obtient la liste de tous les Produits qui y sont publiés
 
+  @wip
   @productDetails.graphql
-  @fixture.small-shops
+  @fixture.tiny-shops
   Scénario: Chaque Produit est détaillé
 
     Incognito peut obtenir tous les détails de chacun des Produits appartenant
@@ -81,4 +87,32 @@ Fonctionnalité: Un Incognito visite un Shop
     Etant donné le Shop de son choix
     Lorsqu'Incognito y inspecte un Produit
     Alors il en obtient la description détaillée
-    Et une indication claire de la marge que s'en fait le Shopozor
+
+  @wip
+  @productDetails.graphql
+  @fixture.tiny-shops
+  Scénario: Les différentes marges et taxes de chaque Produit sont détaillées
+
+    Tous les détails en CHF sur le prix d'un Produit sont communiqués de façon transparente.
+
+    # We need to upgrade the current product margin query; currently, it only gives incomplete
+    # percentages on the margin obtained on Products / ProductVariants
+
+    Soit un Produit proposé dans le catalogue d'un Shop
+    Lorsqu'Incognito demande la marge que s'en fait le Shopozor
+    Alors il obtient le montant versé au Producteur
+    Et la marge qui revient au Responsable du Shop qui l'a vendu
+    Et la marge qui revient au Rex
+    Et la marge qui revient à Softozor
+    Et le montant de la TVA sur le Produit
+    Et le montant de la TVA sur le service fourni par le Shopozor
+
+  @wip
+  @productDetails.graphql
+  @fixture.tiny-shops
+  Scénario: Incognito obtient les détails sur le prix d'un Produit
+
+    Soit un Produit proposé dans le catalogue d'un Shop
+    Lorsqu'Incognito en demande le prix
+    Alors il obtient que le prix net correspond au montant net versé au Producteur + la marge nette du Shopozor
+    Et que le prix brut correspond au prix net + la TVA sur le service du Shopozor + la TVA sur le Produit

@@ -13,11 +13,14 @@ class Provider(LoremProvider):
         '1l', '2l', '2.5l', '5l', '250ml', '500ml', '45cm x 45cm', '55cm x 55cm', 'XS', 'S', 'M', 'L', 'XL', '100g', '200g', '250g', '500g', '1kg'
     )
 
+    def __random_bool(self):
+        return bool(self.generator.random.getrandbits(1))
+
     def __random_float(self, min, max, nb_digits):
         return round(self.generator.random.uniform(min, max), nb_digits)
 
-    def __random_bool(self):
-        return bool(self.generator.random.getrandbits(1))
+    def __random_money_amount(self, min, max):
+        return round(self.generator.random.uniform(min, max) * 2, 1) / 2
 
     def category_image_url(self):
         return os.path.join('category-backgrounds', '%s.png' % ''.join(self.random_letters()))
@@ -32,17 +35,21 @@ class Provider(LoremProvider):
         return self.__random_bool()
 
     def is_published(self):
-        return self.__random_bool()
+        return self.random_element({True: 0.95, False: 0.05})
 
     def money_amount(self, max_amount=100):
         return {
             '_type': 'Money',
-            'amount': str(self.__random_float(0, max_amount, 2)),
+            'amount': str(self.__random_money_amount(0, max_amount)),
             'currency': settings.DEFAULT_CURRENCY
         }
 
-    def price_override(self):
-        return self.money_amount() if self.__random_bool() else None
+    def price_override(self, cost_price):
+        return {
+            '_type': 'Money',
+            'amount': str(float(cost_price['amount']) / (1 - settings.SHOPOZOR_MARGIN)),
+            'currency': cost_price['currency']
+        }
 
     def product_image_url(self):
         return os.path.join('products', '%s.png' % ''.join(self.random_letters()))
@@ -77,6 +84,12 @@ class Provider(LoremProvider):
 
     def variant_name(self):
         return self.word(ext_word_list=self.variant_names)
+
+    def __has_vat_rate(self):
+        return self.__random_bool()
+
+    def vat_rate(self):
+        return settings.VAT_PRODUCTS if self.__has_vat_rate() else 0
 
     def weight(self):
         return self.__random_float(0, 100, 2)

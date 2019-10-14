@@ -8,6 +8,18 @@ import os
 
 
 variants = {
+    'tiny': {
+        '#consumers': 1,
+        '#producers': 1,
+        '#managers': 1,
+        '#rex': 1,
+        '#softozor': 1,
+        '#products': 1,
+        '#shops': 1,
+        '#max(variants/product)': 1,
+        '#max(producers/shop)': 1,
+        '#max(products/producer)': 1
+    },
     'small': {
         '#consumers': 50,
         '#producers': 16,
@@ -28,7 +40,7 @@ variants = {
         '#softozor': 1,
         '#products': 300,
         '#shops': 5,
-        '#max(variants/product)': 7,
+        '#max(variants/product)': 5,
         '#max(producers/shop)': 6,
         '#max(products/producer)': 10
     },
@@ -40,7 +52,7 @@ variants = {
         '#softozor': 1,
         '#products': 5000,
         '#shops': 20,
-        '#max(variants/product)': 10,
+        '#max(variants/product)': 7,
         '#max(producers/shop)': 7,
         '#max(products/producer)': 25
     }
@@ -48,6 +60,9 @@ variants = {
 
 
 def generate_variant(variant_name, output_folder):
+
+    print('#############################################')
+    print('Generating data for %s variant' % variant_name)
 
     variant = variants[variant_name]
     os.makedirs(os.path.join(output_folder, variant_name), exist_ok=True)
@@ -121,8 +136,16 @@ def generate_variant(variant_name, output_folder):
         producers, productstaff, product_variants, variant['#shops'])
     shopozor.extend(shops)
 
+    vat_layer = factory.create_vat_layer()
+    shopozor.extend(vat_layer)
+
+    margin_defns = factory.create_margindefns()
+    shopozor.extend(margin_defns)
+
     json.dump(shopozor, os.path.join(
         output_folder, variant_name, 'Shopozor.json'))
+
+    print('#############################################')
 
 
 class Command(BaseCommand):
@@ -131,9 +154,15 @@ class Command(BaseCommand):
     def add_arguments(self, parser):
         parser.add_argument('-o', '--output-folder', type=str, default=settings.FIXTURE_DIRS[0],
                             help='Folder where to output the JSON files containing the users and passwords')
+        parser.add_argument('--fixture-variant', type=str, default='all',
+                            help='Fixture variant: tiny, small, medium, large, or all')
 
     def handle(self, *args, **options):
         output_folder = options['output_folder']
+        fixture_variant = options['fixture_variant']
 
-        for variant in variants:
-            generate_variant(variant, output_folder)
+        if fixture_variant == 'all':
+            for variant in 'tiny', 'small', 'medium', 'large':
+                generate_variant(variant, output_folder)
+        else:
+            generate_variant(fixture_variant, output_folder)

@@ -1,7 +1,7 @@
 from behave import use_fixture
 from behave.fixture import use_fixture_by_tag
 from django.contrib.auth.models import AnonymousUser
-from features.fixtures import user_accounts, login, signup, password_reset, small_shops_fixtures
+from features.fixtures import user_accounts, login, signup, password_reset, small_shops_fixtures, tiny_shops_fixtures
 from tests.api.conftest import ApiClient
 
 fixtures_registry = {
@@ -9,7 +9,8 @@ fixtures_registry = {
     'fixture.login': login,
     'fixture.signup': signup,
     'fixture.password-reset': password_reset,
-    'fixture.small-shops': small_shops_fixtures
+    'fixture.small-shops': small_shops_fixtures,
+    'fixture.tiny-shops': tiny_shops_fixtures
 }
 
 

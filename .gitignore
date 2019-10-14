@@ -21,6 +21,7 @@ __pycache__/
 /features/fixtures/small/
 /features/fixtures/medium/
 /features/fixtures/large/
+/features/fixtures/tiny/
 
 # local environment settings
 *.local

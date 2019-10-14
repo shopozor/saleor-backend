@@ -1,3 +1,4 @@
+from django.conf import settings
 from faker import Faker
 from features.faker.providers.geo import Provider as ShopozorGeoProvider
 from features.faker.providers.product import Provider as ProductProvider
@@ -176,9 +177,10 @@ class FakeDataFactory:
         product_ids = [product['pk'] for product in products]
         result = []
         productstaff_pk = 1
+        total_nb_products = 0
         for producer in producers:
             nb_products = self.__fake.random.randint(
-                0, self.__MAX_NB_PRODUCTS_PER_PRODUCER)
+                1, self.__MAX_NB_PRODUCTS_PER_PRODUCER)
             producer_product_ids = self.__get_random_elements(
                 product_ids, nb_products)
             for producer_product_id in producer_product_ids:
@@ -187,6 +189,9 @@ class FakeDataFactory:
                 productstaff_pk += 1
             product_ids = [
                 id for id in product_ids if id not in producer_product_ids]
+            total_nb_products += nb_products
+        print('#products assigned to producers: %d out of %d' %
+              (total_nb_products, len(products)))
         return result
 
     def __shop(self, pk, variant_ids):
@@ -199,9 +204,10 @@ class FakeDataFactory:
 
         producer_ids = [producer['id'] for producer in producers]
 
+        total_nb_producers = 0
         for shop_id in range(0, list_size):
             nb_producers = self.__fake.random.randint(
-                0, self.__MAX_NB_PRODUCERS_PER_SHOP)
+                1, self.__MAX_NB_PRODUCERS_PER_SHOP)
             shop_producer_ids = self.__get_random_elements(
                 producer_ids, nb_producers)
             shop_product_ids = [item['fields']['product_id'] for item in productstaff if item['model']
@@ -211,7 +217,9 @@ class FakeDataFactory:
             producer_ids = [
                 id for id in producer_ids if id not in shop_producer_ids]
             result.append(self.__shop(shop_id + 1, variant_ids))
-
+            total_nb_producers += nb_producers
+        print('#producers assigned to shops: %d out of %d' %
+              (total_nb_producers, len(producers)))
         return result
 
     def __category(self, pk, name):
@@ -259,14 +267,6 @@ class FakeDataFactory:
                 # but not now
                 'has_variants': True,
                 'is_shipping_required': False,
-                'meta': {
-                    'taxes': {
-                        'vatlayer': {
-                            'code': 'standard',
-                            'description': ''
-                        }
-                    }
-                },
                 'name': name,
                 'weight': self.__fake.weight()
             },
@@ -302,16 +302,8 @@ class FakeDataFactory:
                     'entityMap': {}
                 },
                 'is_published': self.__fake.is_published(),
-                'meta': {
-                    'taxes': {
-                        'vatlayer': {
-                            'code': 'standard',
-                            'description': ''
-                        }
-                    }
-                },
                 'name': self.__fake.product_name(),
-                'price': self.__fake.money_amount(),
+                'price': self.__fake.money_amount(max_amount=0),
                 'product_type': producttype_id,
                 'publication_date': self.__fake.publication_date(),
                 'seo_description': description,
@@ -324,6 +316,7 @@ class FakeDataFactory:
 
     def create_products(self, categories, producttypes, list_size=1):
         result = []
+        nb_published_products = 0
         for pk in range(1, list_size + 1):
             category_name = self.__fake.random_element(
                 elements=self.category_types.keys())
@@ -333,8 +326,11 @@ class FakeDataFactory:
                 elements=self.category_types[category_name])
             producttype_id = [
                 type['pk'] for type in producttypes if type['fields']['name'] == producttype_name][0]
-            result.append(self.__product(
-                pk, category_id, producttype_id))
+            product = self.__product(pk, category_id, producttype_id)
+            result.append(product)
+            nb_published_products += int(product['fields']['is_published'])
+        print('#published products: %d out of %d' %
+              (nb_published_products, len(result)))
         return result
 
     def __shopozor_product(self, pk, product_id, publication_date):
@@ -342,7 +338,8 @@ class FakeDataFactory:
             'fields': {
                 'product_id': product_id,
                 'conservation_mode': self.__fake.conservation_mode(),
-                'conservation_until': self.__fake.conservation_until(start_date=publication_date)
+                'conservation_until': self.__fake.conservation_until(start_date=publication_date),
+                'vat_rate': self.__fake.vat_rate()
             },
             'model': 'shopozor.product',
             'pk': pk
@@ -354,14 +351,14 @@ class FakeDataFactory:
 
     def __productvariant(self, pk, product):
         quantity = self.__fake.quantity()
-        price_override = self.__fake.price_override()
-        variant_price = product['fields']['price']['amount'] if price_override is None else price_override['amount']
+        cost_price = self.__fake.variant_cost_price()
         return {
             'fields': {
                 'attributes': '{}',
-                'cost_price': self.__fake.variant_cost_price(max_amount=float(variant_price)),
+                'cost_price': cost_price,
                 'name': self.__fake.variant_name(),
-                'price_override': price_override,
+                # TODO: this value is not really faked; it should not be part of the faker provider
+                'price_override': self.__fake.price_override(cost_price),
                 'product': product['pk'],
                 'quantity': quantity,
                 'quantity_allocated': self.__fake.quantity_allocated(quantity),
@@ -377,9 +374,9 @@ class FakeDataFactory:
         result = []
         pk = 1
         for product in products:
-            # a product with 0 variant might not be something we want --> needs to be tested
+            # any product has at least one variant
             nb_variants = self.__fake.random.randint(
-                0, self.__MAX_NB_VARIANTS_PER_PRODUCT)
+                1, self.__MAX_NB_VARIANTS_PER_PRODUCT)
             for _ in range(0, nb_variants):
                 result.append(self.__productvariant(pk, product))
                 pk += 1
@@ -408,3 +405,45 @@ class FakeDataFactory:
                 result.append(self.__productimage(pk, product_id))
                 pk += 1
         return result
+
+    def __vat(self, pk):
+        return {
+            'model': 'django_prices_vatlayer.vat',
+            'pk': pk,
+            'fields': {
+                'country_code': 'CH',
+                'data': '{"country_name":"Switzerland","standard_rate":%f,"reduced_rates":{"reduced":%f,"special":%f}}'
+                % (settings.VAT_SERVICES * 100, settings.VAT_PRODUCTS * 100, settings.VAT_SPECIAL * 100)
+            }
+        }
+
+    def __ratetypes(self, pk):
+        return {
+            'model': 'django_prices_vatlayer.ratetypes',
+            'pk': pk,
+            'fields': {
+                'types': '["reduced","special"]'
+            }
+        }
+
+    def create_vat_layer(self):
+        return [self.__vat(1), self.__ratetypes(1)]
+
+    def __margindefinition(self, pk, role, margin):
+        return {
+            'model': 'shopozor.margindefinitions',
+            'pk': pk,
+            'fields': {
+                'role': role,
+                'margin': margin
+            }
+        }
+
+    def create_margindefns(self):
+        return [
+            self.__margindefinition(
+                1, 'manager', settings.MANAGER_MARGIN * 100),
+            self.__margindefinition(2, 'rex', settings.REX_MARGIN * 100),
+            self.__margindefinition(
+                3, 'softozor', settings.SOFTOZOR_MARGIN * 100)
+        ]

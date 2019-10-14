@@ -51,5 +51,15 @@ WSGI_APPLICATION = "shopozor.wsgi.application"
 
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
 
+WSGI_APPLICATION = "shopozor.wsgi.application"
+
+REX_MARGIN = 0.05
+SOFTOZOR_MARGIN = 0.05
+MANAGER_MARGIN = 0.05
+
+VAT_PRODUCTS = 0.025
+VAT_SERVICES = 0.077
+VAT_SPECIAL = 0.037
+
 if EMAIL_BACKEND == 'django.core.mail.backends.filebased.EmailBackend':
     EMAIL_FILE_PATH = os.getenv('EMAIL_FILE_PATH')

@@ -53,6 +53,11 @@ def step_impl(context):
     context.shop_id = 1
 
 
+@given(u'un Produit proposé dans le catalogue d\'un Shop')
+def step_impl(context):
+    context.current_product_id = 1
+
+
 @when(u'Incognito demande quels Shops il peut visiter')
 def step_impl(context):
     test_client = context.test.client
@@ -81,6 +86,20 @@ def step_impl(context):
     context.response = query_product_details(test_client, context.product_id)
 
 
+@when(u'Incognito demande la marge que s\'en fait le Shopozor')
+def step_impl(context):
+    test_client = context.test.client
+    product_id = context.current_product_id
+    context.response = query_product_details(test_client, product_id)
+
+
+@when(u'Incognito en demande le prix')
+def step_impl(context):
+    test_client = context.test.client
+    product_id = context.current_product_id
+    context.response = query_product_details(test_client, product_id)
+
+
 @then(u'il obtient pour chaque Shop disponible ses coordonnées géographiques avec sa description générale')
 def step_impl(context):
     context.test.assertEqual(context.expected_shop_list, context.response)
@@ -107,22 +126,127 @@ def details_show_product_purchase_cost(product_details):
     return 'purchaseCost' in product_details
 
 
-def details_show_margin_on_product(product_details):
-    return all(price_type in product_details['pricing']['priceRange'][price_range] for price_range in ('start', 'stop') for price_type in ('gross', 'net', 'tax'))
+def details_show_margin_on_product(persona, product_details):
+    return all(price_type in product_details['margin'][persona][price_range][price_type] for price_range in ('start', 'stop') for price_type in ('gross', 'net', 'tax'))
 
 
 def details_show_variants_cost_prices(product_details):
     return all('costPrice' in variant for variant in product_details['variants'])
 
 
-def details_show_margin_on_variants(product_details):
-    return all(price_type in variant['pricing']['price'] for variant in product_details['variants'] for price_type in ('gross', 'net', 'tax'))
+def details_show_margin_on_variants(persona, product_details):
+    return all(price_type in variant['margin'][persona][price_type] for variant in product_details['variants'] for price_type in ('gross', 'net', 'tax'))
 
 
-@then(u'une indication claire de la marge que s\'en fait le Shopozor')
+def details_show_tax_on_product(tax_name, product_details):
+    return all(tax_name in product_details['pricing']['priceRange'][price_range] for price_range in ('start', 'stop'))
+
+
+def details_show_tax_on_variants(tax_name, product_details):
+    return all(tax_name in variant['pricing']['price'] for variant in product_details['variants'])
+
+
+@then(u'il obtient le montant versé au Producteur')
 def step_impl(context):
     details = context.response['data']['product']
     context.test.assertTrue(details_show_product_purchase_cost(details))
-    context.test.assertTrue(details_show_margin_on_product(details))
     context.test.assertTrue(details_show_variants_cost_prices(details))
-    context.test.assertTrue(details_show_margin_on_variants(details))
+
+
+@then(u'la marge qui revient au Responsable du Shop qui l\'a vendu')
+def step_impl(context):
+    details = context.response['data']['product']
+    context.test.assertTrue(
+        details_show_margin_on_variants('manager', details))
+    context.test.assertTrue(details_show_margin_on_product('manager', details))
+
+
+@then(u'la marge qui revient au Rex')
+def step_impl(context):
+    details = context.response['data']['product']
+    context.test.assertTrue(details_show_margin_on_variants('rex', details))
+    context.test.assertTrue(details_show_margin_on_product('rex', details))
+
+
+@then(u'la marge qui revient à Softozor')
+def step_impl(context):
+    details = context.response['data']['product']
+    context.test.assertTrue(
+        details_show_margin_on_variants('softozor', details))
+    context.test.assertTrue(
+        details_show_margin_on_product('softozor', details))
+
+
+@then(u'le montant de la TVA sur le Produit')
+def step_impl(context):
+    details = context.response['data']['product']
+    context.test.assertTrue(details_show_tax_on_product('productTax', details))
+    context.test.assertTrue(
+        details_show_tax_on_variants('productTax', details))
+
+
+@then(u'le montant de la TVA sur le service fourni par le Shopozor')
+def step_impl(context):
+    details = context.response['data']['product']
+    context.test.assertTrue(details_show_tax_on_product('serviceTax', details))
+    context.test.assertTrue(
+        details_show_tax_on_variants('serviceTax', details))
+
+
+def get_shopozor_margin_on_product(details, price_range, price_type):
+    margin = 0
+    for persona in ('manager', 'rex', 'softozor'):
+        margin += details['margin'][persona][price_range][price_type]['amount']
+    return margin
+
+
+def get_shopozor_margin_on_variant(variant, price_type):
+    margin = 0
+    for persona in ('manager', 'rex', 'softozor'):
+        margin += variant['margin'][persona][price_type]['amount']
+    return margin
+
+
+@then(u'il obtient que le prix net correspond au montant net versé au Producteur + la marge nette du Shopozor')
+def step_impl(context):
+    details = context.response['data']['product']
+    for price_range in ('start', 'stop'):
+        net_price = details['pricing']['priceRange'][price_range]['net']['amount']
+        gross_cost_price = details['purchaseCost'][price_range]['amount']
+        product_vat_rate = details['vatRate']
+        net_cost_price = gross_cost_price / \
+            product_vat_rate if product_vat_rate > 0 else gross_cost_price
+        net_shopozor_margin = get_shopozor_margin_on_product(
+            details, price_range, 'net')
+        context.test.assertAlmostEqual(
+            net_price, net_cost_price + net_shopozor_margin, delta=0.5)
+
+    for variant in details['variants']:
+        net_price = variant['pricing']['price']['net']['amount']
+        gross_cost_price = variant['cost_price']['amount']
+        product_vat_rate = details['vatRate']
+        net_cost_price = gross_cost_price / \
+            product_vat_rate if product_vat_rate > 0 else gross_cost_price
+        net_shopozor_margin = get_shopozor_margin_on_variant(variant, 'net')
+        context.test.assertAlmostEqual(
+            net_price, net_cost_price + net_shopozor_margin, delta=0.5)
+
+
+@then(u'que le prix brut correspond au prix net + la TVA sur le service du Shopozor + la TVA sur le Produit')
+def step_impl(context):
+    details = context.response['data']['product']
+    for price_range in ('start', 'stop'):
+        gross_price = details['pricing']['priceRange'][price_range]['gross']['amount']
+        net_price = details['pricing']['priceRange'][price_range]['net']['amount']
+        service_tax_price = details['pricing']['priceRange'][price_range]['serviceTax']['amount']
+        product_tax_price = details['pricing']['priceRange'][price_range]['productTax']['amount']
+        context.test.assertAlmostEqual(
+            gross_price, net_price + service_tax_price + product_tax_price, delta=0.5)
+
+    for variant in details['variants']:
+        gross_price = variant['pricing']['price']['gross']['amount']
+        net_price = variant['pricing']['price']['net']['amount']
+        service_tax_price = variant['pricing']['price']['serviceTax']['amount']
+        product_tax_price = variant['pricing']['price']['productTax']['amount']
+        context.test.assertAlmostEqual(
+            gross_price, net_price + service_tax_price + product_tax_price, delta=0.5)

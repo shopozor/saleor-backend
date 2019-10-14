@@ -1,5 +1,9 @@
 # language: fr
 
+# TODO: créer un Produit sans spécifier la TVA est invalide
+# TODO: un Produit sans cost_price ou sans price est invalide <-- ceci est défini au moment de créer les Formats de Produit!
+# TODO: attention! le cost_price dans notre db est le gross_cost_price!
+# TODO: pour publier un Produit, le Producteur doit avoir le droit de publier dans une liste de Shops définie par le Rex
 # TODO: 1. pour publier un Produit, le Producteur doit avoir le droit de publier dans une liste de Shops définie par le Rex
 # TODO: 2. le Producteur peut indiquer soit le prix de revient (cost_price) soit le prix qu'il veut voir affiché sur la plateforme (net price)
 # TODO: --> ajouter les scénarios y relatifs et corriger l'API si nécessaire

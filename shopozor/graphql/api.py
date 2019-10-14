@@ -13,9 +13,12 @@ import graphene
 # from saleor.graphql.shop.schema import ShopMutations, ShopQueries
 
 from shopozor.graphql.auth.schema import AuthMutations, AuthQueries
+from shopozor.graphql.shop.schema import ShopsQueries
 
 
-class Query(AuthQueries):
+class Query(
+        AuthQueries,
+        ShopsQueries):
     node = graphene.Node.Field()
 
 
