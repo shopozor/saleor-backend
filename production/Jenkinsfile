@@ -1,35 +1,29 @@
+def helpers = new ch.softozor.pipeline.Helpers()
+
 pipeline {
   agent any
   environment {
-    DOCKER_CREDENTIALS = credentials('docker-credentials')
+    APP_NAME = "shopozor-backend"
+    ENABLE_DEV_TOOLS = "true"
+    IMAGE_TYPE = "production"
     JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
     JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
-    PRODUCTION_DOCKER_REPO = "softozor/shopozor-backend:$TAG"
-    PATH_TO_JPS = "./production/manifest.jps"
-    PRODUCTION_ENV_NAME = "shopozor-backend"
-    STAGING_DOCKER_REPO = "softozor/shopozor-backend:$STAGING_BRANCH"
-    STAGING_ENV_NAME = "shopozor-backend-staging"
+    PRODUCTION_ENV_NAME = APP_NAME
+    STAGING_ENV_NAME = "${APP_NAME}-staging"
   }
   stages {
     stage('Publish staging docker container') {
       steps {
         script {
-            sh "cp production/Dockerfile production/.dockerignore ."
-            sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
-            sh "docker build --network=host -t $STAGING_DOCKER_REPO ."
-            sh "docker push $STAGING_DOCKER_REPO"
+          helpers.publishBackendDockerImage(APP_NAME, STAGING_BRANCH, ENABLE_DEV_TOOLS, IMAGE_TYPE)
         }
       }
     }
     stage('Deploy staging environment') {
       steps {
         script {
-          sh "cp $PATH_TO_JPS manifest.jps"
-          sh "sed -i \"s/DOCKER_TAG/$STAGING_BRANCH/g\" manifest.jps"
-          SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
-          sh "chmod u+x $SCRIPT_TO_RUN"
-          sh "dos2unix $SCRIPT_TO_RUN"
-          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $STAGING_ENV_NAME cp manifest.jps $STAGING_BRANCH"
+          jps = "manifest.jps"
+          helpers.deploy(jps, APP_NAME, STAGING_ENV_NAME, STAGING_BRANCH, IMAGE_TYPE)
         }
       }
     }
@@ -44,11 +38,7 @@ pipeline {
     stage('Stop staging environment') {
       steps {
         script {
-          sh "dos2unix ./production/helpers.sh"
-          SCRIPT_TO_RUN = './production/stop-jelastic-env.sh'
-          sh "dos2unix $SCRIPT_TO_RUN"
-          sh "chmod u+x $SCRIPT_TO_RUN"
-          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $STAGING_ENV_NAME"
+          helpers.stopEnvironment(STAGING_ENV_NAME)
         }
       }
     }
@@ -58,40 +48,31 @@ pipeline {
       }
       steps {
         script {
-          def originUrl = "https://$GITHUB_CREDENTIALS_USR:$GITHUB_CREDENTIALS_PSW@" + GIT_URL.drop(8)
-          sh "git remote rm origin"
-          sh "git remote add origin $originUrl"
-          sh "git tag $TAG -m \"$DESCRIPTION\""
-          sh "git push origin $TAG"
-          sh "git checkout $TAG"
+          helpers.tagAndPush(TAG, DESCRIPTION)
         }
       }
     }
     stage('Publish production docker container') {
       steps {
         script {
-            sh "cp production/Dockerfile production/.dockerignore ."
-            sh "docker login -u $DOCKER_CREDENTIALS_USR -p $DOCKER_CREDENTIALS_PSW"
-            sh "docker build --network=host -t $PRODUCTION_DOCKER_REPO ."
-            sh "docker push $PRODUCTION_DOCKER_REPO"
+          helpers.publishBackendDockerImage(APP_NAME, TAG, ENABLE_DEV_TOOLS, IMAGE_TYPE)
         }
       }
     }
     stage('Deploy production environment') {
       steps {
         script {
-          sh "cp $PATH_TO_JPS manifest.jps"
-          sh "sed -i \"s/DOCKER_TAG/$TAG/g\" manifest.jps"
-          SCRIPT_TO_RUN = './production/deploy-to-jelastic.sh'
-          sh "chmod u+x $SCRIPT_TO_RUN"
-          sh "dos2unix $SCRIPT_TO_RUN"
-          sh "$SCRIPT_TO_RUN $JELASTIC_APP_CREDENTIALS_USR $JELASTIC_APP_CREDENTIALS_PSW $JELASTIC_CREDENTIALS_USR $JELASTIC_CREDENTIALS_PSW $PRODUCTION_ENV_NAME cp manifest.jps $TAG"
+          jps = "manifest.jps"
+          helpers.deploy(jps, APP_NAME, PRODUCTION_ENV_NAME, TAG, IMAGE_TYPE)
         }
       }
     }
     stage('Check production environment') {
       steps {
-        build job: 'security', parameters: [[$class: 'StringParameterValue', name: 'HIDORA_DOMAIN', value: PRODUCTION_ENV_NAME]]
+        build job: 'security', parameters: [
+          string(name: 'HIDORA_DOMAIN', value: PRODUCTION_ENV_NAME),
+          string(name: 'APPLICATION_TYPE', value: 'backend')
+        ]
       }
     }
   }

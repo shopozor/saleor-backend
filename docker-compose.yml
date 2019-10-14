@@ -1,0 +1,36 @@
+version: '2'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+      args:
+        ENABLE_DEV_TOOLS: "true"
+    restart: unless-stopped
+    networks:
+      - shopozor-backend-tier
+    env_file: dev.env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:11.2-alpine
+    restart: unless-stopped
+    networks:
+      - shopozor-backend-tier
+    volumes:
+      - shopozor-db:/var/lib/postgresql
+    environment:
+      - POSTGRES_USER=saleor
+      - POSTGRES_PASSWORD=saleor
+
+volumes:
+  shopozor-db:
+    driver: local
+
+networks:
+  shopozor-backend-tier:
+    driver: bridge

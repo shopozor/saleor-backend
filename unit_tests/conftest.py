@@ -4,7 +4,7 @@ import pytest
 
 from django.conf import settings
 from django.contrib.sites.models import Site
-
+from shopozor.emails import EmailSender
 from saleor.account.models import User
 from saleor.site.models import SiteSettings
 
@@ -27,5 +27,9 @@ def site_settings(db, settings):
 
 @pytest.fixture
 def customer_user(db):
-    user = User.objects.create_user("test@example.com")
-    return user
+    return User.objects.create_user("test@example.com")
+
+
+@pytest.fixture
+def email_sender():
+    return EmailSender()

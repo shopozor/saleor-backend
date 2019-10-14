@@ -12,7 +12,7 @@ from saleor.account.models import User
 from saleor.graphql.core.mutations import CreateToken, ModelMutation, BaseMutation
 from saleor.graphql.core.types import Error
 
-from shopozor.emails import send_activate_account_email, send_hacker_abuse_email_notification, send_password_reset
+from shopozor.emails import EmailSender
 from shopozor.exceptions import HackerAbuseException
 from shopozor.models import HackerAbuseEvents
 from shopozor.tokens import activation_token_generator, INVALID_TOKEN
@@ -72,6 +72,7 @@ class ConsumerCreateInput(graphene.InputObjectType):
 
 
 class ConsumerCreate(ModelMutation):
+
     class Arguments:
         input = ConsumerCreateInput(
             description="Fields required to create a customer.", required=True
@@ -87,7 +88,8 @@ class ConsumerCreate(ModelMutation):
             validate_password(instance.password)
             instance.is_active = False
             super().save(info, instance, cleaned_input)
-            send_activate_account_email(instance.pk)
+            email_sender = EmailSender()
+            email_sender.send_activate_account_email(instance.pk)
         except ValidationError as error:
             errors = error.error_list
             errors.insert(0, ValidationError("PASSWORD_NOT_COMPLIANT"))
@@ -121,7 +123,8 @@ class ConsumerCreate(ModelMutation):
 
     @staticmethod
     def report_hacker_abuse(user):
-        send_hacker_abuse_email_notification(user.email)
+        email_sender = EmailSender()
+        email_sender.send_hacker_abuse_email_notification(user.email)
         HackerAbuseEvents(user=user).save()
 
 
@@ -174,7 +177,8 @@ class PasswordReset(BaseMutation):
     def perform_mutation(cls, _root, info, email):
         try:
             user = User.objects.get(email=email)
-            send_password_reset(user)
+            email_sender = EmailSender()
+            email_sender.send_password_reset(user)
         except ObjectDoesNotExist:
             pass
 

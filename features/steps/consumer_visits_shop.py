@@ -126,14 +126,17 @@ def details_show_product_purchase_cost(product_details):
     return 'purchaseCost' in product_details
 
 
-def details_show_margin_on_product(persona, product_details):
+  def details_show_margin_on_product(persona, product_details):
     return all(price_type in product_details['margin'][persona][price_range][price_type] for price_range in ('start', 'stop') for price_type in ('gross', 'net', 'tax'))
 
+def details_show_margin_on_product(product_details):
+    return all(price_type in product_details['pricing']['priceRange'][price_range] for price_range in ('start', 'stop') for price_type in ('gross', 'net', 'tax'))
+  
 
 def details_show_variants_cost_prices(product_details):
     return all('costPrice' in variant for variant in product_details['variants'])
 
-
+  
 def details_show_margin_on_variants(persona, product_details):
     return all(price_type in variant['margin'][persona][price_type] for variant in product_details['variants'] for price_type in ('gross', 'net', 'tax'))
 
@@ -152,7 +155,7 @@ def step_impl(context):
     context.test.assertTrue(details_show_product_purchase_cost(details))
     context.test.assertTrue(details_show_variants_cost_prices(details))
 
-
+    
 @then(u'la marge qui revient au Responsable du Shop qui l\'a vendu')
 def step_impl(context):
     details = context.response['data']['product']

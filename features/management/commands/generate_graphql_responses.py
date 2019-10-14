@@ -2,7 +2,6 @@ from django.conf import settings
 from django.core.management.base import BaseCommand
 from features.utils.graphql.responses_generator import ShopCategoriesGenerator, ShopListsGenerator, ProductListsGenerator
 
-
 def generate_responses_for_variant(output_folder, variant):
 
     generator = ShopListsGenerator(output_folder, variant)
@@ -13,7 +12,6 @@ def generate_responses_for_variant(output_folder, variant):
 
     generator = ProductListsGenerator(output_folder, variant)
     generator.generate()
-
 
 class Command(BaseCommand):
     help = 'Generate the JSON expected responses to the GraphQL queries tested in the acceptance tests.'

@@ -1,3 +1,5 @@
+def helpers = new ch.softozor.pipeline.Helpers()
+
 pipeline {
   agent {
     docker {
@@ -43,14 +45,25 @@ pipeline {
         sh ". $VENV/bin/activate && python manage.py behave --junit --junit-directory $REPORTS_FOLDER --tags ~wip"
       }
     }
+    stage('Building specification') {
+      environment {
+        SOFTOZOR_CREDENTIALS = credentials('softozor-credentials')
+      }
+      steps {
+        script {
+          if(GIT_BRANCH == 'origin/dev' || GIT_BRANCH == 'origin/master') {
+            build job: 'backend-spec', parameters: [
+              string(name: 'BRANCH', value: GIT_BRANCH.split('/')[1])
+            ]
+          }
+        }
+      }
+    }
   }
   post {
     always {
       script {
         junit "**/$REPORTS_FOLDER/*.xml"
-        if(GIT_BRANCH == 'origin/dev' || GIT_BRANCH == 'origin/master') {
-          build job: 'backend-spec', parameters: [[$class: 'StringParameterValue', name: 'BRANCH', value: GIT_BRANCH]]
-        }
       }
     }
   }

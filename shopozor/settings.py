@@ -1,6 +1,7 @@
-from saleor.settings import *
 from datetime import timedelta
-import dj_email_url
+from saleor.settings import *
+
+import os
 
 if DEBUG:
     CORS_ORIGIN_ALLOW_ALL = True
@@ -43,8 +44,12 @@ PASSWORD_HASHERS = [
     'django.contrib.auth.hashers.Argon2PasswordHasher',
 ]
 
-DEFAULT_COUNTRY = os.environ.get("DEFAULT_COUNTRY", "CH")
-DEFAULT_CURRENCY = os.environ.get("DEFAULT_CURRENCY", "CHF")
+DEFAULT_COUNTRY = os.getenv("DEFAULT_COUNTRY", "CH")
+DEFAULT_CURRENCY = os.getenv("DEFAULT_CURRENCY", "CHF")
+
+WSGI_APPLICATION = "shopozor.wsgi.application"
+
+EMAIL_BACKEND = os.getenv('EMAIL_BACKEND')
 
 WSGI_APPLICATION = "shopozor.wsgi.application"
 
@@ -55,3 +60,6 @@ MANAGER_MARGIN = 0.05
 VAT_PRODUCTS = 0.025
 VAT_SERVICES = 0.077
 VAT_SPECIAL = 0.037
+
+if EMAIL_BACKEND == 'django.core.mail.backends.filebased.EmailBackend':
+    EMAIL_FILE_PATH = os.getenv('EMAIL_FILE_PATH')

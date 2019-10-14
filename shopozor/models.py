@@ -9,6 +9,15 @@ MODELS_PERMISSIONS.append('account.manage_managers')
 MODELS_PERMISSIONS.append('account.manage_rex')
 
 
+class EmailSmtpConfiguration(models.Model):
+    host = models.CharField(max_length=1024)
+    port = models.PositiveSmallIntegerField(default=1025)
+    host_user = models.CharField(max_length=256)
+    host_password = models.CharField(max_length=256)
+    use_ssl = models.BooleanField(default=False)
+    use_tls = models.BooleanField(default=False)
+
+
 class HackerAbuseEvents(models.Model):
     message = models.CharField(max_length=256, blank=True)
     timestamp = models.DateTimeField(auto_now_add=True)

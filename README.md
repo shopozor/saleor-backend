@@ -5,6 +5,29 @@
 [![Acceptance Build Status](http://shopozor-ci.hidora.com/buildStatus/icon?job=shopozor-backend-acceptance&subject=acceptance%20tests)](http://shopozor-ci.hidora.com/job/shopozor-backend-acceptance/)
 [![Unit Build Status](http://shopozor-ci.hidora.com/buildStatus/icon?job=shopozor-backend-unit&subject=unit%20tests)](http://shopozor-ci.hidora.com/job/shopozor-backend-unit/)
 
+## Docker images
+
+### Development
+
+As a frontend developer, you might need to connect your application to the Shopozor's backend server. The development docker image is produced manually upon every PR merging into the `dev` branch. In order to run the server,
+1. clone this repo
+```
+git clone https://github.com/shopozor/backend
+cd backend
+git submodule init
+git submodule update
+```
+2. run
+```
+docker-compose up
+```
+at the root of that clone
+3. setup the database with
+```
+docker exec -it $(docker ps -aqf "name=backend_web") python3 manage.py migrate
+```
+at the root of that clone.
+
 ## Continuous integration
 
 We were not able to display the usual cucumber reports in Jenkins for this repository because the `behave` reports are not compatible with the `cucumber` reports (see e.g. [this reference](https://www.bountysource.com/issues/6638934-behave-json-reports-are-incompatible-with-cucumber-ones)). Therefore our `Jenkinsfile` makes use of the `junit` framework to output acceptance test results.
