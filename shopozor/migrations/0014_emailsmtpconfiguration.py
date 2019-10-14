@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('shopozor', '0009_staff_description'),
+        ('shopozor', '0013_initial_vat_values'),
     ]
 
     operations = [
