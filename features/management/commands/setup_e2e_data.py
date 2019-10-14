@@ -20,8 +20,17 @@ class Command(BaseCommand):
         output_folder = options['user_output_folder']
         variant = options['fixture_variant']
 
-        users = database_loader.load_users_in_database(variant)
-        json.dump(users, os.path.join(output_folder, variant, 'Users.json'))
+        consumers, producers, managers, reges, softozors = database_loader.load_users_in_database(
+            variant)
+        json.dump(consumers, os.path.join(
+            output_folder, variant, 'Consumers.json'))
+        json.dump(producers, os.path.join(
+            output_folder, variant, 'Producers.json'))
+        json.dump(managers, os.path.join(
+            output_folder, variant, 'Managers.json'))
+        json.dump(reges, os.path.join(output_folder, variant, 'Reges.json'))
+        json.dump(softozors, os.path.join(
+            output_folder, variant, 'Softozors.json'))
 
         call_command('loaddata', os.path.join(
             settings.FIXTURE_DIRS[0], variant, 'Shopozor.json'))
