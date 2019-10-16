@@ -23,11 +23,11 @@ class Command(BaseCommand):
         consumers, producers, managers, reges, softozors = database_loader.load_users_in_database(
             variant)
         json.dump(consumers, os.path.join(
-            output_folder, variant, 'Consumers.json'))
+            output_folder, variant, 'Consommateurs.json'))
         json.dump(producers, os.path.join(
-            output_folder, variant, 'Producers.json'))
+            output_folder, variant, 'Producteurs.json'))
         json.dump(managers, os.path.join(
-            output_folder, variant, 'Managers.json'))
+            output_folder, variant, 'Responsables.json'))
         json.dump(reges, os.path.join(output_folder, variant, 'Reges.json'))
         json.dump(softozors, os.path.join(
             output_folder, variant, 'Softozors.json'))
