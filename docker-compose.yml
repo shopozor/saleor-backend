@@ -12,7 +12,7 @@ services:
       - shopozor-backend-tier
     env_file: dev.env
     ports:
-      - "8000:8000"
+      - 8000:8000
     depends_on:
       - db
 
@@ -21,11 +21,21 @@ services:
     restart: unless-stopped
     networks:
       - shopozor-backend-tier
+    ports:
+      - 5432:5432
     volumes:
       - shopozor-db:/var/lib/postgresql
     environment:
       - POSTGRES_USER=saleor
       - POSTGRES_PASSWORD=saleor
+
+  adminer:
+    image: adminer
+    restart: always
+    networks:
+      - shopozor-backend-tier
+    ports:
+      - 8080:8080
 
 volumes:
   shopozor-db:
