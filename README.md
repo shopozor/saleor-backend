@@ -19,10 +19,14 @@ git submodule update
 ```
 2. run
 ```
-docker-compose up
+docker-compose build
 ```
-at the root of that clone
-3. setup the database with
+at the root of that clone; that should be run only upon backend repository clone or pull
+3. run the backend
+```
+docker-compose up -d
+```
+4. setup the database with
 ```
 docker exec -it $(docker ps -aqf "name=backend_web") scripts/setup_docker_db.sh
 ```
@@ -39,6 +43,12 @@ will generate the `large` fixtures set which will be located under
 ./features/fixtures/large/Users.json
 ```
 See [section "Ensure Volume Mounts Work"](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) if the volume mounts don't seem to work under WSL.
+
+To shutdown the backend, run
+```
+docker-compose down
+```
+at the root of your clone of the backend repository.
 
 ## Continuous integration
 
