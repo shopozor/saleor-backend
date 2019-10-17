@@ -35,7 +35,6 @@ application:
             JWT_ALGORITHM: 'HS256'
             PORT: 8000
             PYTHONUNBUFFERED: 1
-            PROCESSES: 1
             DEBUG: "False"
         - nodeGroup: sqldb
           nodeType: postgresql
