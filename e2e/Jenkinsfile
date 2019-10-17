@@ -4,19 +4,16 @@ pipeline {
   agent any
   environment {
     BACKEND_APP_NAME = 'shopozor-backend'
-    COMMON_FRONTEND_BASEURL = credentials('common-frontend-baseurl-credentials') // contains base jps url
-    CONSUMER_BACKEND_NAME = credentials('consumer-backend-name-credentials') // contains envName + base jps url
-    CONSUMER_FRONTEND_APP_NAME = 'shopozor-consumer-frontend'
-    CONSUMER_FRONTEND_NAME = credentials('consumer-frontend-name-credentials') // contains envName
+    FRONTEND_BASEURL = credentials('frontend-baseurl-credentials') // contains base jps url
+    BACKEND_NAME = credentials('backend-name-credentials') // contains envName + base jps url
+    FRONTEND_APP_NAME = 'shopozor-frontend'
+    FRONTEND_NAME = credentials('frontend-name-credentials') // contains envName
     DOCKER_CREDENTIALS = credentials('docker-credentials')
     ENABLE_DEV_TOOLS = true
     FRONTEND_BRANCH = 'dev'
     IMAGE_TYPE = 'e2e'
     JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
     JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
-    MGMT_BACKEND_NAME = credentials('management-backend-name-credentials') // contains envName + base jps url
-    MGMT_FRONTEND_APP_NAME = 'shopozor-management-frontend'
-    MGMT_FRONTEND_NAME = credentials('management-frontend-name-credentials') // contains envName
     PATH_TO_TEST_RESULTS = '/home/node'
     SCREENSHOTS_FOLDER = 'screenshots'
     TEST_REPORTS_FOLDER = 'junit-reports'
@@ -30,33 +27,19 @@ pipeline {
         }
       }
     }
-    stage('Publishing consumer frontend docker image') {
+    stage('Publishing frontend docker image') {
       steps {
         script {
           build job: 'frontend-publish-docker-image', parameters: [
             string(name: 'BRANCH', value: FRONTEND_BRANCH),
             booleanParam(name: 'ENABLE_DEV_TOOLS', value: ENABLE_DEV_TOOLS),
-            string(name: 'GRAPHQL_API', value: "http://${CONSUMER_BACKEND_NAME_USR}.hidora.com/graphql/"),
-            string(name: 'IMAGE_TYPE', value: IMAGE_TYPE),
-            string(name: 'REPO', value: "consumer-frontend"),
+            string(name: 'GRAPHQL_API', value: "http://${BACKEND_NAME_USR}.hidora.com/graphql/"),
+            string(name: 'IMAGE_TYPE', value: IMAGE_TYPE)
           ]
         }
       }
     }
-    stage('Publishing management frontend docker image') {
-      steps {
-        script {
-          build job: 'frontend-publish-docker-image', parameters: [
-            string(name: 'BRANCH', value: FRONTEND_BRANCH),
-            booleanParam(name: 'ENABLE_DEV_TOOLS', value: ENABLE_DEV_TOOLS),
-            string(name: 'GRAPHQL_API', value: "http://${MGMT_BACKEND_NAME_USR}.hidora.com/graphql/"),
-            string(name: 'IMAGE_TYPE', value: IMAGE_TYPE),
-            string(name: 'REPO', value: "management-frontend"),
-          ]
-        }
-      }
-    }
-    stage('Starting up consumer backend environment') {
+    stage('Starting up backend environment') {
       environment {
         BACKEND_JPS = 'manifest.jps'
         E2E_JPS = 'e2e/e2e.jps'
@@ -64,25 +47,12 @@ pipeline {
       }
       steps {
         script {
-          helpers.deploy(BACKEND_JPS, BACKEND_APP_NAME, CONSUMER_BACKEND_NAME_USR, GIT_COMMIT, IMAGE_TYPE)
-          helpers.resetDatabase(E2E_JPS, CONSUMER_BACKEND_NAME_USR, BACKEND_APP_NAME, IMAGE_TYPE)
+          helpers.deploy(BACKEND_JPS, BACKEND_APP_NAME, BACKEND_NAME_USR, GIT_COMMIT, IMAGE_TYPE)
+          helpers.resetDatabase(E2E_JPS, BACKEND_NAME_USR, BACKEND_APP_NAME, IMAGE_TYPE)
         }
       }
     }
-    stage('Starting up management backend environment') {
-      environment {
-        BACKEND_JPS = 'manifest.jps'
-        E2E_JPS = 'e2e/e2e.jps'
-        GITHUB_CREDENTIALS = credentials('github-credentials')
-      }
-      steps {
-        script {
-          helpers.deploy(BACKEND_JPS, BACKEND_APP_NAME, MGMT_BACKEND_NAME_USR, GIT_COMMIT, IMAGE_TYPE)
-          helpers.resetDatabase(E2E_JPS, MGMT_BACKEND_NAME_USR, BACKEND_APP_NAME, IMAGE_TYPE)
-        }
-      }
-    }
-    stage('Starting up consumer frontend and performing end-to-end tests') {
+    stage('Starting up frontend and performing end-to-end tests') {
       environment {
         DOCKER_CREDENTIALS = credentials('docker-credentials')
       }
@@ -90,49 +60,22 @@ pipeline {
         script {
           E2E_JPS = 'e2e.jps'
           FRONTEND_JPS = 'manifest.jps'
-          helpers.getFrontendE2eManifests(FRONTEND_JPS, E2E_JPS, COMMON_FRONTEND_BASEURL)
-          helpers.deploy(FRONTEND_JPS, CONSUMER_FRONTEND_APP_NAME, CONSUMER_FRONTEND_NAME, FRONTEND_BRANCH, IMAGE_TYPE)
-          helpers.mountRemoteFolder(CONSUMER_FRONTEND_NAME, 'cp', '/home/node/emails', CONSUMER_BACKEND_NAME_USR, 'cp', '/app/emails')
-          helpers.mountRemoteFolder(CONSUMER_FRONTEND_NAME, 'cp', '/home/node/cypress/fixtures', CONSUMER_BACKEND_NAME_USR, 'cp', '/app/features/fixtures/large')
-          helpers.runE2eTests(E2E_JPS, CONSUMER_FRONTEND_NAME, CONSUMER_FRONTEND_APP_NAME, IMAGE_TYPE)
+          helpers.getFrontendE2eManifests(FRONTEND_JPS, E2E_JPS, FRONTEND_BASEURL)
+          helpers.deploy(FRONTEND_JPS, FRONTEND_APP_NAME, FRONTEND_NAME, FRONTEND_BRANCH, IMAGE_TYPE)
+          helpers.mountRemoteFolder(FRONTEND_NAME, 'cp', '/home/node/emails', BACKEND_NAME_USR, 'cp', '/app/emails')
+          helpers.mountRemoteFolder(FRONTEND_NAME, 'cp', '/home/node/cypress/fixtures', BACKEND_NAME_USR, 'cp', '/app/features/fixtures/large')
+          helpers.runE2eTests(E2E_JPS, FRONTEND_NAME, FRONTEND_APP_NAME, IMAGE_TYPE)
         }
       }
     }
-    stage('Starting up management frontend and performing end-to-end tests') {
-      environment {
-        DOCKER_CREDENTIALS = credentials('docker-credentials')
-      }
-      steps {
-        script {
-          E2E_JPS = 'e2e.jps'
-          FRONTEND_JPS = 'manifest.jps'
-          helpers.getFrontendE2eManifests(FRONTEND_JPS, E2E_JPS, COMMON_FRONTEND_BASEURL)
-          helpers.deploy(FRONTEND_JPS, MGMT_FRONTEND_APP_NAME, MGMT_FRONTEND_NAME, FRONTEND_BRANCH, IMAGE_TYPE)
-          helpers.mountRemoteFolder(MGMT_FRONTEND_NAME, 'cp', '/home/node/cypress/fixtures', MGMT_BACKEND_NAME_USR, 'cp', '/app/features/fixtures/large')
-          helpers.mountRemoteFolder(MGMT_FRONTEND_NAME, 'cp', '/home/node/emails', MGMT_BACKEND_NAME_USR, 'cp', '/app/emails')
-          helpers.runE2eTests(E2E_JPS, MGMT_FRONTEND_NAME, MGMT_FRONTEND_APP_NAME, IMAGE_TYPE)
-        }
-      }
-    }
-    stage('Retrieving test results from consumer frontend environment') {
+    stage('Retrieving test results from frontend environment') {
       steps {
         script {
           def targetNodeGroup = 'cp'
-          def targetPath = "/mnt/${CONSUMER_FRONTEND_NAME}"
+          def targetPath = "/mnt/${FRONTEND_NAME}"
           def sourceNodeGroup = 'cp'
           def jenkinsEnvName = JENKINS_URL.split('/')[2].split(':')[0].split('\\.')[0]
-          helpers.retrieveTestResults(jenkinsEnvName, targetNodeGroup, targetPath, CONSUMER_FRONTEND_NAME, sourceNodeGroup)
-        }
-      }
-    }
-    stage('Retrieving test results from management frontend environment') {
-      steps {
-        script {
-          def targetNodeGroup = 'cp'
-          def targetPath = "/mnt/${MGMT_FRONTEND_NAME}"
-          def sourceNodeGroup = 'cp'
-          def jenkinsEnvName = JENKINS_URL.split('/')[2].split(':')[0].split('\\.')[0]
-          helpers.retrieveTestResults(jenkinsEnvName, targetNodeGroup, targetPath, MGMT_FRONTEND_NAME, sourceNodeGroup)
+          helpers.retrieveTestResults(jenkinsEnvName, targetNodeGroup, targetPath, FRONTEND_NAME, sourceNodeGroup)
         }
       }
     }
@@ -140,10 +83,8 @@ pipeline {
   post {
     always {
       script {
-        helpers.stopEnvironment(CONSUMER_BACKEND_NAME_USR)
-        helpers.stopEnvironment(MGMT_BACKEND_NAME_USR)
-        helpers.stopEnvironment(CONSUMER_FRONTEND_NAME)
-        helpers.stopEnvironment(MGMT_FRONTEND_NAME)
+        helpers.stopEnvironment(BACKEND_NAME_USR)
+        helpers.stopEnvironment(FRONTEND_NAME)
         helpers.buildArtifacts()
       }
     }
