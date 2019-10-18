@@ -3,7 +3,7 @@
 pipeline {
   agent {
     docker {
-      image 'nikolaik/python-nodejs:python3.6-nodejs10'
+      image 'nikolaik/python-nodejs:python3.6-nodejs12'
     }
   }
   environment {
