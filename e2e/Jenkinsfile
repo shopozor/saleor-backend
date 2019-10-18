@@ -3,10 +3,10 @@ def helpers = new ch.softozor.pipeline.Helpers()
 pipeline {
   agent any
   environment {
-    BACKEND_APP_NAME = 'shopozor-backend'
+    BACKEND_APP_NAME = 'backend'
     FRONTEND_BASEURL = credentials('frontend-baseurl-credentials') // contains base jps url
     BACKEND_NAME = credentials('backend-name-credentials') // contains envName + base jps url
-    FRONTEND_APP_NAME = 'shopozor-frontend'
+    FRONTEND_APP_NAME = 'frontend'
     FRONTEND_NAME = credentials('frontend-name-credentials') // contains envName
     DOCKER_CREDENTIALS = credentials('docker-credentials')
     ENABLE_DEV_TOOLS = true
@@ -23,7 +23,7 @@ pipeline {
     stage('Publishing backend docker image') {
       steps {
         script {
-          helpers.publishBackendDockerImage('shopozor-backend', GIT_COMMIT, ENABLE_DEV_TOOLS, IMAGE_TYPE)
+          helpers.publishBackendDockerImage(BACKEND_APP_NAME, GIT_COMMIT, ENABLE_DEV_TOOLS, IMAGE_TYPE)
         }
       }
     }

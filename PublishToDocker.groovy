@@ -3,7 +3,7 @@ def helpers = new ch.softozor.pipeline.Helpers()
 pipeline {
   agent any
   environment {
-    REPO = 'shopozor-backend'
+    REPO = 'backend'
     DOCKER_CREDENTIALS = credentials('docker-credentials')
   }
   stages {
