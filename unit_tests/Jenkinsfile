@@ -33,7 +33,7 @@ pipeline {
         PYTHONPATH = "$PYTHONPATH:$WORKSPACE/saleor"
       }
       steps {
-        sh ". $VENV/bin/activate && cd saleor && pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml"
+        sh ". $VENV/bin/activate && cd saleor && pytest -ra --junitxml=$REPORTS_FOLDER/saleor-unit-tests.xml -k 'not get_country_by_ip'"
       }
     }
     stage('Performing shopozor unit tests') {
