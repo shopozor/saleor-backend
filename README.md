@@ -95,6 +95,7 @@ virtualenv venv
 ```
 4. Install dependencies
 ```
+. venv/bin/activate
 ./scripts/install/install.sh
 ./scripts/install/install-dev.sh
 ```
