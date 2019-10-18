@@ -3,7 +3,7 @@ def helpers = new ch.softozor.pipeline.Helpers()
 pipeline {
   agent {
     docker {
-      image 'python:latest'
+      image 'python:3.7.4'
     }
   }
   environment {
