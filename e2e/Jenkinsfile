@@ -4,7 +4,6 @@ pipeline {
   agent any
   environment {
     BACKEND_APP_NAME = 'backend'
-    FRONTEND_BASEURL = credentials('frontend-baseurl-credentials') // contains base jps url
     BACKEND_NAME = credentials('backend-name-credentials') // contains envName + base jps url
     FRONTEND_APP_NAME = 'frontend'
     FRONTEND_NAME = credentials('frontend-name-credentials') // contains envName
@@ -60,11 +59,11 @@ pipeline {
         script {
           E2E_JPS = 'e2e.jps'
           FRONTEND_JPS = 'manifest.jps'
-          helpers.getFrontendE2eManifests(FRONTEND_JPS, E2E_JPS, FRONTEND_BASEURL)
-          helpers.deploy(FRONTEND_JPS, FRONTEND_APP_NAME, FRONTEND_NAME, FRONTEND_BRANCH, IMAGE_TYPE)
-          helpers.mountRemoteFolder(FRONTEND_NAME, 'cp', '/home/node/emails', BACKEND_NAME_USR, 'cp', '/app/emails')
-          helpers.mountRemoteFolder(FRONTEND_NAME, 'cp', '/home/node/cypress/fixtures', BACKEND_NAME_USR, 'cp', '/app/features/fixtures/large')
-          helpers.runE2eTests(E2E_JPS, FRONTEND_NAME, FRONTEND_APP_NAME, IMAGE_TYPE)
+          helpers.getFrontendE2eManifests(FRONTEND_JPS, E2E_JPS, FRONTEND_NAME_PSW)
+          helpers.deploy(FRONTEND_JPS, FRONTEND_APP_NAME, FRONTEND_NAME_USR, FRONTEND_BRANCH, IMAGE_TYPE)
+          helpers.mountRemoteFolder(FRONTEND_NAME_USR, 'cp', '/home/node/emails', BACKEND_NAME_USR, 'cp', '/app/emails')
+          helpers.mountRemoteFolder(FRONTEND_NAME_USR, 'cp', '/home/node/cypress/fixtures', BACKEND_NAME_USR, 'cp', '/app/features/fixtures/large')
+          helpers.runE2eTests(E2E_JPS, FRONTEND_NAME_USR, FRONTEND_APP_NAME, IMAGE_TYPE)
         }
       }
     }
@@ -72,10 +71,10 @@ pipeline {
       steps {
         script {
           def targetNodeGroup = 'cp'
-          def targetPath = "/mnt/${FRONTEND_NAME}"
+          def targetPath = "/mnt/${FRONTEND_NAME_USR}"
           def sourceNodeGroup = 'cp'
           def jenkinsEnvName = JENKINS_URL.split('/')[2].split(':')[0].split('\\.')[0]
-          helpers.retrieveTestResults(jenkinsEnvName, targetNodeGroup, targetPath, FRONTEND_NAME, sourceNodeGroup)
+          helpers.retrieveTestResults(jenkinsEnvName, targetNodeGroup, targetPath, FRONTEND_NAME_USR, sourceNodeGroup)
         }
       }
     }
@@ -84,7 +83,7 @@ pipeline {
     always {
       script {
         helpers.stopEnvironment(BACKEND_NAME_USR)
-        helpers.stopEnvironment(FRONTEND_NAME)
+        helpers.stopEnvironment(FRONTEND_NAME_USR)
         helpers.buildArtifacts()
       }
     }
