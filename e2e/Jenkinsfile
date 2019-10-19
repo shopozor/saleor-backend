@@ -4,9 +4,11 @@ pipeline {
   agent any
   environment {
     BACKEND_APP_NAME = 'backend'
-    BACKEND_NAME = credentials('backend-name-credentials') // contains envName + base jps url
+    PRODUCT_NAME = credentials('product-name-credentials')
+    BACKEND_NAME = "${PRODUCT_NAME}-backend-e2e"
     FRONTEND_APP_NAME = 'frontend'
-    FRONTEND_NAME = credentials('frontend-name-credentials') // contains envName
+    FRONTEND_NAME = "${PRODUCT_NAME}-frontend-e2e"
+    FRONTEND_JPS_BASEURL = credentials('frontend-baseurl-credentials')
     DOCKER_CREDENTIALS = credentials('docker-credentials')
     ENABLE_DEV_TOOLS = true
     FRONTEND_BRANCH = 'dev'
@@ -32,7 +34,7 @@ pipeline {
           build job: 'frontend-publish-docker-image', parameters: [
             string(name: 'BRANCH', value: FRONTEND_BRANCH),
             booleanParam(name: 'ENABLE_DEV_TOOLS', value: ENABLE_DEV_TOOLS),
-            string(name: 'GRAPHQL_API', value: "http://${BACKEND_NAME_USR}.hidora.com/graphql/"),
+            string(name: 'GRAPHQL_API', value: "http://${BACKEND_NAME}.hidora.com/graphql/"),
             string(name: 'IMAGE_TYPE', value: IMAGE_TYPE)
           ]
         }
@@ -46,8 +48,8 @@ pipeline {
       }
       steps {
         script {
-          helpers.deploy(BACKEND_JPS, BACKEND_APP_NAME, BACKEND_NAME_USR, GIT_COMMIT, IMAGE_TYPE)
-          helpers.resetDatabase(E2E_JPS, BACKEND_NAME_USR, BACKEND_APP_NAME, IMAGE_TYPE)
+          helpers.deploy(BACKEND_JPS, BACKEND_APP_NAME, BACKEND_NAME, GIT_COMMIT, IMAGE_TYPE)
+          helpers.resetDatabase(E2E_JPS, BACKEND_NAME, BACKEND_APP_NAME, IMAGE_TYPE)
         }
       }
     }
@@ -59,11 +61,11 @@ pipeline {
         script {
           E2E_JPS = 'e2e.jps'
           FRONTEND_JPS = 'manifest.jps'
-          helpers.getFrontendE2eManifests(FRONTEND_JPS, E2E_JPS, FRONTEND_NAME_PSW)
-          helpers.deploy(FRONTEND_JPS, FRONTEND_APP_NAME, FRONTEND_NAME_USR, FRONTEND_BRANCH, IMAGE_TYPE)
-          helpers.mountRemoteFolder(FRONTEND_NAME_USR, 'cp', '/home/node/emails', BACKEND_NAME_USR, 'cp', '/app/emails')
-          helpers.mountRemoteFolder(FRONTEND_NAME_USR, 'cp', '/home/node/cypress/fixtures', BACKEND_NAME_USR, 'cp', '/app/features/fixtures/large')
-          helpers.runE2eTests(E2E_JPS, FRONTEND_NAME_USR, FRONTEND_APP_NAME, IMAGE_TYPE)
+          helpers.getFrontendE2eManifests(FRONTEND_JPS, E2E_JPS, FRONTEND_JPS_BASEURL)
+          helpers.deploy(FRONTEND_JPS, FRONTEND_APP_NAME, FRONTEND_NAME, FRONTEND_BRANCH, IMAGE_TYPE)
+          helpers.mountRemoteFolder(FRONTEND_NAME, 'cp', '/home/node/emails', BACKEND_NAME, 'cp', '/app/emails')
+          helpers.mountRemoteFolder(FRONTEND_NAME, 'cp', '/home/node/cypress/fixtures', BACKEND_NAME, 'cp', '/app/features/fixtures/large')
+          helpers.runE2eTests(E2E_JPS, FRONTEND_NAME, FRONTEND_APP_NAME, IMAGE_TYPE)
         }
       }
     }
@@ -71,10 +73,10 @@ pipeline {
       steps {
         script {
           def targetNodeGroup = 'cp'
-          def targetPath = "/mnt/${FRONTEND_NAME_USR}"
+          def targetPath = "/mnt/${FRONTEND_NAME}"
           def sourceNodeGroup = 'cp'
           def jenkinsEnvName = JENKINS_URL.split('/')[2].split(':')[0].split('\\.')[0]
-          helpers.retrieveTestResults(jenkinsEnvName, targetNodeGroup, targetPath, FRONTEND_NAME_USR, sourceNodeGroup)
+          helpers.retrieveTestResults(jenkinsEnvName, targetNodeGroup, targetPath, FRONTEND_NAME, sourceNodeGroup)
         }
       }
     }
@@ -82,8 +84,8 @@ pipeline {
   post {
     always {
       script {
-        helpers.stopEnvironment(BACKEND_NAME_USR)
-        helpers.stopEnvironment(FRONTEND_NAME_USR)
+        helpers.stopEnvironment(BACKEND_NAME)
+        helpers.stopEnvironment(FRONTEND_NAME)
         helpers.buildArtifacts()
       }
     }
