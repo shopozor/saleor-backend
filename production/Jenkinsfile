@@ -8,8 +8,9 @@ pipeline {
     IMAGE_TYPE = "production"
     JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
     JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
-    PRODUCTION_ENV_NAME = "shopozor-${APP_NAME}"
-    STAGING_ENV_NAME = "shopozor-${APP_NAME}-staging"
+    PRODUCT_NAME = credentials('product-name-credentials')
+    PRODUCTION_ENV_NAME = "${PRODUCT_NAME}-${APP_NAME}"
+    STAGING_ENV_NAME = "${PRODUCT_NAME}-${APP_NAME}-staging"
   }
   stages {
     stage('Publish staging docker container') {
