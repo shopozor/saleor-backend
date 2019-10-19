@@ -28,13 +28,6 @@ def step_impl(context, is_active, has_password):
     context.user = user_data
 
 
-@when(u'un client s\'identifie en tant qu\'administrateur avec un e-mail et un mot de passe valides')
-def step_impl(context):
-    context.consumer['isStaff'] = True
-    test_client = context.test.client
-    context.response = login(test_client, **context.consumer)
-
-
 def is_staff(user_type):
     switch = {
         'client': False,
@@ -43,54 +36,16 @@ def is_staff(user_type):
     return switch[user_type]
 
 
-def valid_mail_and_password(context, user_type, is_staff_user):
-    switch = {
-        'client': dict(
-            email=context.consumer['email'],
-            password=context.consumer['password'],
-            isStaff=is_staff_user
-        ),
-        'administrateur': dict(
-            email=context.producer['email'],
-            password=context.producer['password'],
-            isStaff=is_staff_user
-        )
-    }
-    return switch[user_type]
-
-
-def invalid_mail_and_password(context, is_staff_user):
+def invalid_mail_and_password(context):
     return dict(
         email=context.unknown['email'],
-        password=context.unknown['password'],
-        isStaff=is_staff_user
+        password=context.unknown['password']
     )
 
 
-@when(
-    u'un {user_type:UserType} s\'identifie en tant que {pretended_type:UserType} avec un e-mail et un mot de passe {validity:ValidityType}')
-def step_impl(context, user_type, pretended_type, validity):
-    credentials = valid_mail_and_password(context, user_type, is_staff(
-        pretended_type)) if validity else invalid_mail_and_password(context, is_staff(pretended_type))
-    test_client = context.test.client
-    context.response = login(test_client, **credentials)
-
-
-def valid_mail_invalid_password(context, user_type, is_staff_user):
-    switch = {
-        'client': dict(email=context.consumer['email'], password=context.consumer['password'] + 'a',
-                       isStaff=is_staff_user),
-        'administrateur': dict(email=context.producer['email'], password=context.producer['password'] + 'a',
-                               isStaff=is_staff_user)
-    }
-    return switch[user_type]
-
-
-@when(
-    u'un {user_type:UserType} s\'identifie en tant que {pretended_type:UserType} avec un e-mail valide et un mot de passe invalide')
-def step_impl(context, user_type, pretended_type):
-    credentials = valid_mail_invalid_password(context,
-                                              user_type, is_staff(pretended_type))
+@when(u'un utilisateur s\'identifie avec un e-mail et un mot de passe invalides')
+def step_impl(context):
+    credentials = invalid_mail_and_password(context)
     test_client = context.test.client
     context.response = login(test_client, **credentials)
 
@@ -104,6 +59,15 @@ def valid_persona_credentials(context, persona):
         'Softozor': dict(email=context.softozor['email'], password=context.softozor['password']),
     }
     return switch[persona]
+
+
+@when(
+    u'un {persona:PersonaType} s\'identifie avec un e-mail valide et un mot de passe invalide')
+def step_impl(context, persona):
+    credentials = valid_persona_credentials(context, persona)
+    credentials['password'] += 'a'
+    test_client = context.test.client
+    context.response = login(test_client, **credentials)
 
 
 @when(u'un {persona:PersonaType} s\'identifie avec un e-mail et un mot de passe valides')
@@ -127,12 +91,6 @@ def step_impl(context):
 def step_impl(context):
     context.test.assertEqual(
         context.wrong_credentials_response, context.response)
-
-
-@then(u'il obtient un message d\'erreur stipulant que son compte n\'a pas les droits d\'administrateur')
-def step_impl(context):
-    context.test.assertEqual(
-        context.user_not_admin_response, context.response)
 
 
 @then(u'il n\'obtient pas de permissions')
