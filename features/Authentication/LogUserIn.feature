@@ -24,62 +24,37 @@ Fonctionnalité: Identifier un utilisateur
     - Rex
     - Softozor
 
+  N'importe quel administrateur peut s'identifier en tant que client.
+  Si l'identification est réussie, alors la session s'ouvre pour un certain temps.
+  Durant cette période, la session doit être rafraîchie :  
+
+  - Si la session n'est pas rafraîchie dans les temps, alors elle se ferme automatiquement et l'utilisateur doit s'identifier à nouveau.  
+
+  - Si la session est rafraîchie dans les temps, alors elle reste valide 1 mois de plus, et ainsi de suite, tant qu'elle est rafraîchie dans les temps.
+    La session se ferme alors automatiquement après 1 année. Après 1 année de rafraîchissement de session, l'utilisateur est forcé de s'identifier à nouveau.
+
   Contexte: L'utilisateur n'est pas identifié
 
     Etant donné un utilisateur non identifié sur le Shopozor
 
-  Plan du Scénario: L'utilisateur n'est pas encore enregistré
+  Scénario: L'utilisateur n'est pas encore enregistré
 
-    Lorsqu'un <utilisateur> s'identifie en tant que <utilisateur prétendu> avec un e-mail et un mot de passe invalides
+    Lorsqu'un utilisateur s'identifie avec un e-mail et un mot de passe invalides
     Alors il obtient un message d'erreur stipulant que ses identifiants sont incorrects
-
-    Exemples:
-      | utilisateur    | utilisateur prétendu |
-      | client         | client               |
-      | administrateur | client               |
-      | client         | administrateur       |
-      | administrateur | administrateur       |
 
   @fixture.user-accounts
   Plan du Scénario: L'utilisateur est enregistré mais entre un mot de passe erroné
 
-    Lorsqu'un <utilisateur> s'identifie en tant que <utilisateur prétendu> avec un e-mail valide et un mot de passe invalide
+    Lorsqu'un <persona> s'identifie avec un e-mail valide et un mot de passe invalide
     Alors il obtient un message d'erreur stipulant que ses identifiants sont incorrects
 
     Exemples:
-      | utilisateur    | utilisateur prétendu |
-      | client         | client               |
-      | administrateur | client               |
-      | client         | administrateur       |
-      | administrateur | administrateur       |
-
-  @fixture.user-accounts
-  Plan du Scénario: L'utilisateur peut s'identifier avec son identifiant et son mot de passe
-
-    N'importe quel administrateur peut s'identifier en tant que client.
-    Si l'identification est réussie, alors la session s'ouvre pour un certain temps.
-    Durant cette période, la session doit être rafraîchie.  
-
-    - Si la session n'est pas rafraîchie dans les temps, alors elle se ferme automatiquement et l'utilisateur doit s'identifier à nouveau.  
-
-    - Si la session est rafraîchie dans les temps, alors elle reste valide 1 mois de plus, et ainsi de suite, tant qu'elle est rafraîchie dans les temps.
-      La session se ferme alors automatiquement après 1 année. Après 1 année de rafraîchissement de session, l'utilisateur est forcé de s'identifier à nouveau.
-
-    Lorsqu'un <utilisateur> s'identifie en tant que <utilisateur prétendu> avec un e-mail et un mot de passe valides
-    Alors sa session s'ouvre pour 1 mois
-    Et reste valide pendant 1 an
-
-    Exemples:
-      | utilisateur    | utilisateur prétendu |
-      | client         | client               |
-      | administrateur | administrateur       |
-      | administrateur | client               |
-
-  @fixture.user-accounts
-  Scénario: Un client ne peut pas s'identifier en tant qu'administrateur
-
-    Lorsqu'un client s'identifie en tant qu'administrateur avec un e-mail et un mot de passe valides
-    Alors il obtient un message d'erreur stipulant que son compte n'a pas les droits d'administrateur
+      | persona      |
+      | Consommateur |
+      | Producteur   |
+      | Responsable  |
+      | Rex          |
+      | Softozor     |
 
   @fixture.user-accounts
   Plan du Scénario: Définition des permissions du Consommateur et du Producteur
