@@ -1,4 +1,4 @@
-[Recap of our workflow](https://github.com/softozor/shopozor-backend#pull-requests)
+[Recap of our workflow](https://softozor.github.io/github_workflow.html)
 
 # Prerequisites
 
