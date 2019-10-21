@@ -52,7 +52,7 @@ class Product(models.Model):
         SaleorProduct, on_delete=models.CASCADE, primary_key=True
     )
     conservation_mode = models.CharField(max_length=256, blank=True)
-    conservation_until = models.DateField()
+    conservation_days = models.IntegerField()
     vat_rate = models.DecimalField(max_digits=5, decimal_places=4, default=0)
 
 

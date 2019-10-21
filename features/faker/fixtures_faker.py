@@ -338,7 +338,7 @@ class FakeDataFactory:
             'fields': {
                 'product_id': product_id,
                 'conservation_mode': self.__fake.conservation_mode(),
-                'conservation_until': self.__fake.conservation_until(start_date=publication_date),
+                'conservation_days': self.__fake.conservation_days(),
                 'vat_rate': self.__fake.vat_rate()
             },
             'model': 'shopozor.product',

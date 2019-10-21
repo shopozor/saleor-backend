@@ -224,7 +224,7 @@ def product_node(product, variant, new_variant, associated_images, associated_pr
             'id': graphene.Node.to_global_id('Product', product['pk']),
             'conservation': {
                 'mode': shopozor_product['conservation_mode'],
-                'until': shopozor_product['conservation_until']
+                'durationInDays': shopozor_product['conservation_days']
             },
             'description': product['fields']['description'],
             'images': associated_images,

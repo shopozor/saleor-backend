@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('product', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE,
                                                  primary_key=True, serialize=False, to='product.Product')),
                 ('conservation_mode', models.CharField(blank=True, max_length=256)),
-                ('conservation_until', models.DateField()),
+                ('conservation_days', models.IntegerField()),
             ],
         ),
     ]
