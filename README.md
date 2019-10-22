@@ -84,7 +84,7 @@ virtualenv venv
 5. Activate the pre-commit hooks
 
 ```
-./scripts/activate-hooks.sh
+./scripts/activate-hooks.sh <path-to-repo-root>
 ```
 
 That activates pre-commit hooks for the backend code as well as for the graphql queries repo and fixtures repo.
