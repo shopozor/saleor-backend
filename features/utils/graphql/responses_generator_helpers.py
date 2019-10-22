@@ -62,13 +62,8 @@ def get_shopozor_fixture(fixture_variant):
         settings.FIXTURE_DIRS[0], fixture_variant, 'Shopozor.json'))
 
 
-def round_money_amount(amount):
-    return math.ceil(amount * 20) / 20
-
-
-# TODO: fix this
-def round_to_nearest_half(amount):
-    return round(amount * 2, 1) / 2
+def round_to_display(amount):
+    return round(amount, 2)
 
 
 def money_amount(price_fields=None, amount=None, currency=None):
@@ -89,7 +84,8 @@ def get_product_tax(cost_price, vat_rate):
     # we keep taxes at its most precise amount without rounding for the sake of transparency
     # the gross price takes rounding into account
     tax = float(cost_price['amount']) * vat_rate / (1 + vat_rate)
-    return money_amount(amount=round_to_nearest_half(tax), currency=cost_price['currency'])
+    tax = round_to_display(tax)
+    return money_amount(amount=tax, currency=cost_price['currency'])
 
 
 def get_service_tax(cost_price, vat_rate):
@@ -97,18 +93,21 @@ def get_service_tax(cost_price, vat_rate):
     # the gross price takes rounding into account
     tax = float(cost_price['amount']) * vat_rate / \
         (1 + vat_rate) * settings.SHOPOZOR_MARGIN / (1 - settings.SHOPOZOR_MARGIN)
-    return money_amount(amount=round_to_nearest_half(tax), currency=cost_price['currency'])
+    tax = round_to_display(tax)
+    return money_amount(amount=tax, currency=cost_price['currency'])
 
 
 def get_gross_price(cost_price, vat_rate):
     result_amount = float(cost_price['amount']) / 0.85
-    return money_amount(amount=round_money_amount(result_amount), currency=cost_price['currency'])
+    result_amount = round_to_display(result_amount)
+    return money_amount(amount=result_amount, currency=cost_price['currency'])
 
 
 def get_net_price(cost_price, product_vat_rate, service_vat_rate):
     result_amount = float(cost_price['amount']) * ((1 + product_vat_rate) * settings.SHOPOZOR_MARGIN + (1 - settings.SHOPOZOR_MARGIN) * (
         1 + service_vat_rate)) / ((1 - settings.SHOPOZOR_MARGIN) * (1 + service_vat_rate) * (1 + product_vat_rate))
-    return money_amount(amount=round_to_nearest_half(result_amount), currency=cost_price['currency'])
+    result_amount = round_to_display(result_amount)
+    return money_amount(amount=result_amount, currency=cost_price['currency'])
 
 
 def get_price(variant_fields, product_vat_rate):
@@ -125,10 +124,10 @@ def get_margin(cost_price, margin_rate, service_vat_rate):
         (1 - settings.SHOPOZOR_MARGIN) * float(cost_price['amount'])
     total_net_margin = total_gross_margin / (1 + service_vat_rate)
     return {
-        'gross': money_amount(amount=round_money_amount(total_gross_margin * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency']),
-        'net': money_amount(amount=round_to_nearest_half(total_net_margin * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency']),
-        # we keep taxes as precise as possible; the gross price takes rounding into account
-        'tax': money_amount(amount=round_to_nearest_half((total_gross_margin - total_net_margin) * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency'])
+        'gross': money_amount(amount=round_to_display(total_gross_margin * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency']),
+        'net': money_amount(amount=round_to_display(total_net_margin * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency']),
+        # 'tax': money_amount(amount=round_to_display((total_gross_margin - total_net_margin) * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency'])
+        'tax': money_amount(amount=round_to_display(total_gross_margin * service_vat_rate / (1 + service_vat_rate) * margin_rate / settings.SHOPOZOR_MARGIN), currency=cost_price['currency'])
     }
 
 

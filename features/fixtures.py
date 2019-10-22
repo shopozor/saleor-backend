@@ -163,7 +163,7 @@ def successful_set_password(context):
 @fixture
 def signup_password_not_compliant(context):
     data = json.load(
-        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'SignupPasswordNotCompliant.json'))
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'RegisterConsumer', 'PasswordNotCompliant.json'))
     password_not_compliant = data['data']['consumerCreate']['errors'][0]
     context.password_not_compliant = password_not_compliant
     return password_not_compliant
@@ -172,7 +172,7 @@ def signup_password_not_compliant(context):
 @fixture
 def password_reset_password_not_compliant(context):
     data = json.load(
-        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'PasswordResetPasswordNotCompliant.json'))
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'ResetUserPassword', 'PasswordNotCompliant.json'))
     password_not_compliant = data['data']['setPassword']['errors'][0]
     context.password_not_compliant = password_not_compliant
     return password_not_compliant
@@ -181,7 +181,7 @@ def password_reset_password_not_compliant(context):
 @fixture
 def signup_expired_link(context):
     data = json.load(
-        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'SignupExpiredLink.json'))
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'RegisterConsumer', 'ExpiredLink.json'))
     expired_link = data['data']['consumerActivate']
     context.expired_link = expired_link
     return expired_link
@@ -190,7 +190,7 @@ def signup_expired_link(context):
 @fixture
 def password_reset_expired_link(context):
     data = json.load(
-        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'PasswordResetExpiredLink.json'))
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'ResetUserPassword', 'ExpiredLink.json'))
     expired_link = data['data']['setPassword']
     context.expired_link = expired_link
     return expired_link
