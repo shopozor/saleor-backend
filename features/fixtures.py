@@ -99,7 +99,7 @@ def user_accounts(context):
 @fixture
 def wrong_credentials_response(context):
     data = json.load(
-        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'LogStaffIn', 'WrongCredentials.json'))
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'Login', 'WrongCredentials.json'))
     context.wrong_credentials_response = data
     return data
 
@@ -107,7 +107,7 @@ def wrong_credentials_response(context):
 @fixture
 def user_not_admin_response(context):
     data = json.load(
-        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'LogStaffIn', 'Consommateur.json'))
+        os.path.join(settings.GRAPHQL_RESPONSES_FOLDER, 'Authentication', 'Login', 'Consommateur.json'))
     context.user_not_admin_response = data
     return data
 
