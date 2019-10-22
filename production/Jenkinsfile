@@ -3,13 +3,14 @@ def helpers = new ch.softozor.pipeline.Helpers()
 pipeline {
   agent any
   environment {
-    APP_NAME = "shopozor-backend"
+    APP_NAME = "backend"
     ENABLE_DEV_TOOLS = "true"
     IMAGE_TYPE = "production"
     JELASTIC_APP_CREDENTIALS = credentials('jelastic-app-credentials')
     JELASTIC_CREDENTIALS = credentials('jelastic-credentials')
-    PRODUCTION_ENV_NAME = APP_NAME
-    STAGING_ENV_NAME = "${APP_NAME}-staging"
+    PRODUCT_NAME = credentials('product-name-credentials')
+    PRODUCTION_ENV_NAME = "${PRODUCT_NAME}-${APP_NAME}"
+    STAGING_ENV_NAME = "${PRODUCT_NAME}-${APP_NAME}-staging"
   }
   stages {
     stage('Publish staging docker container') {

@@ -19,25 +19,36 @@ git submodule update
 ```
 2. run
 ```
-docker-compose up
+docker-compose build
 ```
-at the root of that clone
-3. setup the database with
+at the root of that clone; that should be run only upon backend repository clone or pull
+3. run the backend
 ```
-docker exec -it $(docker ps -aqf "name=backend_web") python3 manage.py migrate
+docker-compose up -d
 ```
-at the root of that clone.
+4. setup the database with
+```
+docker exec -it $(docker ps -aqf "name=backend_web") scripts/setup_docker_db.sh
+```
+at the root of that clone. That command initializes the database with the relevant data necessary for testing. For example, after that call, the following file with the user credentials will be added to your repo's clone:
+```
+./features/fixtures/medium/Users.json
+```
+By default, `scripts/setup_docker_db.sh` generates the `medium` fixtures set. You can provide that script with one of `tiny`, `small`, `medium`, `large` to generate the corresponding fixtures set. For example:
+```
+docker exec -it $(docker ps -aqf "name=backend_web") scripts/setup_docker_db.sh large
+```
+will generate the `large` fixtures set which will be located under
+```
+./features/fixtures/large/Users.json
+```
+See [section "Ensure Volume Mounts Work"](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly) if the volume mounts don't seem to work under WSL.
 
-In order to get the docker image ready with useful data, you should additionally run the following commands:
+To shutdown the backend, run
 ```
-docker exec -it $(docker ps -aqf "name=backend_web") bash
-python3 manage.py generate_django_fixtures --settings features.settings --fixture-variant medium
-python3 manage.py setup_e2e_data --settings features.settings --fixture-variant medium
+docker-compose down
 ```
-Then, you get e.g. the following file on the docker image with the user credentials:
-```
-/app/features/fixtures/medium/Users.json
-```
+at the root of your clone of the backend repository.
 
 ## Continuous integration
 
@@ -84,6 +95,7 @@ virtualenv venv
 ```
 4. Install dependencies
 ```
+. venv/bin/activate
 ./scripts/install/install.sh
 ./scripts/install/install-dev.sh
 ```
