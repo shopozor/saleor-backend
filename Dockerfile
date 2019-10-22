@@ -17,7 +17,7 @@ WORKDIR /app
 RUN chmod u+x ./scripts/install/*.sh \
   && ./scripts/install/install.sh
 
-RUN if "$ENABLE_DEV_TOOLS" == "true"; then ./scripts/install/install-dev.sh; fi
+RUN if "$ENABLE_DEV_TOOLS" == "true"; then ./scripts/install/install-dev.sh; chmod u+x ./scripts/setup_docker_db.sh; fi
 
 RUN groupadd -r saleor && useradd -r -g saleor saleor
 
