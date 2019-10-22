@@ -10,6 +10,7 @@
 # TODO: 3. lorsque le Producteur a ajouté un nouveau Produit dans son inventaire, il doit être possible de vérifier que les marges
 # TODO:    cost price, price, taxes sont calculées correctement (voir IncognitoVisitsShop.feature pour plus de détails).
 # TODO: 4. le Producteur doit définir sa propre TVA: aucune TVA, TVA par défaut, TVA custom
+# TODO: 5. le Producteur doit pouvoir spécifier une liste de catégories pour son produit
 
 @initial-release @producer @wip @in-preparation
 Fonctionnalité: Le Producteur ajoute un Produit à son inventaire
